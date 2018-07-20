@@ -1,0 +1,100 @@
+<style>
+    .step-sm ul{margin-top: 25px;}
+</style>
+<!--
+<div class="pay-f">
+    <div class="ms">
+        <h3>
+            <span>订单信息提交成功，请尽快付款！</span>
+            <span class="money" ng-hide="payBargin">应付金额&nbsp;
+                <s class="my-ct">
+                    <small ng-repeat="(currency, price) in payPrice">
+                        <small ng-show="$index > 0"> + </small>{{currency | dictionary : 'currency'}} {{price | number: 2}}
+                    </small>
+                </s>
+            </span>
+            <span class="money" ng-show="payBargin">应付金额：&nbsp;
+                <s class="my-ct" style="font-size: 12px;">
+                    <small ng-repeat="(currency, price) in payPrice">
+                        <small ng-show="$index > 0"> + </small>{{currency | dictionary : 'currency'}} {{price | number: 2}}
+                    </small>
+                </s>&nbsp;
+                 支付后，请及时联系供应商议价
+            </span>
+        </h3>
+    </div>
+    <div class="ms">
+        &lt;!&ndash;<span>请您在<s style="color: #e31613">24小时</s>内完成支付，否则商品价格可能会产生变动！</span>&ndash;&gt;
+        <span class="detail" ng-hide="showDl" ng-click="showDl=true; dnClick()">订单详情<i class="icon icon-shang-back-copy"></i></span>
+        <span class="detail" ng-show="showDl" ng-click="showDl=false; dnClick()">收起详情<i class="icon icon-shang"></i></span>
+    </div>
+    &lt;!&ndash;详情&ndash;&gt;
+    <div class="d-mes">
+        <div>收货地址：{{payAddress.regionName}}&nbsp;{{payAddress.address}}&nbsp;&nbsp;&nbsp;&nbsp;收货人：{{payAddress.name}}&nbsp&nbsp;{{payAddress.phone}}</div>
+        <div>商品名称：{{payProName}}</div>
+    </div>
+    &lt;!&ndash;<ul class="to-pay">
+        <li ng-click="pay();">
+            <span class="ic-tip">
+                <i class="icon icon-payment"></i>去支付
+            </span>
+        <li  ng-click="nopay()">
+            <span class="ic-tip" style="color: #ccc;">
+                <i class="icon icon-caozuolanhuifubingfangqi"></i>暂不支付
+            </span>
+        </li>
+    </ul>&ndash;&gt;
+    &lt;!&ndash;经费填写&ndash;&gt;
+    <div class="fill-pay">
+        <h5 class="title">选择经费信息</h5>
+        <p class="bg-danger">请确保使用经费信息完整准确，资金到位，该经费将会用于购买您提交的订单！</p>
+        <div class="pay-input">
+            <div class="input-item">
+                <label>经费卡-名称</label>
+                <select class="select-name select-code" ng-model="selectedFund">
+                    <option ng-repeat="itemFund in funds" value="{{itemFund.accountNo}}">{{itemFund.accountName}} - {{itemFund.accountNo}}</option>
+                </select>
+            </div>
+            <div class="input-item">
+                <label>经费名称</label>
+                <div class="select-name correlate">{{selectFunds.accountName}}</div>
+            </div>
+            <div class="input-item">
+                <label>购置经费</label>
+                <div class="select-name correlate">{{selectFunds.accountTypeName}} - {{selectFunds.accountType}}</div>
+            </div>
+            <div class="input-item">
+                <label>经费负责人</label>
+                <div class="select-name correlate">{{selectFunds.accountPrincipalName}} - {{selectFunds.accountPrincipal}}</div>
+            </div>
+            <div class="input-item">
+                <label>经费主管部门</label>
+                <div class="select-name correlate">{{selectFunds.accountDepName}} - {{selectFunds.accountDepCode}}</div>
+            </div>
+        </div>
+    </div>
+    &lt;!&ndash;付款按钮&ndash;&gt;
+    <div class="sure-btn">
+        <span class="sure" ng-click="pay();">确认经费信息</span>
+    </div>
+</div>-->
+
+<div class="pay-ctn">
+    <div class="pay">
+        <p class="success-word"><i class="icon icon-coop"></i><span>感谢您，订单提交成功！您购买的商品正在出库中，订单的实时状态会以邮件和手机短信发送给您，请耐心等候！</span></p>
+        <div class="see-order">
+            <a class="btn" ng-href="/#/orders">查看我的订单</a>
+            <span class="save" ng-show="savesPay>0">订单总计金额：<b>¥ {{allPay | number:2}}</b></span>
+            <span class="save mr30" ng-show="savesPay>0">订单节省金额：<b class="colorgreen font20">¥ {{savesPay | number:2}}</b></span>
+        </div>
+    </div>
+</div>
+<!--
+<div class="success-orders">
+    <div class="item">
+        <img src="https://img10.360buyimg.com/cms/s60x60_jfs/t12931/127/256842416/189701/22f49570/5a072165N00828137.jpg">
+        <div class="texts">
+            <a>狄派 4G独显/绝地求生吃鸡台式机电脑i5四核/i7级/八核办公游戏电脑主机台式整机全套 电脑主机+显示器 套餐二（双核+500G机械盘+4G独显）</a>
+        </div>
+    </div>
+</div>-->

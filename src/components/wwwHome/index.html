@@ -1,0 +1,581 @@
+<style>
+    #b03 .dots{left: 0;}
+</style>
+<div id="cheng-www">
+    <!-- banner -->
+    <div class="banner" id="b03" style="position: relative; margin:0;">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img style="width: 100%; height: 340px;" src="/images/www/banner1.jpg"></div>
+                <div class="swiper-slide"><img style="width: 100%; height: 340px;" src="/images/www/banner2.jpg"></div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="banner_bg">
+            <!--<div class="banner_text">
+                <p>累积采购订单&nbsp;&nbsp;&nbsp;<strong>9871</strong>笔</p>
+            </div>-->
+            <div class="banner_bottom">
+                <a href="https://supplier.yuncaitong.cn/#/store/audit" target="_blank">供应商入驻商城</a>
+                <a href="https://www.yuncaitong.cn/about/contact.shtml" target="_blank">采购人申请开通</a>
+            </div>
+        </div>
+    </div>
+    <!-- university logo -->
+    <div class="main_top">
+        <div class="main_logo w">
+            <ul>
+                <li ng-repeat="univer in malls" ng-click="toMall(univer)" ng-mouseleave="$parent.noOpen=null;">
+                   <a target="_blank">
+                       <p>{{univer.orgName}}</p>
+                       <img ng-src={{univer.logo}}>
+                   </a>
+                    <p class="no-open" ng-show="noOpen==univer.orgId">暂未开通</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 中部icon -->
+    <div class="main_bottom">
+        <div class="w">
+            <ul>
+                <li>
+                    <img src="images/www/img01.png" alt="">
+                    <span><strong>海量商品</strong><br>集成主流电商，内置专业科教供应商<br>支持学校遴选优质协议供货</span>
+                </li>
+                <li>
+                    <img src="images/www/img02.png" alt="">
+                    <span><strong>优惠优价</strong><br>大客户专属价格优惠物流优惠<br>服务免费升级</span>
+                </li>
+                <li>
+                    <img src="images/www/img03.png" alt="">
+                    <span><strong>阳光合规</strong><br>关联采购计划，匹配校内经费卡<br>自定义校内订单审批流程</span>
+                </li>
+                <li>
+                    <img src="images/www/img04.png" alt="">
+                    <span><strong>支付结算</strong><br>货到付款/在线支付<br>财务集中结算支付,支持公务卡</span>
+                </li>
+                <li>
+                    <img src="images/www/img05.png" alt="">
+                    <span><strong>高效智能</strong><br>电子发票，电子合同<br>订单凭证,审批单，报账单</span>
+                </li>
+                <li>
+                    <img src="images/www/img06.png" alt="">
+                    <span><strong>入账报销</strong><br>资产验收入账"一键搞定"<br>建账、保障无需跑路</span>
+                </li>
+                <li>
+                    <img src="images/www/img07.png" alt="">
+                    <span><strong>安全可靠</strong><br>加密访问,数据隔离<br>全面支持交易快照</span>
+                </li>
+                <li>
+                    <img src="images/www/img08.png" alt="">
+                    <span><strong>内控监察</strong><br>杜绝虚假购买，全程留痕,随时备查<br>大数据分析,监督有力</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 商品品类表展示 -->
+    <div class="section">
+        <h1>海量商品，品类覆盖高校从教学、生活到科研的各个领域</h1>
+        <div class="section_top w">
+            <div id="silder">
+                <div class="silder-main">
+                    <div class="section_top_left">
+                        <h2>办公用品</h2>
+                        <div class="section_center_left">
+                            <span>办公设备</span>
+                            <div>
+                                <a href="">打印机</a>
+                                <a href="">保险柜</a>
+                                <a href="">扫描设备</a>
+                                <a href="">传真设备</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>文具/耗材</span>
+                            <div>
+                                <a href="">办公文具</a>
+                                <a href="">学生文具</a>
+                                <a href="">财会用品</a>
+                                <a href="">硒鼓/墨粉</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>网络外设</span>
+                            <div>
+                                <a href="">鼠标/键盘</a>
+                                <a href="">U盘/硬盘</a>
+                                <a href="">交换机</a>
+                                <a href="">路由器</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>电脑整机</span>
+                            <div>
+                                <a href="">笔记本</a>
+                                <a href="">台式机</a>
+                                <a href="">一体机</a>
+                                <a href="">平板电脑</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>电脑配件</span>
+                            <div>
+                                <a href="">笔记本配件</a>
+                                <a href="">装机配件</a>
+                                <a href="">组装电脑</a>
+                                <a href="">显示器</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section_top_center">
+                        <h2>数码设备</h2>
+                        <div class="section_center_left">
+                            <span>空调</span>
+                            <div>
+                                <a href="">电池</a>
+                                <a href="">充电器</a>
+                                <a href="">读卡器</a>
+                                <a href="">存储卡</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>摄影摄像</span>
+                            <div>
+                                <a href="">单反相机</a>
+                                <a href="">数码相机</a>
+                                <a href="">影棚器材</a>
+                                <a href="">运动相机</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>电子教育</span>
+                            <div>
+                                <a href="">录音笔</a>
+                                <a href="">电纸书</a>
+                                <a href="">电子词典</a>
+                                <a href="">学生平板</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>音像影音</span>
+                            <div>
+                                <a href="">专业音频</a>
+                                <a href="">麦克风</a>
+                                <a href="">耳机/耳麦</a>
+                                <a href="">音箱/音响</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>移动通讯</span>
+                            <div>
+                                <a href="">手机</a>
+                                <a href="">对讲机</a>
+                                <a href="">手机配件</a>
+                                <a href="">车载配件</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section_top_right">
+                        <h2>电器建材</h2>
+                        <div class="section_center_left">
+                            <span>大家电</span>
+                            <div>
+                                <a href="">冰箱</a>
+                                <a href="">空调</a>
+                                <a href="">平板电视</a>
+                                <a href="">家电配件</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>厨卫电器</span>
+                            <div>
+                                <a href="">电热水器</a>
+                                <a href="">电压力锅</a>
+                                <a href="">微波炉</a>
+                                <a href="">电磁炉</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>生活电器</span>
+                            <div>
+                                <a href="">电风扇</a>
+                                <a href="">饮水机</a>
+                                <a href="">扫地机器人</a>
+                                <a href="">空气净化器</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>五金工具</span>
+                            <div>
+                                <a href="">机电五金</a>
+                                <a href="">电动工具</a>
+                                <a href="">工具配件</a>
+                                <a href="">仪器仪表</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>家装建材</span>
+                            <div>
+                                <a href="">灯饰照明</a>
+                                <a href="">厨房卫浴</a>
+                                <a href="">办公家具</a>
+                                <a href="">储物家具</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 第二组 -->
+                <div class="silder-main">
+                    <div class="section_top_left">
+                        <h2>办公用品</h2>
+                        <div class="section_center_left">
+                            <span>办公设备</span>
+                            <div>
+                                <a href="">打印机</a>
+                                <a href="">保险柜</a>
+                                <a href="">扫描设备</a>
+                                <a href="">传真设备</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>文具/耗材</span>
+                            <div>
+                                <a href="">办公文具</a>
+                                <a href="">学生文具</a>
+                                <a href="">财会用品</a>
+                                <a href="">硒鼓/墨粉</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>网络外设</span>
+                            <div>
+                                <a href="">鼠标/键盘</a>
+                                <a href="">U盘/硬盘</a>
+                                <a href="">交换机</a>
+                                <a href="">路由器</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>电脑整机</span>
+                            <div>
+                                <a href="">笔记本</a>
+                                <a href="">台式机</a>
+                                <a href="">一体机</a>
+                                <a href="">平板电脑</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>电脑配件</span>
+                            <div>
+                                <a href="">笔记本配件</a>
+                                <a href="">装机配件</a>
+                                <a href="">组装电脑</a>
+                                <a href="">显示器</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section_top_center">
+                        <h2>数码设备</h2>
+                        <div class="section_center_left">
+                            <span>空调</span>
+                            <div>
+                                <a href="">电池</a>
+                                <a href="">充电器</a>
+                                <a href="">读卡器</a>
+                                <a href="">存储卡</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>摄影摄像</span>
+                            <div>
+                                <a href="">单反相机</a>
+                                <a href="">数码相机</a>
+                                <a href="">影棚器材</a>
+                                <a href="">运动相机</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>电子教育</span>
+                            <div>
+                                <a href="">录音笔</a>
+                                <a href="">电纸书</a>
+                                <a href="">电子词典</a>
+                                <a href="">学生平板</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>音像影音</span>
+                            <div>
+                                <a href="">专业音频</a>
+                                <a href="">麦克风</a>
+                                <a href="">耳机/耳麦</a>
+                                <a href="">音箱/音响</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>移动通讯</span>
+                            <div>
+                                <a href="">手机</a>
+                                <a href="">对讲机</a>
+                                <a href="">手机配件</a>
+                                <a href="">车载配件</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section_top_right">
+                        <h2>电器建材</h2>
+                        <div class="section_center_left">
+                            <span>大家电</span>
+                            <div>
+                                <a href="">冰箱</a>
+                                <a href="">空调</a>
+                                <a href="">平板电视</a>
+                                <a href="">家电配件</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>厨卫电器</span>
+                            <div>
+                                <a href="">电热水器</a>
+                                <a href="">电压力锅</a>
+                                <a href="">微波炉</a>
+                                <a href="">电磁炉</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>生活电器</span>
+                            <div>
+                                <a href="">电风扇</a>
+                                <a href="">饮水机</a>
+                                <a href="">扫地机器人</a>
+                                <a href="">空气净化器</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>五金工具</span>
+                            <div>
+                                <a href="">机电五金</a>
+                                <a href="">电动工具</a>
+                                <a href="">工具配件</a>
+                                <a href="">仪器仪表</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>家装建材</span>
+                            <div>
+                                <a href="">灯饰照明</a>
+                                <a href="">厨房卫浴</a>
+                                <a href="">办公家具</a>
+                                <a href="">储物家具</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 第三组 -->
+                <div class="silder-main">
+                    <div class="section_top_left">
+                        <h2>办公用品</h2>
+                        <div class="section_center_left">
+                            <span>办公设备</span>
+                            <div>
+                                <a href="">打印机</a>
+                                <a href="">保险柜</a>
+                                <a href="">扫描设备</a>
+                                <a href="">传真设备</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>文具/耗材</span>
+                            <div>
+                                <a href="">办公文具</a>
+                                <a href="">学生文具</a>
+                                <a href="">财会用品</a>
+                                <a href="">硒鼓/墨粉</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>网络外设</span>
+                            <div>
+                                <a href="">鼠标/键盘</a>
+                                <a href="">U盘/硬盘</a>
+                                <a href="">交换机</a>
+                                <a href="">路由器</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>电脑整机</span>
+                            <div>
+                                <a href="">笔记本</a>
+                                <a href="">台式机</a>
+                                <a href="">一体机</a>
+                                <a href="">平板电脑</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>电脑配件</span>
+                            <div>
+                                <a href="">笔记本配件</a>
+                                <a href="">装机配件</a>
+                                <a href="">组装电脑</a>
+                                <a href="">显示器</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section_top_center">
+                        <h2>数码设备</h2>
+                        <div class="section_center_left">
+                            <span>空调</span>
+                            <div>
+                                <a href="">电池</a>
+                                <a href="">充电器</a>
+                                <a href="">读卡器</a>
+                                <a href="">存储卡</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>摄影摄像</span>
+                            <div>
+                                <a href="">单反相机</a>
+                                <a href="">数码相机</a>
+                                <a href="">影棚器材</a>
+                                <a href="">运动相机</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>电子教育</span>
+                            <div>
+                                <a href="">录音笔</a>
+                                <a href="">电纸书</a>
+                                <a href="">电子词典</a>
+                                <a href="">学生平板</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>音像影音</span>
+                            <div>
+                                <a href="">专业音频</a>
+                                <a href="">麦克风</a>
+                                <a href="">耳机/耳麦</a>
+                                <a href="">音箱/音响</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>移动通讯</span>
+                            <div>
+                                <a href="">手机</a>
+                                <a href="">对讲机</a>
+                                <a href="">手机配件</a>
+                                <a href="">车载配件</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section_top_right">
+                        <h2>电器建材</h2>
+                        <div class="section_center_left">
+                            <span>大家电</span>
+                            <div>
+                                <a href="">冰箱</a>
+                                <a href="">空调</a>
+                                <a href="">平板电视</a>
+                                <a href="">家电配件</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>厨卫电器</span>
+                            <div>
+                                <a href="">电热水器</a>
+                                <a href="">电压力锅</a>
+                                <a href="">微波炉</a>
+                                <a href="">电磁炉</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>生活电器</span>
+                            <div>
+                                <a href="">电风扇</a>
+                                <a href="">饮水机</a>
+                                <a href="">扫地机器人</a>
+                                <a href="">空气净化器</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>五金工具</span>
+                            <div>
+                                <a href="">机电五金</a>
+                                <a href="">电动工具</a>
+                                <a href="">工具配件</a>
+                                <a href="">仪器仪表</a>
+                            </div>
+                        </div>
+                        <div class="section_center_left">
+                            <span>家装建材</span>
+                            <div>
+                                <a href="">灯饰照明</a>
+                                <a href="">厨房卫浴</a>
+                                <a href="">办公家具</a>
+                                <a href="">储物家具</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 左右按钮 -->
+            <div id="arr">
+                <span id="left"><</span>
+                <span id="right">></span>
+            </div>
+
+
+        </div>
+    </div>
+    <!--label商标 -->
+    <div class="label_t">
+        <div class="label_main w">
+            <div class="label_main_left">
+                <div class="label_top">
+                    <h1>优质商家</h1>
+                    <a href="https://supplier.yuncaitong.cn/#/store/audit" target="_blank">申请入驻</a>
+                </div>
+                <div class="label_bottom">
+                    <ul>
+                        <li ng-repeat="seller in sellers">
+                            <img ng-src="{{global.file.url}}/{{seller.orgLogo}}">
+                            <p>{{seller.orgName}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="label_main_right">
+                <div class="label_main_t">成交订单</div>
+                <div class="label_main_b">
+                    <ul>
+                        <li class="label_list" ng-repeat="orders in orders">
+                            <p>{{orders.sellerName}}
+                                <s ng-show="orders.productNum==1">{{orders.productName}}</s>
+                                <s ng-show="orders.productNum>1">{{orders.productName}} 等{{orders.productNum}}种商品</s>
+                            </p>
+                            <a><span>{{orders.createTime | date : 'hh:mm'}}&nbsp;&nbsp;&nbsp;&nbsp;采购人:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>{{orders.shoperName}}-{{orders.shoperContactPerson}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="label_b  w">
+                <h1>合作伙伴</h1>
+                <div class="label_img">
+                    <ul style="margin: 0 auto;">
+                        <li style="margin-right: 166px;"><img src="images/www/label_jd.png" alt=""></li>
+                        <li style="margin-right: 166px;"><img src="images/www/label_img1.jpg" alt=""></li>
+                        <li><img src="images/www/label_img2.png" alt=""></li>
+                        <!--<li><img src="images/www/label_img3.png" alt=""></li>-->
+                    </ul>
+                </div>
+                <p>我们期待与你一起扬帆起航，互助共赢！</p>
+                <a href="https://supplier.yuncaitong.cn/#/store/audit" target="_blank">联系我们</a>
+            </div>
+        </div>
+    </div>
+</div>

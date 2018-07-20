@@ -1,0 +1,66 @@
+<style>
+    .school-m-list .gl-warp > .items{height: 300px; margin-left: 7px;}
+    .school-m-list .gl-warp .gl-i-wrap{height: 285px;}
+</style>
+<div class="wrap clearfix">
+    <div class="crumbs-bar">
+        <!--<div class="crumbs-nav">
+            <ul class=" font14 clearfix">
+                <li><a ng-href="{{global.wwwUrl}}">首页</a></li>
+                <li><a href="/#">网上商城</a></li>
+                <li><a href="javascript:;">{{storeCreator.name}}</a></li>
+            </ul>
+        </div>-->
+        <div class="store-bg whiteLight">
+            <div class="school-bg-title">
+                <div class="school-bg-info">
+                    <h2 class="name">{{store.orgName}} - {{store.name}}</h2>
+                    <p class="school-bg-info-main">主营产品：{{store.remark}}</p>
+                    <p><span class="phone">联系电话：{{store.mobile}}</span><span class="address">联系地址：{{store.address}}</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-main school-m-list store-m-list clearfix">
+        <div class="gl-warp clearfix">
+            <h2>该商城下·在售商品</h2>
+            <div class="items" ng-repeat="lists in list">
+                <div class="gl-i-wrap" style="position: relative;">
+                    <div class="clearfix">
+                        <button class="p-img">
+                            <a ng-href="{{ '/#/product/detail?mallId=' +lists.mallId + '&id=' + lists.productId }}" target="_blank">
+                                <img ng-src="{{lists.pic.slice(0,4)=='http' ? lists.pic : global.file.url +'/'+ lists.pic.split(',')[0]}}"/>
+                            </a>
+                            <!--<span class="danger-tip" style="width: 32px; height: 16px; background-size: 100% 100%;" ng-show="property.danger==1"></span>-->
+                        </button>
+                        <div class="p-brand">
+                            <span style="color: #666;">{{lists.brand}}</span><span style="color: #bbb" ng-show="lists.model"> / {{lists.model}}</span>
+                        </div>
+                        <div class="p-name">
+                            <!--<span class="danger-tip2" ng-show="property.danger_type.bomb==1">易燃易爆</span>
+                            <span class="danger-tip2" ng-show="property.danger_type.drug==1">易制毒</span>-->
+                            <a  ng-href="{{ '/#/product/detail?mallId=' +lists.mallId + '&id=' + lists.productId }}" target="_blank"><span ng-bind="lists.name"></span></a>
+                        </div>
+                    </div>
+                    <!--<div class="p-price mb10" ng-show="lists.unitPrice"><em class="font18">{{lists.currency | dictionary : 'currency'}} <span ng-bind="lists.unitPrice"></span></em></div>-->
+                    <div class="mb10" style="margin-top: 10px; height: 56px; line-height: 15px;">
+                        <div class="p-dw"><span class="name">供应商：</span><span>{{lists.orgName}} - {{lists.storeName}}</span></div>
+                        <div class="p-dw"><span class="name" ng-show="lists.spec">规格：</span><span>{{lists.spec}}</span></div>
+                        <div class="p-dw" ng-show="property.pack"><span class="name">包装：</span><span>{{property.pack.num}}{{property.pack.unit}} <span ng-show="property.pack">/ {{lists.unit}}</span></span></div>
+                    </div>
+                    <div class="p-operate"><a href="javascript:;" ng-click="addGoods(lists, 1)"><i class="iconfont icon-shopping2"></i>加入购物车</a></div>
+                </div>
+            </div>
+            <div class="error-msg" ng-hide="list.length>0">
+                <i class="iconfont icon-sousuo_jg"></i>没有找到数据
+            </div>
+            <div style="clear: both; margin-top: 300px;" class="mainsrp-pager">
+                <div class="inner">
+                    <div pagination total-items="listCount" ng-model="page" max-size="5" boundary-links="true" rotate="false"
+                         items-per-page="rows" ng-change="pageChanged()" class="pagination" previous-text="&lsaquo;" next-text="&rsaquo;"
+                         first-text="&laquo;" last-text="&raquo;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+
+var global = require('global');
+var app = require('appModule');
+var url = require('util/url.js');
+var productService = app.service('productService', function ($http) {
+    //获取列表数据
+    this.getList = function(mallId, orgId, categoryId, keyword, brand, page, rows, property, minp, maxp, imported, sort, f) {
+        $http.get(url.url('/mall/search', {
+            'keyword' : keyword,
+            'categoryId': categoryId,
+            'brand' : brand,
+            'page' : page,
+            'rows' : rows,
+            'property' : JSON.stringify(property),
+            'minPrice' : minp,
+            'maxPrice' : maxp,
+            'imported' : imported,
+            'sort' : sort,
+            'orgId': orgId,
+            'mallId': mallId
+        }, global.mall.api)).then(f);
+    };
+
+    //获取详情页面数据;
+    this.get = function(mallId, id,f) {
+        $http.get(url.url('/mallproduct/detail', {
+            'mallId': mallId,
+            'productId': id
+        }, global.mall.api)).then(f);
+    };
+
+    //获取路由里分类
+    this.getCategory = function (mallId, categoryId, f) {
+        $http.get(url.url('/category/detail', {
+            'id': categoryId,
+            'mallId': mallId
+        }, global.mall.api)).then(f);
+    };
+
+    //加入对比
+    this.addCompare = function (contrastId, pId, sf, ff) {
+        $http.post(url.url('/contrast/'+ contrastId+ '/'+ pId, null, global.mall.api)).then(sf, ff);
+    };
+
+    //删除对比
+    this.delCompare = function (contrastId, pId, sf, ff) {
+        $http.delete(url.url('/contrast/'+ contrastId+ '/'+ pId, null, global.mall.api)).then(sf, ff);
+    };
+
+    //获取对比列表
+    this.getCompare = function (contrastId, f) {
+        $http.get(url.url('/contrast/'+ contrastId, null, global.mall.api)).then(f);
+    };
+
+    //获取该商品所能发货的地址
+    this.surportRegion = function (produtId, f) {
+        $http.get(url.url('/mallproduct/'+ produtId +'/region', null, global.mall.api)).then(f);
+    };
+
+    //获取关搜索键字列表
+    this.getKeys = function (key, f) {
+        $http.get(url.url('/product/sug', {
+            'keyword': key
+        }, global.mall.api)).then(f)
+    };
+
+    //查询商品列表是否有货
+    this.haveProductCount = function (regionId, mallProIds, f) {
+        $http.get(url.url('/product/stock', {
+            'regionCode': regionId,
+            'ids' : mallProIds
+        }, global.mall.api)).then(f)
+    };
+
+    //商品价格
+    this.productPrice = function (mallProIds, f) {
+        $http.get(url.url('/product/price', {
+            'ids' : mallProIds
+        }, global.mall.api)).then(f);
+    }
+
+});
+
+module.exports = productService;

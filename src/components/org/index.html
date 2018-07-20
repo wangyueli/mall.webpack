@@ -1,0 +1,58 @@
+
+<div class="survey-list" style="width: 1200px; margin: 0 auto;">
+    <!--供应商搜索框-->
+    <div class="top-bar">
+        <div class="middle">
+            <div class="list-search-box" style="margin-left: 0;">
+                <input type="text" class="list-input" placeholder="请输入您要搜索的 供应商 关键字" ng-model="keywordTemp" ng-keyup="keySearch($event)">
+                <button type="button" ng-click="search()">搜一下</button>
+            </div>
+        </div>
+    </div>
+    <!--行业-->
+    <div class="condition clearfix" style="position: static; width: 1200px; height: auto; padding-left: 0;">
+        <div class="screen-item clearfix">
+            <div class="title">
+                <a class="empty-value" href="javascript:;" ng-click="empty()">清空筛选</a>
+            </div>
+            <div class="screen-item-li category clearfix">
+                <p class="term" style="line-height: 30px;">行业：</p>
+                <div class="category-cont category-cont-address clearfix" ng-class="{'over-scroll': overScrollCat}" style="width: 1080px;">
+                    <a href="javascript:;" class="category-cont-over">
+                        <i class="iconfont red" ng-class="{'icon-down': !overScrollCat,'icon-top': overScrollCat}"  ng-click="overScrollCat = !overScrollCat"></i>
+                    </a>
+                    <div class="category-item " ng-repeat="category in idParent" style="width: 14%;">
+                        <p class="big-cate">
+                            <i ng-click="choice(category);" class="iconfont" ng-class="{'icon-checkbox gray': categories.indexOf(category) == -1, 'icon-checkbox-checked red': categories.indexOf(category) != -1  }"></i>
+                            <span ng-bind="category" title="{{category}}"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--供应商列表-->
+    <div class="content-list clearfix" style="padding: 0;">
+        <div class="list-left" style="padding-left: 0;">
+            <div class="adversity no-adversity" ng-repeat="org in orgList" style="width: 1200px;">
+                <a class="top-word" style="color:#6495ed; border-bottom-color: #6495ed;" ng-bind="org.name" ng-href="{{'/#/store?id='+ org.id }}" target="_blank"></a>
+                <a ng-href="{{'/#/store?id=' + org.id }}" class="top-word-store" target="_blank"></a>
+                <p class="content-word" style="color: #333;" ng-bind="org.orgBo.intro"></p>
+                <div class="bottom-word" ng-show="org.orgBo.contactPhone">
+                    <span>联系方式：</span>&nbsp;
+                    <span style="color: green;">{{org.orgBo.contactPhone}}</span>
+                </div>
+            </div>
+            <div class="no-data" ng-show="ifList">
+                <i class="iconfont icon-sousuo_jg"></i>
+                很抱歉，没有找到与查询条件相符合的数据！
+                <a class="close" href="javascript:void(0);" ng-click="ifList=false; empty();"><i class=" iconfont icon-close1"></i></a>
+            </div>
+            <button class="add-more" type="button" ng-click="orgIconLoader = true; page = page+1; getList(page)" ng-disabled="orgMore" ng-show="orgList.length > 0">
+                <span ng-hide="orgMore"><i class="iconfont icon-add" ng-class="{'add-more-icon':orgIconLoader}"></i>加载更多</span>
+                <span ng-show="orgMore">没有更多了</span>
+            </button>
+        </div>
+    </div>
+</div>
+

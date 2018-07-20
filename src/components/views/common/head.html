@@ -1,0 +1,39 @@
+
+<div class="topbar">
+    <div class="wrap clearfix">
+        <div style="float: left">
+            <i class="iconfont icon-f" style="font-weight: bold;"></i>
+            <a style="display: inline;" href="#">商城首页</a>
+        </div>
+        <div class="menu-right clearfix hide" ng-class="{display:o==null}">
+            <div class="item login-btn">
+                <a class="font-red" ng-href="{{getLoginUrlMall()}}">教师登录</a>
+                <a class="font-red" ng-href="{{getLoginUrlBack()}}" style="margin-left: 20px;">供应商登录</a>
+                <!--<a class="ml15 mr20" ng-href="{{global.app.url}}/#/register/enterprise/index">免费注册</a>-->
+            </div>
+        </div>
+        <div class="menu-right clearfix hide" ng-class="{display:o!=null}">
+            <div class="item">
+                <a href="javascript:;" ng-hide="orgType=='school'">
+                    <span ng-bind="o.name"></span>
+                </a>
+                <span ng-bind="o.name" ng-show="orgType=='school'"></span>
+            </div>
+            <div class="item" ng-mouseenter="showQuit()" ng-mouseleave="hideQuit()">
+                <a class="has-drop icon" href="javascript:;" target="_blank;">
+                    <span>{{p.name}}</span>
+                </a>
+                <div class="dorpmenu hide" style="text-align: right">
+                    <div class="list-btn">
+                        <a ng-href="{{global.app.url}}/#/" ng-hide="orgType=='school'">个人中心</a>
+                        <a href="javascript:;" ng-click="logout()">退出登录</a>
+                    </div>
+                </div>
+            </div>
+            <div class="item sign"></div>
+            <div class="item">
+                <a ng-href="{{'/#/orders'}}" target="_blank">我的订单</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,214 @@
+@charset "UTF-8";
+
+//红色按钮
+%red-btn{
+  display:inline-block;
+  color:#fff;
+  text-align:center;
+  background:#ec3e3b;
+  border-radius:2px;
+  padding:0 3px;
+  cursor: pointer;
+  &:hover{
+    background: #f4524f;
+  }
+}
+
+//白色按钮
+%write-btn{
+  display: inline-block;
+  line-height: 24px;
+  color: #666;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 0 10px;
+}
+
+//关闭X号 （a标签 after before）
+%close-icon{
+  content: "\e602";
+  font-family:"iconfont" !important;
+  font-size: 14px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+//勾选√号
+%choose-icon{
+  content:"\e647";
+  font-family:"iconfont" !important;
+  font-size:14px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+//超出省略
+%overflow-dot{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+//提示框(浅黄色)
+%tip-box-top{
+  position: absolute;
+  border: 1px solid #f9e0a3;
+  background: #fffff6;
+  box-shadow: 0 0 3px -1px #928567;
+  color: #999;
+  &:before{
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 6px;
+    display: inline-block;
+    border-left: 9px solid transparent;
+    border-bottom: 9px solid #f9e0a3;
+    border-right: 9px solid transparent;
+  }
+  &:after{
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 6px;
+    display: inline-block;
+    border-left: 9px solid transparent;
+    border-bottom: 9px solid #fffff6;
+    border-right: 9px solid transparent;
+  }
+}
+%tip-box-left{
+  position: absolute;
+  border: 1px solid #f9e0a3;
+  background: #fffff6;
+  box-shadow: 0 0 3px -1px #928567;
+  color: #999;
+  &:before{
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: -11px;
+    display: inline-block;
+    border-top: 9px solid transparent;
+    border-right: 9px solid #f9e0a3;
+    border-bottom: 9px solid transparent;
+  }
+  &:after{
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: -9px;
+    display: inline-block;
+    border-top: 9px solid transparent;
+    border-right: 9px solid #fffff6;
+    border-bottom: 9px solid transparent;
+  }
+}
+%position-fixed{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+//display width height
+@mixin cube-block-equal($value){
+  display: block;
+  width: $value;
+  height: $value;
+}
+@mixin cube-inline-equal($value){
+  display: inline-block;
+  width: $value;
+  height: $value;
+}
+@mixin cube-block($width, $height){
+  display: block;
+  width: $width;
+  height: $height;
+}
+@mixin cube-inline($width, $height){
+  display: inline-block;
+  width: $width;
+  height: $height;
+}
+@mixin wh($w, $h){
+  width: $w;
+  height: $h;
+}
+
+//定位
+@mixin absolute-lf($top, $left){
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+@mixin absolute-rt($top, $right){
+  position: absolute;
+  top: $top;
+  right: $right;
+}
+
+@mixin position-ab($width , $height){
+  position: absolute;
+  left:50%;
+  top:50%;
+  width: $width;
+  height: $height;
+  margin-left:-$width/2;
+  margin-top:-$height/2;
+}
+
+
+//background img
+@mixin bg-center-img($url){
+  background: url($url) center center no-repeat;
+}
+
+@mixin bg-0-img($url){
+  background: url($url) 0 0 no-repeat;
+}
+
+@mixin bg-percent-img($url){
+  background: url($url) no-repeat;
+  background-size: 100% 100%;
+}
+
+//box-shadow
+@mixin box-shadow($h, $v, $blur, $spread, $color){
+  -webkit-box-shadow: $h $v $blur $spread $color;
+  -moz-box-shadow: $h $v $blur $spread $color;
+  box-shadow: $h $v $blur $spread $color;
+}
+
+//transition
+@mixin transtion($name, $speed, $style){
+  transition:$name $speed $style;
+  -webkit-transition:$name $speed $style;
+  -moz-transition:$name $speed $style;
+  -o-transition:$name $speed $style;
+}
+
+//提示框 浅黄色
+@mixin light-yellow-box{
+  padding: 2px 4px;
+  border: 1px solid #f9e0a3;
+  background: #fffff6;
+  color: #d79a5f;
+  border-radius: 3px;
+}
+
+//设置元素垂直剧中
+@mixin v-center($h, $lh){
+  height: $h;
+  line-height: $lh;
+}
+
+//设置剧中元素
+@mixin center($lh, $c){
+  line-height: $lh;
+  text-align: center;
+  color: $c;
+}

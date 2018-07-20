@@ -1,0 +1,356 @@
+<style>
+    /*顶部样式重制*/
+    .yct-top {
+        width: 100%;
+        position: relative;
+        padding: 20px 0 30px;
+        height: 64px;
+    }
+    .yct-top .yctlogo {
+        height: 64px;
+        float: left;
+        margin:0;
+    }
+    .yct-top .yctlogo h2 {
+        padding-top: 5px;
+        font-size: 24px;
+        font-weight: normal;
+    }
+    .yct-top .yctlogo .logo a {
+        display: block;
+        width: 339px;
+        height: 60px;
+        background: url(//static.yuncaitong.cn/vi/logo_new.png?20180227) 0 0 no-repeat;
+        text-indent: -999px;
+        overflow: hidden;
+    }
+    .top-search {
+        margin:0 290px 0 454px;
+        width: auto;
+        float: none;
+        padding-top: 16px;
+    }
+    .top-search .tab {
+        width: 100%;
+        overflow: hidden;
+        zoom: 1;
+    }
+    .top-search .tab li {
+        display: block;
+        float: left;
+    }
+    .top-search .tab li a {
+        display: block;
+        line-height: 24px;
+        color: #333;
+        padding: 0 12px;
+    }
+    .top-search .tab li a.active {
+        color: #fff;
+        background: #e11e2d;
+    }
+    .top-search .search-panel-fields {
+        width: 350px;
+        position: relative;
+        padding-right: 46px;
+        padding-left: 90px;
+    }
+    .top-search .search-panel-fields input[type=text] {
+        display: block;
+        width: 100%;
+        line-height: 18px;
+        height: 40px;
+        box-sizing: border-box;
+        border: 1px solid #d6d6d6;
+        padding: 10px;
+    }
+    .top-search .search-panel-fields button {
+        display: block;
+        width: 80px;
+        height: 40px;
+        text-align: center;
+        color: #fff;
+        background: #e11e2d;
+        border: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 16px;
+    }
+    .top-search .search-panel-fields button i {
+        font-size: 24px;
+        position: relative;
+        top: -2px;
+    }
+    .top-search .search-panel-fields .select-wpr {
+        width: 90px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border: 1px solid #d6d6d6;
+        box-sizing: border-box;
+        border-right: none;
+        text-align: center;
+        height: 40px;
+        font-size: 14px;
+    }
+    .top-search .select-wpr .select-wpr-a {
+        width: 100%;
+        height: 100%;
+        display: block;
+        color: #666;
+    }
+    .top-search .select-wpr .select-wpr-tit {
+        width: 90px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .top-search .select-wpr .select-wpr-list {
+        width: 91px;
+        line-height: 40px;
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        z-index: 999;
+        box-sizing: border-box;
+        border: 1px solid #d6d6d6;
+        background-color: #fff;
+        display: none;
+    }
+    .top-search .select-wpr .select-wpr-list .item {
+        display: block;
+        width: 100%;
+        color: #666;
+    }
+    .nav-mall {
+        width: 100%;
+        background: #c81321;
+        border-bottom: 2px solid #c81321;
+        position: relative;
+    }
+    .nav-mall .nav-menu {
+        width: 100%;
+        margin: 0;
+    }
+    .nav-mall .nav-menu li {
+        line-height: 40px;
+        position: relative;
+        float: left;
+    }
+    .nav-mall .nav-menu li a {
+        display: block;
+        font-size: 16px;
+        color: #fff;
+        padding: 0 38px;
+        cursor: pointer !important;
+    }
+    .topbar a{
+        cursor: pointer;
+    }
+    .yct-top-phone{ background: url("//static.yuncaitong.cn/vi/yct_top_phone.png") center no-repeat; width: 350px; height: 32px; float: left}
+    .top_kf {
+        top: 16px;
+    }
+    .gxzj-link {
+        font-size: 16px;
+        color: #666;
+        line-height: 40px;
+    }
+    .gxzj-link:hover{
+        color: #d70050;
+    }
+    .top-search .select-wpr .select-wpr-list .item:hover {
+        background-color: #f5f5f5;
+    }
+
+</style>
+
+<div class="topbar" style=" min-height: 33px;">
+    <div class="wrap clearfix">
+        <div class="yct-top-phone"></div>
+        <div class="menu-right clearfix hide" ng-class="{display:o==null}" ng-show="o==null">
+            <div class="item login-btn">您好，<a class="font-red" ng-href="{{getLoginUrlBack()}}">请登录</a><a
+                    class="ml15 mr20" ng-href="{{global.app.url}}/#/register/enterprise/index">免费注册</a></div>
+            <div class="item">
+                <a class="has-drop icon" href="javascript:;"><i class="iconfont icon-mobile2"></i>云采通微助手</a>
+                <div class="dorpmenu hide">
+                    <div class="qr-code">
+                        <img src="/images/qrcode_for_gh_902164f30ab4_258.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="item sign"></div>
+            <div class="item"><a href="https://help.yuncaitong.cn/?id=5813" target="_blank">CA办理</a></div>
+            <div class="item sign"></div>
+            <div class="item"><a ng-href="{{global.help.url}}">帮助中心</a></div>
+        </div>
+        <div class="menu-right clearfix hide" ng-class="{display:o!=null}" ng-hide="o==null">
+            <div class="item">
+                <a class="has-drop icon" ng-href="{{global.sell.url}}"><span ng-bind="o.name">测试的公司</span></a>
+                <div class="dorpmenu hide" style="right:0; min-width: 190px; left:auto;  width: 100%;">
+                    <div class="company-info">
+                        <div class="logobox">
+                            <img ng-show="o.logo" ng-src="{{global.file.url}}/{{o.logo}}"/>
+                            <img ng-hide="o.logo" src="/images/default-img.png"/>
+                        </div>
+                        <div class="menu">
+                            <a class="yellow" ng-href="{{global.app.url}}/#/certify/enterprise/info/index">实名认证</a>
+                            <a class="buff" ng-href="{{global.sell.url}}/#/project/index">进行中的项目({{liveCountNum}})</a>
+                            <a class="buff" ng-href="{{global.mallSell.url}}/#/orders" ng-show="haveStore">待处理的订单({{runningCount}})</a>
+                            <a class="buff" ng-href="{{global.mallSell.url}}/#/store" ng-show="onHave">商城店铺审核中</a>
+                            <a class="buff" ng-href="{{global.mallSell.url}}/#/store" ng-hide="haveStore || onHave">立即开通商城店铺</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <a class="has-drop icon" ng-href="{{global.app.url}}/#/person/index" style="min-width: 32px;"><span ng-bind="p.name"></span></a>
+                <div class="dorpmenu hide">
+                    <div class="list-btn">
+                        <a ng-href="{{global.app.url}}/#/person/index">个人中心</a>
+                        <a href="javascript:;" ng-click="logout()">退出登录</a>
+                    </div>
+                </div>
+            </div>
+            <div class="item sign"></div>
+            <div class="item"><a ng-href="{{global.app.url}}/#/message/index">消息<i ng-show="messageListCount>0" class="msg-remind"></i></a></div>
+            <div class="item sign"></div>
+            <div class="item">
+                <a class="has-drop icon" href="javascript:;"><i class="iconfont icon-mobile2"></i>云采通微助手</a>
+                <div class="dorpmenu hide">
+                    <div class="qr-code">
+                        <img src="/images/qrcode_for_gh_902164f30ab4_258.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="item sign"></div>
+            <div class="item"><a href="https://help.yuncaitong.cn/?id=5813" target="_blank">CA办理</a></div>
+            <div class="item sign"></div>
+            <div class="item"><a ng-href="{{global.help.url}}">帮助中心</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="header">
+    <!--广告位-->
+    <!--<div class="guangao-top wrap clearfix" id="topPicAd">
+        <a class="geto" href="javascript:;">
+            <img src="images/guanggao1.jpg"/>
+        </a>
+        <a class="close-btn" href="javascript:;"><i class="iconfont icon-close1"></i></a>
+    </div>-->
+    <div class="yct-top">
+        <div class="wrap clearfix">
+            <div class="yctlogo">
+                <h2 class="logo">
+                    <a ng-href="{{global.www.url}}">云采通</a>
+                </h2>
+            </div>
+            <div class="top-search">
+                <div class="search-wrap">
+                    <div class="search-panel" ng-init="$parent.searchType='demand'">
+                        <form>
+                            <div class="search-panel-fields">
+                                <div class="select-wpr">
+                                    <a class="select-wpr-a" href="javascript:;">
+                                        <span class="select-wpr-tit hide" ng-class="{display:searchType=='demand'}" ng-show="searchType=='demand'">采购需求<i class="iconfont icon-down"></i></span>
+                                        <span class="select-wpr-tit hide" ng-class="{display:searchType=='result'}" ng-show="searchType=='result'">公告<i class="iconfont icon-down"></i></span>
+                                    </a>
+                                    <div class="select-wpr-list">
+                                        <a href="javascript:;" class="item" ng-click="searchType='demand'">采购需求</a>
+                                        <a href="javascript:;" class="item" ng-click="searchType='result'">公告</a>
+                                    </div>
+                                </div>
+                                <input ng-model="keywordMall" type="text" placeholder="请输入您要搜索的关键字" ng-keyup="keySearchMall($event)"/>
+                                <button type="button" ng-click="searchMall()">搜索</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="top_kf">
+                <span class="info">客服信息</span>
+                &lt;!&ndash;<span class="info-szbidding" ng-show="currentPath=='/szbidding'">电子招投标</span>&ndash;&gt;
+            </div>-->
+        </div>
+    </div>
+    <div class="nav-mall">
+        <div class="wrap">
+            <ul class="nav-menu clearfix">
+                <li><a href="https://www.yuncaitong.cn/">首页</a></li>
+                <li><a href="https://www.yuncaitong.cn/publish/demand.shtml">采购需求</a></li>
+                <li><a href="https://www.yuncaitong.cn/publish/result.shtml">结果公告</a></li>
+                <li><a href="javascript:;"  style="background: #a9000d;">网上商城</a></li>
+                <li><a href="https://www.yuncaitong.cn/eb" target="_blank">电子招投标</a></li>
+                <li><a href="https://www.yuncaitong.cn/news">行业资讯</a></li>
+                <li><a href="https://www.yuncaitong.cn/warn">企业诚信公告</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="main" id="main-content" style="background: #f6f6f6;">
+    <div ui-view autoscroll></div>
+</div>
+<!--客服 -->
+<div class="right-toolbar">
+    <div class="item">
+        <div class="kefu">
+            <i></i>
+            在线客服
+            <div class="tip">
+                <div class="tip-top">
+                    <p class="tip-top-title">客服QQ</p>
+                    <p class="tip-top-titeng"></p>
+                </div>
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=3215144760&site=qq&menu=yes" class="tip-service" target="_blank">供应商客服</a>
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=3504003500&site=qq&menu=yes" class="tip-service" target="_blank">招标代理客服</a>
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=3305255178&site=qq&menu=yes" class="tip-service" target="_blank">外贸代理客服</a>
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=2274401696&site=qq&menu=yes" class="tip-service" target="_blank">电子商城客服</a>
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <a class="back-top" id="backTop" href="javascript:;">
+            <i></i>
+            TOP
+        </a>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="go-screen wrap">
+        <div class="footmenu">
+            <a href="https://www.yuncaitong.cn">云采通首页</a>
+            <i class="cutline">|</i>
+            <a href="https://www.yuncaitong.cn/about/contact.shtml">联系方式</a>
+            <i class="cutline">|</i>
+            <a href="https://www.yuncaitong.cn/about/service.shtml">服务条款</a>
+            <i class="cutline">|</i>
+            <a href="https://www.yuncaitong.cn/about/privacy.shtml">法律声明</a>
+            <i class="cutline">|</i>
+            <a href="https://www.yuncaitong.cn/about/index.shtml">关于我们</a>
+        </div>
+        <div class="copyright">
+            <p>
+                <span>蜀ICP备13021457号-5</span>
+                <span>北京云采通信息技术有限公司</span>
+                <span>思必得软件</span>
+            </p>
+        </div>
+        <div class="qr-code">
+            <div class="items">
+                <img src="/images/qrcode_for_gh_902164f30ab4_258.jpg" />
+                <span>掌握一手信息</span>
+            </div>
+            <div class="items">
+                <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=51010702000799" target="_blank">
+                    <img src="/images/record.jpg" />
+                    <span style="color: #b1b1b1">经营性网站备案</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

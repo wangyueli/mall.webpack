@@ -1,0 +1,194 @@
+
+<style>
+    .top-search{width: 600px;}
+    .top-search .search-panel-fields input[type=text]{width: 470px;}
+    .top-search .search-panel-fields input[type=text]{height: 40px;}
+    .top-search .search-panel-fields button{height: 40px; width: 80px; font-size: 16px; font-weight: bold;}
+</style>
+<!--ie弹框-->
+<div class="mask-layer IEalert" ng-show="itIe">
+    <div class="title-gray"><h1>警告</h1> <i id="closeIe" class="icon icon-close1 close-mask close" ng-click="itIe=false;"></i></div>
+    <div class="inner" >
+        <p>低版本IE浏览器可能存在兼容问题，影响您的正常使用，请下载360浏览器，或用其他浏览器打开！<a href="https://browser.360.cn/ee/">点击下载360浏览器</a></p>
+    </div>
+</div>
+<div id="progress">
+    <div class="indeterminate"></div>
+</div>
+<div ui-view="head"></div>
+<!-----顶部----->
+<div class="header" style="background: #fff">
+    <div class="yct-top">
+        <div class="wrap clearfix">
+            <!--购物车-->
+            <div class="cart-top">
+                <a class="view-btn" ng-href="{{'/#/cart'}}" target="_blank">
+                    <i class="iconfont icon-shopping2"></i>
+                    我的购物车
+                    <span ng-bind="allCartNum"></span>
+                </a>
+                <div class="drop-list">
+                    <div class="empty" ng-hide="cartList.length >= 1">
+                        <p class="font14 mb15">购物车还没有商品，赶紧选购吧！</p>
+                        <a ng-show="o==null" ng-href="{{getLoginUrlMall()}}">登录</a>
+                    </div>
+                    <div class="items-list" ng-show="cartList.length >= 1">
+                        <div style="max-height: 380px; overflow-y: scroll;">
+                            <div class="item" ng-repeat="cart in cartList">
+                                <a class="name" target="_blank" ng-href="{{'/#/product/detail?mallId='+cart.mallId+'&id='+cart.productId}}">{{cart.name}}</a>
+                                <div class="info">
+                                    <p>
+                                        <span ng-show="cart.hasOwnProperty('unitPrice')">￥{{cart.unitPrice==0 ? '内部协议价' : (cart.unitPrice | number : 2)}} x {{cart.num}}</span>
+                                        <span ng-show="cart.hasOwnProperty('unitPriceMin')">￥{{cart.unitPriceMin}} - ¥{{cart.unitPriceMax}} x {{cart.num}}</span>
+                                    </p>
+                                    <p>
+                                        <a class="del" href="javascript:;" ng-click="dellCart(cart.id)">删除</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stats clearfix">
+                            <p class="float-l">
+                                <span>共<em class="colorRed">{{allCartNum}}</em>件商品</span>
+                                <span class="ml10">
+                                    共计
+                                    <em class="colorRed">
+                                        <!--一口价-->
+                                        <span ng-show="price" ng-repeat="(currency, price) in allPriceMap">
+                                            <span ng-show="$index > 0"> + </span>
+                                            {{currency | dictionary:'currency'}}{{price | number: 2}}
+                                        </span>
+                                        <!-- 价格区间-->
+                                        <span ng-show="price" ng-repeat="(currency, price) in allPriceMapMin">
+                                            <span ng-show="$index > 0"> + </span>{{currency | dictionary:'currency'}}{{price | number: 2}} -
+                                        </span>
+                                         <span ng-show="price" ng-repeat="(currency, price) in allPriceMapMax">
+                                            <span ng-show="$index > 0"> + </span>{{price | number: 2}}
+                                        </span>
+                                    </em>
+                                </span>
+                            </p>
+                            <a class="float-r red-btn" ng-href="{{'/#/cart'}}" target="_blank">去购物车</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--当前商城 logo-->
+            <div class="yctlogo">
+                <div class="logo" style="float: left;">
+                    <a href="#">
+                        <img style="height: 100%; float: left;" ng-src="{{tlImg}}">
+                        <div class="c-name">
+                            <p class="mall-name" style="margin-top: 5px;">{{titleMall}}</p>
+                            <p class="school-name" ng-show="nowMall && currentPath!='product?keyword&categoryId&brand&mallId' ">{{nowMall}}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!--搜索框-->
+            <div class="top-search">
+                <div class="search-panel-fields" style="position: relative; float: right; width: 550px;" ng-mouseleave="downSearch=false;">
+                    <input ng-model="$root.keyword" type="text" ng-keyup="keySearch($event); downSearch=true;"/>
+                    <button type="button" ng-click="search()">
+                        搜索
+                    </button>
+                    <!--关键字提醒-->
+                    <ul class="down-search" ng-show="keys.length>0 && downSearch">
+                        <li ng-repeat="key in keys" ng-click="$root.keyword=key.0; search()" ng-class="{keyBack: $parent.thisKey==$index}">{{key[0]}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--导航-->
+    <div class="nav clearfix">
+        <div class="wrap">
+            <!--分类导航-->
+            <div class="nav-ct" ng-mouseenter="ctDl=true;" ng-mouseleave="ctDl=false; categoryCtnMore=false; goodsTypeChannel=goodsTypeChannelBack; " >
+                <a class="active" href="javascript:;">
+                    <i class="iconfont icon-fenlei1"></i>商品分类
+                    <!--<span class="all-category" ng-show="currentPath=='channel?mallId' && allCategory" ng-click="goodsType=goodsTypeChannel; allCategory=!allCategory">全部分类
+                        <i class="icon icon-top"></i>
+                    </span>-->
+                </a>
+                <!--非频道-->
+                <div class="categorys-f" ng-class="{ngCategy: ctDl}" ng-hide="currentPath=='channel?mallId' || currentPath=='helper?mallId'">
+                    <div class="category-ctn" ng-class="{categoryCtnMore:categoryCtnMore}">
+                        <!--一级-->
+                        <div class="ct-one" ng-repeat="ctOne in goodsType">
+                            <h2 class="hn">
+                                <a ng-repeat="ctOneItem in ctOne" ng-href="{{'#/product?categoryId=' + ctOneItem.categoryId + '&mallId='+ctOneItem.mallId }}" ng-click="$parent.ctDl = false;">
+                                    <!--<s style="margin: 0 5px;" ng-hide="$index==0">\</s>-->{{ctOneItem.name}}
+                                </a>
+                            </h2>
+                            <ul class="ct-lf clearfix" ng-class="{ctLf:$parent.categoryCtnMore}">
+                                <!--二级-->
+                                <li ng-repeat="ctSend in ctOne.children">
+                                    <a class="ct-two" ng-href="{{'#/product?categoryId=' + ctSend.data.categoryId+ '&mallId='+ctSend.data.mallId }}"  ng-click="$parent.$parent.ctDl = false;">
+                                        {{ctSend.data.name}} <i class="icon icon-right"></i>
+                                    </a>
+                                    <div class="ct-three">
+                                        <!--三级-->
+                                        <a ng-repeat="ctThree in ctSend.children" href="javascript:;" ng-href="{{'#/product?categoryId=' + ctThree.data.categoryId+ '&mallId='+ctThree.data.mallId }}" ng-click="$parent.$parent.$parent.ctDl = false;">
+                                            <span class="">{{ctThree.data.name}}</span>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--占位-->
+                    <div class="category-more" ng-hide="goodsType.length>9"></div>
+                    <div class="category-more" ng-show="goodsType.length>9 && !categoryCtnMore" ng-mouseenter="categoryCtnMore=true;">更多品类</div>
+                </div>
+                <!--针对频道-->
+                <div class="categorys-f" ng-class="{ngCategy: ctDl}" ng-show="currentPath=='channel?mallId' || currentPath=='helper?mallId'">
+                    <div class="category-ctn" ng-class="{categoryCtnMore:categoryCtnMore}">
+                        <!--一级-->
+                        <div class="ct-one" ng-repeat="ctOne in goodsTypeChannel">
+                            <h2 class="hn">
+                                <a href="javascript:;" target="_blank" ng-href="{{'#/product?categoryId=' + ctOne.data.categoryId + '&mallId='+ctOne.data.mallId }}" ng-click="$parent.ctDl = false;">{{ctOne.data.name}}</a>
+                            </h2>
+                            <ul class="ct-lf clearfix" ng-class="{ctLf: $parent.categoryCtnMore}">
+                                <!--二级-->
+                                <li ng-repeat="ctSend in ctOne.children">
+                                    <a class="ct-two" target="_blank" ng-href="{{'#/product?categoryId=' + ctSend.data.categoryId+ '&mallId='+ctSend.data.mallId }}"  ng-click="$parent.$parent.ctDl = false;">
+                                        {{ctSend.data.name}} <i class="icon icon-right"></i>
+                                    </a>
+                                    <div class="ct-three">
+                                        <!--三级-->
+                                        <a target="_blank" ng-repeat="ctThree in ctSend.children" href="javascript:;" ng-href="{{'#/product?categoryId=' + ctThree.data.categoryId+ '&mallId='+ctThree.data.mallId }}" ng-click="$parent.$parent.$parent.ctDl = false;">
+                                            <span class="">{{ctThree.data.name}}</span>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--占位-->
+                    <div class="category-more">
+                        <!--<span class="all-category" ng-mouseenter="goodsTypeChannel=goodsType; categoryCtnMore=true;">
+                            <i class="icon icon-down"></i>
+                        </span>-->
+                    </div>
+                </div>
+            </div>
+            <!--可访问频道-->
+            <ul class="nav-menu marginLeft">
+                <li class="nav-menu-class" ng-repeat="item in mallMsg" ng-hide="(schoolId=='58212' && item.mallId=='YNK' && $parent.p.code!='20032016') && (schoolId=='58212' && item.mallId=='YNK' && $parent.p.code!='20022210') ">
+                    <a ng-class="{active: item.mallId==$parent.nowMallId && currentPath!='product?keyword&categoryId&brand&mallId' }" href="javascript:;"  ng-click="chooseMall(item);">
+                        {{item.mallSimpleName}}
+                    </a>
+                </li>
+                <li class="nav-menu-class">
+                    <a ng-href="{{'/#/org'}}" ng-class="{active: currentPath == 'org'}" ng-click="orgPage = '供应商名录' ">供应商名录</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="main" id="main-content">
+    <div ui-view></div>
+</div>
+<div ui-view="foot"></div>
+

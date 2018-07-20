@@ -1,0 +1,374 @@
+
+<div class="main">
+    <div class="wrap" style="width: auto;">
+        <div style="width: 1200px; margin: 0 auto;">
+            <div class="selector">
+                <div class="se-title clearfix">
+                    <div class="tips"><span class="font14 weight">商品筛选：</span>共找到
+                        <span class="colorRed weight ml5 mr5" ng-bind="productCounts"></span>个相关商品
+                    </div>
+                </div>
+                <!-----品牌部分----->
+                <div class="selectorLine brand-content" ng-init="htDown=true;" ng-class="{contentHt:!htDown}" ng-hide="isShowBrand">
+                    <div class="sl-key">品牌：</div>
+                    <!--品牌 字母列表-->
+                    <ul class="valueList brand-list clearfix" ng-hide="htDown" ng-init="bdCount=0">
+                        <li ng-repeat="item in letters" ng-mouseover="brandChoose(item); $parent.bdCount = $index;" ng-class="{bdColor:$parent.bdCount==$index}">
+                            {{item}}
+                        </li>
+                    </ul>
+                    <!--所有 品牌列表-->
+                    <div class="all-brand listHt" ng-show="htDown">
+                        <ul class="valueList list-brands clearfix">
+                            <li ng-repeat="item in brandNames" ng-click="brandChooseThis(item.name)" repeat-finish="showM()">{{item.name}}</li>
+                        </ul>
+                    </div>
+                    <div class="all-brand" ng-hide="htDown">
+                        <ul class="valueList list-brands clearfix" id="brands">
+                            <li class="special-wd" ng-repeat="item in brandNames" ng-click="brandChooseThis(item.name)" repeat-finish="showM()">{{item.name}}</li>
+                        </ul>
+                    </div>
+                    <div class="sl-ext" ng-show="bBtn">
+                        <a ng-show="htDown" ng-click="htDown=false;">更多<i class="iconfont icon-down"></i></a>
+                        <a ng-hide="htDown" ng-click="htDown=true; brandNames=brandNamesOrigin; bdCount=0;">收起<i class="iconfont icon-top"></i></a>
+                    </div>
+                </div>
+                <!-------可扩展分类 价格区间部分------>
+                <div class="selectorLine bo1" ng-hide="isShowPrice" ng-repeat="condition in products.condition">
+                    <div class="sl-key">{{condition.name}}：</div>
+                    <div class="sl-value">
+                        <ul class="valueList clearfix">
+                            <li ng-repeat="item in condition.value" ng-click="priceChooseThis(item.min, item.max);"><a>{{item.min}}-{{item.max}}</a></li>
+                        </ul>
+                    </div>
+                    <div class="sl-ext">
+                        <!--<a href="#">多选<i class="iconfont icon-add"></i></a>-->
+                        <!--<a href="#">更多<i class="iconfont icon-down"></i></a>-->
+                    </div>
+                </div>
+                <div class="selectorLine" ng-hide="ifImp || mallId=='JD'">
+                    <div class="sl-key">产国：</div>
+                    <div class="sl-value">
+                        <ul class="valueList clearfix">
+                            <li><a href="javascript:;" ng-click="impChoose('进口', true)">进口</a></li>
+                            <li><a href="javascript:;" ng-click="impChoose('非进口', false)">非进口</a></li>
+                        </ul>
+                    </div>
+                    <div class="sl-ext">
+                        <!-- <a href="#">多选<i class="iconfont icon-add"></i></a>-->
+                        <!-- <a href="#">更多<i class="iconfont icon-down"></i></a>-->
+                    </div>
+                </div>
+                <!--其他动态分类-->
+                <div class="selectorLine sLineN" ng-repeat="prt in products.properties">
+                    <div class="sl-key">{{prt.name}}：</div>
+                    <div class="sl-value valueListN"  ng-class="{valueListM: Down}">
+                        <ul class="valueList clearfix" id="plist{{$index}}">
+                            <li ng-repeat="prtCt in prt.value" repeat-finish="IfshowM('plist'+[$parent.$index], $parent.$index)">
+                                <a href="javascript:;" ng-click="ctSpChoose(prt.name, prtCt.name, prt.code);">{{prtCt.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sl-ext" ng-show="mBtn[$index]">
+                        <a ng-hide="Down" ng-click="Down=true;">更多<i class="iconfont icon-down"></i></a>
+                        <a ng-show="Down" ng-click="Down=false;">收起<i class="iconfont icon-top"></i></a>
+                    </div>
+                </div>
+                <!--<div class="selectorLine">
+                    <div class="sl-key">CPU类型：</div>
+                    <div class="sl-value">
+                        <ul class="valueList v-check clearfix mb15">
+                            <li><a href="#">Intel i3</a></li>
+                            <li><a href="#">Intel i5</a></li>
+                            <li><a class="active" href="#">Intel i7</a></li>
+                            <li><a href="#">AMD A6</a></li>
+                            <li><a class="active" href="#">AMD A8</a></li>
+                            <li><a href="#">AMD A10</a></li>
+                            <li><a href="#">其他Intel平台</a></li>
+                            <li><a class="active" href="#">其他AMD平台</a></li>
+                        </ul>
+                        <div class="btn-bar"><a class="redbtn" href="#">确定</a><a href="#">取消</a></div>
+                    </div>
+                </div>-->
+                <!-------价格区间部分------>
+                <!--<div class="selectorLine bo1">
+                    <div class="sl-key">价格：</div>
+                    <div class="sl-value">
+                        <ul class="valueList clearfix">
+                            &lt;!&ndash; <li ng-repeat="item in prices" ng-click="priceChooseThis(item.min, item.max);"><a>{{item.min}}-{{item.max}}</a></li>&ndash;&gt;
+                            <li>shweh</li>
+                            <li>shweh</li>
+                            <li>shweh</li>
+                            <li>shweh</li>
+                            <li>shweh</li>
+                            <li>shweh</li>
+                        </ul>
+                    </div>
+                    <div class="sl-ext">
+                        &lt;!&ndash;<a href="#">多选<i class="iconfont icon-add"></i></a>&ndash;&gt;
+                        &lt;!&ndash;<a href="#">更多<i class="iconfont icon-down"></i></a>&ndash;&gt;
+                    </div>
+                </div>-->
+                <!------分类------->
+                <!--<div class="selectorLine brand-category" ng-show="ctList.length >= 1">
+                    <div class="sl-key">分类：</div>
+                    <ul class="ct-f">
+                        <li class="ct-first" ng-repeat="ctFirst in ctList">
+                            <a class="f-name">{{ctFirst.data.name}}<i class="iconfont icon-down"></i></a>
+                            <ul class="ct-s" ng-hide="isShowCt">
+                                <li class="ct-second" ng-repeat="ctSecond in ctFirst.children" ng-click="ctChooseThis(ctSecond.data.categoryId, ctSecond.data.name)">{{ctSecond.data.name}}</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>-->
+                <!--已选分类-->
+                <div class="selectorLine selected" ng-show="categoryName">
+                    <div class="sl-key">所在分类：</div>
+                    <div class="sl-value"><span style="color: #e4393c; font-weight: bold;">{{categoryName}}</span></div>
+                </div>
+                <!-------已经选择部分------>
+                <div class="selectorLine selected" ng-show="allChooseArr.length>0">
+                    <div class="sl-key">您已选择：</div>
+                    <div class="sl-value">
+                        <ul class="clearfix">
+                            <li ng-click="closeChoose(item.chType, item.code)" ng-repeat="item in allChooseArr"><a class="texthide">{{item.chType}}：{{item.chName}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="item-main clearfix" style="margin-top: 10px;">
+                <div class="m-list">
+                    <!--商品来源分类-->
+                    <div class="m-filter m-filter-type clearfix" ng-show="showMallType" ng-init="checkType='全部'">
+                        <span ng-click="checkMallType(null); checkType='全部'" ng-class="{checked:  checkType=='全部'}">
+                            全部
+                        </span>
+                        <span ng-repeat="mall in mallMsg" ng-hide="mall.mallId=='YNK'" ng-click="checkMallType(mall.mallId); $parent.checkType=mall.mallSimpleName" ng-class="{checked:  $parent.checkType==mall.mallSimpleName}">
+                            {{mall.mallSimpleName}}
+                        </span>
+
+                    </div>
+                    <!--销量 新品 等条件的筛选-->
+                    <div class="m-filter clearfix mb10">
+                        <!--配送地点选择-->
+                        <div class="f-addr clearfix" ng-show="regions">
+                            <span class="float-l ml5">配送地</span>
+                            <div class="addr-sl" ng-mouseenter="ifAddrShow=true;" ng-mouseleave="ifAddrShow=false;">
+                                <a class="open" ng-class="{'noBorder': ifAddrShow}">{{address}}
+                                    <i class="iconfont icon-arrowdownfilling"></i>
+                                </a>
+                                <div class="drop-down" ng-show="ifAddrShow">
+                                    <a class="close" ng-click="ifAddrShow=false;"><i class=" iconfont icon-close1"></i></a>
+                                    <div class="tabox">
+                                        <div class="tab clearfix" ng-init=" act='省' ">
+                                            <a ng-class="{'active': act=='省'}" ng-click="actTitleClick(0); act='省'">
+                                                {{titleProv}}
+                                                <i class="iconfont icon-arrowdownfilling"></i>
+                                            </a>
+                                            <a ng-class="{'active': act=='市'}" ng-show="actTitle>=1" ng-click="actTitleClick(1); act='市'">
+                                                {{titleCity}}
+                                                <i class="iconfont icon-arrowdownfilling"></i>
+                                            </a>
+                                            <a ng-class="{'active': act=='县'}" ng-show="actTitle>=2" ng-click="actTitleClick(2); act='县'">
+                                                {{titleCounty}}
+                                                <i class="iconfont icon-arrowdownfilling"></i>
+                                            </a>
+                                            <a ng-class="{'active': act=='乡'}" ng-show="actTitle>=3" ng-click=" act='乡'">
+                                                {{titleTown}}
+                                                <i class="iconfont icon-arrowdownfilling"></i>
+                                            </a>
+                                        </div>
+                                        <div class="content">
+                                            <!--省份-->
+                                            <ul ng-show=" act=='省'">
+                                                <li ng-repeat="item in provinceList"><a ng-click="addressChoose('provice', item.code, item.name)">{{item.name}}</a></li>
+                                            </ul>
+                                            <!--市/区-->
+                                            <ul ng-show=" act=='市' ">
+                                                <li ng-repeat="item in cityList"><a ng-click="addressChoose('city', item.code, item.name)">{{item.name}}</a></li>
+                                            </ul>
+                                            <!--县-->
+                                            <ul ng-show=" act=='县' ">
+                                                <li ng-repeat="item in countyList"><a ng-click="addressChoose('county', item.code, item.name)">{{item.name}}</a></li>
+                                            </ul>
+                                            <!--乡镇-->
+                                            <ul ng-show=" act=='乡' ">
+                                                <li ng-repeat="item in townList"><a ng-click="addressChoose('town', item.code, item.name)">{{item.name}}</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="f-sort">
+                            <ul class="clearfix">
+                                <li ng-click="sort='scale desc'; page=1; getList()">
+                                    <a href="javascript:;" ng-class="{active: sort=='scale desc'}">综合<i class="iconfont icon-down1"></i></a>
+                                </li>
+                                <li ng-click="sort='discountRate desc'; page=1; getList()">
+                                    <a href="javascript:;" ng-class="{active: sort=='discountRate desc'}">优惠<i class="iconfont icon-down1"></i></a>
+                                </li>
+                                <li ng-click="sort='salesNum desc'; page=1; getList()">
+                                    <a href="javascript:;" ng-class="{active: sort=='salesNum desc'}">销量<i class="iconfont icon-down1"></i></a>
+                                </li>
+                                <li ng-click="sort='upTime desc'; page=1; getList()">
+                                    <a href="javascript:;" ng-class="{active: sort=='upTime desc'}">新品<i class="iconfont icon-down1"></i></a>
+                                </li>
+                                <li>
+                                    <a class="up-down" href="javascript:;" ng-class="{active: sort=='unitPrice asc' || sort=='unitPrice desc'}" ng-click="sort= sort== 'unitPrice asc'? 'unitPrice desc': 'unitPrice asc'; page=1; getList();">价格
+                                        <i class="iconfont icon-jiantou upicon" ng-class="{upNow: sort=='unitPrice asc', nowOther: sort=='unitPrice desc'}"></i>
+                                        <i class="iconfont icon-jiantou-down-copy downicon" ng-class="{downNow: sort=='unitPrice desc', nowOther: sort=='unitPrice asc'}"></i>
+                                    </a>
+                                </li>
+                                <!--价格区间填写-->
+                                <li class="price-sect">
+                                    <input type="text" value="" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" ng-model="minpIpt"/>
+                                    -
+                                    <input type="text" value="" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" ng-model="maxpIpt"/>
+                                    <span ng-click="priceSection()">确认</span><span ng-click="minpIpt=null; maxpIpt=null; priceSection()">清空</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--所有商品列表-->
+                    <div class="no-data" ng-show="ifList">
+                        <i class="iconfont icon-sousuo_jg"></i>
+                        很抱歉，没有找到与查询条件相符合的商品！
+                        <a class="close" href="javascript:void(0);" ng-click="noData();">
+                            <i class=" iconfont icon-close1"></i>
+                        </a>
+                    </div>
+                    <div class="gl-warp clearfix">
+                        <div class="items" ng-repeat="good in goods">
+                            <div class="gl-i-wrap">
+                                <s class="save-p weight" ng-show="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) < 10 && prices[good.productId].hasOwnProperty('unitPrice') && good.mallId=='JD'" ng-bind="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) + '折'"></s>
+                                <div class="p-img">
+                                    <a ng-href="{{'/#/product/detail?mallId=' + good.mallId + '&id=' + good.productId }}" target="_blank">
+                                        <img ng-src="{{good.pic.slice(0,4)=='http' ? good.pic : global.file.url +'/'+ good.pic.split(',')[0] + '@190x190.png'}}">
+                                    </a>
+                                    <div ng-show="productCountState[good.productId]=='stock_out' || prices[good.productId].priceStatus=='soldOut' ">
+                                        <p class="shot-product bg"></p>
+                                        <p class="shot-product word">暂时缺货</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="price-f">
+                                        <span class="p-price" ng-show="prices[good.productId].hasOwnProperty('unitPrice')">￥{{prices[good.productId].unitPrice==0 ? '内部协议价' : (prices[good.productId].unitPrice | number:2)}}</span>
+                                        <p ng-show="prices[good.productId].hasOwnProperty('unitPriceShow')">
+                                            <span class="weight" ng-hide="good.mallId=='JD'">参考价：</span>
+                                            <span class="weight" ng-show="good.mallId=='JD'">京东价：</span>
+                                            <s class="s-price">￥{{prices[good.productId].unitPriceShow | number:2}}</s>
+
+                                        </p>
+                                    </div>
+                                    <div class="p-price" ng-show="prices[good.productId].hasOwnProperty('unitPriceMax')">￥{{prices[good.productId].unitPriceMin | number:2}}-{{prices[good.productId].unitPriceMax | number:2}}</div>
+                                    <div class="sp-price" ng-show="prices[good.productId].priceStatus=='notLogin'">登录显示价格</div>
+                                    <div class="sp-price" ng-show="prices[good.productId].priceStatus=='notRight'">价格供可购买老师查看</div>
+                                </div>
+                                <div class="p-name"><a target="_blank" ng-href="{{'/#/product/detail?mallId=' + good.mallId + '&id=' + good.productId }}" ng-bind-html="good.name"></a></div>
+                                <div class="p-operate">
+                                    <!--有货-->
+                                    <a ng-click="addGoods(good, 1)" ng-hide="productCountState[good.productId]=='stock_out' || prices[good.productId].priceStatus=='soldOut'"><i class="iconfont icon-shopping2"></i>加入购物车</a>
+                                    <!--缺货-->
+                                    <a class="disAdd" ng-show="productCountState[good.productId]=='stock_out' || prices[good.productId].priceStatus=='soldOut'"><i class="iconfont icon-shopping2"></i>加入购物车</a>
+                                    <a class="add-cp" href="javascript:;" ng-click="addCompare(0, good.id, prices[good.productId].unitPrice)" ng-hide="good.mallId=='JD'"><i class="iconfont icon-duibi"></i>加入对比</a>
+                                </div>
+                                <div class="p-store">
+                                    <a class="p-dw" target="_blank" ng-hide="good.mallId=='JD'" ng-href="{{'/#/store?id=' + good.storeId}} ">{{good.storeName}}</a>
+                                </div>
+                                <!--商品大种类-->
+                                <ul class="key-msg mall-type">
+                                    <li class="typeOwn" ng-show="good.mall.mallType=='dpmall' && good.mall.id!='JD'">{{good.mall.simpleName}}</li>
+                                    <li class="typeJD" ng-show="good.mall.id=='JD'"><a style="color: #fff;" ng-href="{{'https://item.jd.com/' + good.productId + '.html'}}" target="_blank;">{{good.mall.simpleName}}</a></li>
+                                    <li class="typeIf" ng-show="good.mall.mallType=='esmall'">{{good.mall.simpleName}}</li>
+                                </ul>
+                                <!--关键信息-->
+                                <ul class="key-msg" ng-show="good.keyMessage">
+                                    <li ng-repeat="item in json2object(good.keyMessage)">{{item}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="m-aside">
+                    <h2>精选商品</h2>
+                    <div class="mc">
+                        <ul>
+                            <li>
+                                <div class="imgbox"><a href="#"><img src="images/sm_item.jpg"></a></div>
+                                <div class="name"><a href="#">极米（XGIMI）H1 家用 全高清 投影机（DLP芯片 900...</a>
+                                    <span class="font14">¥ 4900.00</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="imgbox"><a href="#"><img src="images/sm_item.jpg"></a></div>
+                                <div class="name"><a href="#">极米（XGIMI）H1 家用 全高清 投影机（DLP芯片 900...</a>
+                                    <span class="font14">¥ 4900.00</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="imgbox"><a href="#"><img src="images/sm_item.jpg"></a></div>
+                                <div class="name"><a href="#">极米（XGIMI）H1 家用 全高清 投影机（DLP芯片 900...</a>
+                                    <span class="font14">¥ 4900.00</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="imgbox"><a href="#"><img src="images/sm_item.jpg"></a></div>
+                                <div class="name"><a href="#">极米（XGIMI）H1 家用 全高清 投影机（DLP芯片 900...</a>
+                                    <span class="font14">¥ 4900.00</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="imgbox"><a href="#"><img src="images/sm_item.jpg"></a></div>
+                                <div class="name"><a href="#">极米（XGIMI）H1 家用 全高清 投影机（DLP芯片 900...</a>
+                                    <span class="font14">¥ 4900.00</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>-->
+            </div>
+            <!--对比内容框-->
+            <div class="my-compare" ng-show="showComp">
+                <div class="hd">
+                    [<span>{{cpCount}}</span>/4]对比列表
+                </div>
+                <div class="cp-one" ng-repeat="comp in compList">
+                    <button class="one-img">
+                        <img ng-src="{{global.file.url+ '/'+ comp.product.pic.split(',')[0]}}">
+                    </button>
+                    <div class="one-wd"><a ng-href="{{ '/#/product/detail?mallId=' + comp.mallId + '&id=' + comp.productId }}">{{comp.product.name}}</a></div>
+                    <a class="del-one" ng-click="delCompare(comp.id)"><i class="icon icon-delete1"></i></a>
+                </div>
+                <div class="cp-operate">
+                    <a class="go-compare" ng-hide="cpCount>1" href="javascript:;">对比</a>
+                    <a class="go-compare goComparebj" ng-show="cpCount>1" ng-href="{{'/#/compare'}}" target="_blank">对比</a>
+                    <p ng-click="delCompare(0)"><a>清空</a></p>
+                </div>
+                <div class="del-compare" ng-click="showComp = false;">
+                    <i class="icon icon-close"></i>
+                </div>
+            </div>
+            <div class="mainsrp-pager" ng-show="listCount > 0" style="margin-top: 10px;">
+                <div class="inner">
+                    <ul class="pagination ng-isolate-scope ng-valid ng-dirty" pagination="" total-items="listCount" ng-model="page"
+                        max-size="5" boundary-links="true" rotate="false" items-per-page="rows" ng-change="getList()" previous-text="‹"
+                        next-text="›" first-text="«" last-text="»">
+                    </ul>
+                    <!--页码选择-->
+                    <div class="find-page">
+                        <span>共<b> {{pagesCount}} </b>页</span>
+                        <span>
+                            到第<input type="text" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}" ng-model="pageSure">页
+                        </span>
+                        <span class="sure-page" ng-click="page=pageSure; getList()">确定</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
