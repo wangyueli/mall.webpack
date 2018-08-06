@@ -23,12 +23,13 @@
                     </a>
                     <span class="tools"><a href="javascript:;" ng-click="updateAddress(address.id)">修改</a><a href="javascript:;" ng-click="deleteAddress(address.id)">删除</a></span>
                 </li>
-                <li><a class="add-btn" href="javascript:;" ng-click="updateAddress()">添加</a></li>
+                <li><a class="add-btn" href="javascript:;" ng-click="addAddress()">添加</a></li>
             </ul>
             <a ng-show="showMoreBtn && showBtn" class="more-addr" href="javascript:;" ng-click="moreAdress(showMoreBtn)">显示全部地址<i class="iconfont icon-down"></i></a>
             <a ng-show="!showMoreBtn && showBtn" class="more-addr" href="javascript:;" ng-click="moreAdress(showMoreBtn)">收起地址<i class="iconfont icon-down" style="transform:rotate(180deg);"></i></a>
         </div>
     </div>
+    <!--商品-->
     <div class="goods-bar mb10">
         <div class="title-item"><h2 class="font14 weight">确认订单信息</h2><a class="backbtn" ng-href="{{'/#/cart'}}">返回购物车修改</a></div>
         <div class="content">
@@ -77,7 +78,8 @@
             </div>
         </div>
     </div>
-    <div ng-hide="noPay">
+    <!--报销 支付 发票-->
+    <div ng-hide="noPay" class="mb80">
         <!--是否需要报销-->
         <div class="order-item" style="overflow: hidden;">
             <div class="title-item">
@@ -125,7 +127,7 @@
                         </div>
                         <div class="content">
                             <!--电子普通发票提示说明-->
-                            <div class="electronic-tip">
+                            <div class="electronic-tip" ng-show="thismallId=='JD'">
                                 <p>电子普通发票和纸质普通发票具备同等法律效力，可支持报销入账，京东自营全面启用电子普通发票。</p>
                                 <p><a style="color: #005ea7;" target="_blank" href="https://help.jd.com/user/issue/list-505-508.html">电子普通发票相关信息>></a></p>
                             </div>
@@ -314,7 +316,7 @@
                         </span>
                         <i class="icon icon-wenhao how-pay"></i>
                         <!--支付方式提示文字-->
-                        <div class="pay-detail card">
+                        <div class="pay-detail card" style="width: 305px;">
                             <p class="word" >{{type.remark}}</p>
                             <div class="cart-img">
                                 <img src="../images/bill1.jpg">
@@ -323,7 +325,7 @@
                         </div>
                     </div>
                     <!--不需要报销-->
-                    <div class="bill-hd" ng-show="needAcount=='no'" ng-class="{choosed:$parent.chosePay==$index }" ng-repeat="type in productList.payTypes.other" ng-click="$parent.PaymentType=type.code; $parent.chosePay=$index;">&nbsp;{{type.name}}
+                    <div class="bill-hd mrs" ng-show="needAcount=='no'" ng-class="{choosed:$parent.chosePay==$index }" ng-repeat="type in productList.payTypes.other" ng-click="$parent.PaymentType=type.code; $parent.chosePay=$index;">&nbsp;{{type.name}}
                         <span class="arrow-f" ng-show="$parent.chosePay==$index ">
                             <span class="arrow"><i class="iconfont icon-check"></i></span>
                         </span>
@@ -371,8 +373,8 @@
     <div class="jiesuan clearfix">
         <div class="float-r align-r">
             <p class="tongji mb10">
-                <span class="font13">节省总额：</span>
-                <em class="font14 weight colorRed">
+                <span class="font13" ng-show="savesPay>0">节省总额：</span>
+                <em class="font14 weight colorRed" ng-show="savesPay>0">
                     <span class="result colorgreen">￥{{savesPay | number:2}}</span>
                 </em>
                 <span class="ml20 font13">应付总额：</span>
@@ -399,8 +401,8 @@
     </div>
     <!--提交-->
     <div class="order-sub">
-        <a class="submit" href="javascript:;" ng-click="submit()" ng-hide="doSub || noPay">确认订单信息</a>
-        <a class="submit" href="javascript:;" ng-show="doSub">确认中···</a>
+        <a class="submit sure-sb" href="javascript:;" ng-click="submit()" ng-hide="doSub || noPay">确认订单信息</a>
+        <a class="submit sure-sb" href="javascript:;" ng-show="doSub">确认中···</a>
         <a class="submit" href="javascript:;" style="cursor: not-allowed; background: #bbb;" ng-show="noPay">确认订单信息</a>
     </div>
 </div>

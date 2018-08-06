@@ -33,7 +33,7 @@
                             </button>
                             <!--关键字提醒-->
                             <ul class="down-search" ng-show="keys.length>0 && downSearch">
-                                <li ng-repeat="key in keys" ng-click="$root.keyword=key.0; search()" ng-class="{keyBack: $parent.thisKey==$index}">{{key[0]}}</li>
+                                <li ng-repeat="key in keys" ng-click="$root.keyword=key[0]; search()" ng-class="{keyBack: $parent.thisKey==$index}">{{key[0]}}</li>
                             </ul>
                         </div>
                         <!--搜索频道-->

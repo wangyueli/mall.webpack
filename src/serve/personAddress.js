@@ -34,6 +34,36 @@ var personAddressService = app.service('personAddressService', function ($http) 
 		}, global.mall.api)).then(sf, ff);
 	};
 
+	//获取省
+	this.getProvinces = function(mallId, f) {
+		$http.get(url.url('/area/province', {
+			'mallId': mallId
+		}, global.mall.api)).then(f);
+	};
+
+	//获取市
+	this.getCities = function(mallId, provinceId, f) {
+		$http.get(url.url('/area/city', {
+			'mallId': mallId,
+			'provinceId': provinceId
+		}, global.mall.api)).then(f);
+	};
+
+	//获取县
+	this.getCounties = function(mallId, cityId, f) {
+		$http.get(url.url('/area/county', {
+			'mallId': mallId,
+			'cityId': cityId
+		}, global.mall.api)).then(f);
+	};
+
+	//获取镇
+	this.getTowns = function(mallId, countyId, f) {
+		$http.get(url.url('/area/town', {
+			'mallId': mallId,
+			'countyId': countyId
+		}, global.mall.api)).then(f);
+	}
 });
 
 module.exports = personAddressService;

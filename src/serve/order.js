@@ -49,10 +49,26 @@ var orderService = app.service('orderService', function ($http) {
 	};
 
 	//提交后跳转地址获取
-	this.toPay = function (orderId, f) {
-		$http.get(url.url('/orders' + orderId+ 'payType', null, global.mall.api)).then(f);
-	}
+	this.toWitchUrl = function (orderId, f) {
+		$http.get(url.url('/orders/' + orderId+ '/topay', null, global.mall.api)).then(f);
+	};
 
+	//支付方式获取
+	this.payTypes = function (orderId, f) {
+		$http.get(url.url('/orders/' + orderId+ '/payType', null, global.mall.api)).then(f);
+	};
+
+	//支付地址获取
+	this.payUrl = function (orderId, code, f) {
+		$http.get(url.url('/orders/' + orderId+ '/paymentUrl', {
+			'code': code
+		}, global.mall.api)).then(f);
+	};
+
+	//支付结果
+	this.payResult = function (orderId, f) {
+		$http.get(url.url('/orders/'+ orderId+ '/payResult', null, global.mall.api)).then(f);
+	}
 });
 
 module.exports = orderService;

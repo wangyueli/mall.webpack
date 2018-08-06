@@ -1,4 +1,5 @@
 var app = require('appModule');
+var _ = require('underscore');
 require('swiper');
 require('serve/helper.js');
 
@@ -34,7 +35,8 @@ var helpPoor = app.controller('helpPoorCtrl', function ($scope, $cookies, $state
         });
         //价格
         $rootScope.productPrice($scope.mallProIds);
-        $scope.helpPrts =data;
+        $scope.helpPrts =data.product.rs;
+
     });
 });
 module.exports = helpPoor;

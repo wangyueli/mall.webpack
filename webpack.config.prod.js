@@ -26,21 +26,19 @@ var config = {
             util: path.resolve(__dirname, 'src/util'),
             serve: path.resolve(__dirname, 'src/serve'),
             appModule: path.resolve(__dirname, 'src/app.module'),
-            global: path.resolve(__dirname, 'src/lib/global')
+            global: path.resolve(__dirname, 'src/lib/global.online')
         }
     },
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 use: extractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [{
-                        loader: "css-loader",
-                        options: {
-                            minimize: true
-                        }
-                    }]
+                    //fallback: "style-loader",
+                    use: [
+                        {loader: "css-loader", options: {minimize: true}},
+                        {loader: "sass-loader"}
+                    ]
                 })
             },
             {

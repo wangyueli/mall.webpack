@@ -77,7 +77,17 @@ var productService = app.service('productService', function ($http) {
         $http.get(url.url('/product/price', {
             'ids' : mallProIds
         }, global.mall.api)).then(f);
+    };
+
+    //推荐商品
+    this.recommendPrt = function (mallId, productId, f) {
+        $http.get(url.url('/recommend/product/content', {
+            'mallId': mallId,
+            'productId': productId
+        }, global.mall.api)).then(f);
     }
+
+
 
 });
 

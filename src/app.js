@@ -8,7 +8,7 @@
  */
 window.WEB_VERSION = '201711170000';
 /*window.jQuery = window.$ = require('jquery');*/
-require('./css/page/master.css');
+require('./css/page/master.scss');
 require('./lib/router');
 require('./lib/filter');
 require('./lib/directive');

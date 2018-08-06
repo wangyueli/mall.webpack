@@ -24,7 +24,7 @@ var compare = app.controller('compareCtrl', function ($scope, compareService, pr
         productService.delCompare(0, pId, function (data) {
             swal({
                 text: '删除成功！',
-                type: 'success',
+                icon: 'success',
                 buttons: {confirm:{text:'确定'}}
             }).then(function(isConfirm) {
                 if (isConfirm === true) {
@@ -34,7 +34,7 @@ var compare = app.controller('compareCtrl', function ($scope, compareService, pr
         }, function (data) {
             swal({
                 text: '删除失败',
-                type: 'error',
+                icon: 'error',
                 buttons: {confirm:{text:'确定'}}
             });
         });

@@ -18,13 +18,13 @@
 			<span></span>
 			<i ng-show="o==null">购物车内暂时没有商品，登录后将显示您之前加入的商品~&nbsp;&nbsp;
 				<a class="cart-login" ng-href="{{getLoginUrlMall()}}">&nbsp;&nbsp;登录&nbsp;&nbsp;</a>
-				<a style="color: #005ea7;" ng-href="{{ '/#/product?mallId=' + mallId }}">&nbsp;&nbsp;去选购&nbsp;&nbsp;</a>
+				<a class="colorDarkBlue" href="#">&nbsp;&nbsp;去选购&nbsp;&nbsp;</a>
 			</i>
-			<i ng-show="o!=null">购物车内暂时没有商品~&nbsp;&nbsp;<a style="color: #005ea7;" ng-href="{{ '/#/product?mallId=' + mallId }}">&nbsp;&nbsp;去选购&nbsp;&nbsp;</a></i>
+			<i ng-show="o!=null">购物车内暂时没有商品~&nbsp;&nbsp;<a class="colorDarkBlue" href="#">&nbsp;&nbsp;去选购&nbsp;&nbsp;</a></i>
 		</div>
 		<div class="itemsbox"  ng-show="mallList.length>0">
 			<!--商城-->
-			<div class="mall-ct" ng-repeat="mall in mallList">
+			<div class="mall-ct" ng-repeat="mall in mallList" repeat-finish="setCartBtnCl();">
 				<div class="mall-name">
 					<input type="checkbox" ng-checked="isMallChecked(mall)" ng-click="checkMall(mall)">
 					<img ng-src="{{global.file.url}}/{{mall.logo}}" style="width: 40px; vertical-align: middle;">

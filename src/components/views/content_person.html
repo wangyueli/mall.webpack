@@ -1,20 +1,23 @@
-
 <style>
-    .yct-top .yctlogo .logo a{height: 50px;}
-    .yct-top .yctlogo .c-name{line-height: 50px; margin-left: 10px; font-size: 20px;}
-    .top-search{margin-top: 2px;}
-    .top-search .search-panel-fields input[type=text]{width: 310px; float: right;}
-    .top-search .down-search{top: 35px;left: 90px;width: 266px;}
-    .top-search .channel{width: 110px;  }
-    .top-search .channel-sure{height: 31px; line-height: 31px;}
-    .top-search .channel-down{top: 32px;}
+    .cart-top{margin-top: 22px; position: relative;}
+    .cart-top .view-btn{line-height: 32px;}
+    .cart-top .drop-list{top:34px; right: 0;}
+    .top-search{float: right; width: 240px; margin-left: 40px; top: 22px;}
+    .top-search .search-panel-fields input[type=text]{width: 200px;}
+    .top-search .search-panel-fields button{background: #ddd; color: #333; height: 31px; top: 2px;}
+    .top-search .search-panel-fields button:hover{background: #ccc;}
+    .top-search .down-search{width: 235px; top: 33px;}
 </style>
-
 <div ui-view="head"></div>
-<!-----顶部----->
-<div class="header" style="background: #fff">
-    <div class="yct-top">
-        <div class="wrap clearfix">
+<div id="person-msg">
+    <div class="person_headtop">
+        <div class="w1200">
+            <div class="headtop_left">个人中心</div>
+            <ul class="headtop_center">
+                <!--<li><a href="">首页</a></li>
+                <li><a href="">账户管理</a></li>
+                <li><a href="">消息</a></li>-->
+            </ul>
             <!--购物车-->
             <div class="cart-top home-cart">
                 <a class="view-btn" ng-href="{{'/#/cart'}}" target="_blank">
@@ -68,39 +71,27 @@
                     </div>
                 </div>
             </div>
-            <!--当前商城 logo-->
-            <div class="yctlogo">
-                <div class="logo" style="float: left;">
-                    <a href="#">
-                        <img style="height: 100%; float: left;" ng-src="{{tlImg}}">
-                        <div class="c-name">{{titleMall}}</div>
-                    </a>
-                </div>
-            </div>
             <!--搜索框-->
             <div class="top-search">
                 <div class="search-panel-fields" ng-mouseleave="downSearch=false;">
                     <input ng-model="$root.keyword" type="text" ng-keyup="keySearch($event); downSearch=true;"/>
-                    <button type="button" ng-click="search()">
-                        搜索
-                    </button>
+                    <button type="button" ng-click="search()">搜索</button>
                     <!--关键字提醒-->
                     <ul class="down-search" ng-show="keys.length>0 && downSearch">
                         <li ng-repeat="key in keys" ng-click="$root.keyword=key[0]; search()" ng-class="{keyBack: $parent.thisKey==$index}">{{key[0]}}</li>
                     </ul>
                 </div>
-                <!--搜索频道-->
-               <!-- <div class="channel channel-sure" ng-mouseenter="chaDown=true;" ng-mouseleave="chaDown=false;">{{nowChannel}}<i class="iconfont icon-down"></i></div>
-                <ul class="channel channel-down" ng-show="chaDown" ng-mouseenter="chaDown=true;" ng-mouseleave="chaDown=false;">
-                    <li ng-click="sureChannel('全部商品')"><a>全部商品</a></li>
-                    <li ng-click="sureChannel(mall)" ng-repeat="mall in mallMsg"><a>{{mall.mallSimpleName}}</a></li>
-                </ul>-->
             </div>
         </div>
     </div>
-</div>
-<div class="main" id="main-content">
-    <div ui-view></div>
+    <div class="sidebar">
+        <div class="sidebar_l">
+            <dl>
+                <dt><i class="icon  icon-ruzhu"></i>订单中心</dt>
+                <dd>我的订单</dd>
+            </dl>
+        </div>
+        <div class="side_r" ui-view></div>
+    </div>
 </div>
 <div ui-view="foot"></div>
-

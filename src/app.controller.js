@@ -4,22 +4,73 @@ var _ = require('underscore');
 var global = require('global');
 var cookie = require('util/cookie');
 require('sweetalert');
-var regionsYct = require('./asset/address/mallRegions.js');
-var regionsJd = require('./asset/address/mallJdRegions.js');
 require('serve/auth.js');
 require('serve/project.js');
 require('serve/message.js');
-require('serve/project.js');
 require('serve/org.js');
 require('serve/product.js');
 require('serve/home.js');
 require('serve/cart.js');
-var AppController =app.controller("AppController",
-    function($scope, $log, $sce, $http, $filter, $location, $rootScope, $cookieStore, $cookies, $state, $stateParams, authService , projectService, messageService, cartService, categoryService, orgService, productService, homeService) {
+require('serve/personAddress.js');
 
+var AppController =app.controller("AppController",
+    function($scope, $log, $sce, $http, $filter, $location, $rootScope, $cookieStore, $cookies, $state, $stateParams, authService , projectService, messageService, cartService, categoryService, orgService, productService, homeService, personAddressService) {
         $scope.global = global;
-        $rootScope.regionsYct = regionsYct;
-        $rootScope.regionsJd = regionsJd;
+
+        /*皮肤定制*/
+        var windowUrl = window.location.href;
+        var linkNode = document.createElement("link");
+        linkNode.setAttribute("rel","stylesheet");
+        linkNode.setAttribute("type","text/css");
+        if(windowUrl == 'https://scu-mall.yuncaitong.cn/#/'){
+            //四川大学（深红色）
+            linkNode.setAttribute("href","skin-css/scu-skin.css");
+        }else if(windowUrl == 'https://hfut-mall.yuncaitong.cn/#/'){
+            //合肥工大（红棕色）
+            linkNode.setAttribute("href","skin-css/hfut-skin.css");
+        }else if(windowUrl == 'https://hnu-mall.yuncaitong.cn/#/'){
+            //湖南大学 （深红色）
+            linkNode.setAttribute("href","skin-css/scu-skin.css");
+        }else if(windowUrl == 'https://bnu-mall.yuncaitong.cn/#/'){
+            //北京师范（深蓝色）
+            linkNode.setAttribute("href","skin-css/bnu-skin.css");
+        }else if(windowUrl == 'https://nankai-mall.yuncaitong.cn/#/'){
+            //南开大学（紫色）
+            linkNode.setAttribute("href","skin-css/nankai-skin.css");
+        }else if(windowUrl == 'https://jiangnan-mall.yuncaitong.cn/#/'){
+            //江南大学 （红棕色）
+            linkNode.setAttribute("href","skin-css/hfut-skin.css");
+        }else if(windowUrl == 'https://fjmu-mall.yuncaitong.cn/#/'){
+            //福建医科大（深蓝色）
+            linkNode.setAttribute("href","skin-css/bnu-skin.css");
+        }else if(windowUrl == 'https://cd120-mall.yuncaitong.cn/#/'){
+            //四川大学华西医院 棕色）
+            linkNode.setAttribute("href","skin-css/cd120-skin.css");
+        }else if(windowUrl == 'https://uestc-mall.yuncaitong.cn/#/'){
+            //电子科技大成都学院（深蓝色）
+            linkNode.setAttribute("href","skin-css/bnu-skin.css");
+        }else if(windowUrl == 'https://hbgyzy-mall.yuncaitong.cn/#/'){
+            //湖北职业技术学院 （深蓝色）
+            linkNode.setAttribute("href","skin-css/bnu-skin.css");
+        }else if(windowUrl == 'https://neu-mall.yuncaitong.cn/#/'){
+            //东北大学（深蓝色）
+            linkNode.setAttribute("href","skin-css/bnu-skin.css");
+        }
+        else {
+            //默认云采通红
+            linkNode.setAttribute("href","skin-css/yct-skin.css");
+        }
+        document.head.appendChild(linkNode);
+
+        /**
+         * 是否登录*/
+        $scope.ifSign = function () {
+            authService.get(function (data) {
+                if(data==null){
+                    window.location = $scope.getLoginUrlMall();
+                }
+            });
+        };
 
         /**登录**/
         //老师
@@ -180,7 +231,7 @@ var AppController =app.controller("AppController",
                 },function(data){
                     swal({
                         text: '加入购物车失败! 失败原因'+data,
-                        type: 'error',
+                        icon: 'error',
                         buttons:{confirm: {text: '确定'}}
                     });
                 })
@@ -195,7 +246,7 @@ var AppController =app.controller("AppController",
         $scope.dellCart = function(id){
             swal({
                 text: "确认删除选中的商品？",
-                type: 'warning',
+                icon: 'warning',
                 buttons:{
                     cancel: {text: '取消', visible: true},
                     confirm: {text: '确定'}
@@ -205,14 +256,14 @@ var AppController =app.controller("AppController",
                     cartService.updateNum(id, '0',  function(){
                         swal({
                             text: '商品删除成功!',
-                            type: 'success',
+                            icon: 'success',
                             buttons:{confirm: {text: '确定'}}
                         });
                         $scope.getCartList();
                     },function(){
                         swal({
                             text: '删除失败，请稍后重试!',
-                            type: 'error',
+                            icon: 'error',
                             buttons:{confirm: {text: '确定'}}
                         });
                     });
@@ -235,20 +286,22 @@ var AppController =app.controller("AppController",
 
         /*
          * 获取当前用户所在地址*/
-        $rootScope.getRegion = function (mallId) {
+        $rootScope.getRegion = function (mallId, f) {
             orgService.defaultAdress($cookies.get('orgId'), mallId, function (data) {
                 if(data){
                     //如果后台有配数据
                     $scope.address = data.provinceName + data.cityName;
-                    if(data.countyName){
-                        //有三级地址
-                        $scope.address += data.countyName;
-                        $rootScope.region = data.city;
-                    }
                     if(data.townName){
                         //有四级地址
                         $scope.address += data.townName;
                         $rootScope.region = data.town;
+                    }else if(data.countyName){
+                        //有三级地址
+                        $scope.address += data.countyName;
+                        $rootScope.region = data.county;
+                    }else {
+                        //只到二级
+                        $rootScope.region = data.city;
                     }
                 }else {
                     //默认北京
@@ -260,18 +313,90 @@ var AppController =app.controller("AppController",
                         $rootScope.region = 110101;
                     }
                 }
-                //地址数据（京东 云采通 两套）
-                if(mallId == 'JD'){
-                    $rootScope.regions = regionsJd;
-                }else {
-                    $rootScope.regions = regionsYct;
-                }
                 //获取省份
-                $rootScope.provinceList = _.filter($rootScope.regions, function (data) {
-                    return data.code_parent == 000000;
+                personAddressService.getProvinces(mallId, function (data) {
+                    $rootScope.provinceList = data;
                 });
-                $rootScope.act = '省';
+                $scope.actRegion = '省';
+                $scope.actTitle = 0;
+                f();
             });
+        };
+
+        /**
+         * 点击不同地址title时*/
+        $scope.titleProv = '请选择';
+        $scope.titleCity = '请选择';
+        $scope.titleCounty = '请选择';
+        $scope.titleTown = '请选择';
+        $scope.actTitleClick = function (act) {
+            if(act==0){
+                $scope.actTitle = 0;
+                $scope.actRegion='省';
+                $scope.titleCity = '请选择';
+                $scope.titleCounty = '请选择';
+                $scope.titleTown = '请选择';
+            }else if(act==1){
+                $scope.actTitle = 1;
+                $scope.actRegion='市';
+                $scope.titleCounty = '请选择';
+                $scope.titleTown = '请选择';
+            }else if(act==2) {
+                $scope.actTitle = 2;
+                $scope.actRegion='县';
+                $scope.titleTown = '请选择';
+            }else {
+                $scope.actTitle = 3;
+                $scope.actRegion='乡';
+            }
+        };
+
+        /**
+         * 地址筛选*/
+        $rootScope.addressChooseAll = function (mallId, ad, adId, adName, f) {
+            if(ad=='provice'){
+                $scope.titleProv = adName;
+                $scope.address = $scope.titleProv;
+                personAddressService.getCities(mallId, adId, function (data) {
+                    $scope.cityList = data;
+                    $scope.actRegion = '市';
+                    $scope.actTitle = 1;
+                })
+            }else if(ad=='city'){
+                $scope.titleCity = adName;
+                $scope.address = $scope.titleProv + $scope.titleCity;
+                personAddressService.getCounties(mallId, adId, function (data) {
+                    $scope.countyList = data;
+                    if($scope.countyList.length>0){
+                        $scope.actRegion='县';
+                        $scope.actTitle = 2;
+                    }else {
+                        $rootScope.region = adId;
+                        f();
+                        $scope.ifAddrShow = false;
+                    }
+                })
+            }else if(ad=='county'){
+                $scope.titleCounty = adName;
+                $scope.address =  $scope.titleProv + $scope.titleCity + $scope.titleCounty;
+                personAddressService.getCounties(mallId, adId, function (data) {
+                    $scope.townList = data;
+                    if($scope.townList.length > 0){
+                        $scope.actRegion='乡';
+                        $scope.actTitle = 3;
+                    }else {
+                        $rootScope.region = adId;
+                        f();
+                        $scope.ifAddrShow = false;
+                    }
+                })
+            }else if(ad=='town'){
+                $scope.titleTown = adName;
+                $rootScope.region = adId;
+                $scope.address = $scope.titleProv + $scope.titleCity + $scope.titleCounty + $scope.titleTown;
+                $scope.ifAddrShow = false;
+                f();
+            }
         };
 
         /**
@@ -290,6 +415,46 @@ var AppController =app.controller("AppController",
                 return JSON.parse(s);
             }
         };
+
+       /**
+        * 搜索*/
+       //到商品列表
+        $scope.search = function () {
+            if ($rootScope.keyword != null && $rootScope.keyword != '') {
+                $scope.downSearch = false;
+                window.location = '/#/product?keyword=' +  encodeURIComponent($rootScope.keyword);
+            }
+        };
+        //enter键
+        var keyCount = -1;
+        $scope.keySearch = function(e){
+            var keycode = window.event?e.keyCode:e.which;
+            if(keycode==13){
+                $scope.search();
+            }else if(keycode == 38){
+                keyCount--;
+                if(keyCount < 0){
+                    keyCount = 0;
+                }
+                $rootScope.keyword = $scope.keys[keyCount][0];
+            }else if(keycode == 40){
+                keyCount++;
+                if(keyCount > $scope.keys.length-1){
+                    keyCount = $scope.keys.length-1;
+                }
+                $rootScope.keyword = $scope.keys[keyCount][0];
+            }else {
+                $scope.getKeys();
+            }
+            $scope.thisKey = keyCount;
+        };
+        //关键字实时获取
+        $scope.getKeys = function () {
+            productService.getKeys($rootScope.keyword, function (data) {
+                $scope.keys = data.result;
+            });
+        };
+        $scope.getKeys();
 
         /**
          * 客服返回顶部*/

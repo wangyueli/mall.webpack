@@ -1,5 +1,4 @@
 
-
 var jquery = require('jquery');
 var _ = require('underscore');
 var app = require('appModule');
@@ -16,36 +15,34 @@ var content = app.controller('contentCtrl', function ($scope, $stateParams, $htt
 
     /**
      * 获取当前学校 logo name**/
-    $scope.getSchoolMsg = function (orgId) {
-        orgService.getSchool(orgId, function (data) {
-            $scope.schoolId = data.id;
-            $scope.schoolName = data.name;
-            if($scope.currentPath=='mall'){
-                //www 上的特殊title设置
-                $rootScope.titleMall = '云采通-专业科教商城';
-                $rootScope.tlImg = 'images/favicon.ico'
+    orgService.getSchool($stateParams.orgId, function (data) {
+        $scope.schoolId = data.id;
+        $scope.schoolName = data.name;
+        if($scope.currentPath=='mall'){
+            //www 上的特殊title设置
+            $rootScope.Tabtitle = '云采通-专业科教商城';
+            $rootScope.tlImg = 'images/favicon.ico'
+        }else {
+            if(data.id==58212){
+                $rootScope.titleMall = data.name + '采购商城';
             }else {
-                if(orgId==58212){
-                    $rootScope.titleMall = data.name + '采购商城';
-                }else {
-                    $rootScope.titleMall = data.name + '网上商城';
-                }
-                if($scope.currentPath=='product?keyword&categoryId&brand&mallId'){
-                    $rootScope.Tabtitle = $rootScope.keyword +'-'+ $rootScope.titleMall;
-                }else {
-                    $rootScope.Tabtitle = $scope.title + $rootScope.titleMall;
-                }
-                $rootScope.tlImg = global.file.url+ '/'+ data.logo;
-                //返回的orgId 存cookie；
-                jquery.cookie('orgId', data.id, {
-                    'domain': global.domain,
-                    'path': '/'
-                });
-                $scope.getUseMall(data.id);
-                $scope.getGoodsTy(data.id);
+                $rootScope.titleMall = data.name + '网上商城';
             }
-        })
-    };
+            if($scope.currentPath=='product?keyword&categoryId&brand&mallId'){
+                $rootScope.Tabtitle = $rootScope.keyword +'-'+ $rootScope.titleMall;
+            }else {
+                $rootScope.Tabtitle = $scope.title + $rootScope.titleMall;
+            }
+            $rootScope.tlImg = global.file.url+ '/'+ data.logo;
+            //返回的orgId 存cookie；
+            jquery.cookie('orgId', data.id, {
+                'domain': global.domain,
+                'path': '/'
+            });
+            $scope.getUseMall(data.id);
+            $scope.getGoodsTy(data.id);
+        }
+    });
 
     /**
      * 获取该学校下 可访问频道*/
@@ -107,59 +104,6 @@ var content = app.controller('contentCtrl', function ($scope, $stateParams, $htt
         }
     };
 
-    /**
-     * 获取orgId 并存cookies*/
-    if($stateParams.orgId){
-        $scope.getSchoolMsg($stateParams.orgId);
-        jquery.cookie('orgId', $stateParams.orgId, {
-            'domain': global.domain,
-            'path': '/'
-        });
-    } else {
-        $scope.getSchoolMsg($cookies.get('orgId'));
-    }
-
-    /**
-     * 到商品列表*/
-    $scope.search = function () {
-        if ($rootScope.keyword != null && $rootScope.keyword != '') {
-            $scope.downSearch = false;
-            window.location = '/#/product?keyword=' +  encodeURIComponent($rootScope.keyword);
-        }
-    };
-
-    //搜索
-    var keyCount = -1;
-    $scope.keySearch = function(e){
-        var keycode = window.event?e.keyCode:e.which;
-        if(keycode==13){
-            $scope.search();
-        }else if(keycode == 38){
-            keyCount--;
-            if(keyCount < 0){
-                keyCount = 0;
-            }
-            $rootScope.keyword = $scope.keys[keyCount][0];
-        }else if(keycode == 40){
-            keyCount++;
-            if(keyCount > $scope.keys.length-1){
-                keyCount = $scope.keys.length-1;
-            }
-            $rootScope.keyword = $scope.keys[keyCount][0];
-        }else {
-            $scope.getKeys();
-        }
-        $scope.thisKey = keyCount;
-    };
-
-    /**
-     * 关键字实时获取*/
-    $scope.getKeys = function () {
-        productService.getKeys($rootScope.keyword, function (data) {
-            $scope.keys = data.result;
-        });
-    };
-    $scope.getKeys();
 
     /////////////////////////////////////end///////////////////////////////////////
 

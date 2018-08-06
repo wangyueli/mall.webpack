@@ -26,15 +26,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
 
     /**
      * 获取登录信息*/
-    $scope.ifSign = function () {
-        authService.get(function (data) {
-            if(data==null){
-                window.location = $scope.getLoginUrlMall();
-            }
-        });
-    };
     $scope.ifSign();
-
 
     /**
      * 设置修改发票弹层高度*/
@@ -60,6 +52,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
                     }
                 });
             }
+            $rootScope.savesPay = 0;
             _.each($scope.productList.cartBos, function(cart){
                 //如果有不支购买的商品，则显示不能提交按钮
                 if(cart.canBuy == false){
@@ -85,7 +78,6 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
 
             //是否协议商城
             $scope.esMall = data.esmall;
-            $rootScope.savesPay = 0;
             $rootScope.allPay = data.sumPrice;
         });
     };
@@ -111,7 +103,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
                 }
                 $scope.refresh();
             }else {
-                $scope.updateAddress();
+                $scope.addAddress();
             }
         });
     };
@@ -141,27 +133,28 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
     /**
      * 解析初始化地址列表*/
     $scope.address = function (ad) {
-        $scope.provinceList = _.filter($scope.regions, function (data) {
-            return data.level == 1;
+        //获取省份
+        personAddressService.getProvinces($scope.thismallId, function (data) {
+            $scope.provinceList = data;
         });
         $scope.pVal = ad.provinceName;
         if(ad.cityName) {
             $scope.cVal = ad.cityName;
-            $scope.cityList = _.filter($scope.regions, function (data) {
-                return data.code_parent == ad.province;
-            });
+            personAddressService.getCities($scope.thismallId, ad.province, function (data) {
+                $scope.cityList = data;
+            })
         }
         if(ad.countyName) {
             $scope.cyVal = ad.countyName;
-            $scope.countyList = _.filter($scope.regions, function (data) {
-                return data.code_parent == ad.city;
-            });
+            personAddressService.getCounties($scope.thismallId, ad.city, function (data) {
+                $scope.countyList = data;
+            })
         }
         if(ad.townName) {
             $scope.tVal = ad.townName;
-            $scope.townList = _.filter($scope.regions, function (data) {
-                return data.code_parent == ad.county;
-            });
+            personAddressService.getCounties($scope.thismallId, ad.county, function (data) {
+                $scope.townList = data;
+            })
         }
     };
 
@@ -179,6 +172,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
             $scope.personAddress.email = data.p.email;
             $scope.personAddress.defaults = true;
         });
+
         /**
          * 用户地址*/
         orgService.defaultAdress($cookies.get('orgId'), $scope.thismallId, function (data) {
@@ -203,6 +197,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
         $scope.listCity = false;
         $scope.listCot = false;
         $scope.listT = false;
+        $scope.id = id; //要修改的地址Id
         personAddressService.get(id, $scope.thismallId, function(data){
             $scope.personAddress = data;
             $scope.personAddress.region = data.region;
@@ -217,9 +212,9 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
         $scope.cVal='请选择';
         $scope.countyList = null;
         $scope.townList = null;
-        $scope.cityList = _.filter($scope.regions, function (data) {
-            return data.code_parent == pId;
-        });
+        personAddressService.getCities($scope.thismallId, pId, function (data) {
+            $scope.cityList = data;
+        })
     };
 
     /**点击市**/
@@ -229,9 +224,9 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
         $scope.cyVal='请选择';
         $scope.townList = null;
         $scope.personAddress.region = null;
-        $scope.countyList = _.filter($scope.regions, function (data) {
-            return data.code_parent == cId;
-        });
+        personAddressService.getCounties($scope.thismallId, cId, function (data) {
+            $scope.countyList = data;
+        })
     };
 
     /**点击区**/
@@ -239,14 +234,14 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
         $scope.cyVal = n;
         $scope.listCot = false;
         $scope. tVal='请选择';
-        $scope.townList = _.filter($scope.regions, function (data) {
-            return data.code_parent == cyId;
-        });
-        if($scope.townList.length>0){
-            $scope.personAddress.region = null;
-        }else {
-            $scope.personAddress.region = cyId;
-        }
+        personAddressService.getCounties($scope.thismallId, cyId, function (data) {
+            $scope.townList = data;
+            if($scope.townList.length>0){
+                $scope.personAddress.region = null;
+            }else {
+                $scope.personAddress.region = cyId;
+            }
+        })
     };
 
     /**点击乡镇**/
@@ -280,29 +275,33 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
             personAddressService.insert($scope.id, $scope.personAddress, $scope.thismallId, function (data) {
                 swal({
                     text: '修改收货地址成功!',
-                    type: 'success',
+                    icon: 'success',
                     buttons: {confirm:{text:'确定'}}
                 });
                 $scope.maskShow = false;
+                $scope.id = null;
+                $scope.getAddressList();
             },function(){
                 swal({
                     text: '修改失败，请稍后重试!',
-                    type: 'error',
+                    icon: 'error',
                     buttons: {confirm:{text:'确定'}}
                 });
+                $scope.id = null;
             });
         } else {
             personAddressService.insert(0, $scope.personAddress, $scope.thismallId, function () {
                 swal({
                     text: '添加收货地址成功!',
-                    type: 'success',
+                    icon: 'success',
                     buttons: {confirm:{text:'确定'}}
                 });
                 $scope.maskShow = false;
+                $scope.getAddressList();
             },function(){
                 swal({
                     text: '添加失败，请稍后重试!',
-                    type: 'error',
+                    icon: 'error',
                     buttons: {confirm:{text:'确定'}}
                 });
             });
@@ -314,7 +313,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
     $scope.deleteAddress = function(id){
         swal({
             text: "确认删除地址？",
-            type: 'warning',
+            icon: 'warning',
             buttons:{
                 cancel: {text: '取消', visible: true},
                 confirm: {text: '确定'}
@@ -324,14 +323,14 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
                 personAddressService.deleteAddr(id, $scope.thismallId, function(){
                     swal({
                         text: '地址已删除!',
-                        type: 'success',
+                        icon: 'success',
                         buttons: {confirm:{text:'确定'}}
                     });
                     $scope.getAddressList();
                 }, function(){
                     swal({
                         text: '删除失败，请稍后重试!',
-                        type: 'error',
+                        icon: 'error',
                         buttons: {confirm:{text:'确定'}}
                     });
                 });
@@ -419,11 +418,11 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
             //是否有收货地址
             swal({
                 text: '提交失败，请添加收货地址！',
-                type: 'warning',
+                icon: 'warning',
                 buttons: {confirm:{text:'确定'}}
             }).then(function(isConfirm) {
                 if (isConfirm === true) {
-                    $scope.updateAddress();
+                    $scope.addAddress();
                 }
             });
             return false;
@@ -456,14 +455,14 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
                 //填写经费
                 window.location = data.payUrl;
             }else {
-                window.location = '/#/pay';
+                window.location = '/#/pay-return?id='+data.id;
             }
         },function(data){
             $scope.doSub = false;
             swal({
                 text: '提交失败,服务器内部错误,请稍后再试',
-                type: 'error',
-                confirmButtonText: '确定'
+                icon: 'error',
+                buttons: {confirm:{text:'确定'}}
             }).then(function(){
                 window.location = '/#/cart';
             });

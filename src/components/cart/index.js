@@ -13,15 +13,7 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 
 	/**
 	 * 获取登录信息*/
-	authService.get(function (data) {
-		if(data==null){
-			window.location = $scope.getLoginUrlMall();
-		}
-	});
-
-	/**
-	 * 获取地址*/
-	/*$rootScope.getRegion();*/
+	$scope.ifSign();
 
 	/**获取购物车列表**/
 	$scope.refresh = function () {
@@ -217,7 +209,7 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 		if(cart.num < 1 || cart.num >9999){
 			swal({
 				text: '请检查购买数量!',
-				type: 'error',
+				icon: 'error',
                 buttons: {confirm:{text:'确定'}}
 			});
 			$scope.refresh();
@@ -262,7 +254,7 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 	$scope.cartDelete = function(id, mallId){
 		swal({
 			text: "确认删除选中的商品？",
-			type: 'warning',
+			icon: 'warning',
 			buttons:{
 				cancel: {
 					text: '取消',
@@ -277,14 +269,14 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 					cartService.updateNum(id, '0', function () {
 						swal({
 							text: '商品删除成功!',
-							type: 'success',
+							icon: 'success',
                             buttons: {confirm:{text:'确定'}}
 						});
 						$scope.refresh();
 					}, function () {
 						swal({
 							text: '删除失败，请稍后重试!',
-							type: 'error',
+							icon: 'error',
                             buttons: {confirm:{text:'确定'}}
 						});
 					});
@@ -293,14 +285,14 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 					cartService.deletePrt($scope.cartId, mallId, function () {
 						swal({
 							text: '选中的商品已删除!',
-							type: 'success',
+							icon: 'success',
                             buttons: {confirm:{text:'确定'}}
 						});
 						$scope.refresh();
 					}, function () {
 						swal({
 							text: '删除失败，请稍后重试!',
-							type: 'error',
+							icon: 'error',
                             buttons: {confirm:{text:'确定'}}
 						});
 					});
@@ -323,12 +315,12 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 						window.location = data.hrefUrl +  '/#/order?cartMallId=' +mallId;
 					}else {
 						if(data.code == 'not_login'){
-							window.location = '/login.html?url=' + encodeURIComponent(window.location);
+							window.location = $scope.getLoginUrlMall();
 						}else {
 							swal({
 								text: data.message,
-								type: 'error',
-								confirmButtonText: '确定'
+								icon: 'error',
+								buttons:{confirm: {text: '确定'}}
 							});
 						}
 					}
@@ -339,8 +331,8 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 		}else {
 			swal({
 				text : '您还未选择商品!',
-				type : 'warning',
-				confirmButtonText : '确定'
+				icon : 'warning',
+				buttons:{confirm: {text: '确定'}}
 			});
 		}
 	};

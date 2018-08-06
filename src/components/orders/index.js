@@ -6,8 +6,9 @@ var global = require('global');
 require('serve/orders.js');
 require('serve/cart.js');
 require('serve/auth.js');
+require('serve/org.js');
 
-var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $location, $stateParams, $cookies, ordersService, cartService, authService) {
+var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $location, $stateParams, $cookies, ordersService, cartService, authService, orgService) {
     $scope.keyword = null;
     $scope.state = null;
     $scope.ifPay = null;
@@ -16,10 +17,15 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
 
     /**
      * 获取登录信息*/
-    authService.get(function (data) {
-        if(data==null){
-            window.location = $scope.getLoginUrlMall();
-        }
+    $scope.ifSign();
+
+    /**
+     * 获取当前学校 logo name**/
+    orgService.getSchool($cookies.get('orgId'),function (data) {
+        $scope.schoolId = data.id;
+        $rootScope.titleMall = data.name + '采购商城';
+        $rootScope.Tabtitle = $scope.title + $rootScope.titleMall;
+        $rootScope.tlImg = global.file.url+ '/'+ data.logo;
     });
 
     /**获取订单信息**/
@@ -76,7 +82,7 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
     $scope.delOrder = function (id, text) {
         swal({
             text: '订单取消后将无法恢复，\n 如订单已发货，\n 建议收货后再办理退货手续！\n 敬告：由于货到付款，供应商会产生物流成本，频繁取消订单将导致个人或单位的采购权限被冻结，请谨慎操作！',
-            type: 'warning',
+            icon: 'warning',
             buttons:{
                 cancel: {
                     text: '取消',
@@ -89,7 +95,7 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
                 ordersService.delOrder(id, function (data) {
                     swal({
                         text:  text+'成功！',
-                        type: 'success',
+                        icon: 'success',
                         confirmButtonText: '确定'
                     }).then(function () {
                         $scope.getList();
@@ -144,11 +150,11 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
     };
 
     /**去确认经费**/
-    $scope.toPay = function (orderId) {
+    $scope.toPayCard = function (orderId) {
         var newWin = window.open();
         ordersService.getPayUrl(orderId, function (data) {
             swal({
-                type: 'warning',
+                icon: 'warning',
                 buttons:{
                     cancel: {
                         text: '确认经费失败',
@@ -163,12 +169,17 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
         });
     };
 
+    /**去支付**/
+    $scope.toPay = function (orderId) {
+        window.location = '/#/pay-return?id=' + orderId;
+    };
+
     /**
      * 确认收货*/
     $scope.sureGet = function (orderId) {
         ordersService.surGet(orderId, function (data) {
             swal({
-                type: 'success',
+                icon: 'success',
                 confirmButtonText: '确定收货成功',
                 confirmButtonClass: 'btn confirm'
             }).then(function() {

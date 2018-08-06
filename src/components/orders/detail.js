@@ -12,31 +12,40 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
 
     /**
      * 获取登录信息*/
-    authService.get(function (data) {
-        if(data==null){
-            window.location = $scope.getLoginUrlMall();
-        }
-    });
+    $scope.ifSign();
 
     /**
      * 获取当前学校 logo name**/
-    orgService.getSchool($cookies.orgId, function (data) {
+    orgService.getSchool($cookies.get('orgId'),function (data) {
         $scope.schoolId = data.id;
         $rootScope.titleMall = data.name + '采购商城';
+        $rootScope.Tabtitle = $scope.title + $rootScope.titleMall;
         $rootScope.tlImg = global.file.url+ '/'+ data.logo;
     });
+
+    /**
+     * 获取订单状态追踪*/
+    $scope.getFoll = function () {
+        ordersService.getFollow($scope.id, function (data) {
+            $scope.follow = data;
+        });
+    };
 
     /**获取订单信息**/
     $scope.getDetail = function(){
         ordersService.get($scope.id, function (data) {
-            $scope.order  = data;
+            if(data.orderTrack){
+                data.orderTrack.reverse();
+            }
+            $scope.order = data;
+            console.log(data);
             $rootScope.Tabtitle = $scope.title + $rootScope.titleMall;
             $scope.orderTime = data.createTime;
             $scope.lastTime();
         });
+        $scope.getFoll();
     };
     $scope.getDetail();
-
 
     /**
      * 支付倒计时*/
@@ -55,22 +64,11 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
         $scope.lastTime();
     }, 1000);
 
-
-    /**
-     * 获取订单状态追踪*/
-    $scope.getFoll = function () {
-        ordersService.getFollow($scope.id, function (data) {
-            $scope.follow = data;
-        });
-    };
-    $scope.getFoll();
-
-
     /**取消订单**/
     $scope.delOrder = function (id) {
         swal({
-            text: '订单取消后将无法恢复，\n 如订单已发货，\n 建议收货后再办理退货手续！\n 敬告：由于货到付款，供应商会产生物流成本，频繁取消订单将导致个人或单位的采购权限被冻结，请谨慎操作！',
-            type: 'warning',
+            text: '订单取消后将无法恢复，如订单已发货，建议收货后再办理退货手续！\n 敬告：由于货到付款，供应商会产生物流成本，频繁取消订单将导致个人或单位的采购权限被冻结，请谨慎操作！',
+            icon: 'warning',
             buttons:{
                 cancel: {
                     text: '取消',
@@ -83,7 +81,7 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
                 ordersService.delOrder(id, function (data) {
                     swal({
                         text:  '取消订单成功！',
-                        type: 'success',
+                        icon: 'success',
                         confirmButtonText: '确定'
                     }).then(function () {
                         $scope.getDetail();
@@ -98,11 +96,11 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
     };
 
     /**去确认经费**/
-    $scope.toPay = function (orderId) {
+    $scope.toPayCard = function (orderId) {
         var newWin = window.open();
         ordersService.getPayUrl(orderId, function (data) {
             swal({
-                type: 'warning',
+                icon: 'warning',
                 buttons:{
                     cancel: {
                         text: '确认经费失败',
@@ -117,6 +115,11 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
         });
     };
 
+    /**去支付**/
+    $scope.toPay = function (orderId) {
+        window.location = '/#/pay-return?id=' + orderId;
+    };
+
     /**验收入账**/
     $scope.toAsset = function (orderId) {
         $scope.toAssetWd = '响应中...';
@@ -126,7 +129,7 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
             $scope.toAssetWd = '验收入账';
             swal({
                 text: error,
-                type: 'warning',
+                icon: 'warning',
                 confirmButtonText: '确认'
             });
             $scope.tipInv=true;
@@ -138,7 +141,7 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
     $scope.sureGet = function (orderId) {
         ordersService.surGet(orderId, function (data) {
             swal({
-                type: 'success',
+                icon: 'success',
                 confirmButtonText: '确定收货成功',
                 confirmButtonClass: 'btn confirm'
             }).then(function() {

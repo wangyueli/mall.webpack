@@ -33,7 +33,9 @@
 .mb30{ margin-bottom:30px;}
 .mb40{ margin-bottom:40px;}
 .mb50{ margin-bottom:50px;}
+.mb80{ margin-bottom:80px;}
 
+.mt20{margin-top: 20px;}
 .mt30{ margin-top:30px;}
 
 
@@ -71,7 +73,8 @@
 .color9{ color:#999;}
 .colorWhite{ color:#fff;}
 .colorRed{ color:#c81321;}
-.colorBlue{ color:#005fa9;}
+.colorBlue{ color:#007DC5;}
+.colorDarkBlue{ color: #005ea7};
 .colorgreen{ color: #64980a !important;}
 
 // font style
@@ -172,9 +175,8 @@
 /*搜索*/
 .top-search{ width:400px; float:right; position: relative;}
 .top-search .search-panel-fields{ width:100%; position:relative;}
-.top-search .search-panel-fields input[type=text]{ display:block; width:360px; line-height:18px; height:35px; box-sizing:border-box; border:2px solid #e11e2d; padding:10px 10px; color: #666;}
-.top-search .search-panel-fields button{ display:block; width:40px; height:35px; text-align:center; color:#fff; background:#e11e2d; border:0; position:absolute; top:0; right:2px;}
-.top-search .search-panel-fields button:hover{ background:#ed2f3e;}
+.top-search .search-panel-fields input[type=text]{ display:block; width:360px; line-height:18px; height:35px; box-sizing:border-box; padding:10px 10px; color: #666;}
+.top-search .search-panel-fields button{ display:block; width:40px; height:35px; text-align:center; color:#fff; border:0; position:absolute; top:0; right:2px;}
 .top-search .search-panel-fields button i{font-size:24px;position:relative;top:-3px;font-weight: 900;}
 .top-search .down-search{
   position: absolute;
@@ -203,12 +205,12 @@
 .top_kf2 .info{ display:block; width:169px; height:42px; margin-top:20px; text-indent:-999px; background:url(/images/zizhi_phone.png) 0 0 no-repeat; overflow:hidden;}
 
 /*导航*/
-.nav{ width:100%; position:relative; border-bottom: 3px solid #e11e2d; z-index: 99;}
+.nav{ width:100%; position:relative; border-bottom: 3px solid /*#e11e2d*/ transparent; z-index: 99;}
 .marginLeft{margin-left: 217px; overflow: hidden;}
 .nav .nav-menu li{position:relative; float:left;}
 .nav .nav-menu >li > a{ display:block; font-size:16px; color:#333; padding:0 17px; height: 40px; line-height: 40px;}
-.nav .nav-menu >li > a:hover{color: #ec3e3b;}
-.nav .nav-menu li > a.active{ color: #ec3e3b; font-weight: bold;}
+/*.nav .nav-menu >li > a:hover{color: #ec3e3b;}*/
+.nav .nav-menu li > a.active{ /*color: #ec3e3b;*/ font-weight: bold;}
 
 .toplogo{ float:left; position: relative}
 .toplogo .pic{ height: 50px; float: left;}
@@ -219,13 +221,13 @@
 .cart-top{float: right;}
 .cart-top .view-btn{display:block;width:126px; line-height:38px; text-align:center; color:#666; background:#f8f8f8; border:1px solid #e6e6e6; margin-left: 10px;}
 .cart-top .view-btn i{ line-height:20px; color:#e11e2d; margin-right:7px;}
-.cart-top .view-btn span{ display:inline-block; min-width:10px; line-height:20px; color:#fff; background:#e11e2d; border-radius:22px; padding:0 5px; margin-left:8px;}
+.cart-top .view-btn span{ display:inline-block; min-width:10px; line-height:20px; color:#fff; /*background:#e11e2d;*/ border-radius:22px; padding:0 5px; margin-left:8px;}
 .cart-top .drop-list{ min-width:126px; background:#fff; border:1px solid #e6e6e6; position:absolute; top:38px; right:0; display:none; z-index: 9999;}
 .cart-top:hover .drop-list{ display:block;}
 .cart-top .drop-list:before{ content:""; display:block; width:126px; height:2px; background:#fff; position:absolute; top:-2px; right:0;}
 .cart-top .drop-list .empty{ width:245px;text-align:center; color:#999; padding:20px 0;}
-.cart-top .drop-list .empty a{ display:block; width:120px; line-height:32px; text-align:center; color:#fff; background:#ec3e3b; margin:0 auto;}
-.cart-top .drop-list .empty a:hover{ background:#e11e2d;}
+.cart-top .drop-list .empty a{ display:block; width:120px; line-height:32px; text-align:center; color:#fff; /*background:#ec3e3b; */margin:0 auto;}
+/*.cart-top .drop-list .empty a:hover{ background:#e11e2d;}*/
 .cart-top .items-list{ width:350px;}
 .cart-top .items-list .item{ position:relative; min-height:3em; border-bottom:1px dotted #ddd; padding:15px 10px; padding-right:120px;}
 .cart-top .items-list .item:hover{ background:#f5f5f5;}
@@ -318,23 +320,23 @@
 
 .right-toolbar > .item > .kefu .tip{
   line-height:25px;
-  height:144px;
+  height:210px;
   width:88px;
-  border:1px solid #c81321;
+  /*border:1px solid #c81321;*/
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   background:#FFF;
   position:absolute;
-  top:-86px;
+  top:-151px;
   right:32px;
   text-align:left;
   display:none;
 }
-.right-toolbar > .item > .kefu:hover,
+/*.right-toolbar > .item > .kefu:hover,
 .right-toolbar > .item > .back-top:hover{
   background:#c81321;
-}
+}*/
 .right-toolbar > .item > .kefu:hover .tip{
   display:block;
 }
@@ -357,7 +359,7 @@
   height:39px;
   width:88px;
   color:#FFF;
-  background-color:#c81322;
+  /*background-color:#c81322;*/
 }
 .right-toolbar > .item > .kefu .tip .tip-top .tip-top-title{
   height:20px;
@@ -383,16 +385,14 @@
   font-size:12px;
 }
 
-.right-toolbar > .item > .kefu .tip .tip-service:hover{
+/*.right-toolbar > .item > .kefu .tip .tip-service:hover{
   color:#c81321;
-}
-.right-toolbar > .item > .kefu .tip .phone {
-}
+}*/
 .right-toolbar > .item > .kefu .tip .phone .name{
   height: 30px;
   line-height: 30px;
   text-align: center;
-  background: #c81321;
+  /*background: #c81321;*/
   color: #fff;
   font-weight: bold;
   font-size: 14px;
@@ -406,7 +406,7 @@
 }
 .right-toolbar > .item > .kefu .tip .phone .number > span{
   margin-right: 24px;
-  color: #e4393c;
+  /*color: #e4393c;*/
   font-size: 22px;
   vertical-align: middle;
 }

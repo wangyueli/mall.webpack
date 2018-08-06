@@ -2,96 +2,24 @@
 var _ = require('underscore');
 var app = require('appModule');
 var global = require('global');
+var jquery = require('jquery');
 
 require('serve/product.js');
 require('serve/org.js');
 require('serve/auth.js');
 require('serve/category.js');
 require('serve/store.js');
+require('serve/personAddress.js');
 
-var productDetail = app.controller('productDetailCtrl', function ($scope, $rootScope, $log, $location, $stateParams, $anchorScroll, $modal, $filter, $cookies, $http, authService, productService) {
+var productDetail = app.controller('productDetailCtrl', function ($scope, $rootScope, $log, $location, $stateParams, $anchorScroll, $modal, $filter, $cookies, $http, authService, productService, personAddressService) {
 	$scope.id = $stateParams.id;
 	$scope.num = 1;
 	$scope.detailMallId = $stateParams.mallId;
 
 	/**
-	 * 获取地址数据*/
-	$rootScope.getRegion($stateParams.mallId);
-
-	$scope.titleProv = '请选择';
-	$scope.titleCity = '请选择';
-	$scope.titleCounty = '请选择';
-	$scope.titleTown = '请选择';
-	/**
-	 * 地址筛选*/
-	$scope.addressChoose = function (ad, adId, adName) {
-		if(ad=='provice'){
-			$scope.titleProv = adName;
-			$scope.address = $scope.titleProv;
-			$scope.cityList = _.filter($scope.regions, function (data) {
-				return data.code_parent == adId;
-			});
-			$scope.act = '市';
-			$scope.actTitle = 1;
-		}else if(ad=='city'){
-			$scope.titleCity = adName;
-			$scope.address = $scope.titleProv + $scope.titleCity;
-			$scope.countyList = _.filter($scope.regions, function (data) {
-				return data.code_parent == adId;
-			});
-			if($scope.countyList.length>0){
-				$scope.act='县';
-				$scope.actTitle = 2;
-			}else {
-				$scope.region = adId;
-				$scope.getDetail();
-				$scope.ifAddrShow = false;
-			}
-		}else if(ad=='county'){
-			$scope.titleCounty = adName;
-			$scope.address =  $scope.titleProv + $scope.titleCity + $scope.titleCounty;
-			$scope.townList = _.filter($scope.regions, function (data) {
-				return data.code_parent == adId;
-			});
-			if($scope.townList.length > 0){
-				$scope.act='乡';
-				$scope.actTitle = 3;
-			}else {
-				$scope.region = adId;
-				$scope.getDetail();
-				$scope.ifAddrShow = false;
-			}
-		}else if(ad=='town'){
-			$scope.titleTown = adName;
-			$scope.region = adId;
-			$scope.address = $scope.titleProv + $scope.titleCity + $scope.titleCounty + $scope.titleTown;
-			$scope.ifAddrShow = false;
-			$scope.getDetail();
-		}
-	};
-
-	//点击不同地址title时；
-	$scope.actTitleClick = function (act) {
-		if(act==0){
-			$scope.actTitle = 0;
-			$scope.titleCity = '请选择';
-			$scope.titleCounty = '请选择';
-			$scope.titleTown = '请选择';
-		}else if(act==1){
-			$scope.actTitle = 1;
-			$scope.titleCounty = '请选择';
-			$scope.titleTown = '请选择';
-		}else {
-			$scope.actTitle = 2;
-			$scope.titleTown = '请选择';
-		}
-	};
-
-
-	/**
-	 * 商品库存状态*/
-	$scope.haveProductCount = function () {
-		productService.haveProductCount($scope.region, $scope.mallProIds, function (data) {
+	 * 该商品库存状态*/
+	$scope.haveProductCount = function (mallProId) {
+		productService.haveProductCount($rootScope.region, mallProId, function (data) {
 			$scope.haveProduct = data[0];
 		})
 	};
@@ -102,13 +30,75 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 			$scope.detail = data;
 			$scope.imgSrcs = (data.pic).split(",");
 			$scope.bigImg = $scope.imgSrcs[0];
-			$scope.mallProIds = data.mallId + '.' + data.productId;
-			$scope.haveProductCount();
+			$scope.haveProductCount(data.mallId+ '.' + data.productId);
 			$rootScope.Tabtitle = data.name + '-' + $rootScope.titleMall;
+
+			var categoryLength = $scope.detail.categories.length;
+			$scope.categoryIdLast = $scope.detail.categories[categoryLength-1].id;
+			var random = Math.floor(Math.random()*categoryLength);
+			$scope.categoryId = $scope.detail.categories[random].id;
+
+			//品牌优惠
+			productService.getList($stateParams.mallId, $cookies.get('orgId'), $scope.categoryId, null, $scope.detail.brand, 0, 10, null, null, null, null, 'discountRate desc', function (data) {
+				$scope.bGoods = data.product.rs;
+				$scope.mallProIds = '';
+				_.each($scope.bGoods, function (good) {
+					$scope.mallProIds +=  good.mallId + '.' + good.productId + ',';
+				});
+				//是否有货
+				productService.haveProductCount($rootScope.region, $scope.mallProIds, function (data) {
+					$scope.bProductCountState = {};
+					_.each(data, function (item) {
+						$scope.bProductCountState[item.productId] = item.stock;
+					});
+				});
+				//价格
+				$rootScope.productPrice($scope.mallProIds);
+			});
+
+			//新品上市
+			productService.getList($stateParams.mallId, $cookies.get('orgId'), $scope.categoryId, null, $scope.detail.brand, 0, 10, null, null, null, null, 'upTime desc', function (data) {
+				$scope.nGoods = data.product.rs;
+				$scope.mallProIdsNew = '';
+				_.each($scope.nGoods, function (good) {
+					$scope.mallProIdsNew +=  good.mallId + '.' + good.productId + ',';
+				});
+				//是否有货
+				productService.haveProductCount($rootScope.region, $scope.mallProIdsNew, function (data) {
+					$scope.nProductCountState = {};
+					_.each(data, function (item) {
+						$scope.nProductCountState[item.productId] = item.stock;
+					});
+				});
+				//价格
+				$rootScope.productPrice($scope.mallProIdsNew);
+			});
+		});
+
+		//推荐商品
+		productService.recommendPrt($stateParams.mallId, $scope.id, function (data) {
+			$scope.recommends = [];
+			_.each(data.productIds, function (id, index) {
+				if(index<6){
+					productService.get(data.mallId, id, function (data) {
+						$scope.recommends.push(data);
+					});
+				}
+			})
 		});
 	};
-	$scope.getDetail();
 
+    /**
+     * 获取地址数据*/
+    $rootScope.getRegion($stateParams.mallId, $scope.getDetail());
+
+	/**
+	 * 选择地区*/
+	$scope.addressChoose1 = function (ad, adId, adName) {
+		$rootScope.addressChooseAll($stateParams.mallId, ad, adId, adName, function () {
+			$scope.getDetail();
+		});
+	};
 
 	//购物车数量添加；
 	$scope.shop = function (type) {
@@ -126,7 +116,7 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 		if ($scope.num <= 0 || $scope.num > 9999) {
 			swal({
 				text : '请检查购买数量!',
-				type : 'error',
+				icon : 'error',
 				buttons: {confirm:{text:'确定'}}
 			});
 			$scope.num = 1;

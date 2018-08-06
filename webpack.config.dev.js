@@ -38,15 +38,12 @@ var config = {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 use: extractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [{
-                        loader: "css-loader",
-                        options: {
-                            minimize: true
-                        }
-                    }]
+                    use: [
+                        {loader: "css-loader"},
+                        {loader: "sass-loader"}
+                    ]
                 })
             },
             {

@@ -76,7 +76,7 @@
             <!--当前商城 logo-->
             <div class="yctlogo">
                 <div class="logo" style="float: left;">
-                    <a href="#">
+                    <a ng-href="#">
                         <img style="height: 100%; float: left;" ng-src="{{tlImg}}">
                         <div class="c-name">
                             <p class="mall-name" style="margin-top: 5px;">{{titleMall}}</p>
@@ -94,9 +94,22 @@
                     </button>
                     <!--关键字提醒-->
                     <ul class="down-search" ng-show="keys.length>0 && downSearch">
-                        <li ng-repeat="key in keys" ng-click="$root.keyword=key.0; search()" ng-class="{keyBack: $parent.thisKey==$index}">{{key[0]}}</li>
+                        <li ng-repeat="key in keys" ng-click="$root.keyword=key[0]; search()" ng-class="{keyBack: $parent.thisKey==$index}">{{key[0]}}</li>
                     </ul>
                 </div>
+                <!--热门搜索-->
+                <ul class="hot-search">
+                    <li ng-click="$root.keyword='台式机'; search()">台式机</li>
+                    <li ng-click="$root.keyword='平板电脑'; search()">平板电脑</li>
+                    <li ng-click="$root.keyword='笔记本'; search()">笔记本</li>
+                    <li ng-click="$root.keyword='打印机'; search()">打印机</li>
+                    <li ng-click="$root.keyword='投影机'; search()">投影机</li>
+                    <li ng-click="$root.keyword='平板电视'; search()">平板电视</li>
+                    <li ng-click="$root.keyword='空调'; search()">空调</li>
+                    <li ng-click="$root.keyword='冰箱'; search()">冰箱</li>
+                    <li ng-click="$root.keyword='净水器'; search()">净水器</li>
+                    <li ng-click="$root.keyword='电风扇'; search()">电风扇</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -129,7 +142,7 @@
                                     </a>
                                     <div class="ct-three">
                                         <!--三级-->
-                                        <a ng-repeat="ctThree in ctSend.children" href="javascript:;" ng-href="{{'#/product?categoryId=' + ctThree.data.categoryId+ '&mallId='+ctThree.data.mallId }}" ng-click="$parent.$parent.$parent.ctDl = false;">
+                                        <a ng-repeat="ctThree in ctSend.children" ng-href="{{'#/product?categoryId=' + ctThree.data.categoryId+ '&mallId='+ctThree.data.mallId }}" ng-click="$parent.$parent.$parent.ctDl = false;">
                                             <span class="">{{ctThree.data.name}}</span>
                                         </a>
                                     </div>
@@ -157,7 +170,7 @@
                                     </a>
                                     <div class="ct-three">
                                         <!--三级-->
-                                        <a target="_blank" ng-repeat="ctThree in ctSend.children" href="javascript:;" ng-href="{{'#/product?categoryId=' + ctThree.data.categoryId+ '&mallId='+ctThree.data.mallId }}" ng-click="$parent.$parent.$parent.ctDl = false;">
+                                        <a target="_blank" ng-repeat="ctThree in ctSend.children" ng-href="{{'#/product?categoryId=' + ctThree.data.categoryId+ '&mallId='+ctThree.data.mallId }}" ng-click="$parent.$parent.$parent.ctDl = false;">
                                             <span class="">{{ctThree.data.name}}</span>
                                         </a>
                                     </div>
@@ -175,7 +188,7 @@
             </div>
             <!--可访问频道-->
             <ul class="nav-menu marginLeft">
-                <li class="nav-menu-class" ng-repeat="item in mallMsg" ng-hide="(schoolId=='58212' && item.mallId=='YNK' && $parent.p.code!='20032016') && (schoolId=='58212' && item.mallId=='YNK' && $parent.p.code!='20022210') ">
+                <li class="nav-menu-class" ng-repeat="item in mallMsg">
                     <a ng-class="{active: item.mallId==$parent.nowMallId && currentPath!='product?keyword&categoryId&brand&mallId' }" href="javascript:;"  ng-click="chooseMall(item);">
                         {{item.mallSimpleName}}
                     </a>

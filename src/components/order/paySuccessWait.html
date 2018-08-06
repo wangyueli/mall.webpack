@@ -1,0 +1,13 @@
+<div class="csshub-loader" ng-hide="hideLoad">
+    <h1>LOADING</h1>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span class="mt30 weight colorRed font20">{{timer}}s</span>
+</div>
+
+<div class="refresh-pay-status" ng-show="showAgain" ng-click="again()">
+    <p class="incon"><i class="icon icon-refresh"></i></p>
+    <p class="wd">刷新支付状态</p>
+</div>
+<div class="pay-failed" ng-show="payFailed">支付信息获取失败，请致电：400-101-0335（周一至周五：09:00 - 17:30），联系客服！</div>

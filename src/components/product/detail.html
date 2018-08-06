@@ -40,20 +40,23 @@
 					<li ng-repeat="item in json2object(detail.keyMessage)">{{item}}</li>
 				</ul>
 				<div class="ms mb10">
-					<a class="font14 color0" ng-hide="detail.mallId=='JD' " ng-href="{{ '/#/store?id=' +detail.storeId }}" target="_blank">供应商：{{detail.storeName}}</a>
+					<a class="font14 color0" ng-hide="detail.mallId=='JD' || detail.mallId=='BGHB' " ng-href="{{ '/#/store?id=' +detail.storeId }}" target="_blank">供应商：{{detail.storeName}}</a>
 					<!--去京东商品详情-->
-					<a class="font14 color0" ng-show="detail.mallId=='JD' " ng-href="{{'https://item.jd.com/' + detail.id + '.html'}}" target="_blank">供应商：
+					<a class="font14 color0" ng-show="detail.mallId=='JD' || detail.mallId=='BGHB' " ng-href="{{'https://item.jd.com/' + detail.id + '.html'}}" target="_blank">供应商：
 						<span class="jd-store">{{detail.storeName}}</span>
-						<span class="jd-store-tip">点击查看原京东商品</span>
+						<span class="jd-store-tip">点击查看原{{detail.storeName}}商品</span>
 					</a>
 				</div>
-				<p class="price mb10">
-					<span style="display: block;" ng-show="detail.hasOwnProperty('unitPrice')">
+				<div class="price-f mb10">
+					<p class="price-bg"></p>
+					<p class="price">
+						<span ng-show="detail.hasOwnProperty('unitPrice')">
 						<span class="tip-label">下单价</span>
 						<span class="tip-money">￥</span><em><span>{{detail.unitPrice==0 ? '内部协议价': (detail.unitPrice | number : 2)}}</span></em>
 						<span class="color9 ml15" ng-show="detail.unitPriceShow">
-							<span class="tip-label" ng-hide="detail.mallId=='JD'">参考价</span>
+							<span class="tip-label" ng-hide="detail.mallId=='JD' || detail.mallId=='BGHB' ">参考价</span>
 							<a class="tip-label tip-label-jd" ng-href="{{'https://item.jd.com/' + detail.id + '.html'}}" ng-show="detail.mallId=='JD'" target="_blank">京东价</a>
+							<a class="tip-label tip-label-jd" ng-href="{{'http://www.officemate.cn/product-' + detail.id + '.html'}}" ng-show="detail.mallId=='BGHB'" target="_blank">办公伙伴价</a>
 							<span>￥</span>
 							<span style="text-decoration: line-through; font-size: 18px;">{{detail.unitPriceShow | number:2}}</span>
 							<span class="ml15" ng-show="detail.unitPriceShow - detail.unitPrice >0 && detailMallId=='JD'">
@@ -63,22 +66,23 @@
 									<span class="colorgreen">{{ (detail.unitPriceShow - detail.unitPrice) | number:2}}</span>
 								</em>
 							</span>
-							<span class="ml25 import-notice" ng-show="detail.mallId=='JD'"><i class="icon icon-mianzeshengming"></i>
-								重要声明<span class="import-tip">本商品由京东提供大客户优惠价格，该价格可能与京东商城原商品秒杀时的价格不同</span>
+							<span class="ml25 import-notice" ng-show="detail.mallId=='JD' || detail.mallId=='BGHB' "><i class="icon icon-mianzeshengming"></i>
+								重要声明<span class="import-tip">本商品由{{detail.storeName}}提供专属优惠价格，该价格可能与原商品的促销价格不同。</span>
 							</span>
 						</span>
-					</span>
-					<span ng-show="detail.priceStatus=='notLogin' || detail.priceStatus=='notRight'">
-						<span class="tip-label">价&nbsp;格</span>
-						<span class="tip-money" ng-show="detail.priceStatus=='notLogin'">登录显示价格</span>
-						<span class="tip-money" ng-show="detail.priceStatus=='notRight'">价格供可购买老师查看</span>
-					</span>
-					<!--价格区间-->
-					<span style="display: block;" ng-show="detail.unitPriceMax">
+						</span>
+							<span ng-show="detail.priceStatus=='notLogin' || detail.priceStatus=='notRight'">
+							<span class="tip-label">价&nbsp;格</span>
+							<span class="tip-money" ng-show="detail.priceStatus=='notLogin'">登录显示价格</span>
+							<span class="tip-money" ng-show="detail.priceStatus=='notRight'">价格供可购买老师查看</span>
+						</span>
+						<!--价格区间-->
+						<span ng-show="detail.unitPriceMax">
 						<span class="tip-label">价格区间</span>
 						<span class="tip-money">￥</span><em><span>{{detail.unitPriceMin | number : 2}} - {{detail.unitPriceMax | number : 2}}</span></em>
-					</span>
-				</p>
+						</span>
+					</p>
+				</div>
 				<!--产品服务-->
 				<!--<div class="number mb10" ng-show="mallType=='JD'">
 					<span class="tip-label" style="margin: 0; color: #000;">产品服务：支持7天无理由退货，可开增票</span>
@@ -97,40 +101,40 @@
 						<div class="drop-down" ng-show="ifAddrShow">
 							<a class="close" ng-click="ifAddrShow=false;"><i class=" iconfont icon-close1"></i></a>
 							<div class="tabox">
-								<div class="tab clearfix" ng-init=" act='省' ">
-									<a ng-class="{'active': act=='省'}" ng-click="actTitleClick(0); act='省'">
+								<div class="tab clearfix">
+									<a ng-class="{'active': actRegion=='省'}" ng-click="actTitleClick(0);">
 										{{titleProv}}
 										<i class="iconfont icon-arrowdownfilling"></i>
 									</a>
-									<a ng-class="{'active': act=='市'}" ng-show="actTitle>=1" ng-click="actTitleClick(1); act='市'">
+									<a ng-class="{'active': actRegion=='市'}" ng-show="actTitle>=1" ng-click="actTitleClick(1);">
 										{{titleCity}}
 										<i class="iconfont icon-arrowdownfilling"></i>
 									</a>
-									<a ng-class="{'active': act=='县'}" ng-show="actTitle>=2" ng-click="actTitleClick(2); act='县'">
+									<a ng-class="{'active': actRegion=='县'}" ng-show="actTitle>=2" ng-click="actTitleClick(2);">
 										{{titleCounty}}
 										<i class="iconfont icon-arrowdownfilling"></i>
 									</a>
-									<a ng-class="{'active': act=='乡'}" ng-show="actTitle>=3" ng-click=" act='乡'">
+									<a ng-class="{'active': actRegion=='乡'}" ng-show="actTitle>=3" ng-click="actTitleClick(3);">
 										{{titleTown}}
 										<i class="iconfont icon-arrowdownfilling"></i>
 									</a>
 								</div>
 								<div class="content">
 									<!--省份-->
-									<ul ng-show=" act=='省'">
-										<li ng-repeat="item in provinceList"><a ng-click="addressChoose('provice', item.code, item.name)">{{item.name}}</a></li>
+									<ul ng-show=" actRegion=='省'">
+										<li ng-repeat="item in provinceList"><a ng-click="addressChoose1('provice', item.code, item.name)">{{item.name}}</a></li>
 									</ul>
 									<!--市/区-->
-									<ul ng-show=" act=='市' ">
-										<li ng-repeat="item in cityList"><a ng-click="addressChoose('city', item.code, item.name)">{{item.name}}</a></li>
+									<ul ng-show=" actRegion=='市' ">
+										<li ng-repeat="item in cityList"><a ng-click="addressChoose1('city', item.code, item.name)">{{item.name}}</a></li>
 									</ul>
 									<!--县-->
-									<ul ng-show=" act=='县' ">
-										<li ng-repeat="item in countyList"><a ng-click="addressChoose('county', item.code, item.name)">{{item.name}}</a></li>
+									<ul ng-show=" actRegion=='县' ">
+										<li ng-repeat="item in countyList"><a ng-click="addressChoose1('county', item.code, item.name)">{{item.name}}</a></li>
 									</ul>
 									<!--乡镇-->
-									<ul ng-show=" act=='乡' ">
-										<li ng-repeat="item in townList"><a ng-click="addressChoose('town', item.code, item.name)">{{item.name}}</a></li>
+									<ul ng-show=" actRegion=='乡' ">
+										<li ng-repeat="item in townList"><a ng-click="addressChoose1('town', item.code, item.name)">{{item.name}}</a></li>
 									</ul>
 								</div>
 							</div>
@@ -152,96 +156,56 @@
 		</div>
 	</div>
 	<!--推荐商品-->
-	<!--<div class="recommend mb10">
+	<div class="recommend mb10" ng-show="recommends.length>0">
 		<div class="tab-main">
 			<span class="tab-name">推荐商品</span>
 		</div>
 		<ul class="recommend-list">
-			<li class="item-list item-list1" ng-mouseenter="showName(1);" ng-mouseleave="hideName(1);">
-				<a>
-					<img src="https://img13.360buyimg.com/n2/jfs/t16822/60/1217478786/529777/1f05afc1/5ac04f60Na7a4e1eb.jpg">
-					<p class="hotp-name hotp-name1">乔丹男鞋官方旗舰店跑步鞋2018新款运动鞋男子防滑耐磨网鞋透气舒适慢跑鞋子 361黑/亮绿 42</p>
+			<li class="item-list item-list1" ng-mouseenter="showName($index);" ng-mouseleave="hideName($index);" ng-repeat="prt in recommends">
+				<a ng-href="/#/product/detail?mallId={{prt.mallId}}&id={{prt.id}}" target="_blank">
+					<img ng-src="{{(prt.pic).split(',')[0]}}">
+					<p class="hotp-name hotp-name{{$index}}">{{prt.name}}</p>
 				</a>
-				<p class="pri">¥34.00</p>
-			</li>
-			<li class="item-list" ng-mouseenter="showName(2);" ng-mouseleave="hideName(2);">
-				<a>
-					<img src="https://img13.360buyimg.com/n2/jfs/t16822/60/1217478786/529777/1f05afc1/5ac04f60Na7a4e1eb.jpg">
-					<p class="hotp-name hotp-name2">乔丹男鞋官方旗舰店跑步鞋2018新款运动鞋男子防滑耐磨网鞋透气舒适慢跑鞋子 361黑/亮绿 42</p>
-				</a>
-				<p class="pri">¥34.00</p>
-			</li>
-			<li class="item-list" ng-mouseenter="showName(3);" ng-mouseleave="hideName(3);">
-				<a>
-					<img src="https://img13.360buyimg.com/n2/jfs/t16822/60/1217478786/529777/1f05afc1/5ac04f60Na7a4e1eb.jpg">
-					<p class="hotp-name hotp-name3">乔丹男鞋官方旗舰店跑步鞋2018新款运动鞋男子防滑耐磨网鞋透气舒适慢跑鞋子 361黑/亮绿 42</p>
-				</a>
-				<p class="pri">¥34.00</p>
-			</li>
-			<li class="item-list" ng-mouseenter="showName(4);" ng-mouseleave="hideName(4);">
-				<a>
-					<img src="https://img13.360buyimg.com/n2/jfs/t16822/60/1217478786/529777/1f05afc1/5ac04f60Na7a4e1eb.jpg">
-					<p class="hotp-name hotp-name4">乔丹男鞋官方旗舰店跑步鞋2018新款运动鞋男子防滑耐磨网鞋透气舒适慢跑鞋子 361黑/亮绿 42</p>
-				</a>
-				<p class="pri">¥34.00</p>
-			</li>
-			<li class="item-list" ng-mouseenter="showName(5);" ng-mouseleave="hideName(5);">
-				<a>
-					<img src="https://img13.360buyimg.com/n2/jfs/t16822/60/1217478786/529777/1f05afc1/5ac04f60Na7a4e1eb.jpg">
-					<p class="hotp-name hotp-name5">乔丹男鞋官方旗舰店跑步鞋2018新款运动鞋男子防滑耐磨网鞋透气舒适慢跑鞋子 361黑/亮绿 42</p>
-				</a>
-				<p class="pri">¥34.00</p>
-			</li>
-			<li class="item-list" ng-mouseenter="showName(6);" ng-mouseleave="hideName(6);">
-				<a>
-					<img src="https://img13.360buyimg.com/n2/jfs/t16822/60/1217478786/529777/1f05afc1/5ac04f60Na7a4e1eb.jpg">
-					<p class="hotp-name hotp-name6">乔丹男鞋官方旗舰店跑步鞋2018新款运动鞋男子防滑耐磨网鞋透气舒适慢跑鞋子 361黑/亮绿 42</p>
-				</a>
-				<p class="pri">¥34.00</p>
+				<p class="pri">¥ <span class="weight">{{prt.unitPrice | number:2}}</span></p>
 			</li>
 		</ul>
-	</div>-->
+	</div>
 	<div style="overflow: hidden;">
-		<!--店铺热卖-->
-		<!--<div class="side-hot-store">
-			<h3>店铺热销</h3>
-			<ul class="hot-lists">
-				<li class="hot-item" ng-mouseenter="showNameHot(1);" ng-mouseleave="hideNameHot(1);">
-					<a>
-						<img src="https://img10.360buyimg.com/n1/s160x160_jfs/t3895/325/1016074561/139588/e2a4a046/5864be2cN1bb513b3.jpg">
-						<p class="hot-item-name hot-item-name1">乔丹男鞋官方旗舰店跑步鞋2018新款运动鞋男子防滑耐磨网鞋透气舒适慢跑鞋子 361黑/亮绿 42</p>
-					</a>
-					<p class="pri">¥34.00</p>
-				</li>
-				<li class="hot-item" ng-mouseenter="showNameHot(2);" ng-mouseleave="hideNameHot(2);">
-					<a>
-						<img src="https://img13.360buyimg.com/n2/jfs/t16822/60/1217478786/529777/1f05afc1/5ac04f60Na7a4e1eb.jpg">
-						<p class="hot-item-name hot-item-name2">乔丹男鞋官方旗舰店跑步鞋2018新款运动鞋男子防滑耐磨网鞋透气舒适慢跑鞋子 361黑/亮绿 42</p>
-					</a>
-					<p class="pri">¥34.00</p>
-				</li>
-				<li class="hot-item" ng-mouseenter="showNameHot(3);" ng-mouseleave="hideNameHot(3);">
-					<a>
-						<img src="https://img10.360buyimg.com/n1/s160x160_jfs/t3895/325/1016074561/139588/e2a4a046/5864be2cN1bb513b3.jpg">
-						<p class="hot-item-name hot-item-name3">乔丹男鞋官方旗舰店跑步鞋2018新款运动鞋男子防滑耐磨网鞋透气舒适慢跑鞋子 361黑/亮绿 42</p>
-					</a>
-					<p class="pri">¥34.00</p>
-				</li>
-				<li class="hot-item" ng-mouseenter="showNameHot(4);" ng-mouseleave="hideNameHot(4);">
-					<a>
-						<img src="https://img10.360buyimg.com/n1/s160x160_jfs/t3895/325/1016074561/139588/e2a4a046/5864be2cN1bb513b3.jpg">
-						<p class="hot-item-name hot-item-name4">乔丹男鞋官方旗舰店跑步鞋2018新款运动鞋男子防滑耐磨网鞋透气舒适慢跑鞋子 361黑/亮绿 42</p>
-					</a>
-					<p class="pri">¥34.00</p>
-				</li>
-			</ul>
-		</div>-->
+		<div class="side-hot-store">
+			<!--品牌优惠-->
+			<div class="side-item mb30" ng-show="bGoods.length>0">
+				<h3>品牌优惠</h3>
+				<ul class="hot-lists">
+					<li class="hot-item" ng-repeat="bPrt in bGoods" ng-show="bProductCountState[bPrt.productId]=='stock_in' " ng-mouseenter="showNameHot($index);" ng-mouseleave="hideNameHot($index);">
+						<a ng-href="/#/product/detail?mallId={{bPrt.mallId}}&id={{bPrt.productId}}" target="_blank">
+							<img ng-src="{{(bPrt.pic).split(',')[0]}}">
+							<p class="hot-item-name hot-item-name{{$index}}">{{bPrt.name}}</p>
+						</a>
+						<p class="pri" ng-show="prices[bPrt.productId].unitPrice">¥ <span class="weight">{{prices[bPrt.productId].unitPrice | number:2}}</span></p>
+					</li>
+				</ul>
+			</div>
+			<!--新品上市-->
+			<div class="side-item" ng-show="nGoods.length>0">
+				<h3>新品上市</h3>
+				<ul class="hot-lists">
+					<li class="hot-item" ng-repeat="nPrt in nGoods" ng-show="nProductCountState[nPrt.productId]=='stock_in' " ng-mouseenter="showNameHot($index);" ng-mouseleave="hideNameHot($index);">
+						<a ng-href="/#/product/detail?mallId={{nPrt.mallId}}&id={{nPrt.productId}}" target="_blank">
+							<img ng-src="{{(nPrt.pic).split(',')[0]}}">
+							<p class="hot-item-name hot-item-name{{$index}}">{{nPrt.name}}</p>
+						</a>
+						<p class="pri" ng-show="prices[nPrt.productId].unitPrice">¥ <span class="weight">{{prices[nPrt.productId].unitPrice | number:2}}</span></p>
+					</li>
+				</ul>
+			</div>
+		</div>
 		<!--商品详情属性等-->
-		<div class="mb15" style="float: left; width: 1200px;">
+		<div class="mb15" style="float: left; width: 1000px;">
 			<div class="details-bar">
 				<div class="title" ng-init="titChose='详情' ">
-					<h3 class="font14" ng-class="{titChose:titChose=='详情'}" ng-click="titChose='详情' ">商品详情</h3>
-					<h3 class="font14" ng-class="{titChose:titChose=='属性'}" ng-click="titChose='属性' " ng-show="detail.param">商品属性</h3>
+					<h3 class="font14" ng-class="{titChose:titChose=='详情'}" ng-click="titChose='详情'">商品详情</h3>
+					<h3 class="font14" ng-class="{titChose:titChose=='属性'}" ng-click="titChose='属性'" ng-show="detail.param">商品属性</h3>
+					<!--<h3 class="font14" ng-class="{titChose:titChose=='评价'}" ng-click="titChose='评价'" ng-show="detail.param">商品评价</h3>-->
 				</div>
 				<!--商品详情-->
 				<div class="content mb30" ng-show="titChose=='详情' ">
@@ -249,7 +213,7 @@
 						<div class="item" ng-show="detail.brand">
 							品牌：
 							<span>
-								<a class="colorBlue" target="_blank" ng-href="{{'/#/product?mallId=' + detail.mallId + '&categoryId=' + (detail.categories[detail.categories.length-1]).id + '&brand='+ detail.brand}}">{{detail.brand}}</a>
+								<a class="colorBlue" target="_blank" ng-href="{{'/#/product?mallId=' + detail.mallId + '&categoryId=' + categoryIdLast + '&brand='+ detail.brand}}">{{detail.brand}}</a>
 							</span>
 						</div>
 						<div class="item" ng-show="detail.model">
@@ -294,7 +258,87 @@
 					</div>
 				</div>
 				<!--商品属性-->
-				<div class="content mb30 item-details-table" ng-bind-html="detail.param | trusted" ng-show="titChose=='属性' "></div>
+				<div class="content mb30 item-details-table" ng-bind-html="detail.param | trusted" ng-show="titChose=='属性'"></div>
+                <!--评价-->
+				<!--<div class="content mb30" ng-show="titChose=='评价'">
+					<div class="evalutes">
+						<div class="e-item">
+							<div class="left">
+								<span class="person">瓦格纳拉拉</span>
+							</div>
+							<div class="right">
+								<div class="stars">
+									<span class="icon icon-star3"></span>
+									<span class="icon icon-star3"></span>
+									<span class="icon icon-star3"></span>
+								</div>
+								<p class="word">
+									观望过无数品牌办公本，本来首选新苏菲可格不菲。水果pro也格高高在上，不就多个那啥，显示，尸+并（涉及所谓敏感词，京东无耻地屏蔽）。第一次用水果产品，总体还是满意的。电话客服解决问题的效率很高，专业到位。最担心和微软平台办公神器的兼容性，经测试两平台office文件完美兼容。办公神器能兼容，心里大石头落下。还有个大问题，公司OA系统只能在微软IE8浏览器下运行，当初忽略了这是个大问题，大问题。目前正寻找决方案：装windows？装虚拟机？那买mb的意义何在？想用winebottler安装，貌似也不兼容这个系统，一安装windows软件就闪退报错。说说缺点：电池不耐用。MS Office PPT连续奋战 4小时左右电池便耗尽。</p>
+								<div class="property">
+									<span>苹果电脑</span>
+									<span>灰色</span>
+									<span>2018-08-23</span>
+								</div>
+							</div>
+						</div>
+						<div class="e-item">
+							<div class="left">
+								<span class="person">瓦格纳拉拉</span>
+							</div>
+							<div class="right">
+								<div class="stars">
+									<span class="icon icon-star3"></span>
+									<span class="icon icon-star3"></span>
+									<span class="icon icon-star3"></span>
+									<span class="icon icon-star3"></span>
+									<span class="icon icon-star3"></span>
+								</div>
+								<p class="word">
+									观望过神器能兼容，心里大石头落下。还有个大问题，公司OA系统只能在微软IE8浏览器下运行，当初忽略了这是个大问题，大问题。目前正寻找决方案：装windows？装虚拟机？那买mb的意义何在？想用winebottler安装，貌似也不兼容这个系统，一安装windows软件就闪退报错。说说缺点：电池不耐用。MS Office PPT连续奋战 4小时左右电池便耗尽。</p>
+								<div class="property">
+									<span>苹果电脑</span>
+									<span>灰色</span>
+									<span>2018-08-23</span>
+								</div>
+							</div>
+						</div><div class="e-item">
+						<div class="left">
+							<span class="person">瓦格纳拉拉</span>
+						</div>
+						<div class="right">
+							<div class="stars">
+								<span class="icon icon-star3"></span>
+								<span class="icon icon-star3"></span>
+							</div>
+							<p class="word">观望过无数品牌办公缺点：电池不耐用。MS Office PPT连续奋战 4小时左右电池便耗尽。</p>
+							<div class="property">
+								<span>苹果电脑</span>
+								<span>灰色</span>
+								<span>2018-08-23</span>
+							</div>
+						</div>
+					</div><div class="e-item">
+						<div class="left">
+							<span class="person">瓦格纳拉拉</span>
+						</div>
+						<div class="right">
+							<div class="stars">
+								<span class="icon icon-star3"></span>
+								<span class="icon icon-star3"></span>
+								<span class="icon icon-star3"></span>
+								<span class="icon icon-star3"></span>
+								<span class="icon icon-star3"></span>
+							</div>
+							<p class="word">观望过无数品牌办公本。说说缺点：电池不耐用。MS Office PPT连续奋战 4小时左右电池便耗尽。</p>
+							<div class="property">
+								<span>苹果电脑</span>
+								<span>灰色</span>
+								<span>2018-08-23</span>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>-->
 			</div>
 		</div>
 	</div>

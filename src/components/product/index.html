@@ -151,7 +151,7 @@
                     <!--销量 新品 等条件的筛选-->
                     <div class="m-filter clearfix mb10">
                         <!--配送地点选择-->
-                        <div class="f-addr clearfix" ng-show="regions">
+                        <div class="f-addr clearfix" ng-show="mallId">
                             <span class="float-l ml5">配送地</span>
                             <div class="addr-sl" ng-mouseenter="ifAddrShow=true;" ng-mouseleave="ifAddrShow=false;">
                                 <a class="open" ng-class="{'noBorder': ifAddrShow}">{{address}}
@@ -160,39 +160,39 @@
                                 <div class="drop-down" ng-show="ifAddrShow">
                                     <a class="close" ng-click="ifAddrShow=false;"><i class=" iconfont icon-close1"></i></a>
                                     <div class="tabox">
-                                        <div class="tab clearfix" ng-init=" act='省' ">
-                                            <a ng-class="{'active': act=='省'}" ng-click="actTitleClick(0); act='省'">
+                                        <div class="tab clearfix">
+                                            <a ng-class="{'active': actRegion=='省'}" ng-click="actTitleClick(0);">
                                                 {{titleProv}}
                                                 <i class="iconfont icon-arrowdownfilling"></i>
                                             </a>
-                                            <a ng-class="{'active': act=='市'}" ng-show="actTitle>=1" ng-click="actTitleClick(1); act='市'">
+                                            <a ng-class="{'active': actRegion=='市'}" ng-show="actTitle>=1" ng-click="actTitleClick(1);">
                                                 {{titleCity}}
                                                 <i class="iconfont icon-arrowdownfilling"></i>
                                             </a>
-                                            <a ng-class="{'active': act=='县'}" ng-show="actTitle>=2" ng-click="actTitleClick(2); act='县'">
+                                            <a ng-class="{'active': actRegion=='县'}" ng-show="actTitle>=2" ng-click="actTitleClick(2);">
                                                 {{titleCounty}}
                                                 <i class="iconfont icon-arrowdownfilling"></i>
                                             </a>
-                                            <a ng-class="{'active': act=='乡'}" ng-show="actTitle>=3" ng-click=" act='乡'">
+                                            <a ng-class="{'active': actRegion=='乡'}" ng-show="actTitle>=3" ng-click="actTitleClick(3);">
                                                 {{titleTown}}
                                                 <i class="iconfont icon-arrowdownfilling"></i>
                                             </a>
                                         </div>
                                         <div class="content">
                                             <!--省份-->
-                                            <ul ng-show=" act=='省'">
+                                            <ul ng-show=" actRegion=='省'">
                                                 <li ng-repeat="item in provinceList"><a ng-click="addressChoose('provice', item.code, item.name)">{{item.name}}</a></li>
                                             </ul>
                                             <!--市/区-->
-                                            <ul ng-show=" act=='市' ">
+                                            <ul ng-show=" actRegion=='市' ">
                                                 <li ng-repeat="item in cityList"><a ng-click="addressChoose('city', item.code, item.name)">{{item.name}}</a></li>
                                             </ul>
                                             <!--县-->
-                                            <ul ng-show=" act=='县' ">
+                                            <ul ng-show=" actRegion=='县' ">
                                                 <li ng-repeat="item in countyList"><a ng-click="addressChoose('county', item.code, item.name)">{{item.name}}</a></li>
                                             </ul>
                                             <!--乡镇-->
-                                            <ul ng-show=" act=='乡' ">
+                                            <ul ng-show=" actRegion=='乡' ">
                                                 <li ng-repeat="item in townList"><a ng-click="addressChoose('town', item.code, item.name)">{{item.name}}</a></li>
                                             </ul>
                                         </div>
@@ -202,23 +202,22 @@
                         </div>
                         <div class="f-sort">
                             <ul class="clearfix">
-                                <li ng-click="sort='scale desc'; page=1; getList()">
-                                    <a href="javascript:;" ng-class="{active: sort=='scale desc'}">综合<i class="iconfont icon-down1"></i></a>
+                                <li ng-class="{active: sort=='scale desc'}" ng-click="sort='scale desc'; page=1; getList();">
+                                   综合<i class="iconfont icon-down1"></i>
                                 </li>
-                                <li ng-click="sort='discountRate desc'; page=1; getList()">
-                                    <a href="javascript:;" ng-class="{active: sort=='discountRate desc'}">优惠<i class="iconfont icon-down1"></i></a>
+                                <li ng-class="{active: sort=='discountRate desc'}" ng-click="sort='discountRate desc'; page=1; getList();">
+                                    优惠<i class="iconfont icon-down1"></i>
                                 </li>
-                                <li ng-click="sort='salesNum desc'; page=1; getList()">
-                                    <a href="javascript:;" ng-class="{active: sort=='salesNum desc'}">销量<i class="iconfont icon-down1"></i></a>
+                                <li ng-class="{active: sort=='salesNum desc'}" ng-click="sort='salesNum desc'; page=1; getList();">
+                                    销量<i class="iconfont icon-down1"></i>
                                 </li>
-                                <li ng-click="sort='upTime desc'; page=1; getList()">
-                                    <a href="javascript:;" ng-class="{active: sort=='upTime desc'}">新品<i class="iconfont icon-down1"></i></a>
+                                <li ng-class="{active: sort=='upTime desc'}" ng-click="sort='upTime desc'; page=1; getList();">
+                                    新品<i class="iconfont icon-down1"></i>
                                 </li>
-                                <li>
-                                    <a class="up-down" href="javascript:;" ng-class="{active: sort=='unitPrice asc' || sort=='unitPrice desc'}" ng-click="sort= sort== 'unitPrice asc'? 'unitPrice desc': 'unitPrice asc'; page=1; getList();">价格
-                                        <i class="iconfont icon-jiantou upicon" ng-class="{upNow: sort=='unitPrice asc', nowOther: sort=='unitPrice desc'}"></i>
-                                        <i class="iconfont icon-jiantou-down-copy downicon" ng-class="{downNow: sort=='unitPrice desc', nowOther: sort=='unitPrice asc'}"></i>
-                                    </a>
+                                <li class="up-down" ng-class="{active: sort=='unitPrice asc' || sort=='unitPrice desc'}" ng-click="sort= sort== 'unitPrice asc'? 'unitPrice desc': 'unitPrice asc'; page=1; getList()">
+                                    价格
+                                    <i class="iconfont icon-jiantou upicon" ng-class="{upNow: sort=='unitPrice asc'}"></i>
+                                    <i class="iconfont icon-jiantou-down-copy downicon" ng-class="{downNow: sort=='unitPrice desc'}"></i>
                                 </li>
                                 <!--价格区间填写-->
                                 <li class="price-sect">
@@ -239,7 +238,7 @@
                         </a>
                     </div>
                     <div class="gl-warp clearfix">
-                        <div class="items" ng-repeat="good in goods">
+                        <div class="items" ng-repeat="good in goods" repeat-finish="setProtBtnCl()">
                             <div class="gl-i-wrap">
                                 <s class="save-p weight" ng-show="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) < 10 && prices[good.productId].hasOwnProperty('unitPrice') && good.mallId=='JD'" ng-bind="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) + '折'"></s>
                                 <div class="p-img">
@@ -255,8 +254,9 @@
                                     <div class="price-f">
                                         <span class="p-price" ng-show="prices[good.productId].hasOwnProperty('unitPrice')">￥{{prices[good.productId].unitPrice==0 ? '内部协议价' : (prices[good.productId].unitPrice | number:2)}}</span>
                                         <p ng-show="prices[good.productId].hasOwnProperty('unitPriceShow')">
-                                            <span class="weight" ng-hide="good.mallId=='JD'">参考价：</span>
+                                            <span class="weight" ng-hide="good.mallId=='JD' || good.mallId=='BGHB' ">参考价：</span>
                                             <span class="weight" ng-show="good.mallId=='JD'">京东价：</span>
+                                            <span class="weight" ng-show="good.mallId=='BGHB'">办公伙伴价：</span>
                                             <s class="s-price">￥{{prices[good.productId].unitPriceShow | number:2}}</s>
 
                                         </p>
@@ -268,19 +268,19 @@
                                 <div class="p-name"><a target="_blank" ng-href="{{'/#/product/detail?mallId=' + good.mallId + '&id=' + good.productId }}" ng-bind-html="good.name"></a></div>
                                 <div class="p-operate">
                                     <!--有货-->
-                                    <a ng-click="addGoods(good, 1)" ng-hide="productCountState[good.productId]=='stock_out' || prices[good.productId].priceStatus=='soldOut'"><i class="iconfont icon-shopping2"></i>加入购物车</a>
+                                    <a class="addCart" ng-click="addGoods(good, 1)" ng-hide="productCountState[good.productId]=='stock_out' || prices[good.productId].priceStatus=='soldOut'"><i class="iconfont icon-shopping2"></i>加入购物车</a>
                                     <!--缺货-->
                                     <a class="disAdd" ng-show="productCountState[good.productId]=='stock_out' || prices[good.productId].priceStatus=='soldOut'"><i class="iconfont icon-shopping2"></i>加入购物车</a>
-                                    <a class="add-cp" href="javascript:;" ng-click="addCompare(0, good.id, prices[good.productId].unitPrice)" ng-hide="good.mallId=='JD'"><i class="iconfont icon-duibi"></i>加入对比</a>
+                                    <a class="add-cp" href="javascript:;" ng-click="addCompare(0, good.id, prices[good.productId].unitPrice)" ng-hide="good.mallId=='JD' || good.mallId=='BGHB'"><i class="iconfont icon-duibi"></i>加入对比</a>
                                 </div>
                                 <div class="p-store">
-                                    <a class="p-dw" target="_blank" ng-hide="good.mallId=='JD'" ng-href="{{'/#/store?id=' + good.storeId}} ">{{good.storeName}}</a>
+                                    <a class="p-dw" target="_blank" ng-hide="good.mallId=='JD' || good.mallId=='BGHB' " ng-href="{{'/#/store?id=' + good.storeId}} ">{{good.storeName}}</a>
                                 </div>
                                 <!--商品大种类-->
                                 <ul class="key-msg mall-type">
-                                    <li class="typeOwn" ng-show="good.mall.mallType=='dpmall' && good.mall.id!='JD'">{{good.mall.simpleName}}</li>
-                                    <li class="typeJD" ng-show="good.mall.id=='JD'"><a style="color: #fff;" ng-href="{{'https://item.jd.com/' + good.productId + '.html'}}" target="_blank;">{{good.mall.simpleName}}</a></li>
-                                    <li class="typeIf" ng-show="good.mall.mallType=='esmall'">{{good.mall.simpleName}}</li>
+                                    <li ng-class="{typeOwn: good.mall.mallType!='esmall', 'typeIf': good.mall.mallType=='esmall'}" ng-hide="good.mallId=='BGHB' || good.mallId=='JD'">{{good.mall.simpleName}}</li>
+                                    <li class="typeJD" ng-show="good.mall.id=='JD'">{{good.mall.simpleName}}</li>
+                                    <li class="typeBGHB" ng-show="good.mall.id=='BGHB'">{{good.mall.simpleName}}</li>
                                 </ul>
                                 <!--关键信息-->
                                 <ul class="key-msg" ng-show="good.keyMessage">

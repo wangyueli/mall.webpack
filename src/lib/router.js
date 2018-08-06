@@ -4,6 +4,7 @@ var contentBack = require('../components/views/content_black.html');
 var contentOrder = require('../components/views/content_order.html');
 var contentOffical = require('../components/views/content_offical.html');
 var contentLogin = require('../components/views/content_login.html');
+var contentPerson = require('../components/views/content_person.html');
 var header = require('../components/views/common/head.html');
 var footer = require('../components/views/common/foot.html');
 var content = require('../components/views/content.html');
@@ -98,6 +99,17 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 },
                 "head@contentBack": {template: header},
                 "foot@contentBack": {template: footer}
+            }
+        })
+        .state('contentPerson', {
+            abstract: true,
+            url: "/",
+            views: {
+                "": {
+                    template: contentPerson
+                },
+                "head@contentPerson": {template: header},
+                "foot@contentPerson": {template: footer}
             }
         })
         .state('contentOffical', {
@@ -303,6 +315,54 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
+        .state('contentLogin.orderPayReturn', {
+            url: 'pay-return?id',
+            data: {
+                code: 'orderPayReturn',
+                title: '',
+                pathCode: 'orderPayReturn'
+            },
+            templateProvider: function($q) {
+                return $q(function(resolve) {
+                    require.ensure([], function(){return resolve(require('../components/order/payReturn.html'))}, 'payReturnCtrl');
+                });
+            },
+            controller: 'payReturnCtrl',
+            resolve: {
+                lazyLoad: function($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        $ocLazyLoad.load({name: 'app'});
+                        deferred.resolve(require('../components/order/payReturn.js'));
+                    }, 'payReturnCtrl');
+                    return deferred.promise;
+                }
+            }
+        })
+        .state('contentLogin.orderPaySuccessWait', {
+            url: 'pay-success-waiting?id',
+            data: {
+                code: 'orderPaySuccessWait',
+                title: '',
+                pathCode: 'orderPaySuccessWait'
+            },
+            templateProvider: function($q) {
+                return $q(function(resolve) {
+                    require.ensure([], function(){return resolve(require('../components/order/paySuccessWait.html'))}, 'paySuccessWaitCtrl');
+                });
+            },
+            controller: 'paySuccessWaitCtrl',
+            resolve: {
+                lazyLoad: function($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        $ocLazyLoad.load({name: 'app'});
+                        deferred.resolve(require('../components/order/paySuccessWait.js'));
+                    }, 'paySuccessWaitCtrl');
+                    return deferred.promise;
+                }
+            }
+        })
         .state('contentOrder.orderPaySuccess', {
             url: 'pay-success',
             data: {
@@ -327,7 +387,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
-        .state('contentOrder.orders', {
+        .state('contentPerson.orders', {
             url: 'orders',
             data: {
                 code: 'orders',
@@ -375,7 +435,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
-        .state('contentBack.ordersAsset', {
+        .state('contentOrder.ordersAsset', {
             url: 'orders/asset?id',
             data: {
                 code: 'ordersAsset',
@@ -480,7 +540,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             },
             templateProvider: function($q) {
                 return $q(function(resolve) {
-                    require.ensure([], function(){return resolve(require('../components/bindLogin/index.html'))}, '');
+                    require.ensure([], function(){return resolve(require('../components/bindLogin/index.html'))}, 'bindLogin');
                 });
             }
         })
@@ -552,6 +612,30 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                         $ocLazyLoad.load({name: 'app'});
                         deferred.resolve(require('../components/compare/index.js'));
                     }, 'compareCtrl');
+                    return deferred.promise;
+                }
+            }
+        })
+        .state('contentPerson.evaluate', {
+            url: 'person/evaluate',
+            data: {
+                code: 'evaluate',
+                title: '评价--',
+                pathCode: 'evaluateCtrl'
+            },
+            templateProvider: function ($q) {
+                return $q(function(resolve) {
+                    require.ensure([], function(){return resolve(require('../components/person/evaluate.html'))}, 'evaluateCtrl');
+                });
+            },
+            controller: 'evaluateCtrl',
+            resolve: {
+                lazyLoad: function($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        $ocLazyLoad.load({name: 'app'});
+                        deferred.resolve(require('../components/person/evaluate.js'));
+                    }, 'evaluateCtrl');
                     return deferred.promise;
                 }
             }

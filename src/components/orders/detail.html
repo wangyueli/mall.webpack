@@ -29,10 +29,11 @@
             <h3 class="font12 weight">订单状态：</h3>
             <div class="leftbar">
                 <h4 class="colorRed normal">
-                    <span ng-show="order.status=='NEW'">未支付</span>
+                    <span ng-show="order.status=='NEW'">待经费填写</span>
                     <span ng-show="order.status=='PAY'">待供应商确认</span>
                     <span ng-show="order.status=='CONFIRM'">待学校审核</span>
-                    <span ng-show="order.status=='ADOPT'">待发货</span>
+                    <span ng-show="order.status=='ADOPT'">待支付</span>
+                    <span ng-show="order.status=='PAYED'">待发货</span>
                     <span ng-show="order.status=='DELIVERY'">待收货</span>
                     <span ng-show="order.status=='RECEIVE'">已收货</span>
                     <span ng-show="order.status=='FINISHED'">完成</span>
@@ -44,7 +45,7 @@
                     <span class="last-time over-time" ng-show="order.status=='FINISHED' && order.assetsSystemRecoreded==false && order.assetsSystem==true;">
                         已验收入账，请进入学校资产系统<br>查看资产入账业务的最新进度!
                     </span>
-                    <span class="last-time over-time" ng-show="order.status=='ADOPT'">
+                    <span class="last-time over-time" ng-show="order.status=='PAYED'">
                       已通知供应商发货，如有疑问，请拨打售后专线！
                     </span>
                     <span class="last-time over-time" ng-show="order.status=='DELIVERY'">
@@ -115,8 +116,8 @@
                             <span class="weight">发票信息：</span>
                             <p class="content">
                                 {{order.invoiceTypeName}}  {{order.invoiceName}}
-                                <a class="bill-yes ml5" ng-show="order.invoiceUrl" ng-href="{{order.invoiceUrl[0]}}" target="_blank">(打印电子发票)</a>
-                                <s class="bill-no ml5" ng-hide="order.invoiceUrl">【暂未生成电子发票】</s>
+                                <a class="bill-yes ml5" ng-show="order.invoiceUrl.length>0" ng-href="{{order.invoiceUrl[0]}}" target="_blank">(打印电子发票)</a>
+                                <s class="bill-no ml5" ng-show="order.invoiceUrl.length==0">【暂未生成电子发票】</s>
                             </p>
                         </li>
                         <li ng-show="order.mallId!='JD'">
@@ -136,6 +137,23 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+        <!--订单跟踪-->
+        <div id="order-track" ng-show="order.orderTrack.length>0">
+            <ul>
+                <li>处理时间</li>
+                <li>处理信息</li>
+                <li>操作人</li>
+            </ul>
+            <div>
+                <table>
+                    <tr ng-repeat="track in order.orderTrack">
+                        <td ng-class="{activeLine: $index< order.orderTrack.length-1}"><i  ng-class="{dd: $index==0}"></i>{{track.msgTime | date : 'yyyy-MM-dd HH:mm:ss'}}</td>
+                        <td><sapn  ng-class="{ff: $index==0}">{{track.content}}</sapn></td>
+                        <td>{{track.operator}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
         <!--商品信息-->
@@ -193,8 +211,9 @@
         <!--操作按钮-->
         <div class="do-btn">
             <a class="btn" ng-click="copy(order)" ng-show="order.status=='FINISHED' || order.status=='CANCEL' ">立即购买</a>
-            <a class="btn" ng-click="delOrder(order.id)" ng-show="order.status=='NEW'&& !order.hasOwnProperty('parentId') || order.status=='PAY'&& !order.hasOwnProperty('parentId') || order.status=='CONFIRM'&& !order.hasOwnProperty('parentId')">取消订单</a>
-            <a class="btn" ng-click="toPay(order.id)" ng-show="order.status=='NEW' && !order.hasOwnProperty('parentId') ">支付订单</a>
+            <a class="btn" ng-click="delOrder(order.id)" ng-show="order.status=='NEW'&& !order.hasOwnProperty('parentId') || order.status=='PAY'&& !order.hasOwnProperty('parentId') || order.status=='CONFIRM'&& !order.hasOwnProperty('parentId') || order.status=='ADOPT'&& !order.hasOwnProperty('parentId') ">取消订单</a>
+            <a class="btn" ng-click="toPayCard(order.id)" ng-show="order.status=='NEW' && !order.hasOwnProperty('parentId') ">确认经费</a>
+            <a class="btn" ng-click="toPay(order.id)" ng-show="order.status=='ADOPT' && !order.hasOwnProperty('parentId') ">去支付</a>
             <a class="btn" ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' && schoolId=='58212' || order.status=='RECEIVE' && schoolId=='58212' ">确认收货</a>
             <a class="btn" ng-click="toAsset(order.id)" ng-show="order.assetsSystemRecoreded==true && order.assetsSystem==true;" ng-bind="toAssetWd" ng-init="toAssetWd='验收入账'"></a>
         </div>
