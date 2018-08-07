@@ -127,11 +127,12 @@ var wwwHome = app.controller('wwwHomeCtrl', function ($scope, $rootScope,  mallS
     /**
      * 点击去商城*/
     $scope.toMall = function (univer) {
-        if(univer.orgId=='58212' || univer.orgId=='10359' || univer.orgId=='58609' || univer.orgId=='15CAA78F25D2000163E006BB64C3E008' || univer.orgId=='15CCEAE93B72000163E006BB65C13007' ){
+       /* if(univer.orgId=='58212' || univer.orgId=='10359' || univer.orgId=='58609' || univer.orgId=='15CAA78F25D2000163E006BB64C3E008' || univer.orgId=='15CCEAE93B72000163E006BB65C13007' ){
             window.open(univer.hrefUrl);
         }else {
             $scope.noOpen = univer.orgId;
-        }
+        }*/
+        window.open(univer.hrefUrl);
     }
 
 });

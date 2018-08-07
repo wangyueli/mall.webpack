@@ -5791,11 +5791,13 @@ body {
       text-align: center;
       padding: 10px 0;
       float: left; }
-      #person-msg .sidebar .sidebar_l dl dt {
+      #person-msg .sidebar .sidebar_l dl ma
+      dt {
         font-size: 15px;
         font-weight: 600;
         position: relative; }
-        #person-msg .sidebar .sidebar_l dl dt i {
+        #person-msg .sidebar .sidebar_l dl ma
+        dt i {
           /*color:#ffA952;*/
           position: absolute;
           left: 24px; }
