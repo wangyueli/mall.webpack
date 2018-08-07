@@ -22,41 +22,40 @@ var AppController =app.controller("AppController",
         var linkNode = document.createElement("link");
         linkNode.setAttribute("rel","stylesheet");
         linkNode.setAttribute("type","text/css");
-        if(windowUrl == 'https://scu-mall.yuncaitong.cn/#/'){
+        if(windowUrl.indexOf('https://scu-mall') != -1){
             //四川大学（深红色）
             linkNode.setAttribute("href","skin-css/scu-skin.css");
-        }else if(windowUrl == 'https://hfut-mall.yuncaitong.cn/#/'){
+        }else if(windowUrl.indexOf('https://hfut-mall') != -1){
             //合肥工大（红棕色）
             linkNode.setAttribute("href","skin-css/hfut-skin.css");
-        }else if(windowUrl == 'https://hnu-mall.yuncaitong.cn/#/'){
+        }else if(windowUrl.indexOf('https://hnu-mall') != -1){
             //湖南大学 （深红色）
             linkNode.setAttribute("href","skin-css/scu-skin.css");
-        }else if(windowUrl == 'https://bnu-mall.yuncaitong.cn/#/'){
+        }else if(windowUrl.indexOf('https://bnu-mall') != -1){
             //北京师范（深蓝色）
             linkNode.setAttribute("href","skin-css/bnu-skin.css");
-        }else if(windowUrl == 'https://nankai-mall.yuncaitong.cn/#/'){
+        }else if(windowUrl.indexOf('https://nankai-mall') != -1){
             //南开大学（紫色）
             linkNode.setAttribute("href","skin-css/nankai-skin.css");
-        }else if(windowUrl == 'https://jiangnan-mall.yuncaitong.cn/#/'){
+        }else if(windowUrl.indexOf('https://jiangnan-mall') != -1){
             //江南大学 （红棕色）
             linkNode.setAttribute("href","skin-css/hfut-skin.css");
-        }else if(windowUrl == 'https://fjmu-mall.yuncaitong.cn/#/'){
+        }else if(windowUrl.indexOf('https://fjmu-mall') != -1){
             //福建医科大（深蓝色）
             linkNode.setAttribute("href","skin-css/bnu-skin.css");
-        }else if(windowUrl == 'https://cd120-mall.yuncaitong.cn/#/'){
+        }else if(windowUrl.indexOf('https://cd120-mall') != -1){
             //四川大学华西医院 棕色）
             linkNode.setAttribute("href","skin-css/cd120-skin.css");
-        }else if(windowUrl == 'https://uestc-mall.yuncaitong.cn/#/'){
+        }else if(windowUrl.indexOf('https://uestc-mall') != -1){
             //电子科技大成都学院（深蓝色）
             linkNode.setAttribute("href","skin-css/bnu-skin.css");
-        }else if(windowUrl == 'https://hbgyzy-mall.yuncaitong.cn/#/'){
+        }else if(windowUrl.indexOf('https://hbgyzy-mall') != -1){
             //湖北职业技术学院 （深蓝色）
             linkNode.setAttribute("href","skin-css/bnu-skin.css");
-        }else if(windowUrl == 'https://neu-mall.yuncaitong.cn/#/'){
+        }else if(windowUrl.indexOf('https://neu-mall') != -1){
             //东北大学（深蓝色）
             linkNode.setAttribute("href","skin-css/bnu-skin.css");
-        }
-        else {
+        }else {
             //默认云采通红
             linkNode.setAttribute("href","skin-css/yct-skin.css");
         }

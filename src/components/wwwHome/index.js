@@ -134,6 +134,5 @@ var wwwHome = app.controller('wwwHomeCtrl', function ($scope, $rootScope,  mallS
         }*/
         window.open(univer.hrefUrl);
     }
-
 });
 module.exports = wwwHome;
