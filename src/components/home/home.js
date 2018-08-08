@@ -81,6 +81,7 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
                     }
                 });
                 $scope.hotProducts = data.hots.children;
+                console.log($scope.hotProducts);
                 $rootScope.productPrice($scope.mallProIds);
             }
             if(data.shows){

@@ -45,7 +45,6 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 			$scope.mallList = _.values(mallMap);
 		});
 	};
-
 	$scope.refresh();
 
 	//勾选购物车中某一个商品

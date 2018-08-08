@@ -174,10 +174,10 @@
                                     <span ng-show="order.status== 'FINISHED' " class="bg-green">完成</span>
                                     <span ng-show="order.status== 'CANCEL'" class="bg-grow">已取消<i class="iconfont icon-help font14" style="vertical-align: middle; margin-left: 2px;"></i></span>
                                     <div class="msg-f" ng-show="order.status=='CANCEL' && order.cancelRemark ">原因：{{order.cancelRemark}}</div>
+                                    <div class="mt5"><a class="gr-colr" ng-href="{{'/#/orders/detail?id='+ order.id}}" target="_blank">查看详情</a></div>
                                 </div>
                             </td>
                             <td class="btns">
-                                <a class="gr-colr" ng-href="{{'/#/orders/detail?id='+ order.id}}" target="_blank">查看详情</a>
                                 <a class="blue" ng-click="copy(order)">立即购买</a>
                                 <a class="default" ng-click="toPayCard(order.id)" ng-show="order.status=='NEW' ">确认经费</a>
                                 <a class="default" ng-click="toPay(order.id)" ng-show="order.status=='ADOPT' ">去支付</a>
@@ -207,106 +207,108 @@
                         </tr>
                     </table>
                     <div style="position: relative;">
-                        <div style="width: 904px;">
-                            <!--子订单-->
-                            <table class="table-sf" ng-repeat="orderCd in order.cOrdersBos" ng-class="{'littleList':order.cOrdersBos.length>0}">
-                                <tbody>
-                                <tr>
-                                    <th colspan="7">
-                                        <!--<span class="ml10" ng-bind="orderCd.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></span>-->
-                                        <span>子订单号：
+                        <table>
+                            <tr>
+                                <td>
+                                    <!--子订单-->
+                                    <table class="table-sf" ng-repeat="orderCd in order.cOrdersBos" ng-class="{'littleList':order.cOrdersBos.length>0}">
+                                        <tbody>
+                                        <tr>
+                                            <th colspan="7">
+                                                <!--<span class="ml10" ng-bind="orderCd.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></span>-->
+                                                <span>子订单号：
                                             <a class="chd-order" ng-href="{{'/#/orders/detail?id=' + orderCd.id}}" target="_blank">
                                                 <span ng-bind="orderCd.id"></span>
                                             </a>
                                         </span>
-                                        <span class="ml10" ng-show="orderCd.mallId=='JD'">
+                                                <span class="ml10" ng-show="orderCd.mallId=='JD'">
                                             <span class="f-weight">电商订单号：</span>
                                             <span >{{orderCd.idThird}}</span>
                                         </span>
-                                        <span class="ml10">供应商：
+                                                <span class="ml10">供应商：
                                              <span ng-bind="orderCd.sellerName"></span>
                                              {{orders.sellerName}}
                                         </span>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td class="info-box" colspan="3">
-                                        <table class="item-info" ng-repeat="product in orderCd.productList">
-                                            <tbody>
-                                                <tr ng-init="property=json2object(product.property)">
-                                                    <td class="imgbox">
-                                                        <div>
-                                                            <!--非京东-->
-                                                            <img ng-if="product.pic.indexOf('http') == -1" ng-src="{{global.file.url +'/'+ product.pic}}">
-                                                            <!--京东图片-->
-                                                            <img ng-if="product.pic.indexOf('http')!= -1" ng-src="{{product.pic}}">
-                                                            <span class="danger-tip" style="width: 32px; height: 16px; background-size: 100% 100%;" ng-show="property.danger==1"></span>
-                                                        </div>
-                                                    </td>
-                                                    <td class="align-l">
-                                                        <span ng-show="property.danger_type.bomb==1" class="type">易燃易爆</span><span ng-show="property.danger_type.drug==1" class="type">易制毒</span>
-                                                        <a class="p-name" ng-href="{{'/#/product/detail?id=' + product.productId + '&mallId=' + order.mallId}}" target="_blank">
-                                                            <span ng-bind="product.name"></span>
-                                                        </a>
-                                                    </td>
-                                                    <td class="price-s">
-                                                        ¥
-                                                        <span ng-show="product.hasOwnProperty('unitPrice')">{{product.unitPrice | number:2}}</span>
-                                                        <span ng-show="product.hasOwnProperty('unitPriceMin')">{{product.unitPriceMin}} - {{product.unitPriceMax}}</span>
-                                                        <span ng-show="product.hasOwnProperty('unit')">/ {{product.unit}}</span>
-                                                    </td>
-                                                    <td class="number-s">
-                                                        <span ng-bind="product.num"></span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                    <td class="person">
-                                        <div>
-                                            <i class="iconfont icon-touxiang" style="vertical-align: middle"></i>
-                                            {{orderCd.consignee}}
-                                            <div class="msg-f">
-                                                <p>
-                                                    <span ng-bind="orderCd.consignee"></span>
-                                                </p>
-                                                <p ng-bind="orderCd.consigneeAddress"></p>
-                                                <p ng-bind="orderCd.consigneePhone"></p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="total red" style="text-align:right;" ng-hide="productPriceMax(order.productList) > 0">¥{{productPrice(orderCd.productList) | number:2}}</td>
-                                    <td class="total red" style="text-align:right;" ng-show="productPriceMax(order.productList) > 0">¥{{productPriceMin(orderCd.productList) | number:2}} - {{productPriceMax(orderCd.productList) | number:2}}</td>
-                                    <td class="status">
-                                        <div>
-                                            <span ng-show="orderCd.status=='NEW' " class="bg-red">待经费填写</span>
-                                            <span ng-show="orderCd.status=='PAY' " class="bg-blue">待供应商确认</span>
-                                            <span ng-show="orderCd.status=='CONFIRM' " class="bg-blue">待学校审核</span>
-                                            <span ng-show="orderCd.status=='ADOPT' " class="bg-blue">待支付</span>
-                                            <span ng-show="orderCd.status=='PAYED' " class="bg-blue">待发货</span>
-                                            <span ng-show="orderCd.status== 'DELIVERY' " class="bg-green">待收货</span>
-                                            <span ng-show="orderCd.status== 'FINISHED' " class="bg-green">完成</span>
-                                            <span class="cancel-hover bg-grow" ng-show="orderCd.status== 'CANCEL'">
-                                                已取消<i class="iconfont icon-help" style="vertical-align: middle"></i>
-                                                <div class="msg-f" ng-show="orderCd.status=='CANCEL' && orderCd.cancelRemark ">原因：{{orderCd.cancelRemark}}</div>
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td class="btns">
-                                        <a class="gr-colr" ng-href="{{'/#/orders/detail?id=' + orderCd.id}}" target="_blank">查看详情</a>
-                                        <a class="blue" ng-click="copy(orderCd)">立即购买</a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!--父订单 取消 退货 支付订单 操作-->
-                        <div class="father-btn">
-                            <a class="gr-colr" style="margin-top: -40px;" ng-click="delOrder(order.id, '取消订单')" ng-show="order.status=='NEW'|| order.status=='RECEIVE' || order.status=='ADOPT' ">取消订单</a>
-                            <a class="default" ng-click="toPayCard(order.id)" ng-show="order.status=='NEW' ">确认经费</a>
-                            <a class="default" ng-click="toPay(order.id)" ng-show="order.status=='NEW' ">去支付</a>
-                            <a class="default" style="margin-top: 20px;"  ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' && schoolId=='58212' || order.status=='RECEIVE' && schoolId=='58212' ">确认收货</a>
-                        </div>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td class="info-box" colspan="3">
+                                                <table class="item-info" ng-repeat="product in orderCd.productList">
+                                                    <tbody>
+                                                    <tr ng-init="property=json2object(product.property)">
+                                                        <td class="imgbox">
+                                                            <div>
+                                                                <!--非京东-->
+                                                                <img ng-if="product.pic.indexOf('http') == -1" ng-src="{{global.file.url +'/'+ product.pic}}">
+                                                                <!--京东图片-->
+                                                                <img ng-if="product.pic.indexOf('http')!= -1" ng-src="{{product.pic}}">
+                                                                <span class="danger-tip" style="width: 32px; height: 16px; background-size: 100% 100%;" ng-show="property.danger==1"></span>
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-l">
+                                                            <span ng-show="property.danger_type.bomb==1" class="type">易燃易爆</span><span ng-show="property.danger_type.drug==1" class="type">易制毒</span>
+                                                            <a class="p-name" ng-href="{{'/#/product/detail?id=' + product.productId + '&mallId=' + order.mallId}}" target="_blank">
+                                                                <span ng-bind="product.name"></span>
+                                                            </a>
+                                                        </td>
+                                                        <td class="price-s">
+                                                            ¥
+                                                            <span ng-show="product.hasOwnProperty('unitPrice')">{{product.unitPrice | number:2}}</span>
+                                                            <span ng-show="product.hasOwnProperty('unitPriceMin')">{{product.unitPriceMin}} - {{product.unitPriceMax}}</span>
+                                                            <span ng-show="product.hasOwnProperty('unit')">/ {{product.unit}}</span>
+                                                        </td>
+                                                        <td class="number-s">
+                                                            <span ng-bind="product.num"></span>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td class="person">
+                                                <div>
+                                                    <i class="iconfont icon-touxiang" style="vertical-align: middle"></i>
+                                                    {{orderCd.consignee}}
+                                                    <div class="msg-f">
+                                                        <p>
+                                                            <span ng-bind="orderCd.consignee"></span>
+                                                        </p>
+                                                        <p ng-bind="orderCd.consigneeAddress"></p>
+                                                        <p ng-bind="orderCd.consigneePhone"></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="total red" style="text-align:right;" ng-hide="productPriceMax(order.productList) > 0">¥{{productPrice(orderCd.productList) | number:2}}</td>
+                                            <td class="total red" style="text-align:right;" ng-show="productPriceMax(order.productList) > 0">¥{{productPriceMin(orderCd.productList) | number:2}} - {{productPriceMax(orderCd.productList) | number:2}}</td>
+                                            <td class="status">
+                                                <div>
+                                                    <span ng-show="orderCd.status=='NEW' " class="bg-red">待经费填写</span>
+                                                    <span ng-show="orderCd.status=='PAY' " class="bg-blue">待供应商确认</span>
+                                                    <span ng-show="orderCd.status=='CONFIRM' " class="bg-blue">待学校审核</span>
+                                                    <span ng-show="orderCd.status=='ADOPT' " class="bg-blue">待支付</span>
+                                                    <span ng-show="orderCd.status=='PAYED' " class="bg-blue">待发货</span>
+                                                    <span ng-show="orderCd.status== 'DELIVERY' " class="bg-green">待收货</span>
+                                                    <span ng-show="orderCd.status== 'FINISHED' " class="bg-green">完成</span>
+                                                    <span class="cancel-hover bg-grow" ng-show="orderCd.status== 'CANCEL'">已取消<i class="iconfont icon-help" style="vertical-align: middle"></i></span>
+                                                    <div class="msg-f" ng-show="orderCd.status=='CANCEL' && orderCd.cancelRemark ">原因：{{orderCd.cancelRemark}}</div>
+                                                    <div class="mt5"><a class="gr-colr" ng-href="{{'/#/orders/detail?id=' + orderCd.id}}" target="_blank">查看详情</a></div>
+                                                </div>
+                                            </td>
+                                            <td class="btns">
+                                                <a class="blue" ng-click="copy(orderCd)">立即购买</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="father-btn btns">
+                                    <!--父订单 取消 退货 支付订单 操作-->
+                                    <a class="gr-colr" ng-click="delOrder(order.id, '取消订单')" ng-show="order.status=='NEW'|| order.status=='RECEIVE' || order.status=='ADOPT' ">取消订单</a>
+                                    <a class="default" ng-click="toPayCard(order.id)" ng-show="order.status=='NEW' ">确认经费</a>
+                                    <a class="default" ng-click="toPay(order.id)" ng-show="order.status=='NEW' ">去支付</a>
+                                    <a class="default" ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' && schoolId=='58212' || order.status=='RECEIVE' && schoolId=='58212' ">确认收货</a>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
