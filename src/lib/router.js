@@ -640,6 +640,30 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
+        .state('contentPerson.address', {
+            url: 'person/address',
+            data: {
+                code: 'address',
+                title: '我的地址信息--',
+                pathCode: 'personAddrCtrl'
+            },
+            templateProvider: function ($q) {
+                return $q(function(resolve) {
+                    require.ensure([], function(){return resolve(require('../components/person/address/evaluate.html'))}, 'personAddrCtrl');
+                });
+            },
+            controller: 'personAddrCtrl',
+            resolve: {
+                lazyLoad: function($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        $ocLazyLoad.load({name: 'app'});
+                        deferred.resolve(require('../components/person/address/evaluate.js'));
+                    }, 'personAddrCtrl');
+                    return deferred.promise;
+                }
+            }
+        })
 
 }]);
 
