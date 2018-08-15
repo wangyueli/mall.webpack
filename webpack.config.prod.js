@@ -27,6 +27,7 @@ var config = {
             serve: path.resolve(__dirname, 'src/serve'),
             appModule: path.resolve(__dirname, 'src/app.module'),
             global: path.resolve(__dirname, 'src/lib/global.online')
+            //global: path.resolve(__dirname, 'src/lib/global')
         }
     },
     module: {

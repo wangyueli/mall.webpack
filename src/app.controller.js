@@ -38,8 +38,8 @@ var AppController =app.controller("AppController",
             //南开大学（紫色）
             linkNode.setAttribute("href","skin-css/nankai-skin.css");
         }else if(windowUrl.indexOf('https://jiangnan-mall') != -1){
-            //江南大学 （红棕色）
-            linkNode.setAttribute("href","skin-css/hfut-skin.css");
+            //江南大学 （深蓝色）
+            linkNode.setAttribute("href","skin-css/bnu-skin.css");
         }else if(windowUrl.indexOf('https://fjmu-mall') != -1){
             //福建医科大（深蓝色）
             linkNode.setAttribute("href","skin-css/bnu-skin.css");
