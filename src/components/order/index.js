@@ -57,6 +57,16 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
                 //如果有不支购买的商品，则显示不能提交按钮
                 if(cart.canBuy == false){
                     $scope.noPay = true;
+                    return false;
+                }
+                //如果有赠品或附件, 不支持购买，则显示不能提交按钮
+                if(cart.gifts.length>0){
+                    _.each(cart.gifts, function (gif) {
+                        if(gif.canBuy == false){
+                            $scope.noPay = true;
+                            return false;
+                        }
+                    })
                 }
                 //如果有某商品数量大于十个
                 if(cart.num>10){
