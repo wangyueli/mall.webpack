@@ -56,6 +56,7 @@
                                         <!-- URL: http://<domain>/#/product/detail?mallId=<product_mallId>&id=<product_id> -->
                                         <a ng-href="{{'/#/product/detail?id=' + product.productId + '&mallId=' + product.mallId}}" target="_blank">{{product.name}}</a>
                                         <div class="no-pay" ng-hide="product.canBuy"><i class="iconfont icon-tubiao06"></i>{{product.msg}}</div>
+                                        <div class="no-pay" ng-show="noPay"><i class="iconfont icon-tubiao06"></i>赠品或附件缺货</div>
                                     </div>
                                 </td>
                                 <!--一口价-->
