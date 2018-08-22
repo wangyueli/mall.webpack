@@ -14,6 +14,7 @@
     <div style="width: 1000px; height: 350px; margin: 0 auto; position: relative; left: 100px;">
         <div class="swiper-container">
             <div class="swiper-wrapper">
+                <div class="swiper-slide" ng-if="orgId=='15CCEAE93B72000163E006BB65C13007'"><img style="width: 1000px; height: 350px;" src="images/15CCEAE93B72000163E006BB65C13007.png"></div>
                 <div class="swiper-slide"><img style="width: 1000px; height: 350px;" src="images/banner1.png"></div>
                 <div class="swiper-slide" ng-if="haveJd"><img src="images/jd-banner.jpg"></div>
                 <div class="swiper-slide"><img style="width: 1000px; height: 350px;" src="images/mall-swp3.png"></div>
@@ -29,7 +30,7 @@
         </div>
     </div>
     <!--流程图-->
-    <div class="flow-path">
+    <div class="flow-path" ng-hide="orgId=='15CCEAE93B72000163E006BB65C13007'">
         <p class="head"><s>/</s>网上商城<span>采购流程</span><s>/</s></p>
         <ul class="flow-ctn">
             <li>

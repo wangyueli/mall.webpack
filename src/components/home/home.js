@@ -32,13 +32,7 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
     /**
      * 获取orgId*/
     orgService.getSchool($stateParams.orgId, function (data) {
-        if(!$stateParams.orgId){
-            //如果路由里没有orgId；
-            $scope.orgId = $cookies.get('orgId');
-        }
-        else {
-            $scope.orgId = $stateParams.orgId;
-        }
+        $scope.orgId = data.id;
         orgService.getUseMall($scope.orgId, function (data) {
             //判断是否开通京东
             _.each(data, function (item) {
