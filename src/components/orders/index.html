@@ -9,48 +9,54 @@
                 <!--<div class="tongji font14">共<span class="ml5 mr5">15</span>条<span class="ml15"><em class="colorRed">1</em>/2</span></div> -->
                 <ul class="clearfix">
                     <li>
-                        <a class="font14 weight" ng-class="{active:state == null}" href="javascript:;" ng-click="state = null;getList()">
+                        <a class="font14 weight" ng-class="{active:state == null}" ng-click="state = null;getList()">
                             全部订单
                         </a>
                     </li>
                     <li>
-                        <a class="font14 weight" ng-class="{active:state == 'NEW'}" href="javascript:;" ng-click="state = 'NEW';getList()">
+                        <a class="font14 weight" ng-class="{active:state == 'NEW'}" ng-click="state = 'NEW';getList()">
                             待确认经费
                             <em ng-bind="supNumber('NEW').count?supNumber('NEW').count:0"></em>
                         </a>
                     </li>
                     <li>
-                        <a class="font14 weight" ng-class="{active:state == 'PAY'}" href="javascript:;" ng-click="state = 'PAY';getList()">
+                        <a class="font14 weight" ng-class="{active:state == 'PAY'}" ng-click="state = 'PAY';getList()">
                             待供应商确认
                             <!--<em ng-bind="supNumber('PAY').count?supNumber('PAY').count:0"></em>-->
                         </a>
                     </li>
                     <li>
-                        <a class="font14 weight" ng-class="{active:state == 'CONFIRM'}" href="javascript:;" ng-click="state = 'CONFIRM';getList()">
+                        <a class="font14 weight" ng-class="{active:state == 'CONFIRM'}" ng-click="state = 'CONFIRM';getList()">
                             待审核
                            <!-- <em ng-bind="supNumber('CONFIRM').count?supNumber('CONFIRM').count:0"></em>-->
                         </a>
                     </li>
                     <li>
-                        <a class="font14 weight" ng-class="{active:state == 'ADOPT'}" href="javascript:;" ng-click="state = 'ADOPT';getList()">
+                        <a class="font14 weight" ng-class="{active:state == 'ADOPT'}" ng-click="state = 'ADOPT';getList()">
+                            待支付
+                            <!--<em ng-bind="supNumber('ADOPT').count?supNumber('ADOPT').count:0"></em>-->
+                        </a>
+                    </li>
+                    <li>
+                        <a class="font14 weight" ng-class="{active:state == 'PAYED'}" ng-click="state = 'PAYED';getList()">
                             待发货
                             <!--<em ng-bind="supNumber('ADOPT').count?supNumber('ADOPT').count:0"></em>-->
                         </a>
                     </li>
                     <li>
-                        <a class="font14 weight" ng-class="{active:state == 'DELIVERY'}" href="javascript:;" ng-click="state = 'DELIVERY';getList()">
+                        <a class="font14 weight" ng-class="{active:state == 'DELIVERY'}" ng-click="state = 'DELIVERY';getList()">
                             待收货
                             <em ng-bind="supNumber('DELIVERY').count?supNumber('DELIVERY').count:0"></em>
                         </a>
                     </li>
                     <li>
-                        <a class="font14 weight" ng-class="{active:state == 'FINISHED'}" href="javascript:;" ng-click="state = 'FINISHED';getList()">
+                        <a class="font14 weight" ng-class="{active:state == 'FINISHED'}" ng-click="state = 'FINISHED';getList()">
                             已完成
                            <!-- <em ng-bind="supNumber('FINISHED').count?supNumber('FINISHED').count:0"></em>-->
                         </a>
                     </li>
                     <li>
-                        <a class="font14 weight" ng-class="{active:state == 'CANCEL'}" href="javascript:;" ng-click="state = 'CANCEL';getList()">
+                        <a class="font14 weight" ng-class="{active:state == 'CANCEL'}" ng-click="state = 'CANCEL';getList()">
                             已取消
                            <!-- <em ng-bind="supNumber('CANCEL').count?supNumber('CANCEL').count:0"></em>-->
                         </a>
@@ -197,7 +203,7 @@
                                 <span  class="ml10" ng-bind="order.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></span>
                                 <span class="ml10">
                                     父订单号：
-                                    <a href="javascript:;" style="color: #999;">
+                                    <a style="color: #999;">
                                         <span ng-bind="order.id"></span>
                                     </a>
                                 </span>

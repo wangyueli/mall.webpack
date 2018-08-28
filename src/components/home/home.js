@@ -38,16 +38,16 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
             _.each(data, function (item) {
                 if(item.mallId=='JD'){
                     $rootScope.haveJd = true;
-                    //banner 初始化
-                    var mySwiper1= new Swiper(".swiper-container",{
-                        autoplay:6000,
-                        loop:true,
-                        autoplayDisableOnInteraction:false,
-                        pagination:".swiper-pagination",
-                        paginationClickable :true
-                    });
                 }
-            })
+            });
+            //banner 初始化
+            var mySwiper1= new Swiper(".swiper-container",{
+                autoplay:6000,
+                loop:true,
+                autoplayDisableOnInteraction:false,
+                pagination:".swiper-pagination",
+                paginationClickable :true
+            });
         });
         $scope.getHot();
         /* 公告*/
