@@ -531,6 +531,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
+/*
         .state('content.hotSale2', {
             url: 'sale2',
             data: {
@@ -555,6 +556,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
+*/
         .state('contentBack.bindLogin', {
             url: 'bind',
             data: {
