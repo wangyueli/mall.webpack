@@ -507,26 +507,50 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
-        .state('content.hotSale', {
-            url: 'sale',
+        .state('content.hotSale1', {
+            url: 'sale1',
             data: {
-                code: 'hotSale',
-                title: '热卖商品-',
-                pathCode: 'hotSale'
+                code: 'hotSale1',
+                title: '热卖商品1-',
+                pathCode: 'hotSale1'
             },
             templateProvider: function($q) {
                 return $q(function(resolve) {
-                    require.ensure([], function(){return resolve(require('../components/hotSale/index.html'))}, 'hotSaleCtrl');
+                    require.ensure([], function(){return resolve(require('../components/hotSale/sale1/index.html'))}, 'hotSaleCtrlOne');
                 });
             },
-            controller: 'hotSaleCtrl',
+            controller: 'hotSaleCtrlOne',
             resolve: {
                 lazyLoad: function($q, $ocLazyLoad) {
                     var deferred = $q.defer();
                     require.ensure([], function () {
                         $ocLazyLoad.load({name: 'app'});
-                        deferred.resolve(require('../components/hotSale/index.js'));
-                    }, 'hotSaleCtrl');
+                        deferred.resolve(require('../components/hotSale/sale1/index.js'));
+                    }, 'hotSaleCtrlOne');
+                    return deferred.promise;
+                }
+            }
+        })
+        .state('content.hotSale2', {
+            url: 'sale2',
+            data: {
+                code: 'hotSale2',
+                title: '热卖商品2-',
+                pathCode: 'hotSale2'
+            },
+            templateProvider: function($q) {
+                return $q(function(resolve) {
+                    require.ensure([], function(){return resolve(require('../components/hotSale/sale2/index.html'))}, 'hotSaleCtrlOne');
+                });
+            },
+            controller: 'hotSaleCtrlOne',
+            resolve: {
+                lazyLoad: function($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        $ocLazyLoad.load({name: 'app'});
+                        deferred.resolve(require('../components/hotSale/sale2/index.js'));
+                    }, 'hotSaleCtrlOne');
                     return deferred.promise;
                 }
             }
@@ -664,6 +688,81 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
+        .state('contentPerson.core', {
+            url: 'person/core',
+            data: {
+                code: 'core',
+                title: '个人信息--',
+                pathCode: 'personCoreCtrl'
+            },
+            templateProvider: function ($q) {
+                return $q(function(resolve) {
+                    require.ensure([], function(){return resolve(require('../components/person/core/index.html'))}, 'personCoreCtrl');
+                });
+            },
+            controller: 'personCoreCtrl',
+            resolve: {
+                lazyLoad: function($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        $ocLazyLoad.load({name: 'app'});
+                        deferred.resolve(require('../components/person/core/index.js'));
+                    }, 'personCoreCtrl');
+                    return deferred.promise;
+                }
+            }
+        })
+        .state('contentPerson.collect', {
+            url: 'person/collect',
+            data: {
+                code: 'collect',
+                title: '个人收藏--',
+                pathCode: 'personCollectCtrl'
+            },
+            templateProvider: function ($q) {
+                return $q(function(resolve) {
+                    require.ensure([], function(){return resolve(require('../components/person/collect/index.html'))}, 'personCollectCtrl');
+                });
+            },
+            controller: 'personCollectCtrl',
+            resolve: {
+                lazyLoad: function($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        $ocLazyLoad.load({name: 'app'});
+                        deferred.resolve(require('../components/person/collect/index.js'));
+                    }, 'personCollectCtrl');
+                    return deferred.promise;
+                }
+            }
+        })
+        .state('content.square', {
+            url: 'square',
+            data: {
+                code: 'square',
+                title: 'square',
+                pathCode: 'square'
+            },
+            templateProvider: function ($q) {
+                return $q(function(resolve) {
+                    require.ensure([], function(){return resolve(require('../components/square/index.html'))}, 'squareCtrl');
+                });
+            },
+            controller: 'squareCtrl',
+            resolve: {
+                lazyLoad: function($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        $ocLazyLoad.load({name: 'app'});
+                        deferred.resolve(require('../components/square/index.js'));
+                    }, 'squareCtrl');
+                    return deferred.promise;
+                }
+            }
+        })
+
+
+
 
 }]);
 

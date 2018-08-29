@@ -4769,11 +4769,12 @@
 /*--------------热卖商品-------------------*/
 #hotsale{
   background:#f6f6f6;
+  height:auto;
   .hot_Sale_banner{
     position: relative;
     min-width:1200px;
-    @include wh(100%,360px);
-    @include  bg-center-img("/images/hotSale/hotSale_banner.png");
+    @include wh(100%,730px);
+    @include  bg-center-img("//img10.360buyimg.com/cms/jfs/t25954/147/485136649/293241/a920d2b6/5b727ea0Nd1a82b38.jpg");
     .floor_tit{
       position: relative;
       width: 150px;
@@ -4784,7 +4785,7 @@
       padding: 50px 0;
       margin: 0 auto;
       color:#666666;
-      top:250px;
+      top:700px;
     }
     .floor_tit::before{
       content: '';
@@ -4802,7 +4803,7 @@
   }
   .hot_Sale_list{
     width: 1200px;
-    margin:0 auto;
+    margin:85px auto;
     .hot_ul{
       width: 1200px;
       overflow: hidden;
@@ -4810,7 +4811,9 @@
         border: 1px solid #fff;
         &:hover{
           cursor:pointer;
-          border: 1px solid #d12330;
+          border: 1px solid #eaeaea;
+          box-shadow: 0 0 8px 5px #f2f2f2;
+
         }
       }
       .loot_all  .hot_ul_p2{
@@ -4830,11 +4833,14 @@
         background-color: #fff;
         margin-right: 10px;
         img{
+          width: 250px;
+          height: 250px;
           margin:20px 20px 0 20px;
         }
         .hot_ul_p1{
+          height: 54px;
           padding:0 20px 0 20px;
-          margin:20px 0 10px 0;
+          margin-bottom: 12px;
           color:#7a7a7a;
         }
         .hot_ul_p2{
@@ -4997,7 +5003,8 @@
     }
   }
 }
-//评价
+
+/*****************评价******************/
 .sidebar_r {
   float: left;
   padding-left: 20px;
@@ -5124,3 +5131,393 @@
     }
   }
 }
+
+/*****************个人地址******************/
+#address_msg{
+  .address_sibal{
+    @include wh(900px,auto);
+    background:#fff;
+    margin-left: 20px;
+    padding: 20px 0  20px  20px;
+    box-sizing:border-box;
+    .address_sibal_top{
+       width: 100%;
+       margin-bottom: 40px;
+       button{
+         @include wh(100px,30px);
+         line-height: 30px;
+         text-align: center;
+         background:#e11e2d;
+         color:#fff;
+         border:none;
+       }
+    }
+    .address_sibal_bottom{
+       @include  wh(95%,200px);
+       border: 2px solid #e6e6e6;
+       margin-bottom: 20px;
+      h3{
+        font-size: 16px;
+        color:#666;
+        box-sizing: border-box;
+        padding:10px 0  0  20px;
+        margin-bottom: 20px;
+        span{
+          margin: 0 0 0 30px;
+          font-size: 12px;
+          background: #ffaa45;
+          padding: 2px;
+          color: #fff;
+          font-weight: 400;
+        }
+      }
+      .edit{
+         color:#0c69bf;
+         float:right;
+         margin-right:50px;
+      }
+     .item{
+       line-height: 25px;
+       overflow: hidden;
+       margin-left:50px;
+        span{
+          float: left;
+          color:#999;
+          text-align: right;
+        }
+       .fl{
+         float: left;
+       }
+     }
+    }
+  }
+}
+/*****************个人信息******************/
+#person_msg{
+  .person_sibal{
+    @include wh(1030px,auto);
+    background:#fff;
+    margin-left: 20px;
+    padding:0  0  20px 20px;
+    .person_btn{
+      @include  wh(150px,35px);
+      background-color:#e11e2d;
+      color:#fff;
+      text-align: center;
+      margin:100px  0  0   80px;
+      border:none;
+    }
+    h1{
+      width: 100%;
+      line-height: 40px;
+      font-size: 15px;
+      color:#e11e2d;
+      text-indent: 2em;
+      border-bottom:1px solid  #f5f5f5;
+    }
+    .person_sibab{
+      width: 100%;
+      padding:20px  0  0  40px;
+      p{
+        margin-bottom: 20px;
+        .icon{
+          font-size: 16px;
+          margin-right: 25px;
+          vertical-align:top;
+        }
+      }
+    }
+  }
+}
+/*****************个人收藏******************/
+#collect_msg{
+   .collect_sibal{
+     @include wh(1030px,auto);
+     background:#fff;
+     margin-left: 20px;
+     padding: 0px 0  20px  20px;
+     box-sizing:border-box;
+     h1{
+       line-height: 40px;
+       color:#e11e2d;
+       font-size: 16px;
+       border-bottom:2px solid  #f5f5f5;
+       padding-left: 15px;
+     }
+     .collect_separate{
+       width:97%;
+       line-height: 40px;
+       background: #ececec;
+       padding-left: 15px;
+       margin:20px  0  0   12px;
+       box-sizing: border-box;
+       .active{
+         background-color: #e11e2d;
+         color:#fff;
+       }
+       span{
+         margin-right: 15px;
+         cursor: pointer;
+         background: #fff;
+         padding: 5px 10px;
+         &:hover{
+           background-color: #e11e2d;
+           color:#fff;
+         }
+       }
+     }
+     .collect_sibal_t{
+       width: 100%;
+       overflow: hidden;
+       margin-top: 10px;
+       .collect_l{
+        @include  wh(200px,230px);
+         border: 1px solid #ccc;
+         float: left;
+         margin:15px;
+         box-shadow:3px 3px 5px #ececec;
+         padding:10px;
+         .col_img{
+          @include  wh(120px,120px);
+           margin:0  auto  5px;
+           overflow:hidden;
+           position: relative;
+           img{
+             display: block;
+             cursor:pointer;
+             transition: all  0.6s;
+             @include  wh(100%,100%);
+             &:hover{
+                transform:scale(1.2);
+             }
+           }
+         }
+         .col_price{
+           position: relative;
+           font-size: 18px;
+           font-weight: 700;
+           color: #ec3e3b;
+           line-height: 20px;
+         }
+         .s-price{
+             text-decoration:line-through;
+             color:#999;
+
+         }
+         .col_name{
+           margin: 4px 0;
+           height: 17px;
+           white-space: nowrap;
+           text-overflow: ellipsis;
+           overflow: hidden;
+
+           a{
+             color:#000;
+           }
+         }
+         .c-pw{
+            display: inline-block;
+            width: 100%;
+            color:#666;
+
+         }
+       }
+     }
+   }
+}
+
+
+/*****************采购广场******************/
+#square{
+  @include  wh(1200px,auto);
+  margin:0  auto;
+  .square_header{
+    width: 100%;
+    overflow:hidden;
+    margin: 20px  0;
+    #square_banner_l{
+      @include  wh(900px,488px);
+      float: left;
+      overflow: hidden;
+      position: relative;
+      &:hover  .arrow{
+        display: block;
+      }
+      ul{
+        list-style: none;
+        position: absolute;
+        left:45%;
+        bottom: 2%;
+        li{
+          float: left;
+          a{
+            @include cube-block-equal(20px);
+            border-radius: 50%;
+            background-color: #ded7d7;
+            margin-left: 5px;
+            opacity: 0.6;
+          }
+          .active{
+            background-color: red;
+          }
+        }
+      }
+      .arrow{
+        @include  wh(40px,40px);
+        display: none;
+        cursor: pointer;
+        line-height: 40px;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        position: absolute;
+        z-index: 2;
+        top: 180px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, .3);
+        &:hover{
+          background-color:rgba(0, 0, 0, .7);
+        }
+      }
+       #pre{
+        left: 20px;
+      }
+       #next{
+        right: 20px;
+      }
+       .inner{
+        @include  wh(4500px,488px);
+        img{
+           display: block;
+           float:left;
+        }
+      }
+    }
+    .square_banner_r{
+      width: 280px;
+      float: right;
+      div{
+        @include  wh(100%,155px);
+        box-sizing: border-box;
+        &:hover{
+           transition: opacity ease .2s;
+           opacity:0.8;
+           cursor: pointer;
+        }
+       }
+      .banner_2{
+         margin:10px 0  10px  0;
+      }
+
+    }
+  }
+
+  .square_column{
+    @include  wh(100%,200px);
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding:20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    ul{
+      width: 400%;
+      @include  absolute-lf(0,0);
+      overflow: hidden;
+      li{
+        width: 120px;
+        float: left;
+        padding:10px;
+        margin: 10px;
+        p{
+          font-size: 18px;
+          font-weight: 700;
+          @include center(20px,#ec3e3b);
+        }
+      }
+    }
+  }
+  .square_commend{
+    @include  wh(100%,auto);
+    h2{
+      font-family: "微软雅黑";
+      font-weight: 400;
+      font-size: 25px;
+      text-align: center;
+      letter-spacing: 2px;
+      padding:20px;
+      background-color: #e1f0f7;
+    }
+
+    .square_sibal_t{
+      width: 100%;
+      overflow: hidden;
+      .square_l{
+        @include  wh(200px,230px);
+        float: left;
+        margin:9px;
+        padding:10px;
+        border: 1px solid #fff;
+        &:hover{
+          border: 1px solid #eaeaea;
+          box-shadow: 0 0 8px 5px #f2f2f2;
+        }
+        .col_img{
+          @include  wh(120px,120px);
+          margin:0  auto  5px;
+          overflow:hidden;
+          position: relative;
+          img{
+            display: block;
+            cursor:pointer;
+            @include  wh(100%,100%);
+
+          }
+        }
+        .col_price{
+          position: relative;
+          font-size: 18px;
+          font-weight: 700;
+          color: #ec3e3b;
+          line-height: 20px;
+        }
+        .s-price{
+          text-decoration:line-through;
+          color:#999;
+
+        }
+        .col_name{
+          margin: 4px 0;
+          height: 17px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+
+          a{
+            color:#000;
+          }
+        }
+        .addcar{
+          display: inline-block;
+          width: 96px;
+          border-radius: 2px;
+          border: 1px solid #e11e2d;
+          margin-top: 5px;
+          @include center(26px,#e11e2d);
+          &:hover{
+            background: #e11e2d;
+            color:#fff;
+          }
+          i{
+            line-height: 1;
+            margin-right: 4px;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+
+
