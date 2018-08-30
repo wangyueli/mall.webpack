@@ -80,7 +80,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
         })
     }
 
-    /************专区02************/
+    /************专区01************/
     if($stateParams.id == 2){
         /*
          * 新品必备*/

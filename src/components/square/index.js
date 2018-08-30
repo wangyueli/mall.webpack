@@ -3,8 +3,20 @@ var jquery = require('jquery');
 require('swiper');
 
 require('serve/mall.js');
+require('serve/category.js');
 
-var square = app.controller('squareCtrl', function ($scope, mallService) {
+var square = app.controller('squareCtrl', function ($scope, $rootScope, mallService, categoryService) {
+
+    if($rootScope.goodsType){
+        console.log($rootScope.goodsType);
+    }
+
+    categoryService.get(item.mallId, orgId, function (cary) {
+        console.log(cary);
+    });
+
+
+
 
     //banner 初始化
     var mySwiper1= new Swiper(".swiper-container",{

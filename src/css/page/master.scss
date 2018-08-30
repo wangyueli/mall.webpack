@@ -5508,8 +5508,13 @@
           font-size: 12px;
         }
         .p-name{
-          @extend %overflow-dot;
-          color: #333;
+          @include absolute-lf(90px, 0);
+          color: #fff;
+          width: 120px;
+          height: 30px;
+          line-height: 15px;
+          font-size: 12px;
+          background: rgba(0, 0, 0, 0.5);
         }
         .p-price{
           margin-bottom: 5px;
@@ -5517,15 +5522,42 @@
           font-weight: 700;
           color: $normal-red;
         }
+        .p-sale{
+          color: #333;
+          font-size: 14px;
+        }
       }
     }
   }
   .square_brand{
     .content{
       overflow: hidden;
-      padding: 30px;
+      margin-top: 20px;
       .brand{
+        padding:30px;
+        margin: 0 20px 20px 0;
+        overflow: hidden;
+        width: 326px;
         float: left;
+        background: #f9f9f9;
+        cursor: pointer;
+        img{
+          width: 100%;
+          &:hover{
+            animation: myfirst .5s;
+            -moz-animation: myfirst .5s;
+            -webkit-animation: myfirst .5s;
+            -o-animation: myfirst .5s;
+          }
+        }
+        @keyframes myfirst
+        {
+          from {transform: scale(1);}
+          to {transform: scale(1.1);}
+        }
+      }
+      .margin-right{
+        margin-right: 0;
       }
     }
   }
