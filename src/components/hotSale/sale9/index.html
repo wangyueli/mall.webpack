@@ -1,0 +1,58 @@
+<div id="hotsale">
+    <div class="hot_Sale_banner"></div>
+    <div class="hot_center">
+        <h3 class="floor_tit">iPhone专区</h3>
+    </div>
+    <div class="hot_Sale_list">
+        <ul class="hot_ul">
+            <li class="hot_ul_li" ng-repeat="prt01 in product01">
+                <img ng-src="{{prt01.pic}}" alt="">
+                <p class="hot_ul_p1">{{prt01.name}}</p>
+                <p class="hot_ul_p2">
+                    <span>&nbsp;&nbsp;<i>￥</i><strong>{{prt01.unitPriceShow}}</strong>&nbsp;&nbsp;<s>24.00</s></span>
+                    <a ng-href="/#/product/detail?mallId={{prt01.mallId}}&id={{prt01.id}}" target="_blank">立即抢购</a>
+                </p>
+            </li>
+        </ul>
+        <div class="hot_center">
+            <h3 class="floor_tit">iPad专区</h3>
+        </div>
+        <ul class="hot_ul">
+            <li class="hot_ul_li"  ng-repeat="prt02 in product02">
+              <img ng-src="{{prt02.pic}}" alt="">
+                <p class="hot_ul_p1">{{prt02.name}}</p>
+                <p class="hot_ul_p2">
+                    <span>&nbsp;&nbsp;<i>￥</i><strong>{{prt02.unitPriceShow}}</strong>&nbsp;&nbsp;<s>24.00</s></span>
+                    <a  ng-href="/#/product/detail?mallId={{prt01.mallId}}&id={{prt01.id}}" target="_blank">立即抢购</a>
+                </p>
+            </li>
+        </ul>
+        <div class="hot_center">
+            <h3 class="floor_tit">Mac专区</h3>
+        </div>
+        <ul class="hot_ul">
+            <li class="hot_ul_li"  ng-repeat="prt03 in product03">
+                <img ng-src="{{prt03.pic}}" alt="">
+                <p class="hot_ul_p1">{{prt03.name}}</p>
+                <p class="hot_ul_p2">
+                    <span>&nbsp;&nbsp;<i>￥</i><strong>{{prt03.unitPriceShow}}</strong>&nbsp;&nbsp;<s>24.00</s></span>
+                    <a  ng-href="/#/product/detail?mallId={{prt03.mallId}}&id={{prt03.id}}" target="_blank">立即抢购</a>
+                </p>
+            </li>
+        </ul>
+        <div class="hot_center">
+            <h3 class="floor_tit">配件专区</h3>
+        </div>
+        <ul class="hot_ul">
+            <li class="hot_ul_li"  ng-repeat="prt04 in product04">
+                <img ng-src="{{prt04.pic}}" alt="">
+                <p class="hot_ul_p1">{{prt04.name}}</p>
+                <p class="hot_ul_p2">
+                    <span>&nbsp;&nbsp;<i>￥</i><strong>{{prt04.unitPriceShow}}</strong>&nbsp;&nbsp;<s>24.00</s></span>
+                    <a  ng-href="/#/product/detail?mallId={{prt04.mallId}}&id={{prt04.id}}" target="_blank">立即抢购</a>
+                </p>
+            </li>
+        </ul>
+    </div>
+
+</div>

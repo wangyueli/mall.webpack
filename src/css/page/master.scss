@@ -4770,11 +4770,7 @@
 #hotsale{
   background:#f6f6f6;
   height:auto;
-  .hot_Sale_banner{
-    position: relative;
-    min-width:1200px;
-    @include wh(100%,730px);
-    @include  bg-center-img("//img10.360buyimg.com/cms/jfs/t25954/147/485136649/293241/a920d2b6/5b727ea0Nd1a82b38.jpg");
+  .hot_center{
     .floor_tit{
       position: relative;
       width: 150px;
@@ -4782,28 +4778,33 @@
       font-weight: normal;
       text-align: center;
       line-height: 45px;
-      padding: 50px 0;
+      padding-top: 75px;
       margin: 0 auto;
       color:#666666;
-      top:700px;
     }
     .floor_tit::before{
       content: '';
-      @include  cube-block(65px,3px);
-      @include  absolute-lf(72px,-68px);
       background: #666666;
+      @include  cube-block(65px,3px);
+      @include  absolute-lf(95px,-68px);
+
     }
     .floor_tit::after{
       content: '';
-      @include  cube-block(65px,3px);
-      @include  absolute-lf(72px,150px);
       background: #666666;
-
+      @include  cube-block(65px,3px);
+      @include  absolute-lf(95px,150px);
     }
+  }
+  .hot_Sale_banner{
+    position: relative;
+    min-width:1200px;
+    @include wh(100%,730px);
+    @include  bg-center-img("//img10.360buyimg.com/cms/jfs/t25954/147/485136649/293241/a920d2b6/5b727ea0Nd1a82b38.jpg");
   }
   .hot_Sale_list{
     width: 1200px;
-    margin:85px auto;
+    margin:0 auto;
     .hot_ul{
       width: 1200px;
       overflow: hidden;
@@ -4816,13 +4817,7 @@
 
         }
       }
-      .loot_all  .hot_ul_p2{
-        background-color: #c5c5c5;
-      }
-      .loot_all  .hot_ul_p2  a{
-        background-color:#f6f6f6;
-        color:#c5c5c5;
-      }
+      
       .hot_ul_li{
         margin-bottom: 20px;
       }
@@ -4838,34 +4833,35 @@
           margin:20px 20px 0 20px;
         }
         .hot_ul_p1{
-          height: 54px;
-          padding:0 20px 0 20px;
+          height: 55px;
+          padding:10px 20px 0 20px;
           margin-bottom: 12px;
           color:#7a7a7a;
+          overflow: hidden;
         }
         .hot_ul_p2{
-          height:57px;
+          overflow: hidden;
           background:#d12330;
           a{
             @include cube-inline(100px,35px);
             line-height: 35px;
-            margin-left: 42px;
             background-color:#f6f6f6;
             color:#d12330;
             text-align: center;
             letter-spacing: 2px;
-            margin-top:-7px;
+            float: right;
+            margin: 10px  20px;
             &:hover{
-              transition:ease 0.3s;
-              background:#FF4040;
-              color:#fff;
+              font-size: 15px;
+              font-weight: 700;
 
             }
           }
           span{
-            line-height: 57px;
+            line-height: 52px;
             padding-left:15px;
             color:#fff;
+            float: left;
             s{
               color:#c0b0b0;
               text-decoration:line-through;
@@ -4907,8 +4903,128 @@
     }
 
   }
+  /*在414 和767 像素之间的屏幕里，超小屏幕，主要是手机*/
+  @media (min-width: 414px) and (max-width: 767px) {
+    .hot_Sale_list{
+      margin-top: 60px;
+      background:#f5f5f5;
+      .hot_ul{
+        width:100%;
+        overflow: hidden;
+        .hot_ul_li:nth-child(odd){
+          width: 49%;
+          height:auto;
+          float: left;
+          background-color: #fff;
+          text-align: center;
+          margin:0 0 20px 0;
+          img{
+            width: 75%;
+            height: 75%;
+          }
+          .hot_ul_p1{
+            height:144px;
+            padding:0 10px 0 10px;
+            margin-bottom: 15px;
+            color:#7a7a7a;
+            font-size:2rem;
+            overflow: hidden;
+          }
+          .hot_ul_p2{
+            height:100px;
+            background:#d12330;
+            overflow: hidden;
+            a{
+              width:auto;
+              height: 70px;
+              line-height: 70px;
+              background-color:#f6f6f6;
+              color:#d12330;
+              text-align: center;
+              letter-spacing: 2px;
+              margin: 13px 20px  0  0;
+              font-size: 2rem;
+              float:right;
+              padding:0  15px;
+            }
+            span{
+              line-height: 70px;
+              padding:10px 0  0  15px;
+              color:#fff;
+              float: left;
+              box-sizing: border-box;
+              font-size:2.18rem;
+              s{
+                color:#c0b0b0;
+                text-decoration:line-through;
+              }
+              strong{
+                font-weight: normal;
+                font-size:3.25rem;
+              }
+            }
+          }
+        }
+        .hot_ul_li:nth-child(even){
+          width: 49%;
+          height:auto;
+          float:right;
+          background-color: #fff;
+          text-align: center;
+          margin:0 0 20px 0;
+          img{
+            width: 75%;
+            height: 75%;
+          }
+          .hot_ul_p1{
+            height:144px;
+            padding:0 10px 0 10px;
+            margin-bottom: 15px;
+            color:#7a7a7a;
+            font-size:2rem;
+            overflow: hidden;
+          }
+          .hot_ul_p2{
+            height:100px;
+            background:#d12330;
+            overflow: hidden;
+            a{
+              width:auto;
+              height: 70px;
+              line-height: 70px;
+              background-color:#f6f6f6;
+              color:#d12330;
+              text-align: center;
+              letter-spacing: 2px;
+              margin: 13px 20px  0  0;
+              font-size: 2rem;
+              float:right;
+              padding:0  15px;
+            }
+            span{
+              line-height: 70px;
+              padding:10px 0  0  15px;
+              color:#fff;
+              float: left;
+              box-sizing: border-box;
+              font-size:2.18rem;
+              s{
+                color:#c0b0b0;
+                text-decoration:line-through;
+              }
+              strong{
+                font-weight: normal;
+                font-size:3.25rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
 }
-/***支付状态***/
+/***************支付状态***************/
 .refresh-pay-status{
   cursor: pointer;
   @include position-ab(150px, 100px);
@@ -5341,27 +5457,6 @@
     padding: 10px 0;
     background-color: #e1f0f7;
   }
-  .title-order{
-    margin: 0 auto;
-    padding-bottom: 0;
-    width: 240px;
-    background: none;
-    &:before, &:after{
-      content: '';
-      position: absolute;
-      width: 50px;
-      height: 3px;
-      display: block;
-      background: #222;
-      top: 26px;
-    }
-    &:before{
-      left: 0;
-    }
-    &:after{
-      right: 0;
-    }
-  }
   .square_header{
     width: 100%;
     overflow:hidden;
@@ -5388,10 +5483,6 @@
       }
 
     }
-  }
-  .square_column-f h2{
-    text-align: center;
-    font-size: 25px;
   }
   .square_column{
     box-sizing: border-box;
@@ -5426,6 +5517,15 @@
           font-weight: 700;
           color: $normal-red;
         }
+      }
+    }
+  }
+  .square_brand{
+    .content{
+      overflow: hidden;
+      padding: 30px;
+      .brand{
+        float: left;
       }
     }
   }
@@ -5501,6 +5601,7 @@
     }
   }
 }
+
 
 
 

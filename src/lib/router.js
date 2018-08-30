@@ -507,12 +507,12 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
-        .state('content.hotSale1', {
-            url: 'sale1',
+        .state('content.hotSale', {
+            url: 'sale:id',
             data: {
-                code: 'hotSale1',
-                title: '热卖商品1-',
-                pathCode: 'hotSale1'
+                code: 'hotSale',
+                title: '热卖商品-',
+                pathCode: 'hotSale'
             },
             templateProvider: function($q) {
                 return $q(function(resolve) {
@@ -531,32 +531,6 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
-/*
-        .state('content.hotSale2', {
-            url: 'sale2',
-            data: {
-                code: 'hotSale2',
-                title: '热卖商品2-',
-                pathCode: 'hotSale2'
-            },
-            templateProvider: function($q) {
-                return $q(function(resolve) {
-                    require.ensure([], function(){return resolve(require('../components/hotSale/sale2/index.html'))}, 'hotSaleCtrlOne');
-                });
-            },
-            controller: 'hotSaleCtrlOne',
-            resolve: {
-                lazyLoad: function($q, $ocLazyLoad) {
-                    var deferred = $q.defer();
-                    require.ensure([], function () {
-                        $ocLazyLoad.load({name: 'app'});
-                        deferred.resolve(require('../components/hotSale/sale2/index.js'));
-                    }, 'hotSaleCtrlOne');
-                    return deferred.promise;
-                }
-            }
-        })
-*/
         .state('contentBack.bindLogin', {
             url: 'bind',
             data: {
