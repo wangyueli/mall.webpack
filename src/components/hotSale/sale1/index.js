@@ -6,9 +6,8 @@ require('serve/product.js');
 
 var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, productService) {
 
-
+    $scope.page = $stateParams.id;
     $scope.products = [];
-
     /************专区01************/
     if($stateParams.id == 1){
         /*

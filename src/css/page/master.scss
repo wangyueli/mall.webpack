@@ -4799,8 +4799,7 @@
   .hot_Sale_banner{
     position: relative;
     min-width:1200px;
-    @include wh(100%,730px);
-    @include  bg-center-img("//img10.360buyimg.com/cms/jfs/t25954/147/485136649/293241/a920d2b6/5b727ea0Nd1a82b38.jpg");
+    width: 100%;
   }
   .hot_Sale_list{
     width: 1200px;
