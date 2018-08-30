@@ -25,8 +25,7 @@ var hotSale = app.controller('hotSaleCtrlEight', function ($scope, productServic
     $scope.product02 = [];
     _.each(pIds02, function (pId) {
         productService.get('JD', pId, function (data) {
-            $scope.product02.push(data);
-            data.pic = data.pic.split(',')[0];
+            $scope.product02.push(data);data.pic = data.pic.split(',')[0];
             console.log(data);
         })
     })
