@@ -5331,67 +5331,45 @@
 #square{
   @include  wh(1200px,auto);
   margin:0  auto;
+  .title{
+    position: relative;
+    font-family: "微软雅黑";
+    font-weight: 400;
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 10px 0;
+    background-color: #e1f0f7;
+  }
+  .title-order{
+    margin: 0 auto;
+    padding-bottom: 0;
+    width: 240px;
+    background: none;
+    &:before, &:after{
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 3px;
+      display: block;
+      background: #222;
+      top: 26px;
+    }
+    &:before{
+      left: 0;
+    }
+    &:after{
+      right: 0;
+    }
+  }
   .square_header{
     width: 100%;
     overflow:hidden;
-    margin: 20px  0;
+    margin: 20px 0 40px;
     #square_banner_l{
       @include  wh(900px,488px);
       float: left;
       overflow: hidden;
-      position: relative;
-      &:hover  .arrow{
-        display: block;
-      }
-      ul{
-        list-style: none;
-        position: absolute;
-        left:45%;
-        bottom: 2%;
-        li{
-          float: left;
-          a{
-            @include cube-block-equal(20px);
-            border-radius: 50%;
-            background-color: #ded7d7;
-            margin-left: 5px;
-            opacity: 0.6;
-          }
-          .active{
-            background-color: red;
-          }
-        }
-      }
-      .arrow{
-        @include  wh(40px,40px);
-        display: none;
-        cursor: pointer;
-        line-height: 40px;
-        text-align: center;
-        font-size: 30px;
-        font-weight: bold;
-        position: absolute;
-        z-index: 2;
-        top: 180px;
-        color: #fff;
-        background-color: rgba(0, 0, 0, .3);
-        &:hover{
-          background-color:rgba(0, 0, 0, .7);
-        }
-      }
-       #pre{
-        left: 20px;
-      }
-       #next{
-        right: 20px;
-      }
-       .inner{
-        @include  wh(4500px,488px);
-        img{
-           display: block;
-           float:left;
-        }
-      }
     }
     .square_banner_r{
       width: 280px;
@@ -5411,44 +5389,50 @@
 
     }
   }
-
+  .square_column-f h2{
+    text-align: center;
+    font-size: 25px;
+  }
   .square_column{
-    @include  wh(100%,200px);
-    margin-bottom: 20px;
-    padding:20px;
     box-sizing: border-box;
     overflow: hidden;
-    position: relative;
     ul{
+      margin-bottom: 40px;
       width: 400%;
-      @include  absolute-lf(0,0);
       overflow: hidden;
       li{
+        position: relative;
         width: 120px;
         float: left;
-        padding:10px;
-        margin: 10px;
+        margin: 10px 35px;
+        a{
+          display: inline-block;
+          @include wh(120px, 120px);
+        }
         p{
+          height: 17px;
+          line-height: 17px;
+          overflow: hidden;
+          color: #666;
+          font-size: 12px;
+        }
+        .p-name{
+          @extend %overflow-dot;
+          color: #333;
+        }
+        .p-price{
+          margin-bottom: 5px;
           font-size: 18px;
           font-weight: 700;
-          @include center(20px,#ec3e3b);
+          color: $normal-red;
         }
       }
     }
   }
   .square_commend{
     @include  wh(100%,auto);
-    h2{
-      font-family: "微软雅黑";
-      font-weight: 400;
-      font-size: 25px;
-      text-align: center;
-      letter-spacing: 2px;
-      padding:20px;
-      background-color: #e1f0f7;
-    }
-
     .square_sibal_t{
+      margin: 20px 0;
       width: 100%;
       overflow: hidden;
       .square_l{
