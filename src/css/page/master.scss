@@ -4799,8 +4799,7 @@
   .hot_Sale_banner{
     position: relative;
     min-width:1200px;
-    @include wh(100%,730px);
-    @include  bg-center-img("//img10.360buyimg.com/cms/jfs/t25954/147/485136649/293241/a920d2b6/5b727ea0Nd1a82b38.jpg");
+    width: 100%;
   }
   .hot_Sale_list{
     width: 1200px;
@@ -4901,13 +4900,181 @@
         @include  absolute-lf(72px,150px);
       }
     }
-
   }
   /*在414 和767 像素之间的屏幕里，超小屏幕，主要是手机*/
-  @media (min-width: 414px) and (max-width: 767px) {
+  @media (min-width: 320px) and (max-width:413px) {
     .hot_Sale_list{
-      margin-top: 60px;
       background:#f5f5f5;
+      .hot_center{
+        .floor_tit{
+          position: relative;
+          width: 200px;
+          font-size:3rem;
+          font-weight: normal;
+          text-align: center;
+          line-height: 45px;
+          padding: 50px 0;
+          margin: 0 auto;
+          color:#666666;
+        }
+        .floor_tit::before{
+          content: '';
+          background: #666666;
+          @include  cube-block(65px,3px);
+          @include  absolute-lf(72px,-68px);
+
+        }
+        .floor_tit::after{
+          content: '';
+          background: #666666;
+          @include  cube-block(65px,3px);
+          @include  absolute-lf(72px,200px);
+        }
+      }
+      .hot_ul{
+        width:100%;
+        overflow: hidden;
+        .hot_ul_li:nth-child(odd){
+          width: 49%;
+          height:auto;
+          float: left;
+          background-color: #fff;
+          text-align: center;
+          margin:0 0 20px 0;
+          img{
+            width: 75%;
+            height: 75%;
+          }
+          .hot_ul_p1{
+            height:144px;
+            padding:0 10px 0 10px;
+            margin-bottom: 15px;
+            color:#7a7a7a;
+            font-size:2rem;
+            overflow: hidden;
+          }
+          .hot_ul_p2{
+            height:100px;
+            background:#d12330;
+            overflow: hidden;
+            a{
+              width:auto;
+              height: 70px;
+              line-height: 70px;
+              background-color:#f6f6f6;
+              color:#d12330;
+              text-align: center;
+              letter-spacing: 2px;
+              margin: 13px 20px  0  0;
+              font-size: 2rem;
+              float:right;
+              padding:0  15px;
+            }
+            span{
+              line-height: 70px;
+              padding:10px 0  0  15px;
+              color:#fff;
+              float: left;
+              box-sizing: border-box;
+              font-size:2.18rem;
+              s{
+                color:#c0b0b0;
+                text-decoration:line-through;
+              }
+              strong{
+                font-weight: normal;
+                font-size:3.25rem;
+              }
+            }
+          }
+        }
+        .hot_ul_li:nth-child(even){
+          width: 49%;
+          height:auto;
+          float:right;
+          background-color: #fff;
+          text-align: center;
+          margin:0 0 20px 0;
+          img{
+            width: 75%;
+            height: 75%;
+          }
+          .hot_ul_p1{
+            height:144px;
+            padding:0 10px 0 10px;
+            margin-bottom: 15px;
+            color:#7a7a7a;
+            font-size:2rem;
+            overflow: hidden;
+          }
+          .hot_ul_p2{
+            height:100px;
+            background:#d12330;
+            overflow: hidden;
+            a{
+              width:auto;
+              height: 70px;
+              line-height: 70px;
+              background-color:#f6f6f6;
+              color:#d12330;
+              text-align: center;
+              letter-spacing: 2px;
+              margin: 13px 20px  0  0;
+              font-size: 2rem;
+              float:right;
+              padding:0  15px;
+            }
+            span{
+              line-height: 70px;
+              padding:10px 0  0  15px;
+              color:#fff;
+              float: left;
+              box-sizing: border-box;
+              font-size:2.18rem;
+              s{
+                color:#c0b0b0;
+                text-decoration:line-through;
+              }
+              strong{
+                font-weight: normal;
+                font-size:3.25rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  /*在414 和768 像素之间的屏幕里，超小屏幕，主要是手机*/
+  @media (min-width: 414px) and (max-width: 768px) {
+    .hot_Sale_list{
+      background:#f5f5f5;
+      .hot_center{
+        .floor_tit{
+          position: relative;
+          width: 200px;
+          font-size:3rem;
+          font-weight: normal;
+          text-align: center;
+          line-height: 45px;
+          padding: 50px 0;
+          margin: 0 auto;
+          color:#666666;
+        }
+        .floor_tit::before{
+          content: '';
+          background: #666666;
+          @include  cube-block(65px,3px);
+          @include  absolute-lf(72px,-68px);
+
+        }
+        .floor_tit::after{
+          content: '';
+          background: #666666;
+          @include  cube-block(65px,3px);
+          @include  absolute-lf(72px,200px);
+        }
+      }
       .hot_ul{
         width:100%;
         overflow: hidden;
@@ -5508,8 +5675,13 @@
           font-size: 12px;
         }
         .p-name{
-          @extend %overflow-dot;
-          color: #333;
+          @include absolute-lf(90px, 0);
+          color: #fff;
+          width: 120px;
+          height: 30px;
+          line-height: 15px;
+          font-size: 12px;
+          background: rgba(0, 0, 0, 0.5);
         }
         .p-price{
           margin-bottom: 5px;
@@ -5517,15 +5689,42 @@
           font-weight: 700;
           color: $normal-red;
         }
+        .p-sale{
+          color: #333;
+          font-size: 14px;
+        }
       }
     }
   }
   .square_brand{
     .content{
       overflow: hidden;
-      padding: 30px;
+      margin-top: 20px;
       .brand{
+        padding:30px;
+        margin: 0 20px 20px 0;
+        overflow: hidden;
+        width: 326px;
         float: left;
+        background: #f9f9f9;
+        cursor: pointer;
+        img{
+          width: 100%;
+          &:hover{
+            animation: myfirst .5s;
+            -moz-animation: myfirst .5s;
+            -webkit-animation: myfirst .5s;
+            -o-animation: myfirst .5s;
+          }
+        }
+        @keyframes myfirst
+        {
+          from {transform: scale(1);}
+          to {transform: scale(1.1);}
+        }
+      }
+      .margin-right{
+        margin-right: 0;
       }
     }
   }

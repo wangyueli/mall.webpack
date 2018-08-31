@@ -1,10 +1,23 @@
 var app = require('appModule');
 var jquery = require('jquery');
+var global = require('global');
 require('swiper');
 
 require('serve/mall.js');
+require('serve/category.js');
 
-var square = app.controller('squareCtrl', function ($scope, mallService) {
+var square = app.controller('squareCtrl', function ($scope, $rootScope, mallService, categoryService) {
+
+    if($rootScope.goodsType){
+        console.log($rootScope.goodsType);
+    }
+
+  /*  categoryService.get(item.mallId, orgId, function (cary) {
+        console.log(cary);
+    });*/
+
+
+
 
     //banner 初始化
     var mySwiper1= new Swiper(".swiper-container",{
@@ -36,12 +49,10 @@ var square = app.controller('squareCtrl', function ($scope, mallService) {
         timer1 = setInterval(autoPlay,20);  // 开启定时器
     }*/
 
-    /*
-    * 展示订单*/
-    mallService.getOrders(0, 20, function(orders){
-        $scope.orders = orders;
-        console.log(orders);
-    });
+
+
+
+
 });
 
 

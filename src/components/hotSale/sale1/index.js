@@ -6,9 +6,8 @@ require('serve/product.js');
 
 var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, productService) {
 
-
+    $scope.page = $stateParams.id;
     $scope.products = [];
-
     /************专区01************/
     if($stateParams.id == 1){
         /*
@@ -80,7 +79,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
         })
     }
 
-    /************专区02************/
+    /************专区01************/
     if($stateParams.id == 2){
         /*
          * 新品必备*/
@@ -154,7 +153,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
 
     }
 
-   /* ***************专区03****************/
+    /* ***************专区03****************/
     if($stateParams.id == 3){
         /*
          * 好物搭配*/
