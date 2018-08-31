@@ -12,6 +12,8 @@ require('serve/product.js');
 
 var square = app.controller('squareCtrl', function ($scope, $rootScope, mallService, categoryService, orgService, productService) {
 
+    /*
+    * 热卖订单*/
     $scope.hotOrders = [];
     orgService.getSchool('', function (data) {
         categoryService.get('', data.id, function (cary) {
@@ -19,10 +21,10 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, mallServ
                 productService.getList(null, null, cary.data.categoryId, null, null, 0, 10, null, null, null, null, 'salesNum desc', function (prts) {
                     if(prts.product.rs.length>0){
                         _.each(prts.product.rs, function (prt) {
-                            if(prt.salesNum>0){
+                            // if(prt.salesNum>0){
                                 $scope.hotOrders.push(prt);
                                 console.log($scope.hotOrders);
-                            }
+                            // }
                         })
                     }
                 })

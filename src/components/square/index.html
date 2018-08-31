@@ -33,7 +33,7 @@
     <div class="square_column">
         <ul id="scroll">
             <li ng-repeat="ord in hotOrders">
-                <a href=""><img ng-src="{{ord.pic}}" width="120" height="120"></a>
+                <a ng-href="/#/product/detail?mallId={{ord.mallId}}&id={{ord.productId}}" target="_blank"><img ng-src="{{ord.pic}}" width="120" height="120"></a>
                 <p class="p-price">¥ {{ord.unitPrice | number:2}}</p>
                 <p class="p-sale">已售{{ord.salesNum}}件</p>
                 <p class="p-name">{{ord.name}}</p>
