@@ -149,10 +149,10 @@
     </div>
     <!--商城动态-->
     <div id="home_column">
-        <h2 class="es-hot-title">商城动态</h2>
+        <h2 class="es-hot-title">商城<span>动态</span></h2>
         <ul id="scroll">
             <li ng-repeat="ord in hotOrders">
-                <a href=""><img ng-src="{{ord.pic}}" width="120" height="120"></a>
+                <a ng-href="/#/product/detail?mallId={{ord.mallId}}&id={{ord.productId}}" target="_blank"><img ng-src="{{ord.pic}}" width="120" height="120"></a>
                 <p class="p-price">¥ {{ord.unitPrice | number:2}}</p>
                 <p class="p-sale">已售{{ord.salesNum}}件</p>
                 <p class="p-name">{{ord.name}}</p>
@@ -161,7 +161,7 @@
     </div>
     <!--优惠专区入口-->
     <div id="home_brand">
-        <h2 class="es-hot-title">  惠推荐 | 选品质  </h2>
+        <h2 class="es-hot-title"><span>惠</span>·推荐|<span>选·</span>品质</h2>
         <div class="content">
             <div class="brand">
                 <a href="#/sale8" target="_blank"><img src="images/square/b08.jpg"></a>

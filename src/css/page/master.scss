@@ -3785,6 +3785,11 @@
     overflow: hidden;
     color: $g3;
     font-family: 微软雅黑;
+    letter-spacing: 5px;
+    font-weight: 700;
+    span{
+      color:red;
+    }
     &:before, &:after{
       content: '';
       position: absolute;
@@ -3857,9 +3862,8 @@
   margin:0 auto;
   .es-hot-title{
     position: relative;
-    @include wh(150px, 45px);
+    @include wh(220px, 45px);
     font-size: 20px;
-    font-weight: normal;
     text-align: center;
     line-height: 45px;
     padding: 0 50px;
@@ -3867,6 +3871,11 @@
     overflow: hidden;
     color: $g3;
     font-family: 微软雅黑;
+    letter-spacing: 5px;
+    font-weight: 700;
+    span{
+       color:red;
+    }
     &:before, &:after{
       content: '';
       position: absolute;
@@ -3911,26 +3920,27 @@
   .hot_center{
     .floor_tit{
       position: relative;
-      width: 300px;
+      width: 330px;
       font-size: 28px;
       font-weight: normal;
       text-align: center;
       line-height: 45px;
       margin: 0 auto;
       color:#000;
+      letter-spacing: 5px;
     }
     .floor_tit::before{
       content: '';
-      background: #666666;
+      background:#ccc1c1;
       @include  cube-block(400px,2px);
       @include  absolute-lf(21px,-420px);
 
     }
     .floor_tit::after{
       content: '';
-      background: #666666;
+      background:#ccc1c1;
       @include  cube-block(400px,2px);
-      @include  absolute-lf(21px,300px);
+      @include  absolute-lf(21px,330px);
     }
   }
   .floor_btn{
