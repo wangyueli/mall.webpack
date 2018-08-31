@@ -1,23 +1,34 @@
 var app = require('appModule');
 var jquery = require('jquery');
 var global = require('global');
+var _ = require('underscore');
 require('swiper');
 
 require('serve/mall.js');
 require('serve/category.js');
+require('serve/org.js');
 
-var square = app.controller('squareCtrl', function ($scope, $rootScope, mallService, categoryService) {
+require('serve/product.js');
 
-    if($rootScope.goodsType){
-        console.log($rootScope.goodsType);
-    }
+var square = app.controller('squareCtrl', function ($scope, $rootScope, mallService, categoryService, orgService, productService) {
 
-  /*  categoryService.get(item.mallId, orgId, function (cary) {
-        console.log(cary);
-    });*/
-
-
-
+    $scope.hotOrders = [];
+    orgService.getSchool('', function (data) {
+        categoryService.get('', data.id, function (cary) {
+            _.each(cary.data, function (item) {
+                productService.getList(null, null, cary.data.categoryId, null, null, 0, 10, null, null, null, null, 'salesNum desc', function (prts) {
+                    if(prts.product.rs.length>0){
+                        _.each(prts.product.rs, function (prt) {
+                            if(prt.salesNum>0){
+                                $scope.hotOrders.push(prt);
+                                console.log($scope.hotOrders);
+                            }
+                        })
+                    }
+                })
+            })
+        });
+    });
 
     //banner 初始化
     var mySwiper1= new Swiper(".swiper-container",{
@@ -33,7 +44,7 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, mallServ
     });
 
     /* --------无缝滚动---------*/
-    /*timer1 = setInterval(autoPlay,20);
+    timer1 = setInterval(autoPlay,20);
     var  num1 = 0;
     var  timer1 = null;
     var  ul = document.getElementById("scroll");
@@ -47,7 +58,7 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, mallServ
     }
     scroll.onmouseout = function() {
         timer1 = setInterval(autoPlay,20);  // 开启定时器
-    }*/
+    }
 
 
 

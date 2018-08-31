@@ -468,6 +468,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
                 window.location = '/#/pay-return?id='+data.id;
             }
         },function(data){
+            console.log(data);
             $scope.doSub = false;
             swal({
                 text: '提交失败,服务器内部错误,请稍后再试',
