@@ -5657,6 +5657,7 @@
     ul{
       margin-bottom: 40px;
       width: 400%;
+      height: 175px;
       overflow: hidden;
       li{
         position: relative;
@@ -5675,9 +5676,10 @@
           font-size: 12px;
         }
         .p-name{
-          @include absolute-lf(90px, 0);
+          @include absolute-lf(85px, 0);
+          padding: 3px;
           color: #fff;
-          width: 120px;
+          width: 114px;
           height: 30px;
           line-height: 15px;
           font-size: 12px;

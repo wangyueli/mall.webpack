@@ -39,6 +39,10 @@ var content = app.controller('contentCtrl', function ($scope, $stateParams, $htt
                 'domain': global.domain,
                 'path': '/'
             });
+            //获取所有频道的品类 合并
+            categoryService.get('', data.id, function (cary) {
+                $rootScope.goodsType = cary.data;
+            });
             $scope.getUseMall(data.id);
             $scope.getGoodsTy(data.id);
         }
@@ -80,16 +84,6 @@ var content = app.controller('contentCtrl', function ($scope, $stateParams, $htt
                     $rootScope.Tabtitle = $scope.nowMall +'-'+ $rootScope.titleMall;
                 }
             }
-
-            //获取所有频道的品类 合并
-            $rootScope.goodsType = [];
-            _.each(data, function (item, index) {
-                if(item.mallId != 'YNK'){
-                    categoryService.get(item.mallId, orgId, function (cary) {
-                        $rootScope.goodsType = cary.data.concat($rootScope.goodsType);
-                    });
-                }
-            });
         });
     };
 

@@ -32,49 +32,12 @@
     <!--订单动态-->
     <div class="square_column">
         <ul id="scroll">
-            <li>
-                <a href=""><img src="https://img13.360buyimg.com/n2/jfs/t2773/268/645082551/237995/31c3a5c5/571f170eN6f3cbf30.jpg"   width="120" height="120"></a>
-                <p class="p-price">¥90.00</p>
-                <p class="p-sale">已售77件</p>
-                <p class="p-name">这是异地台冬奥你跟风格呢我奶奶</p>
+            <li ng-repeat="ord in hotOrders">
+                <a href=""><img ng-src="{{ord.pic}}" width="120" height="120"></a>
+                <p class="p-price">¥ {{ord.unitPrice | number:2}}</p>
+                <p class="p-sale">已售{{ord.salesNum}}件</p>
+                <p class="p-name">{{ord.name}}</p>
             </li>
-            <li>
-                <a href=""><img src="https://img13.360buyimg.com/n2/jfs/t2773/268/645082551/237995/31c3a5c5/571f170eN6f3cbf30.jpg"   width="120" height="120"></a>
-                <p class="p-price">¥90.00</p>
-                <p class="p-sale">已售77件</p>
-                <p class="p-name">这是异地台冬奥你跟风格呢我奶奶</p>
-            </li>
-            <li>
-                <a href=""><img src="https://img13.360buyimg.com/n2/jfs/t2773/268/645082551/237995/31c3a5c5/571f170eN6f3cbf30.jpg"   width="120" height="120"></a>
-                <p class="p-price">¥90.00</p>
-                <p class="p-sale">已售77件</p>
-                <p class="p-name">这是异地台冬奥你跟风格呢我奶奶</p>
-            </li>
-            <li>
-                <a href=""><img src="https://img13.360buyimg.com/n2/jfs/t2773/268/645082551/237995/31c3a5c5/571f170eN6f3cbf30.jpg"   width="120" height="120"></a>
-                <p class="p-price">¥90.00</p>
-                <p class="p-sale">已售77件</p>
-                <p class="p-name">这是异地台冬奥你跟风格呢我奶奶</p>
-            </li>
-            <li>
-                <a href=""><img src="https://img13.360buyimg.com/n2/jfs/t2773/268/645082551/237995/31c3a5c5/571f170eN6f3cbf30.jpg"   width="120" height="120"></a>
-                <p class="p-price">¥90.00</p>
-                <p class="p-sale">已售77件</p>
-                <p class="p-name">这是异地台冬奥你跟风格呢我奶奶</p>
-            </li>
-            <li>
-                <a href=""><img src="https://img13.360buyimg.com/n2/jfs/t2773/268/645082551/237995/31c3a5c5/571f170eN6f3cbf30.jpg"   width="120" height="120"></a>
-                <p class="p-price">¥90.00</p>
-                <p class="p-sale">已售77件</p>
-                <p class="p-name">这是异地台冬奥你跟风格呢我奶奶</p>
-            </li>
-            <li>
-                <a href=""><img src="https://img13.360buyimg.com/n2/jfs/t2773/268/645082551/237995/31c3a5c5/571f170eN6f3cbf30.jpg"   width="120" height="120"></a>
-                <p class="p-price">¥90.00</p>
-                <p class="p-sale">已售77件</p>
-                <p class="p-name">这是异地台冬奥你跟风格呢我奶奶</p>
-            </li>
-
         </ul>
     </div>
     <!--品牌馆-->
