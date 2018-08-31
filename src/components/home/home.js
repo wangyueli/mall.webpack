@@ -8,8 +8,9 @@ require('swiper');
 require('serve/home.js');
 require('serve/product.js');
 require('serve/org.js');
+require('serve/category.js');
 
-var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $filter, homeService, productService, orgService, $stateParams, $http, $cookies) {
+var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $filter, homeService, productService, orgService, categoryService, $stateParams) {
     $scope.IEVersion = function () {
         var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
         var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器
@@ -57,6 +58,26 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
 
     });
 
+    /*
+    * 热卖订单*/
+    $scope.hotOrders = [];
+    orgService.getSchool('', function (data) {
+        categoryService.get('', data.id, function (cary) {
+            _.each(cary.data, function (item) {
+                productService.getList(null, null, cary.data.categoryId, null, null, 0, 10, null, null, null, null, 'salesNum desc', function (prts) {
+                    if(prts.product.rs.length>0){
+                        _.each(prts.product.rs, function (prt) {
+                            // if(prt.salesNum>0){
+                            $scope.hotOrders.push(prt);
+                            console.log($scope.hotOrders);
+                            // }
+                        })
+                    }
+                })
+            })
+        });
+    });
+
     /**
      * 热卖商品 热卖品类*/
     $scope.mallProIds = '';
@@ -83,6 +104,24 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
             }
         });
     };
+
+    /* --------无缝滚动---------*/
+    timer1 = setInterval(autoPlay,20);
+    var  num1 = 0;
+    var  timer1 = null;
+    var  ul = document.getElementById("scroll");
+    function autoPlay() {
+        num1--;
+        num1<=-1600 ? num1 = 0 : num1;
+        ul.style.marginLeft = num1 + "px";
+    }
+    ul.onmouseover = function() {  // 鼠标经过大盒子  停止定时器
+        clearInterval(timer1);
+    }
+    ul.onmouseout = function() {
+        timer1 = setInterval(autoPlay,20);  // 开启定时器
+    }
+
 });
 
 module.exports = home;

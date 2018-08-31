@@ -9,7 +9,7 @@
     .g-left{width: 990px; float: right;}
     .md-ctn-hei{height: 440px}
 </style>
-<div style="background: #f5f5f5; padding-bottom: 150px;">
+<div style="background: #f5f5f5; padding-bottom: 0px;">
     <!--banner 分类导航-->
     <div style="width: 1000px; height: 350px; margin: 0 auto; position: relative; left: 100px;">
         <div class="swiper-container">
@@ -145,6 +145,87 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <!--商城动态-->
+    <div id="home_column">
+        <h2 class="es-hot-title">商城动态</h2>
+        <ul id="scroll">
+            <li ng-repeat="ord in hotOrders">
+                <a href=""><img ng-src="{{ord.pic}}" width="120" height="120"></a>
+                <p class="p-price">¥ {{ord.unitPrice | number:2}}</p>
+                <p class="p-sale">已售{{ord.salesNum}}件</p>
+                <p class="p-name">{{ord.name}}</p>
+            </li>
+        </ul>
+    </div>
+    <!--优惠专区入口-->
+    <div id="home_brand">
+        <h2 class="es-hot-title">  惠推荐 | 选品质  </h2>
+        <div class="content">
+            <div class="brand">
+                <a href="#/sale8" target="_blank"><img src="images/square/b08.jpg"></a>
+            </div>
+            <div class="brand">
+                <a href="#/sale9" target="_blank"><img src="images/square/b09.jpg"></a>
+            </div>
+            <div class="brand margin-right">
+                <a href="#/sale10" target="_blank"><img src="images/square/b10.jpg"></a>
+            </div>
+            <div class="brand">
+                <a href="#/sale11" target="_blank"><img src="images/square/b11.jpg"></a>
+            </div>
+            <div class="brand">
+                <a href="#/sale12" target="_blank"><img src="images/square/b12.jpg"></a>
+            </div>
+            <div class="brand margin-right">
+                <a href="#" target="_blank"><img src="images/square/b13.jpg"></a>
+            </div>
+        </div>
+    </div>
+    <div id="see_more">
+        <div class="hot_center">
+            <h3 class="floor_tit">没有找到想要的商品？</h3>
+        </div>
+        <div class="floor_btn"><a href="">查看更多优惠热卖</a></div>
+    </div>
+    <!--底部icon-->
+    <div id="main_bottom">
+        <div>
+            <ul>
+                <li>
+                    <img src="images/www/img01.png" alt="">
+                    <span><strong>海量商品</strong><br>集成主流电商，内置专业科教供应商<br>支持学校遴选优质协议供货</span>
+                </li>
+                <li>
+                    <img src="images/www/img02.png" alt="">
+                    <span><strong>优惠优价</strong><br>大客户专属价格优惠物流优惠<br>服务免费升级</span>
+                </li>
+                <li>
+                    <img src="images/www/img03.png" alt="">
+                    <span><strong>阳光合规</strong><br>关联采购计划，匹配校内经费卡<br>自定义校内订单审批流程</span>
+                </li>
+                <li>
+                    <img src="images/www/img04.png" alt="">
+                    <span><strong>支付结算</strong><br>货到付款/在线支付<br>财务集中结算支付,支持公务卡</span>
+                </li>
+                <li>
+                    <img src="images/www/img05.png" alt="">
+                    <span><strong>高效智能</strong><br>电子发票，电子合同<br>订单凭证,审批单，报账单</span>
+                </li>
+                <li>
+                    <img src="images/www/img06.png" alt="">
+                    <span><strong>入账报销</strong><br>资产验收入账"一键搞定"<br>建账、报账无需跑路</span>
+                </li>
+                <li>
+                    <img src="images/www/img07.png" alt="">
+                    <span><strong>安全可靠</strong><br>加密访问,数据隔离<br>全面支持交易快照</span>
+                </li>
+                <li>
+                    <img src="images/www/img08.png" alt="">
+                    <span><strong>内控监察</strong><br>杜绝虚假购买，全程留痕,随时备查<br>大数据分析,监督有力</span>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
