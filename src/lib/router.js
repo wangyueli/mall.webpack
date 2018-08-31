@@ -508,7 +508,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             }
         })
         .state('content.hotSale', {
-            url: 'sale:id',
+            url: 'sale?id&?equre&?targetUrl',
             data: {
                 code: 'hotSale',
                 title: '热卖商品-',

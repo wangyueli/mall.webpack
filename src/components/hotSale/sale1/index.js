@@ -1,10 +1,32 @@
 var app = require('appModule');
 var _ = require('underscore');
-
+require('jquery');
+var wx = require('weixin-js-sdk');
 
 require('serve/product.js');
 
-var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, productService) {
+var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $location, productService) {
+
+    $scope.toDetail = function (mallId, prtId) {
+        var url = $location.absUrl();
+        var haUrl = $location.url();
+        var newUrl = url.replace(haUrl, '');
+        var tartUrl = url.split('targetUrl=')[1];
+
+        /*
+         * 跳转到详情*/
+        if($stateParams.equre == 'pc'){
+            window.open(newUrl + '/product/detail?mallId=' + mallId + '&id=' + prtId);
+        }else if($stateParams.equre == 'mobile'){
+            //移动网页
+            window.location.href = decodeURIComponent(tartUrl + '?mallId=' + mallId + '&id=' + prtId);
+        }else if($stateParams.equre == 'mipro'){
+            //小程序
+            wx.miniProgram.navigateTo({url: decodeURIComponent(tartUrl + '?mallId=' + mallId + '&id=' + prtId) });
+        }else {
+            alert('路由错误');
+        }
+    };
 
     $scope.page = $stateParams.id;
     $scope.products = [];
@@ -79,7 +101,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
         })
     }
 
-    /************专区01************/
+    /************专区02************/
     if($stateParams.id == 2){
         /*
          * 新品必备*/
@@ -130,8 +152,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
                     })
                 }
             })
-        })
-
+        });
 
         /*
          * 高清大屏*/
@@ -150,10 +171,9 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
             })
         })
 
-
     }
 
-   /* ***************专区03****************/
+    /* ***************专区03****************/
     if($stateParams.id == 3){
         /*
          * 好物搭配*/
@@ -221,7 +241,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
                     })
                 }
             })
-        })
+        });
 
 
         /*
@@ -239,7 +259,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
                     })
                 }
             })
-        })
+        });
 
 
         /*
@@ -328,8 +348,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
                     })
                 }
             })
-        })
-
+        });
 
         /*
         *  精选水饮*/
@@ -346,8 +365,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
                     })
                 }
             })
-        })
-
+        });
 
         /*
        *  酒水饮料*/
@@ -457,8 +475,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
                     })
                 }
             })
-        })
-
+        });
 
         /*
          * 儒雅 · 普洱茶专区*/
@@ -475,8 +492,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
                     })
                 }
             })
-        })
-
+        });
 
         /*
         *典雅 · 乌龙茶专区 */
@@ -493,9 +509,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
                     })
                 }
             })
-        })
-
-
+        });
 
         /*
         * 更多好茶专区 */
@@ -513,8 +527,6 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
                 }
             })
         })
-
-
 
     }
 
@@ -786,8 +798,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, p
                     })
                 }
             })
-        })
-
+        });
 
         /*
         *  炫彩配件*/

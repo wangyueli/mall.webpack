@@ -10,7 +10,8 @@
                 <p class="hot_ul_p1">{{prt.name}}</p>
                 <p class="hot_ul_p2">
                     <span>&nbsp;&nbsp;<i>￥</i><strong>{{prt.unitPriceShow}}</strong>&nbsp;&nbsp;<s>24.00</s></span>
-                    <a ng-href="/#/product/detail?mallId={{prt.mallId}}&id={{prt.id}}" target="_blank">立即抢购</a>
+                    <!--<a ng-href="/#/product/detail?mallId={{prt.mallId}}&id={{prt.id}}" target="_blank">立即抢购</a>-->
+                    <a ng-click="toDetail(prt.mallId, prt.id)">立即抢购</a>
                 </p>
             </li>
         </ul>

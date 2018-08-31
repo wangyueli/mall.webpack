@@ -19,7 +19,7 @@ var config = {
         contentBase: path.resolve(__dirname, 'dist'),
         inline: true,
         compress: true,
-        port: 8084,
+        port: 8081,
         host: 'malls.yct.com',
         watchOptions: {
             aggregateTimeout: 1000,

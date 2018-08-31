@@ -211,6 +211,7 @@
 .nav{ width:100%; position:relative; border-bottom: 3px solid /*#e11e2d*/ transparent; z-index: 99;}
 .marginLeft{margin-left: 217px; overflow: hidden;}
 .nav .nav-menu li{position:relative; float:left;}
+.nav .nav-menu li .tip{position: absolute; top:-1px; right:-14px; width: 34px; height: 34px; background-image: url("/images/save-p.png"); background-size: contain;  background-repeat:no-repeat; color: #fff; font-weight: bold; text-align: center; line-height: 34px;}
 .nav .nav-menu >li > a{ display:block; font-size:16px; color:#333; padding:0 17px; height: 40px; line-height: 40px;}
 /*.nav .nav-menu >li > a:hover{color: #ec3e3b;}*/
 .nav .nav-menu li > a.active{ /*color: #ec3e3b;*/ font-weight: bold;}

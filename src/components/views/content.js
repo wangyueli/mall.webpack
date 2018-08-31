@@ -98,7 +98,6 @@ var content = app.controller('contentCtrl', function ($scope, $stateParams, $htt
         }
     };
 
-
     /////////////////////////////////////end///////////////////////////////////////
 
     /**
