@@ -30,7 +30,7 @@
         </div>
     </div>
     <!--订单动态-->
-    <div class="square_column">
+    <div class="square_column" ng-show="hotOrders.length>0">
         <ul id="scroll">
             <li ng-repeat="ord in hotOrders">
                 <a ng-href="/#/product/detail?mallId={{ord.mallId}}&id={{ord.productId}}" target="_blank"><img ng-src="{{ord.pic}}" width="120" height="120"></a>
@@ -60,7 +60,7 @@
                <a href="#/sale?id=12&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b12.jpg"></a>
             </div>
             <div class="brand margin-right">
-                <a href="#" target="_blank"><img src="images/square/b13.jpg"></a>
+                <a href="#/channel?orgId={{orgId}}&mallId=JD" target="_blank"><img src="images/square/b13.jpg"></a>
             </div>
         </div>
     </div>

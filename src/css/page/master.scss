@@ -5064,14 +5064,14 @@
           overflow: hidden;
           background:#d12330;
           a{
-            @include cube-inline(100px,35px);
+            @include cube-inline(75px,35px);
             line-height: 35px;
             background-color:#f6f6f6;
             color:#d12330;
             text-align: center;
             letter-spacing: 2px;
             float: right;
-            margin: 10px  20px;
+            margin: 10px  20px 0 5px;
             &:hover{
               font-size: 15px;
               font-weight: 700;
@@ -5079,6 +5079,8 @@
             }
           }
           span{
+            width: 170px;
+            overflow: hidden;
             line-height: 52px;
             padding-left:15px;
             color:#fff;
@@ -5089,7 +5091,7 @@
             }
             strong{
               font-weight: normal;
-              font-size: 26px;
+              font-size: 22px;
 
             }
           }

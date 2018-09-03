@@ -148,7 +148,7 @@
         </div>
     </div>
     <!--商城动态-->
-    <div id="home_column">
+    <div id="home_column" ng-show="hotOrders.length>0">
         <h2 class="es-hot-title">商城<span>动态</span></h2>
         <ul id="scroll">
             <li ng-repeat="ord in hotOrders">
@@ -161,25 +161,25 @@
     </div>
     <!--优惠专区入口-->
     <div id="home_brand">
-        <h2 class="es-hot-title"><span>惠</span>·推荐|<span>选·</span>品质</h2>
+        <h2 class="es-hot-title"><span>惠</span>·推荐&nbsp;|&nbsp;<span>选·</span>品质</h2>
         <div class="content">
             <div class="brand">
-                <a href="#/sale8" target="_blank"><img src="images/square/b08.jpg"></a>
+                <a href="#/sale?id=8&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b08.jpg"></a>
             </div>
             <div class="brand">
-                <a href="#/sale9" target="_blank"><img src="images/square/b09.jpg"></a>
+                <a href="#/sale?id=9&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b09.jpg"></a>
             </div>
             <div class="brand margin-right">
-                <a href="#/sale10" target="_blank"><img src="images/square/b10.jpg"></a>
+                <a href="#/sale?id=10&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b10.jpg"></a>
             </div>
             <div class="brand">
-                <a href="#/sale11" target="_blank"><img src="images/square/b11.jpg"></a>
+                <a href="#/sale?id=11&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b11.jpg"></a>
             </div>
             <div class="brand">
-                <a href="#/sale12" target="_blank"><img src="images/square/b12.jpg"></a>
+                <a href="#/sale?id=12&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b12.jpg"></a>
             </div>
             <div class="brand margin-right">
-                <a href="#" target="_blank"><img src="images/square/b13.jpg"></a>
+                <a ng-href="#/channel?orgId={{orgId}}&mallId=JD" target="_blank"><img src="images/square/b13.jpg"></a>
             </div>
         </div>
     </div>
@@ -187,7 +187,7 @@
         <div class="hot_center">
             <h3 class="floor_tit">没有找到想要的商品？</h3>
         </div>
-        <div class="floor_btn"><a href="">查看更多优惠热卖</a></div>
+        <div class="floor_btn"><a href="#/square" target="_blank">查看更多优惠热卖</a></div>
     </div>
     <!--底部icon-->
     <div id="main_bottom">
