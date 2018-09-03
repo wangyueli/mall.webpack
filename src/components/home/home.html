@@ -50,7 +50,7 @@
             </li>
             <li class="line"></li>
             <li>
-                <span class="icon-fs"><i style="font-size: 42px; margin-left: 10px;" class="icon icon-shenhe"></i></span>
+                <span class="icon-fs"><i style="font-size: 40px; margin-left: 6px;" class="icon icon-shenhe"></i></span>
                 <span class="icon-word">校内采购审核</span>
             </li>
             <li class="line"></li>
@@ -75,8 +75,8 @@
             </li>
         </ul>
     </div>
-    <div id="hot-content">
-        <div class="hot-title" ng-show="hotProducts">
+    <div id="hot-content" ng-show="hotProducts || esMallPros">
+        <div class="hot-title">
             <span></span>
             <b>&nbsp;&nbsp;热卖商品</b>
             <!--<b ng-show="haveJd">&nbsp;&nbsp;京东优惠热卖</b>-->
@@ -112,7 +112,6 @@
             </div>
         </div>
         <!----------协议供货热卖------>
-        <!--<div class="module" ng-show="esMallPros">-->
         <div class="module">
             <!--<h2 class="es-hot-title" ng-show="esMallPros">协议供货热卖</h2>-->
             <div class="md-ctn" style="padding-top: 0;">

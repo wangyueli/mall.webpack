@@ -3613,7 +3613,7 @@
   margin: 30px auto 0;
   padding-bottom: 20px;
   .head{
-    @include center(70px, $g3);
+    @include center(60px, $g3);
     font-size: 20px;
     s{
       /*color: $normal-red;*/
@@ -3632,14 +3632,13 @@
         display: block;
       }
       .icon-fs{
-        width: 60px;
-        @include v-center(60px, 60px);
-        /*border:2px solid $normal-red;*/
-        border-radius: 60px;
+        width: 50px;
+        @include v-center(50px, 50px);
+        border-radius: 50px;
         margin: 0 auto;
         i{
           font-size: 34px;
-          margin-left: 13px;
+          margin-left: 9px;
          /* color: $normal-red;*/
 
         }
@@ -3859,7 +3858,7 @@
 //优惠专区入口
 #home_brand{
   width: 1200px;
-  margin:0 auto;
+  margin:20px auto 0;
   .es-hot-title{
     position: relative;
     @include wh(220px, 45px);
@@ -3897,7 +3896,7 @@
       overflow: hidden;
       width: 326px;
       float: left;
-      background: #f9f9f9;
+      background: #fff;
       cursor: pointer;
        img{
          width: 100%;
