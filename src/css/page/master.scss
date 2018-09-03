@@ -214,7 +214,7 @@
 }
 
 .sLineN{
-  border-bottom: 1px dashed #ddd;
+  border-bottom: 1px dashed $gd;
   .valueListN{
     height: 24px;
     overflow: hidden;
@@ -2652,7 +2652,7 @@
   .msg-f{
     position:absolute;
     background:#fff;
-    border:$border #ddd;
+    border:$border $gd;
     border-radius:3px;
     @include box-shadow(0, 1px, 4px, 0, rgba(0,0,0,0.1));
     z-index:99;
@@ -2707,7 +2707,7 @@
     &:before{
       top: -9px;
       left:65px;
-      border-bottom: 9px solid #ddd;
+      border-bottom: 9px solid $gd;
     }
     &:after{
       top: -8px;
@@ -2738,7 +2738,7 @@
     &:before{
       top: 19px;
       right:-10px;
-      border-left: 9px solid #ddd;
+      border-left: 9px solid $gd;
     }
     &:after{
       top: 19px;
@@ -5212,7 +5212,7 @@
               box-sizing: border-box;
               font-size:2.18rem;
               s{
-                color:#c0b0b0;
+                color:$gd;
                 text-decoration:line-through;
               }
               strong{
@@ -5266,7 +5266,7 @@
               box-sizing: border-box;
               font-size:2.18rem;
               s{
-                color:#c0b0b0;
+                color:$gd;
                 text-decoration:line-through;
               }
               strong{
@@ -5356,7 +5356,7 @@
               box-sizing: border-box;
               font-size:2.18rem;
               s{
-                color:#c0b0b0;
+                color:$gd;
                 text-decoration:line-through;
               }
               strong{
@@ -5410,7 +5410,7 @@
               box-sizing: border-box;
               font-size:2.18rem;
               s{
-                color:#c0b0b0;
+                color:$gd;
                 text-decoration:line-through;
               }
               strong{

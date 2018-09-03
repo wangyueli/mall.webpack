@@ -6,7 +6,7 @@
         </div>
         <ul class="hot_ul">
             <li class="hot_ul_li" ng-repeat="prt in list.data" ng-click="toDetail(prt.mallId, prt.id)">
-                <s class="save-p weight">90.8</s>
+                <s class="save-p weight" ng-show="disCount(prt.unitPrice/prt.unitPriceShow)<10" ng-bind="disCount(prt.unitPrice/prt.unitPriceShow) + '折'"></s>
                 <img ng-src="{{prt.pic}}" alt="">
                 <p class="hot_ul_p1">{{prt.name}}</p>
                 <p class="hot_ul_p2">
