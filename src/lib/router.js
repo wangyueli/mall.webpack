@@ -511,7 +511,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'sale?id&?equre&?targetUrl',
             data: {
                 code: 'hotSale',
-                title: '热卖商品-',
+                title: '热卖-',
                 pathCode: 'hotSale'
             },
             templateProvider: function($q) {
@@ -692,7 +692,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'person/collect',
             data: {
                 code: 'collect',
-                title: '个人收藏--',
+                title: '个人收藏-',
                 pathCode: 'personCollectCtrl'
             },
             templateProvider: function ($q) {
@@ -716,7 +716,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'square',
             data: {
                 code: 'square',
-                title: 'square',
+                title: '优惠广场-',
                 pathCode: 'square'
             },
             templateProvider: function ($q) {

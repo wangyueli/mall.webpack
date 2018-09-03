@@ -85,6 +85,13 @@ var productService = app.service('productService', function ($http) {
             'mallId': mallId,
             'productId': productId
         }, global.mall.api)).then(f);
+    };
+
+    //值得购买
+    this.worthBuy = function (subject, f) {
+        $http.get(url('/recommendSquare/list', {
+            'subject': subject
+        }, global.mall.api)).then(f);
     }
 
 

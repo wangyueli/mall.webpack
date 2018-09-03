@@ -193,6 +193,7 @@ module.directive('imageUpload', ['$http', function ($http) {
         }
     };
 }]);
+
 //多文件上传;
 module.directive('filesUpload', ['$http', 'documentService',function ($http, documentService) {
     return {
@@ -328,6 +329,7 @@ module.directive('filesUpload', ['$http', 'documentService',function ($http, doc
         }
     };
 }]);
+
 //单文件上传；
 module.directive('fileUpload', ['$http', 'documentService', function ($http, documentService) {
     return {
@@ -464,6 +466,7 @@ module.directive('fileUpload', ['$http', 'documentService', function ($http, doc
         }
     };
 }]);
+
 module.directive('slider', function ($interval) {
     return {
         scope: {
@@ -488,6 +491,7 @@ module.directive('slider', function ($interval) {
         }
     };
 });
+
 module.directive('mobile', function () {
     return {
         require: 'ngModel',
@@ -504,6 +508,7 @@ module.directive('mobile', function () {
         }
     };
 });
+
 module.directive('email', function () {
     return {
         require: 'ngModel',
@@ -521,6 +526,7 @@ module.directive('email', function () {
         }
     };
 });
+
 module.directive('username', function () {
     return {
         require: 'ngModel',
@@ -539,6 +545,7 @@ module.directive('username', function () {
         }
     };
 });
+
 module.directive('money', function () {
     return {
         require: 'ngModel',
@@ -555,6 +562,7 @@ module.directive('money', function () {
         }
     };
 });
+
 module.directive('number', function () {
     return {
         require: 'ngModel',
@@ -571,6 +579,7 @@ module.directive('number', function () {
         }
     };
 });
+
 module.directive('idCard', function () {
     return {
         require: 'ngModel',
@@ -588,65 +597,6 @@ module.directive('idCard', function () {
         }
     };
 });
-/*module.directive('datePicker', [function () {
-    return {
-        restrict: 'EA',
-        require: '?ngModel',
-        scope: {
-            minDate: '@min',
-            aaa: '='
-        },
-        link: function (scope, element, attrs, ngModel) {
-            angular.element(element).addClass('Wdate');
-
-            scope.$watch(function () {
-                return ngModel.$viewValue;
-            }, function (t) {
-                if (t != null && t != "") {
-                    element.val(dateUtil.format(new Date(parseInt(t)), "yyyy-MM-dd hh:mm:ss"));
-                }
-            });
-            function onpicked(dp) {
-                if (ngModel) {
-                    var date = dp.cal.getNewDateStr();
-                    scope.$apply(function () {
-                        if (date == "") {
-                            ngModel.$setViewValue(null);
-                        } else {
-                            ngModel.$setViewValue(new Date(dateUtil.parseISO8601(date)).getTime());
-                        }
-                    });
-                }
-            }
-
-            element[0].id = "datepicker_" + new Date().getTime() + "_" + Math.floor(Math.random() * 10000);
-            element.bind('click', function () {
-                var options = {
-                    readOnly: true,
-                    onpicked: onpicked,
-                    oncleared: onpicked,
-                    dateFmt: 'yyyy-MM-dd HH:mm:ss',
-                    el: this.id
-                };
-                if (scope.minDate != null) {
-                    options.minDate = ('%y-%M-%d');
-                }
-                WdatePicker(options);
-            });
-
-            element.on("blur", function () {
-                var val = this.value;
-                scope.$apply(function () {
-                    if (val == "") {
-                        ngModel.$setViewValue(null);
-                    } else {
-                        ngModel.$setViewValue(new Date(dateUtil.parseISO8601(val)).getTime());
-                    }
-                });
-            });
-        }
-    };
-}]);*/
 
 module.directive('countdown', [
     '$log',
@@ -723,6 +673,7 @@ module.directive('countdown', [
             }
         };
     }]);
+
 module.directive('loginDialog', ['$sce', '$cookies', 'httpAuthService', '$interval', function ($sce, $cookies, httpAuthService, $interval) {
     return {
         restrict: 'A',
@@ -904,6 +855,13 @@ module.directive('compile', ['$compile', '$timeout', function ($compile, $timeou
             }
         );
     };
+}]);
+
+module.directive('loginBind', [function () {
+    return {
+        restrict: 'EA',
+        template: require('../components/loginBind/bind.html')
+    }
 }]);
 
 module.exports = module;

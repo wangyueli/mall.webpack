@@ -5,7 +5,7 @@ var wx = require('weixin-js-sdk');
 
 require('serve/product.js');
 
-var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $location, productService) {
+var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $location, $rootScope, productService) {
 
     $scope.toDetail = function (mallId, prtId) {
         var url = $location.absUrl();
@@ -734,7 +734,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
     if($stateParams.id == 10){
         /*
          *品牌爆品 */
-        var pIds101 = ['5464265', '5464261', '5557742', '5853593', '5853579', '5924244', '6055050', '6055054', '7080822', '7294309', '6940276', '4914531'];
+        var pIds101 = ['5464265', '5464261', '5557742', '6055050', '6055054', '7080822', '6940276'];
         $scope.product101 = [];
         _.each(pIds101, function (pId, index) {
             productService.get('JD', pId, function (data) {

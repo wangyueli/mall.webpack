@@ -1,5 +1,5 @@
 <style>
-    .gl-i-wrap{width: 188px; height: 230px;}
+    .gl-i-wrap{width: 192px; height: 230px;}
     .gl-i-wrap .p-img{width: 120px; height: 120px; margin: 0 auto 5px;}
     .gl-warp > .items{height: auto; width: auto;}
     .gl-i-wrap .p-name{margin: 4px 0; height: 17px; white-space:nowrap; text-overflow:ellipsis;}
@@ -75,6 +75,42 @@
             </li>
         </ul>
     </div>
+    <!--商城动态订单-->
+    <div id="home_column" ng-show="hotOrders.length>0">
+        <h2 class="es-hot-title">商城<span>动态</span></h2>
+        <ul id="scroll">
+            <li ng-repeat="ord in hotOrders">
+                <a ng-href="/#/product/detail?mallId={{ord.mallId}}&id={{ord.productId}}" target="_blank"><img ng-src="{{ord.pic}}" width="120" height="120"></a>
+                <p class="p-price">¥ {{ord.unitPrice | number:2}}</p>
+                <p class="p-sale">已售{{ord.salesNum}}件</p>
+                <p class="p-name">{{ord.name}}</p>
+            </li>
+        </ul>
+    </div>
+    <!--优惠专区入口-->
+    <div id="home_brand">
+        <h2 class="es-hot-title"><span>惠</span>·推荐&nbsp;|&nbsp;<span>选·</span>品质</h2>
+        <div class="content">
+            <div class="brand">
+                <a href="#/sale?id=8&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b08.jpg"></a>
+            </div>
+            <div class="brand">
+                <a href="#/sale?id=9&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b09.jpg"></a>
+            </div>
+            <div class="brand margin-right">
+                <a href="#/sale?id=10&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b10.jpg"></a>
+            </div>
+            <div class="brand">
+                <a href="#/sale?id=11&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b11.jpg"></a>
+            </div>
+            <div class="brand">
+                <a href="#/sale?id=12&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b12.jpg"></a>
+            </div>
+            <div class="brand margin-right">
+                <a ng-href="#/channel?orgId={{orgId}}&mallId=JD" target="_blank"><img src="images/square/b13.jpg"></a>
+            </div>
+        </div>
+    </div>
     <div id="hot-content" ng-show="hotProducts || esMallPros">
         <div class="hot-title">
             <span></span>
@@ -86,7 +122,7 @@
         <div class="module">
             <div class="md-ctn">
                 <!--每个商品-->
-                <div class="gl-warp clearfix ml10">
+                <div class="gl-warp clearfix">
                     <div class="items" ng-repeat="good in hotProducts">
                         <div class="gl-i-wrap">
                             <s class="save-p weight" ng-show="disCount(prices[good.data.productId].unitPrice/prices[good.data.productId].unitPriceShow) < 10 && prices[good.data.productId].hasOwnProperty('unitPrice') " ng-bind="disCount(prices[good.data.productId].unitPrice/prices[good.data.productId].unitPriceShow) + '折'"></s>
@@ -116,7 +152,7 @@
             <!--<h2 class="es-hot-title" ng-show="esMallPros">协议供货热卖</h2>-->
             <div class="md-ctn" style="padding-top: 0;">
                 <!--每个商品-->
-                <div class="gl-warp clearfix ml10">
+                <div class="gl-warp clearfix">
                     <div class="items" ng-repeat="good in esMallPros">
                         <div class="gl-i-wrap">
                             <div class="p-img">
@@ -141,43 +177,7 @@
             </div>
         </div>
     </div>
-    <!--商城动态-->
-    <div id="home_column" ng-show="hotOrders.length>0">
-        <h2 class="es-hot-title">商城<span>动态</span></h2>
-        <ul id="scroll">
-            <li ng-repeat="ord in hotOrders">
-                <a ng-href="/#/product/detail?mallId={{ord.mallId}}&id={{ord.productId}}" target="_blank"><img ng-src="{{ord.pic}}" width="120" height="120"></a>
-                <p class="p-price">¥ {{ord.unitPrice | number:2}}</p>
-                <p class="p-sale">已售{{ord.salesNum}}件</p>
-                <p class="p-name">{{ord.name}}</p>
-            </li>
-        </ul>
-    </div>
-    <!--优惠专区入口-->
-<!--    <div id="home_brand">
-        <h2 class="es-hot-title"><span>惠</span>·推荐&nbsp;|&nbsp;<span>选·</span>品质</h2>
-        <div class="content">
-            <div class="brand">
-                <a href="#/sale?id=8&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b08.jpg"></a>
-            </div>
-            <div class="brand">
-                <a href="#/sale?id=9&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b09.jpg"></a>
-            </div>
-            <div class="brand margin-right">
-                <a href="#/sale?id=10&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b10.jpg"></a>
-            </div>
-            <div class="brand">
-                <a href="#/sale?id=11&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b11.jpg"></a>
-            </div>
-            <div class="brand">
-                <a href="#/sale?id=12&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b12.jpg"></a>
-            </div>
-            <div class="brand margin-right">
-                <a ng-href="#/channel?orgId={{orgId}}&mallId=JD" target="_blank"><img src="images/square/b13.jpg"></a>
-            </div>
-        </div>
-    </div>
-    <div id="see_more">
+<!--<div id="see_more">
         <div class="hot_center">
             <h3 class="floor_tit">没有找到想要的商品？</h3>
         </div>

@@ -34,6 +34,12 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
         });
     });
 
+    /*
+    * 值得购买*/
+    productService.worthBuy('subject', function (data) {
+        console.log(data);
+    });
+
     //banner 初始化
     var mySwiper1= new Swiper(".swiper-container",{
         autoplay:6000,
