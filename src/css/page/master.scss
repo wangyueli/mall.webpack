@@ -5836,7 +5836,8 @@
 /*****************采购广场******************/
 #square{
   @include  wh(1200px,auto);
-  margin:0  auto;
+  margin:-20px auto 0;
+  padding-bottom: 40px;
   .title{
     position: relative;
     font-family: "微软雅黑";
@@ -5966,7 +5967,7 @@
         float: left;
         margin:9px;
         padding:10px;
-        border: 1px solid #fff;
+        border: 1px solid transparent;
         &:hover{
           border: 1px solid #eaeaea;
           box-shadow: 0 0 8px 5px #f2f2f2;
