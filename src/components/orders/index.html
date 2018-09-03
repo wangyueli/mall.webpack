@@ -178,7 +178,7 @@
                                     <span ng-show="order.status=='PAYED' " class="bg-blue">待发货</span>
                                     <span ng-show="order.status== 'DELIVERY' " class="bg-green">待收货</span>
                                     <span ng-show="order.status== 'FINISHED' " class="bg-green">完成</span>
-                                    <span ng-show="order.status== 'CANCEL'" class="bg-grow">已取消<i class="iconfont icon-help font14" style="vertical-align: middle; margin-left: 2px;"></i></span>
+                                    <span ng-show="order.status== 'CANCEL'" class="cancel-hover bg-grow">已取消<i class="iconfont icon-help font14" style="vertical-align: middle; margin-left: 2px;"></i></span>
                                     <div class="msg-f" ng-show="order.status=='CANCEL' && order.cancelRemark ">原因：{{order.cancelRemark}}</div>
                                     <div class="mt5"><a class="gr-colr" ng-href="{{'/#/orders/detail?id='+ order.id}}" target="_blank">查看详情</a></div>
                                 </div>
@@ -294,7 +294,7 @@
                                                     <span ng-show="orderCd.status=='PAYED' " class="bg-blue">待发货</span>
                                                     <span ng-show="orderCd.status== 'DELIVERY' " class="bg-green">待收货</span>
                                                     <span ng-show="orderCd.status== 'FINISHED' " class="bg-green">完成</span>
-                                                    <span class="cancel-hover bg-grow" ng-show="orderCd.status== 'CANCEL'">已取消<i class="iconfont icon-help" style="vertical-align: middle"></i></span>
+                                                    <span ng-show="orderCd.status== 'CANCEL'" class="cancel-hover bg-grow">已取消<i class="iconfont icon-help" style="vertical-align: middle"></i></span>
                                                     <div class="msg-f" ng-show="orderCd.status=='CANCEL' && orderCd.cancelRemark ">原因：{{orderCd.cancelRemark}}</div>
                                                     <div class="mt5"><a class="gr-colr" ng-href="{{'/#/orders/detail?id=' + orderCd.id}}" target="_blank">查看详情</a></div>
                                                 </div>

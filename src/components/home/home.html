@@ -1,5 +1,5 @@
 <style>
-    .gl-i-wrap{width: 188px; height: 230px; border: 1px solid #f2f2f2;}
+    .gl-i-wrap{width: 188px; height: 230px;}
     .gl-i-wrap .p-img{width: 120px; height: 120px; margin: 0 auto 5px;}
     .gl-warp > .items{height: auto; width: auto;}
     .gl-i-wrap .p-name{margin: 4px 0; height: 17px; white-space:nowrap; text-overflow:ellipsis;}
@@ -78,8 +78,8 @@
     <div id="hot-content">
         <div class="hot-title" ng-show="hotProducts">
             <span></span>
-            <b ng-hide="haveJd">&nbsp;&nbsp;热卖商品</b>
-            <b ng-show="haveJd">&nbsp;&nbsp;京东优惠热卖</b>
+            <b>&nbsp;&nbsp;热卖商品</b>
+            <!--<b ng-show="haveJd">&nbsp;&nbsp;京东优惠热卖</b>-->
             <img src="/images/hot.png">
         </div>
         <!----------热卖商品--------->
@@ -103,7 +103,7 @@
                             </p>
                             <div class="p-name"><a ng-href="{{'/#/product/detail?mallId=' + good.data.mallId + '&id=' + good.data.productId }}" ng-bind-html="good.data.name" target="_blank"></a></div>
                             <div class="p-store">
-                                <a class="p-dw" target="_blank" ng-show="good.data.mallId=='JD'" ng-href="{{'https://item.jd.com/' + good.data.productId + '.html'}} ">{{good.data.storeName}}</a>
+                                <a class="p-dw" target="_blank" ng-show="good.data.mallId=='JD'" ng-href="#/channel?orgId={{orgId}}&mallId={{good.data.mallId}}">{{good.data.storeName}}</a>
                                 <a class="p-dw" target="_blank" ng-hide="good.data.mallId=='JD'" ng-href="{{'/#/store?id='+ good.data.storeId}} ">{{good.data.storeName}}</a>
                             </div>
                         </div>
@@ -114,12 +114,8 @@
         <!----------协议供货热卖------>
         <!--<div class="module" ng-show="esMallPros">-->
         <div class="module">
-            <!--<div class="hot-module" style="background: #e1eced; border-bottom:2px solid #2d9ba7;" >
-                <div class="md-ty" style="background: #2d9ba7; width: 185px; padding-left: 27px;">协议供货推荐商品<span style="border-color: #e1eced;border-bottom-color: #2d9ba7;border-left-color: #2d9ba7;"></span></div>
-                <a class="more" ng-click="moreEsmallHot();">更多商品<i class="icon icon-gengduo"></i></a>
-            </div>-->
-            <h2 class="es-hot-title" ng-show="esMallPros">协议供货热卖</h2>
-            <div class="md-ctn">
+            <!--<h2 class="es-hot-title" ng-show="esMallPros">协议供货热卖</h2>-->
+            <div class="md-ctn" style="padding-top: 0;">
                 <!--每个商品-->
                 <div class="gl-warp clearfix ml10">
                     <div class="items" ng-repeat="good in esMallPros">
@@ -138,8 +134,7 @@
                             </p>
                             <div class="p-name"><a ng-href="{{'/#/product/detail?mallId=' + good.data.mallId + '&id=' + good.data.productId }}" ng-bind-html="good.data.name" target="_blank"></a></div>
                             <div class="p-store">
-                                <a class="p-dw" target="_blank" ng-show="good.data.mallId=='JD'" ng-href="{{'https://item.jd.com/' + good.data.productId + '.html'}} ">{{good.data.storeName}}</a>
-                                <a class="p-dw" target="_blank" ng-hide="good.data.mallId=='JD'" ng-href="{{'/#/store?id='+ good.data.storeId}} ">{{good.data.storeName}}</a>
+                                <a class="p-dw" target="_blank" ng-href="{{'/#/store?id='+ good.data.storeId}} ">{{good.data.storeName}}</a>
                             </div>
                         </div>
                     </div>

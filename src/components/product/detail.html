@@ -73,15 +73,15 @@
 							</span>
 						</span>
 						</span>
-							<span ng-show="detail.priceStatus=='notLogin' || detail.priceStatus=='notRight'">
+						<span ng-show="detail.priceStatus=='notLogin' || detail.priceStatus=='notRight'">
 							<span class="tip-label">价&nbsp;格</span>
 							<span class="tip-money" ng-show="detail.priceStatus=='notLogin'">登录显示价格</span>
 							<span class="tip-money" ng-show="detail.priceStatus=='notRight'">价格供可购买老师查看</span>
 						</span>
 						<!--价格区间-->
 						<span ng-show="detail.unitPriceMax">
-						<span class="tip-label">价格区间</span>
-						<span class="tip-money">￥</span><em><span>{{detail.unitPriceMin | number : 2}} - {{detail.unitPriceMax | number : 2}}</span></em>
+							<span class="tip-label">价格区间</span>
+							<span class="tip-money">￥</span><em><span>{{detail.unitPriceMin | number : 2}} - {{detail.unitPriceMax | number : 2}}</span></em>
 						</span>
 					</p>
 				</div>
