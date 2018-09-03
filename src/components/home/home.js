@@ -67,10 +67,8 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
                 productService.getList(null, null, cary.data.categoryId, null, null, 0, 5, null, null, null, null, 'salesNum desc', function (prts) {
                     if(prts.product.rs.length>0){
                         _.each(prts.product.rs, function (prt) {
-                            console.log(prt);
                              if(prt.salesNum>0){
-                            $scope.hotOrders.push(prt);
-                            console.log($scope.hotOrders);
+                                $scope.hotOrders.push(prt);
                             }
                         })
                     }
@@ -107,10 +105,9 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
     };
 
     /* --------无缝滚动---------*/
-    timer1 = setInterval(autoPlay,20);
-    var  num1 = 0;
-    var  timer1 = null;
-    var  ul = document.getElementById("scroll");
+    var timer1 = setInterval(autoPlay,10);
+    var num1 = 0;
+    var ul = document.getElementById("scroll");
     function autoPlay() {
         num1--;
         num1<=-1600 ? num1 = 0 : num1;
@@ -120,7 +117,7 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
         clearInterval(timer1);
     }
     ul.onmouseout = function() {
-        timer1 = setInterval(autoPlay,20);  // 开启定时器
+        timer1 = setInterval(autoPlay,10);  // 开启定时器
     }
 
 });
