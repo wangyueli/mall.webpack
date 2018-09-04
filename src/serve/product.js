@@ -22,7 +22,7 @@ var productService = app.service('productService', function ($http) {
     };
 
     //获取详情页面数据;
-    this.get = function(mallId, id,f) {
+    this.get = function(mallId, id, f) {
         $http.get(url.url('/mallproduct/detail', {
             'mallId': mallId,
             'productId': id
@@ -88,9 +88,10 @@ var productService = app.service('productService', function ($http) {
     };
 
     //值得购买
-    this.worthBuy = function (subject, f) {
-        $http.get(url('/recommendSquare/list', {
-            'subject': subject
+    this.worthBuy = function (sbj, type, f) {
+        $http.get(url.url('/recommendSquare/list', {
+            'subject': sbj,
+            'type': type
         }, global.mall.api)).then(f);
     }
 

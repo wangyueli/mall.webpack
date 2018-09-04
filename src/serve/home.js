@@ -19,11 +19,12 @@ var homeService = app.service('homeService', function ($http) {
     };
 
     //获取商品列表 （简化）
-    this.getPrtList = function(orgId, categoryId, sort, f) {
+    this.getPrtList = function(orgId, categoryId, sort, excludeFields, f) {
         $http.get(url.url('/homerecommend/product/content', {
             'categoryId': categoryId,
             'orgId': orgId,
-            'sort' : sort
+            'sort' : sort,
+            'excludeFields': excludeFields
         }, global.mall.api)).then(f);
     };
 

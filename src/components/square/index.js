@@ -7,10 +7,10 @@ require('swiper');
 require('serve/mall.js');
 require('serve/category.js');
 require('serve/org.js');
-
 require('serve/product.js');
+require('serve/home.js');
 
-var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies, mallService, categoryService, orgService, productService) {
+var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies, mallService, categoryService, orgService, productService, homeService) {
 
     $scope.orgId = $cookies.get('orgId');
 
@@ -20,13 +20,12 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
     orgService.getSchool('', function (data) {
         categoryService.get('', data.id, function (cary) {
             _.each(cary.data, function (item) {
-                productService.getList(null, null, cary.data.categoryId, null, null, 0, 5, null, null, null, null, 'salesNum desc', function (prts) {
+                homeService.getPrtList(null, cary.data.categoryId, 'salesNum desc', 'brandAggregate', function (prts) {
                     if(prts.product.rs.length>0){
                         _.each(prts.product.rs, function (prt) {
-                             if(prt.salesNum>0){
+                            if(prt.salesNum>0){
                                 $scope.hotOrders.push(prt);
-                                console.log($scope.hotOrders);
-                             }
+                            }
                         })
                     }
                 })
@@ -36,8 +35,14 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
 
     /*
     * 值得购买*/
-    productService.worthBuy('subject', function (data) {
-        console.log(data);
+    $scope.worthProts = [];
+    productService.worthBuy('JD-Promo-20180828', 'worthToBuyProduct', function (data) {
+        _.each(data, function (item) {
+            productService.get(item.mallId, item.value, function (detail) {
+                detail.pic = detail.pic.split(',')[0];
+                $scope.worthProts.push(detail);
+            })
+        });
     });
 
     //banner 初始化
@@ -69,10 +74,6 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
     scroll.onmouseout = function() {
         timer1 = setInterval(autoPlay,20);  // 开启定时器
     }
-
-
-
-
 
 });
 

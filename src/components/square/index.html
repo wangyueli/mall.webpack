@@ -30,7 +30,7 @@
         </div>
     </div>
     <!--订单动态-->
-    <div class="square_column" ng-show="hotOrders.length>0">
+    <div class="square_column">
         <ul id="scroll">
             <li ng-repeat="ord in hotOrders">
                 <a ng-href="/#/product/detail?mallId={{ord.mallId}}&id={{ord.productId}}" target="_blank"><img ng-src="{{ord.pic}}" width="120" height="120"></a>
@@ -68,121 +68,16 @@
     <div class="square_commend">
         <h2 class="title">值得购买</h2>
         <div  class="square_sibal_t">
-            <div class="square_l">
+            <div class="square_l" ng-repeat="good in worthProts">
                 <div class="col_img">
-                    <a href=""><img src="http://img13.360buyimg.com/n1/jfs/t4144/57/2024436508/230376/1c327549/58ca4e21N20745dd9.jpg"></a>
+                    <a ng-href="#/product/detail?mallId={{good.mallId}}&id={{good.id}}" target="_blank"><img ng-src="{{good.pic}}"></a>
                 </div>
-                <div class="col_price">￥4,999.00</div>
-                <p><s class="s-price">￥5,999.00</s></p>
+                <div class="col_price">{{good.unitPrice | number:2}}</div>
+                <p><s class="s-price">￥{{good.unitPriceShow | number:2}}</s></p>
                 <div class="col_name">
-                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色</a>
+                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">{{good.name}}</a>
                 </div>
-                <a  class="addcar"  href=""><i class="iconfont icon-shopping2"></i>加入购物车</a>
-            </div>
-            <div class="square_l">
-                <div class="col_img">
-                    <a href=""><img src="http://img13.360buyimg.com/n1/jfs/t4144/57/2024436508/230376/1c327549/58ca4e21N20745dd9.jpg"></a>
-                </div>
-                <div class="col_price">￥4,999.00</div>
-                <p><s class="s-price">￥5,999.00</s></p>
-                <div class="col_name">
-                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色</a>
-                </div>
-                <a  class="addcar"  href=""><i class="iconfont icon-shopping2"></i>加入购物车</a>
-            </div>
-            <div class="square_l">
-                <div class="col_img">
-                    <a href=""><img src="http://img13.360buyimg.com/n1/jfs/t4144/57/2024436508/230376/1c327549/58ca4e21N20745dd9.jpg"></a>
-                </div>
-                <div class="col_price">￥4,999.00</div>
-                <p><s class="s-price">￥5,999.00</s></p>
-                <div class="col_name">
-                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色</a>
-                </div>
-
-                <a  class="addcar"  href=""><i class="iconfont icon-shopping2"></i>加入购物车</a>
-            </div>
-            <div class="square_l">
-                <div class="col_img">
-                    <a href=""><img src="http://img13.360buyimg.com/n1/jfs/t4144/57/2024436508/230376/1c327549/58ca4e21N20745dd9.jpg"></a>
-                </div>
-                <div class="col_price">￥4,999.00</div>
-                <p><s class="s-price">￥5,999.00</s></p>
-                <div class="col_name">
-                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色</a>
-                </div>
-                <a  class="addcar"  href=""><i class="iconfont icon-shopping2"></i>加入购物车</a>
-            </div>
-            <div class="square_l">
-                <div class="col_img">
-                    <a href=""><img src="http://img13.360buyimg.com/n1/jfs/t4144/57/2024436508/230376/1c327549/58ca4e21N20745dd9.jpg"></a>
-                </div>
-                <div class="col_price">￥4,999.00</div>
-                <p><s class="s-price">￥5,999.00</s></p>
-                <div class="col_name">
-                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色</a>
-                </div>
-
-                <a  class="addcar"  href=""><i class="iconfont icon-shopping2"></i>加入购物车</a>
-            </div>
-            <div class="square_l">
-                <div class="col_img">
-                    <a href=""><img src="http://img13.360buyimg.com/n1/jfs/t4144/57/2024436508/230376/1c327549/58ca4e21N20745dd9.jpg"></a>
-                </div>
-                <div class="col_price">￥4,999.00</div>
-                <p><s class="s-price">￥5,999.00</s></p>
-                <div class="col_name">
-                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色</a>
-                </div>
-
-                <a  class="addcar"  href=""><i class="iconfont icon-shopping2"></i>加入购物车</a>
-            </div>
-            <div class="square_l">
-                <div class="col_img">
-                    <a href=""><img src="http://img13.360buyimg.com/n1/jfs/t4144/57/2024436508/230376/1c327549/58ca4e21N20745dd9.jpg"></a>
-                </div>
-                <div class="col_price">￥4,999.00</div>
-                <p><s class="s-price">￥5,999.00</s></p>
-                <div class="col_name">
-                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色</a>
-                </div>
-
-                <a  class="addcar"  href=""><i class="iconfont icon-shopping2"></i>加入购物车</a>
-            </div>
-            <div class="square_l">
-                <div class="col_img">
-                    <a href=""><img src="http://img13.360buyimg.com/n1/jfs/t4144/57/2024436508/230376/1c327549/58ca4e21N20745dd9.jpg"></a>
-                </div>
-                <div class="col_price">￥4,999.00</div>
-                <p><s class="s-price">￥5,999.00</s></p>
-                <div class="col_name">
-                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色</a>
-                </div>
-
-                <a  class="addcar"  href=""><i class="iconfont icon-shopping2"></i>加入购物车</a>
-            </div>
-            <div class="square_l">
-                <div class="col_img">
-                    <a href=""><img src="http://img13.360buyimg.com/n1/jfs/t4144/57/2024436508/230376/1c327549/58ca4e21N20745dd9.jpg"></a>
-                </div>
-                <div class="col_price">￥4,999.00</div>
-                <p><s class="s-price">￥5,999.00</s></p>
-                <div class="col_name">
-                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色</a>
-                </div>
-
-                <a  class="addcar"  href=""><i class="iconfont icon-shopping2"></i>加入购物车</a>
-            </div>
-            <div class="square_l">
-                <div class="col_img">
-                    <a href=""><img src="http://img13.360buyimg.com/n1/jfs/t4144/57/2024436508/230376/1c327549/58ca4e21N20745dd9.jpg"></a>
-                </div>
-                <div class="col_price">￥4,999.00</div>
-                <p><s class="s-price">￥5,999.00</s></p>
-                <div class="col_name">
-                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色</a>
-                </div>
-                <a  class="addcar"  href=""><i class="iconfont icon-shopping2"></i>加入购物车</a>
+                <a class="addcar" ng-click="addGoods(good, 1)"><i class="iconfont icon-shopping2"></i>加入购物车</a>
             </div>
         </div>
     </div>

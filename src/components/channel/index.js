@@ -42,7 +42,7 @@ var channel = app.controller('channelCtrl', function ($scope, $rootScope, $filte
     };
 
     $scope.getCayPrtList = function (cayId, floor, parentIndex, index) {
-        homeService.getPrtList($cookies.get('orgId'), cayId, 'discountRate desc', function (prot) {
+        homeService.getPrtList($cookies.get('orgId'), cayId, 'discountRate desc', null, function (prot) {
             //图片改为小尺寸的；
             _.each(prot.product.rs, function (good) {
                 good.pic = good.pic.replace('/n0/', '/n2/');

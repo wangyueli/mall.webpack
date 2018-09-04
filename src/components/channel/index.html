@@ -2,7 +2,7 @@
 <style>
     /*重置分类display*/
     .nav-ct .categorys-f{display: block;}
-    .gl-i-wrap{width: 188px; height: 230px; border: 1px solid #f2f2f2;}
+    .gl-i-wrap{width: 192px; height: 230px; border: 1px solid #f2f2f2;}
     .gl-i-wrap .p-img{width: 120px; height: 120px; margin: 0 auto 5px;}
     .gl-warp > .items{height: auto; width: auto;}
     .gl-i-wrap .p-name{margin: 4px 0; height: 17px; white-space:nowrap; text-overflow:ellipsis;}
@@ -102,7 +102,7 @@
                     </li>
                 </ul>-->
                 <!--每个商品-->
-                <div class="gl-warp clearfix ml10">
+                <div class="gl-warp clearfix">
                     <div class="items" ng-repeat="good in floor[activeId0].product.rs">
                         <div class="gl-i-wrap no-sotre">
                             <s class="save-p weight" ng-show="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow)<10 && prices[good.productId].hasOwnProperty('unitPrice')" ng-bind="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) + '折'"></s>
@@ -132,7 +132,7 @@
                     </li>
                 </ul>-->
                 <!--每个商品-->
-                <div class="gl-warp clearfix ml10">
+                <div class="gl-warp clearfix">
                     <div class="items" ng-repeat="good in floor[activeId1].product.rs">
                         <div class="gl-i-wrap no-sotre">
                             <s class="save-p weight" ng-show="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow)<10 && prices[good.productId].hasOwnProperty('unitPrice') " ng-bind="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) + '折'"></s>
@@ -162,7 +162,7 @@
                     </li>
                 </ul>-->
                 <!--每个商品-->
-                <div class="gl-warp clearfix ml10">
+                <div class="gl-warp clearfix">
                     <div class="items" ng-repeat="good in floor[activeId2].product.rs">
                         <div class="gl-i-wrap no-sotre">
                             <s class="save-p weight" ng-show="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow)<10 && prices[good.productId].hasOwnProperty('unitPrice')" ng-bind="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) + '折'"></s>
