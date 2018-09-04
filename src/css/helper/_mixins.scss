@@ -105,6 +105,33 @@
     border-bottom: 9px solid transparent;
   }
 }
+%tip-box-bottom{
+  position: absolute;
+  border: 1px solid #f9e0a3;
+  background: #fffff6;
+  box-shadow: 0 0 3px -1px #928567;
+  color: #999;
+  &:before{
+    content: "";
+    position: absolute;
+    left: 2px;
+    bottom: -11px;
+    display: inline-block;
+    border-left: 9px solid transparent;
+    border-top: 9px solid #f9e0a3;
+    border-right: 9px solid transparent;
+  }
+  &:after{
+    content: "";
+    position: absolute;
+    left: 2px;
+    bottom: -9px;
+    display: inline-block;
+    border-left: 9px solid transparent;
+    border-top: 9px solid #fffff6;
+    border-right: 9px solid transparent;
+  }
+}
 %position-fixed{
   position: fixed;
   width: 100%;
