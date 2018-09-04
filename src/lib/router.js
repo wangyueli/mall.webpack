@@ -4,6 +4,7 @@ var contentBack = require('../components/views/content_black.html');
 var contentOrder = require('../components/views/content_order.html');
 var contentOffical = require('../components/views/content_offical.html');
 var contentLogin = require('../components/views/content_login.html');
+var contentNo = require('../components/views/content_no.html');
 var contentPerson = require('../components/views/content_person.html');
 var header = require('../components/views/common/head.html');
 var footer = require('../components/views/common/foot.html');
@@ -131,6 +132,15 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                             return deferred.promise;
                         }]
                     }
+                }
+            }
+        })
+        .state('contentNo', {
+            abstract: true,
+            url: "/",
+            views: {
+                "": {
+                    template: contentNo
                 }
             }
         })
@@ -315,7 +325,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
-        .state('contentLogin.orderPayReturn', {
+        .state('contentNo.orderPayReturn', {
             url: 'pay-return?id',
             data: {
                 code: 'orderPayReturn',
@@ -339,7 +349,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
                 }
             }
         })
-        .state('contentLogin.orderPaySuccessWait', {
+        .state('contentNo.orderPaySuccessWait', {
             url: 'pay-success-waiting?id',
             data: {
                 code: 'orderPaySuccessWait',
@@ -511,12 +521,36 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'sale?id&?equre&?targetUrl',
             data: {
                 code: 'hotSale',
-                title: '热卖-',
+                title: '热卖专区-',
                 pathCode: 'hotSale'
             },
             templateProvider: function($q) {
                 return $q(function(resolve) {
                     require.ensure([], function(){return resolve(require('../components/hotSale/sale1/index.html'))}, 'hotSaleCtrlOne');
+                });
+            },
+            controller: 'hotSaleCtrlOne',
+            resolve: {
+                lazyLoad: function($q, $ocLazyLoad) {
+                    var deferred = $q.defer();
+                    require.ensure([], function () {
+                        $ocLazyLoad.load({name: 'app'});
+                        deferred.resolve(require('../components/hotSale/sale1/index.js'));
+                    }, 'hotSaleCtrlOne');
+                    return deferred.promise;
+                }
+            }
+        })
+        .state('contentNo.hotSaleMobile', {
+            url: 'saleMobile?id&?equre&?targetUrl',
+            data: {
+                code: 'hotSaleMobile',
+                title: '热卖专区-',
+                pathCode: 'hotSaleMobile'
+            },
+            templateProvider: function($q) {
+                return $q(function(resolve) {
+                    require.ensure([], function(){return resolve(require('../components/hotSale/sale1/mobile.html'))}, 'hotSaleCtrlOne');
                 });
             },
             controller: 'hotSaleCtrlOne',

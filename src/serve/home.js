@@ -19,13 +19,8 @@ var homeService = app.service('homeService', function ($http) {
     };
 
     //获取商品列表 （简化）
-    this.getPrtList = function(orgId, categoryId, sort, excludeFields, f) {
-        $http.get(url.url('/homerecommend/product/content', {
-            'categoryId': categoryId,
-            'orgId': orgId,
-            'sort' : sort,
-            'excludeFields': excludeFields
-        }, global.mall.api)).then(f);
+    this.getPrtList = function(params, f) {
+        $http.get(url.url('/homerecommend/product/content', params, global.mall.api)).then(f);
     };
 
     //公告

@@ -3,8 +3,110 @@
 // Import the normalize plugin
 @import "../base/reset", "../base/global", "../helper/mixins", "../helper/variables";
 
-/*************************main style**************************/
+/*----------------————--公用样式——————-------------------*/
 .red-btn{@extend %red-btn}
+
+.save-p{
+  @include absolute-rt(5px, 5px);
+  @include cube-inline-equal(80px);
+  @include bg-center-img("/images/save-p.png");
+  background-size: cover;
+  @include center(80px, #fff);
+  z-index: 1;
+  font-size: 14px;
+}
+//商城动态
+.scorll-orders{
+  width: 1200px;
+  margin:0 auto;
+  overflow: hidden;
+  .es-hot-title{
+    position: relative;
+    @include wh(150px, 45px);
+    font-size: 20px;
+    text-align: center;
+    line-height: 45px;
+    padding: 0 50px;
+    margin: 10px auto;
+    overflow: hidden;
+    color: $g3;
+    font-family: 微软雅黑;
+    letter-spacing: 5px;
+    font-weight: 700;
+    span{
+      color:red;
+    }
+    &:before, &:after{
+      content: '';
+      position: absolute;
+      @include cube-block(50px, 3px);
+      background: $g6;
+      top: 20px;
+    }
+    &:before{
+      left: 0;
+    }
+    &:after{right: 0;}
+  }
+  #scroll{
+    height: 190px;
+    background: #fff;
+    white-space:nowrap;
+    .item-order{
+      position: relative;
+      display: inline-block;
+      width: 120px;
+      margin: 10px 35px;
+      transition:0.3s;
+      &:hover  .p-name{
+        transition:0.3s;
+        bottom:44px;
+        display:block;
+      }
+      a{
+        display: inline-block;
+        @include wh(120px, 120px);
+      }
+      p{
+        height: 17px;
+        line-height: 17px;
+        overflow: hidden;
+        color: #666;
+        font-size: 12px;
+      }
+      .p-name{
+        position:absolute;
+        left: 0;
+        bottom:8px;
+        padding: 3px;
+        color: #fff;
+        width: 114px;
+        height: 30px;
+        line-height: 15px;
+        font-size: 12px;
+        background: rgba(0, 0, 0, 0.5);
+        display:none;
+      }
+      .p-price{
+        margin-bottom: 5px;
+        font-size: 18px;
+        font-weight: 700;
+        color: $normal-red;
+      }
+      .p-sale{
+        color: #333;
+        font-size: 14px;
+      }
+    }
+  }
+  .save-p{
+    top:-15px;
+    right: -15px;
+    width: 65px;
+    height: 65px;
+    line-height: 65px;
+  }
+}
 
 /*-----------------头部小导航(公用)------------------*/
 .crumbs-bar{
@@ -45,7 +147,7 @@
       cursor: pointer;
       line-height: 38px;
       padding: 0 3px;
-      &:hover{background: #f5f5f5;}
+      &:hover{background: $gf5;}
     }
   }
   .channel-sure{
@@ -632,15 +734,6 @@
   padding: 10px;
   margin:4px;
   border:$border transparent;
-
-  .save-p{
-    @include absolute-rt(5px, 5px);
-    @include cube-inline-equal(50px);
-    @include bg-center-img("/images/save-p.png");
-    @include center(50px, #fff);
-    z-index: 1;
-  }
-
   .p-img{
     position: relative;
     height:210px;
@@ -3610,49 +3703,47 @@
 .flow-path{
   width: 1200px;
   background: #fff;
-  margin: 30px auto 0;
-  padding-bottom: 20px;
-  .head{
+  margin: 10px auto 0;
+  padding: 10px 0;
+/*  .head{
     @include center(60px, $g3);
     font-size: 20px;
     s{
-      /*color: $normal-red;*/
+      !*color: $normal-red;*!
       margin:0 20px;
     }
     span{
-      /*color: $normal-red;*/
+      !*color: $normal-red;*!
     }
-  }
+  }*/
   .flow-ctn{
     overflow: hidden;
-    margin-left: 45px;
+    margin-left: 50px;
     li{
       float: left;
       span{
         display: block;
       }
       .icon-fs{
-        width: 50px;
-        @include v-center(50px, 50px);
-        border-radius: 50px;
+        width: 40px;
+        @include v-center(40px, 40px);
+        border-radius: 40px;
         margin: 0 auto;
         i{
-          font-size: 34px;
-          margin-left: 9px;
-         /* color: $normal-red;*/
-
+          font-size: 26px;
+          margin-left: 7px;
         }
       }
       .icon-word{
         text-align: center;
-        color: $g6;
+        color: $g3;
         font-size: 14px;
         margin-top: 10px;
       }
     }
     .line{
       position: relative;
-      top: 40px;
+      top: 22px;
       border: $border-light-gray;
       width: 40px;
       margin: 0 12px;
@@ -3765,99 +3856,11 @@
   .bgTwo{background-color:#dbf3e5;}
   .bgThird{background-color:#faeceb;}
 }
-//商城动态
-#home_column{
-  width: 1200px;
-  margin:0 auto;
-  box-sizing: border-box;
-  overflow: hidden;
-  .es-hot-title{
-    position: relative;
-    @include wh(150px, 45px);
-    font-size: 20px;
-    font-weight: normal;
-    text-align: center;
-    line-height: 45px;
-    padding: 0 50px;
-    margin: 10px auto;
-    overflow: hidden;
-    color: $g3;
-    font-family: 微软雅黑;
-    letter-spacing: 5px;
-    font-weight: 700;
-    span{
-      color:red;
-    }
-    &:before, &:after{
-      content: '';
-      position: absolute;
-      @include cube-block(50px, 3px);
-      background: $g6;
-      top: 20px;
-    }
-    &:before{
-      left: 0;
-    }
-    &:after{right: 0;}
-  }
-  ul{
-    width: 400%;
-    height: 190px;
-    background: #fff;
-    overflow: hidden;
-    li{
-      position: relative;
-      width: 120px;
-      float: left;
-      margin: 10px 35px;
-      transition:0.3s;
-      &:hover  .p-name{
-         transition:0.3s;
-         bottom:44px;
-         display:block;
-      }
-      a{
-        display: inline-block;
-        @include wh(120px, 120px);
-      }
-      p{
-        height: 17px;
-        line-height: 17px;
-        overflow: hidden;
-        color: #666;
-        font-size: 12px;
-      }
-      .p-name{
-        position:absolute;
-        left: 0;
-        bottom:8px;
-        padding: 3px;
-        color: #fff;
-        width: 114px;
-        height: 30px;
-        line-height: 15px;
-        font-size: 12px;
-        background: rgba(0, 0, 0, 0.5);
-        display:none;
-      }
-      .p-price{
-        margin-bottom: 5px;
-        font-size: 18px;
-        font-weight: 700;
-        color: $normal-red;
-      }
-      .p-sale{
-        color: #333;
-        font-size: 14px;
-      }
-    }
-  }
-}
 
 //优惠专区入口
 #home_brand{
   width: 1200px;
-  margin:20px auto 0;
+  margin:15px auto 0;
   .es-hot-title{
     position: relative;
     @include wh(220px, 45px);
@@ -3888,7 +3891,6 @@
   }
   .content{
     overflow: hidden;
-    margin-top: 20px;
     .brand{
       padding:30px;
       margin: 0 20px 20px 0;
@@ -4396,7 +4398,7 @@
 //IEalert
 .IEalert{
   font-size: 16px;
-  background: #f5f5f5;
+  background: $gf5;
   opacity: 9;
   .inner{
     p{
@@ -5024,6 +5026,7 @@
   .hot_Sale_list{
     width: 1200px;
     margin:0 auto;
+    padding-bottom: 40px;
     .hot_ul{
       width: 1200px;
       overflow: hidden;
@@ -5040,17 +5043,6 @@
       .hot_ul_li{
         position: relative;
         margin-bottom: 20px;
-        .save-p{
-          position: absolute;
-          top: 5px;
-          right: 5px;
-          @include cube-inline-equal(50px);
-          line-height: 50px;
-          text-align: center;
-          background: url(/images/save-p.png) 0 0 no-repeat;
-          color: #fff;
-          z-index: 1;
-        }
       }
       li{
         @include  cube-inline(290px,400px);
@@ -5096,7 +5088,7 @@
             color:#fff;
             float: left;
             s{
-              color:#c0b0b0;
+              color:#f2f2f2;
               text-decoration:line-through;
             }
             strong{
@@ -5138,7 +5130,8 @@
   /*在414 和767 像素之间的屏幕里，超小屏幕，主要是手机*/
   @media (min-width: 320px) and (max-width:413px) {
     .hot_Sale_list{
-      background:#f5f5f5;
+      background:$gf5;
+      padding-bottom: 40px;
       .hot_center{
         .floor_tit{
           position: relative;
@@ -5277,12 +5270,18 @@
           }
         }
       }
+    }
+    .save-p{
+      @include cube-inline-equal(11rem);
+      @include center(11rem, #fff);
+      font-size: 2rem;
     }
   }
   /*在414 和768 像素之间的屏幕里，超小屏幕，主要是手机*/
   @media (min-width: 414px) and (max-width: 768px) {
     .hot_Sale_list{
-      background:#f5f5f5;
+      background: $gf5;
+      padding-bottom: 40px;
       .hot_center{
         .floor_tit{
           position: relative;
@@ -5422,7 +5421,6 @@
         }
       }
     }
-
   }
 }
 /***************支付状态***************/
@@ -5730,7 +5728,7 @@
       font-size: 15px;
       color:#e11e2d;
       text-indent: 2em;
-      border-bottom:1px solid  #f5f5f5;
+      border-bottom:1px solid  $gf5;
     }
     .person_sibab{
       width: 100%;
@@ -5758,7 +5756,7 @@
        line-height: 40px;
        color:#e11e2d;
        font-size: 16px;
-       border-bottom:2px solid  #f5f5f5;
+       border-bottom:2px solid  $gf5;
        padding-left: 15px;
      }
      .collect_separate{
@@ -5827,22 +5825,17 @@
            white-space: nowrap;
            text-overflow: ellipsis;
            overflow: hidden;
-
-           a{
-             color:#000;
-           }
+           a{color:#000;}
          }
          .c-pw{
             display: inline-block;
             width: 100%;
             color:#666;
-
          }
        }
      }
    }
 }
-
 
 /*****************采购广场******************/
 #square{
@@ -5882,62 +5875,6 @@
        }
       .banner_2{
          margin:10px 0  10px  0;
-      }
-
-    }
-  }
-  .square_column{
-    box-sizing: border-box;
-    overflow: hidden;
-    ul{
-      margin-bottom: 40px;
-      width: 400%;
-      height: 175px;
-      overflow: hidden;
-      li{
-        position: relative;
-        width: 120px;
-        float: left;
-        margin: 10px 35px;
-        &:hover  .p-name{
-          transition:0.3s;
-          bottom:44px;
-          display:block;
-        }
-        a{
-          display: inline-block;
-          @include wh(120px, 120px);
-        }
-        p{
-          height: 17px;
-          line-height: 17px;
-          overflow: hidden;
-          color: #666;
-          font-size: 12px;
-        }
-        .p-name{
-          position:absolute;
-          left: 0;
-          bottom:8px;
-          padding: 3px;
-          color: #fff;
-          width: 114px;
-          height: 30px;
-          line-height: 15px;
-          font-size: 12px;
-          background: rgba(0, 0, 0, 0.5);
-          display:none;
-        }
-        .p-price{
-          margin-bottom: 5px;
-          font-size: 18px;
-          font-weight: 700;
-          color: $normal-red;
-        }
-        .p-sale{
-          color: #333;
-          font-size: 14px;
-        }
       }
     }
   }

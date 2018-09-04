@@ -31,7 +31,7 @@
     </div>
     <!--流程图-->
     <div class="flow-path" ng-hide="orgId=='15CCEAE93B72000163E006BB65C13007' || orgId=='58609'">
-        <p class="head"><s>/</s>网上商城<span>采购流程</span><s>/</s></p>
+        <!--<p class="head"><s>/</s>网上商城<span>采购流程</span><s>/</s></p>-->
         <ul class="flow-ctn">
             <li>
                 <span class="icon-fs"><i class="icon icon-goumaiyemiande-jiarugouwuche"></i></span>
@@ -50,7 +50,7 @@
             </li>
             <li class="line"></li>
             <li>
-                <span class="icon-fs"><i style="font-size: 40px; margin-left: 6px;" class="icon icon-shenhe"></i></span>
+                <span class="icon-fs"><i style="font-size: 34px; margin-left: 4px;" class="icon icon-shenhe"></i></span>
                 <span class="icon-word">校内采购审核</span>
             </li>
             <li class="line"></li>
@@ -76,10 +76,11 @@
         </ul>
     </div>
     <!--商城动态订单-->
-    <div id="home_column">
+    <div class="scorll-orders">
         <h2 class="es-hot-title">商城<span>动态</span></h2>
         <ul id="scroll">
-            <li ng-repeat="ord in hotOrders">
+            <li class="item-order" ng-repeat="ord in hotOrders">
+                <s class="save-p weight" ng-show="disCount(ord.unitPrice/ord.unitPriceShow)<10" ng-bind="disCount(ord.unitPrice/ord.unitPriceShow) + '折'"></s>
                 <a ng-href="/#/product/detail?mallId={{ord.mallId}}&id={{ord.productId}}" target="_blank"><img ng-src="{{ord.pic}}" width="120" height="120"></a>
                 <p class="p-price">¥ {{ord.unitPrice | number:2}}</p>
                 <p class="p-sale">已售{{ord.salesNum}}件</p>
@@ -89,7 +90,7 @@
     </div>
     <!--优惠专区入口-->
     <div id="home_brand">
-        <h2 class="es-hot-title"><span>惠</span>·推荐&nbsp;|&nbsp;<span>选·</span>品质</h2>
+        <h2 class="es-hot-title"><span>惠</span>·推荐&nbsp;|&nbsp;<span>选</span>·品质</h2>
         <div class="content">
             <div class="brand">
                 <a href="#/sale?id=8&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b08.jpg"></a>

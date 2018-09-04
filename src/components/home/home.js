@@ -61,10 +61,17 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
     /*
     * 热卖订单*/
     $scope.hotOrders = [];
+    $scope.paramsHotOrd = {
+        'sort': 'salesNum desc',
+        'excludeFields': 'brandAggregate',
+        'page': 0,
+        'rows': 10
+    };
     orgService.getSchool('', function (data) {
         categoryService.get('', data.id, function (cary) {
             _.each(cary.data, function (item) {
-                homeService.getPrtList(null, cary.data.categoryId, 'salesNum desc', 'brandAggregate', function (prts) {
+                $scope.paramsHotOrd.categoryId = item.data.categoryId;
+                homeService.getPrtList($scope.paramsHotOrd, function (prts) {
                     if(prts.product.rs.length>0){
                         _.each(prts.product.rs, function (prt) {
                              if(prt.salesNum>0){
@@ -95,7 +102,6 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
                     }
                 });
                 $scope.hotProducts = data.hots.children;
-                console.log($scope.hotProducts);
                 $rootScope.productPrice($scope.mallProIds);
             }
             if(data.shows){
@@ -107,19 +113,18 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
     /* --------无缝滚动---------*/
     var timer1 = setInterval(autoPlay,10);
     var num1 = 0;
-    var ul = document.getElementById("scroll");
+    var scroll = document.getElementById("scroll");
     function autoPlay() {
         num1--;
-        num1<=-1600 ? num1 = 0 : num1;
-        ul.style.marginLeft = num1 + "px";
+        num1<=-2000 ? num1 = 0 : num1;
+        scroll.style.marginLeft = num1 + "px";
     }
-    ul.onmouseover = function() {  // 鼠标经过大盒子  停止定时器
+    scroll.onmouseover = function() {  // 鼠标经过大盒子  停止定时器
         clearInterval(timer1);
     }
-    ul.onmouseout = function() {
+    scroll.onmouseout = function() {
         timer1 = setInterval(autoPlay,10);  // 开启定时器
     }
-
 });
 
 module.exports = home;

@@ -29,18 +29,18 @@
             <div><a href="#/sale?id=7&equre=pc&targetUrl=defalut" target="_blank"><img src="images/square/b07.jpg" width="280"  height="156"></a></div>
         </div>
     </div>
-    <!--订单动态-->
-    <div class="square_column">
+    <!--商城动态订单-->
+    <div class="scorll-orders">
         <ul id="scroll">
-            <li ng-repeat="ord in hotOrders">
+            <li class="item-order" ng-repeat="ord in hotOrders">
+                <s class="save-p weight" ng-show="disCount(ord.unitPrice/ord.unitPriceShow)<10" ng-bind="disCount(ord.unitPrice/ord.unitPriceShow) + '折'"></s>
                 <a ng-href="/#/product/detail?mallId={{ord.mallId}}&id={{ord.productId}}" target="_blank"><img ng-src="{{ord.pic}}" width="120" height="120"></a>
                 <p class="p-price">¥ {{ord.unitPrice | number:2}}</p>
                 <p class="p-sale">已售{{ord.salesNum}}件</p>
                 <p class="p-name">{{ord.name}}</p>
             </li>
         </ul>
-    </div>
-    <!--品牌馆-->
+    </div>    <!--品牌馆-->
     <div class="square_brand">
         <h2 class="title" style="background: #e9f7e1;">品牌馆</h2>
         <div class="content">
@@ -66,7 +66,7 @@
     </div>
     <!--推荐商品-->
     <div class="square_commend">
-        <h2 class="title">值得购买</h2>
+        <h2 class="title">值得买</h2>
         <div  class="square_sibal_t">
             <div class="square_l" ng-repeat="good in worthProts">
                 <div class="col_img">
