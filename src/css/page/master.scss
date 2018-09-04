@@ -5927,6 +5927,7 @@
       width: 100%;
       overflow: hidden;
       .square_l{
+        position: relative;
         @include  wh(200px,230px);
         float: left;
         margin:9px;
@@ -5987,7 +5988,9 @@
             margin-right: 4px;
           }
         }
-
+        .save-p{
+          top: -7px;
+        }
       }
     }
   }

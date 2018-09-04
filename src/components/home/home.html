@@ -79,12 +79,12 @@
     <div class="scorll-orders">
         <h2 class="es-hot-title">商城<span>动态</span></h2>
         <ul id="scroll">
-            <li class="item-order" ng-repeat="ord in hotOrders">
-                <s class="save-p weight" ng-show="disCount(ord.unitPrice/ord.unitPriceShow)<10" ng-bind="disCount(ord.unitPrice/ord.unitPriceShow) + '折'"></s>
-                <a ng-href="/#/product/detail?mallId={{ord.mallId}}&id={{ord.productId}}" target="_blank"><img ng-src="{{ord.pic}}" width="120" height="120"></a>
-                <p class="p-price">¥ {{ord.unitPrice | number:2}}</p>
-                <p class="p-sale">已售{{ord.salesNum}}件</p>
-                <p class="p-name">{{ord.name}}</p>
+            <li class="item-order" ng-repeat="good in hotOrders">
+                <s class="save-p weight" ng-show="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) < 10" ng-bind="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) + '折'"></s>
+                <a ng-href="/#/product/detail?mallId={{good.mallId}}&id={{good.productId}}" target="_blank"><img ng-src="{{good.pic}}" width="120" height="120"></a>
+                <p class="p-price">¥ {{prices[good.productId].unitPrice | number:2}}</p>
+                <p class="p-sale">已售{{good.salesNum}}件</p>
+                <p class="p-name">{{good.name}}</p>
             </li>
         </ul>
     </div>

@@ -20,9 +20,10 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
     $scope.orgId = $cookies.get('orgId');
 
     /*
-    * 热卖订单*/
+     * 热卖订单*/
+    $scope.mallOrderIds = '';
     $scope.hotOrders = [];
-    $scope.paramsHotOrd  = {
+    $scope.paramsHotOrd = {
         'sort': 'salesNum desc',
         'excludeFields': 'brandAggregate',
         'page': 0,
@@ -30,13 +31,18 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
     };
     orgService.getSchool('', function (data) {
         categoryService.get('', data.id, function (cary) {
-            _.each(cary.data, function (item) {
+            _.each(cary.data, function (item, parentIndex) {
                 $scope.paramsHotOrd.categoryId = item.data.categoryId;
                 homeService.getPrtList($scope.paramsHotOrd, function (prts) {
                     if(prts.product.rs.length>0){
-                        _.each(prts.product.rs, function (prt) {
-                            if(prt.salesNum>0){
-                                $scope.hotOrders.push(prt);
+                        _.each(prts.product.rs, function (good, index) {
+                            if(good.salesNum>0){
+                                $scope.hotOrders.push(good);
+                                $scope.mallOrderIds += good.mallId + '.' + good.productId + ',';
+                            }
+                            if(parentIndex == cary.data.length-1 && index == prts.product.rs.length-1){
+                                //等到便利到最后一次时再掉价格接口；
+                                $rootScope.productPrice($scope.mallOrderIds);
                             }
                         })
                     }
@@ -44,6 +50,7 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
             })
         });
     });
+
 
     /*
     * 值得购买*/
