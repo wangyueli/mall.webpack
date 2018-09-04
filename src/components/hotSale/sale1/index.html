@@ -2,7 +2,9 @@
     <div class="hot_Sale_banner"><img width="100%" ng-src="images/hotSale/sale{{page}}.jpg"></div>
     <div class="hot_Sale_list" ng-repeat="list in products">
         <div class="hot_center">
-            <h3 class="floor_tit">{{list.name}}</h3>
+             <div class="hot_center_l"></div>
+             <div class="hot_center_title">{{list.name}}</div>
+             <div class="hot_center_r"></div>
         </div>
         <ul class="hot_ul">
             <li class="hot_ul_li" ng-repeat="prt in list.data" ng-click="toDetail(prt.mallId, prt.id)">
@@ -18,3 +20,28 @@
         </ul>
     </div>
 </div>
+<!--
+.floor_tit{
+position: relative;
+width: 180px;
+font-size: 26px;
+font-weight: normal;
+text-align: center;
+line-height: 45px;
+padding-top: 75px;
+margin: 0 auto;
+color: $g6;
+}
+.floor_tit::before{
+content: '';
+background: $g6;
+@include  cube-block(65px,3px);
+@include  absolute-lf(95px,-68px);
+
+}
+.floor_tit::after{
+content: '';
+background: $g6;
+@include  cube-block(65px,3px);
+@include  absolute-lf(95px,150px);
+}-->

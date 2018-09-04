@@ -10,8 +10,13 @@ require('serve/org.js');
 require('serve/product.js');
 require('serve/home.js');
 
-var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies, mallService, categoryService, orgService, productService, homeService) {
+var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies, $stateParams, mallService, categoryService, orgService, productService, homeService) {
 
+    var where = $stateParams.where;
+    if(where == 'more'){
+        //到值得买
+
+    }
     $scope.orgId = $cookies.get('orgId');
 
     /*

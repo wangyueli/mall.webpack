@@ -453,7 +453,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
                 data.pic = data.pic.split(',')[0];
                 if(index == pIds62.length-1){
                     $scope.products.push({
-                        name: '清雅·绿茶专区',
+                        name: '清雅  ·  绿茶专区',
                         data: $scope.product62
                     })
                 }
@@ -470,7 +470,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
                 data.pic = data.pic.split(',')[0];
                 if(index == pIds63.length-1){
                     $scope.products.push({
-                        name: '优雅·红茶专区',
+                        name: '优雅  ·  红茶专区',
                         data: $scope.product63
                     })
                 }
@@ -487,7 +487,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
                 data.pic = data.pic.split(',')[0];
                 if(index == pIds64.length-1){
                     $scope.products.push({
-                        name: '儒雅·普洱茶专区',
+                        name: '儒雅  ·  普洱茶专区',
                         data: $scope.product64
                     })
                 }
@@ -504,7 +504,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
                 data.pic = data.pic.split(',')[0];
                 if(index == pIds65.length-1){
                     $scope.products.push({
-                        name: '典雅·乌龙茶专区',
+                        name: '典雅  ·  乌龙茶专区',
                         data: $scope.product65
                     })
                 }

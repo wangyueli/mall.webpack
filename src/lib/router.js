@@ -747,7 +747,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             }
         })
         .state('content.square', {
-            url: 'square',
+            url: 'square?where',
             data: {
                 code: 'square',
                 title: '优惠广场-',

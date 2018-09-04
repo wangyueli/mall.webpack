@@ -15,6 +15,51 @@
   z-index: 1;
   font-size: 14px;
 }
+.brand-contents{
+  overflow: hidden;
+  margin-top: 20px;
+  .brand{
+    padding:30px;
+    margin: 0 20px 20px 0;
+    overflow: hidden;
+    width: 326px;
+    float: left;
+    background: #f9f9f9;
+    cursor: pointer;
+    position: relative;
+    &:hover  .mask{
+      display:block;
+    }
+    &:hover  img{
+      transform: scale(1.1);
+    }
+    .mask{
+      @include  wh(100%,100%);
+      @include  absolute-lf(0,0);
+      background:rgba(0,0,0,0.5);
+      text-align: center;
+      font-size: 24px;
+      font-weight: 800;
+      padding-top: 30%;
+      box-sizing: border-box;
+      color:#fff;
+      display:none;
+      transition: all   0.4s;
+      letter-spacing: 2px;
+      a{
+        color:#fff;
+      }
+    }
+    img{
+      width: 100%;
+      transition:0.4s;
+    }
+
+  }
+  .margin-right{
+    margin-right: 0;
+  }
+}
 //商城动态
 .scorll-orders{
   width: 1200px;
@@ -3889,28 +3934,6 @@
     }
     &:after{right: 0;}
   }
-  .content{
-    overflow: hidden;
-    .brand{
-      padding:30px;
-      margin: 0 20px 20px 0;
-      overflow: hidden;
-      width: 326px;
-      float: left;
-      background: #fff;
-      cursor: pointer;
-       img{
-         width: 100%;
-         transition: 0.4s;
-         &:hover{
-           transform:scale(1.1);
-         }
-       }
-    }
-    .margin-right{
-      margin-right: 0;
-    }
-  }
 }
 
 //更多商品
@@ -4993,29 +5016,24 @@
   background:#f6f6f6;
   height:auto;
   .hot_center{
-    .floor_tit{
-      position: relative;
-      width: 180px;
-      font-size: 26px;
-      font-weight: normal;
-      text-align: center;
-      line-height: 45px;
-      padding-top: 75px;
-      margin: 0 auto;
-      color: $g6;
+    display:flex;
+    justify-content:center;
+    padding:50px  0;
+    color:#5c5c5c;
+    overflow: hidden;
+    .hot_center_l,.hot_center_r{
+      @include wh(100px,3px);
+      padding:0px;
+      background:#5b5b5b;
+      float: left;
+      border-radius: 35px;
     }
-    .floor_tit::before{
-      content: '';
-      background: $g6;
-      @include  cube-block(65px,3px);
-      @include  absolute-lf(95px,-68px);
-
-    }
-    .floor_tit::after{
-      content: '';
-      background: $g6;
-      @include  cube-block(65px,3px);
-      @include  absolute-lf(95px,150px);
+    .hot_center_title{
+      font-size: 28px;
+      height: 40px;
+      float: left;
+      margin-top: -20px;
+      padding:0  20px;
     }
   }
   .hot_Sale_banner{
@@ -5173,12 +5191,17 @@
             height: 75%;
           }
           .hot_ul_p1{
-            height:144px;
+            height:100px;
             padding:0 10px 0 10px;
             margin-bottom: 15px;
             color:#7a7a7a;
             font-size:2rem;
-            overflow: hidden;
+            text-align: left;
+            word-break:break-all;
+            display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
+            overflow:hidden;
           }
           .hot_ul_p2{
             height:100px;
@@ -5198,8 +5221,9 @@
               padding:0  15px;
             }
             span{
+              width: 67%;
               line-height: 70px;
-              padding:10px 0  0  15px;
+              padding:10px 0  0  0;
               color:#fff;
               float: left;
               box-sizing: border-box;
@@ -5227,12 +5251,17 @@
             height: 75%;
           }
           .hot_ul_p1{
-            height:144px;
+            height:100px;
             padding:0 10px 0 10px;
             margin-bottom: 15px;
             color:#7a7a7a;
             font-size:2rem;
-            overflow: hidden;
+            text-align: left;
+            word-break:break-all;
+            display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
+            overflow:hidden;
           }
           .hot_ul_p2{
             height:100px;
@@ -5252,8 +5281,9 @@
               padding:0  15px;
             }
             span{
+              width: 67%;
               line-height: 70px;
-              padding:10px 0  0  15px;
+              padding:10px 0  0  0;
               color:#fff;
               float: left;
               box-sizing: border-box;
@@ -5323,12 +5353,17 @@
             height: 75%;
           }
           .hot_ul_p1{
-            height:144px;
+            height:100px;
             padding:0 10px 0 10px;
             margin-bottom: 15px;
             color:#7a7a7a;
             font-size:2rem;
-            overflow: hidden;
+            text-align: left;
+            word-break:break-all;
+            display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
+            overflow:hidden;
           }
           .hot_ul_p2{
             height:100px;
@@ -5348,8 +5383,9 @@
               padding:0  15px;
             }
             span{
+              width: 67%;
               line-height: 70px;
-              padding:10px 0  0  15px;
+              padding:10px 0  0  0;
               color:#fff;
               float: left;
               box-sizing: border-box;
@@ -5377,12 +5413,17 @@
             height: 75%;
           }
           .hot_ul_p1{
-            height:144px;
+            height:100px;
             padding:0 10px 0 10px;
             margin-bottom: 15px;
             color:#7a7a7a;
             font-size:2rem;
-            overflow: hidden;
+            text-align: left;
+            word-break:break-all;
+            display:-webkit-box;
+            -webkit-line-clamp:2;
+            -webkit-box-orient:vertical;
+            overflow:hidden;
           }
           .hot_ul_p2{
             height:100px;
@@ -5402,8 +5443,9 @@
               padding:0  15px;
             }
             span{
+              width: 67%;
               line-height: 70px;
-              padding:10px 0  0  15px;
+              padding:10px 0  0  0;
               color:#fff;
               float: left;
               box-sizing: border-box;
@@ -5875,32 +5917,6 @@
        }
       .banner_2{
          margin:10px 0  10px  0;
-      }
-    }
-  }
-  .square_brand{
-    .content{
-      overflow: hidden;
-      margin-top: 20px;
-      .brand{
-        padding:30px;
-        margin: 0 20px 20px 0;
-        overflow: hidden;
-        width: 326px;
-        float: left;
-        background: #f9f9f9;
-        cursor: pointer;
-        img{
-          width: 100%;
-          transition:0.4s;
-          &:hover{
-             transform: scale(1.1);
-          }
-        }
-
-      }
-      .margin-right{
-        margin-right: 0;
       }
     }
   }
