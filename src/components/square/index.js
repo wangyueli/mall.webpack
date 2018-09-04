@@ -16,6 +16,8 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
     if(where == 'more'){
         //到值得买
 
+
+
     }
     $scope.orgId = $cookies.get('orgId');
 

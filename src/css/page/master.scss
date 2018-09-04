@@ -20,7 +20,7 @@
   margin-top: 20px;
   .brand{
     padding:30px;
-    margin: 0 20px 20px 0;
+    margin: 0 12px 20px 0;
     overflow: hidden;
     width: 326px;
     float: left;
@@ -5060,7 +5060,7 @@
       
       .hot_ul_li{
         position: relative;
-        margin-bottom: 20px;
+        margin:20px 5px;
       }
       li{
         @include  cube-inline(290px,400px);
@@ -5074,15 +5074,28 @@
           margin:20px 20px 0 20px;
         }
         .hot_ul_p1{
-          height: 55px;
+          height: 37px;
           padding:10px 20px 0 20px;
-          margin-bottom: 12px;
+          margin-bottom: 22px;
           color:#7a7a7a;
-          overflow: hidden;
+          word-break:break-all;
+          display:-webkit-box;
+          -webkit-line-clamp:2;
+          -webkit-box-orient:vertical;
+          overflow:hidden;
         }
         .hot_ul_p2{
           overflow: hidden;
           background:#d12330;
+          .del_price{
+            height: 25px;
+            color: #f2f2f2;
+            text-decoration: line-through;
+            float: left;
+            padding:0;
+            margin-left: 24px;
+            font-size: 15px;
+          }
           a{
             @include cube-inline(75px,35px);
             line-height: 35px;
@@ -5091,7 +5104,7 @@
             text-align: center;
             letter-spacing: 2px;
             float: right;
-            margin: 10px  20px 0 5px;
+            margin: 15px  20px 0 5px;
             &:hover{
               font-size: 15px;
               font-weight: 700;
@@ -5101,17 +5114,13 @@
           span{
             width: 170px;
             overflow: hidden;
-            line-height: 52px;
-            padding-left:15px;
-            color:#fff;
+            color: #fff;
             float: left;
-            s{
-              color:#f2f2f2;
-              text-decoration:line-through;
-            }
+            box-sizing: border-box;
+            padding: 15px  0  0  15px;
             strong{
-              font-weight: normal;
               font-size: 22px;
+              font-weight:740;
 
             }
           }
