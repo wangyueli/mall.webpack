@@ -1,10 +1,12 @@
-<div id="login-bind">
-    <div class="content">
+<div class="logins" ng-show="loginMask">
+    <div class="content-code">
         <div class="header">
-            <span class="title titleActive">扫码登录</span>
+            <span class="title titleActive">绑定微信</span>
+            <!--<span class="title titleActive">微信登录</span>-->
             <s class="split">|</s>
-            <span class="title">手机登录</span>
-            <i class="icon icon-close1"></i>
+            <span class="title">绑定手机</span>
+            <!--<span class="title">手机登录</span>-->
+            <i class="icon icon-close1" ng-click="closeLogin()"></i>
         </div>
         <div class="bind-content">
             <!--<a class="how" target="_blank" ng-href="{{'/#/bind'}}">
@@ -14,6 +16,20 @@
             <div class="code">
                 <img src="images/add.png" width="170" height="170">
             </div>
+            <div class="mt20 align-c font14">打开<span class="colorRed weight">&nbsp;手机微信&nbsp;</span>扫码绑定</div>
+<!--            <div class="mt20 align-c font14">打开<span class="colorRed weight">&nbsp;手机微信&nbsp;</span>扫码登录</div>-->
+            <div class="tips">
+                <span><i class="icon icon-shuru1"></i>免输入</span>
+                <span>&nbsp;<i class="icon icon-shandian"></i>更快</span>
+                <span><i class="icon icon-anquan3"></i>更安全</span>
+            </div>
         </div>
+        <div class="footer">
+            <span class="weight">职工号登录：</span><a>点此去登录 >></a>
+        </div>
+    </div>
+    <!--手机登录-->
+    <div class="content-mobile">
+
     </div>
 </div>

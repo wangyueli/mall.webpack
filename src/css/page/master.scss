@@ -6022,12 +6022,12 @@
   }
 }
 /*-------------------登录-------------------*/
-#login-bind{
+.logins{
   @extend %position-fixed;
   background: rgba(0, 0, 0, .4);
   z-index: 999;
-  .content{
-    @include position-ab(400px, 400px);
+  .content-code{
+    @include position-ab(400px, 420px);
     background: #fff;
     .header{
       position: relative;
@@ -6072,7 +6072,37 @@
         padding: 10px;
         margin: 20px auto 0;
       }
+      .tips{
+        width: 210px;
+        margin: 10px auto;
+        span{
+          @include cube-inline(70px, 20px);
+          line-height: 20px;
+          float: left;
+          color: $g3;
+        }
+        .icon{
+          font-size: 18px;
+          color: $gb;
+          float: left;
+          @include cube-inline(22px, 20px);
+        }
+      }
     }
+    .footer{
+      margin-top: 55px;
+      @include v-center(50px, 50px);
+      background: $gf5;
+      font-size: 13px;
+      color: #000;
+      a{
+        color: $blue;
+        text-decoration: underline;
+      }
+    }
+  }
+  .content-mobile{
+
   }
 }
 

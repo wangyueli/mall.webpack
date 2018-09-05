@@ -13,6 +13,12 @@ var content = app.controller('contentCtrl', function ($scope, $stateParams, $htt
 
     //////////////////////////////////商城顶部配置////////////////////////////////////
 
+/*    var windowUrl = window.location.href;
+    if(windowUrl.indexOf('https://scu-mall') != -1){
+        $scope.isScu = 'scu';
+    }*/
+    $scope.isScu = 'scu';
+
     /**
      * 获取当前学校 logo name**/
     orgService.getSchool($stateParams.orgId, function (data) {

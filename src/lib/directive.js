@@ -857,10 +857,46 @@ module.directive('compile', ['$compile', '$timeout', function ($compile, $timeou
     };
 }]);
 
-module.directive('loginBind', [function () {
+module.directive('loginBind', ['$http', function ($http) {
     return {
         restrict: 'EA',
-        template: require('../components/loginBind/bind.html')
+        scope: {
+            orgId: '@orgId'
+        },
+        template: require('../components/loginBind/bind.html'),
+        link: function ($scope) {
+            if($scope.orgId == 'scu'){
+                //如果是四川大学
+                $scope.loginMask = true;
+
+                $http.get(global.mall.api + '/auths/userMsg').then(function (data) {
+                    console.log(data);
+                    if(data.canBandingWx == true){
+                        if(data.bandingWx == false){
+                            console.log('可以绑定微信');
+                            //没有绑定微信
+                            function guid() {
+                                return 'xxxxxxxxxxxxxx4xxxxyxxxyxxxxxxxx'.replace(/[xy]/g, function(c) {
+                                    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                                    return v.toString(16);
+                                });
+                            }
+                            var uuid = guid(); //32位随机uuid
+                            console.log(uuid);
+                             var timerInterval = setInterval(function () {
+                             console.log('执行了');
+                             $http.get(global.mall.api + '/auths/wxQrCode?uuid='+uuid + '&type=BANDING').then(function (res) {
+                             console.log(res);
+                             });
+                             }, 10000)
+                        }
+                    }
+                });
+                $scope.closeLogin = function () {
+                    $scope.loginMask = false;
+                }
+            }
+        }
     }
 }]);
 
