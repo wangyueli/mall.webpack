@@ -195,11 +195,11 @@
                         {{item.mallSimpleName}}
                     </a>
                 </li>
-                <li class="nav-menu-class mr30">
+                <!--<li class="nav-menu-class mr30">
                     <a ng-href="{{'/#/square?where=normal'}}" ng-class="{active: currentPath == 'square'}">采购广场</a>
                     <i class="tip">优惠</i>
-                </li>
-                <li class="nav-menu-class">
+                </li>-->
+                <li class="nav-menu-class" ng-show="haveEsmall">
                     <a ng-href="{{'/#/org'}}" ng-class="{active: currentPath == 'org'}">供应商名录</a>
                 </li>
             </ul>

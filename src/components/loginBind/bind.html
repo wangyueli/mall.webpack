@@ -1,12 +1,12 @@
 <div class="logins" ng-show="loginMask">
-    <div class="content-code">
+    <div class="content">
+        <i class="close-login icon icon-close1" ng-click="closeLogin()"></i>
         <div class="header">
             <span class="title titleActive">绑定微信</span>
             <!--<span class="title titleActive">微信登录</span>-->
             <s class="split">|</s>
             <span class="title">绑定手机</span>
             <!--<span class="title">手机登录</span>-->
-            <i class="icon icon-close1" ng-click="closeLogin()"></i>
         </div>
         <div class="bind-content">
             <!--<a class="how" target="_blank" ng-href="{{'/#/bind'}}">
@@ -14,7 +14,7 @@
             </a>
             <div class="align-c color3">如果您已绑定「资采通」请打开&nbsp;<span class="weight colorRed">手机微信</span>&nbsp;扫码登录</div>-->
             <div class="code">
-                <img src="images/add.png" width="170" height="170">
+                <img src="images/weixin.jpg" width="170" height="170">
             </div>
             <div class="mt20 align-c font14">打开<span class="colorRed weight">&nbsp;手机微信&nbsp;</span>扫码绑定</div>
 <!--            <div class="mt20 align-c font14">打开<span class="colorRed weight">&nbsp;手机微信&nbsp;</span>扫码登录</div>-->
@@ -27,9 +27,21 @@
         <div class="footer">
             <span class="weight">职工号登录：</span><a>点此去登录 >></a>
         </div>
+        <!--二维码失效-->
+        <!--<div class="mask">
+            <p class="detail">二维码已失效</p>
+            <span class="new">点击刷新</span>
+            &lt;!&ndash;<div class="new">
+                <img class="loading" src="images/loading.gif">
+            </div>&ndash;&gt;
+        </div>-->
     </div>
+    <!--扫码接受在手机端确认-->
+    <!--<div class="content">
+        <i class="sweep-success icon icon-roundcheck"></i>
+        <p class="sweep-success-word">请在手机端确认</p>
+    </div>-->
     <!--手机登录-->
-    <div class="content-mobile">
+    <div class="content-mobile"></div>\
 
-    </div>
 </div>

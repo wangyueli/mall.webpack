@@ -90,6 +90,18 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
         });
     });
 
+    /*
+     * 值得购买*/
+    $scope.worthProts = [];
+    productService.worthBuy('JD-Promo-20180828', 'worthToBuyProduct', function (data) {
+        _.each(data, function (item) {
+            productService.get(item.mallId, item.value, function (detail) {
+                detail.pic = detail.pic.split(',')[0];
+                $scope.worthProts.push(detail);
+            })
+        });
+    });
+
     /**
      * 热卖商品 热卖品类*/
     $scope.mallProIds = '';

@@ -58,6 +58,9 @@ var AppController =app.controller("AppController",
         }else if(windowUrl.indexOf('https://swufe-mall') != -1){
             //西南财经（深蓝色）
             linkNode.setAttribute("href","skin-css/bnu-skin.css");
+        }else if(windowUrl.indexOf('https://ahu-mall') != -1){
+            //安徽大学（深蓝色）
+            linkNode.setAttribute("href","skin-css/bnu-skin.css");
         }else {
             //默认云采通红
             linkNode.setAttribute("href","skin-css/yct-skin.css");

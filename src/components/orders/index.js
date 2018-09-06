@@ -107,6 +107,37 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
         })
     };
 
+    /*
+    * 打印订单 电子发票*/
+    $scope.print = function (type, ordId) {
+        ordersService.get(ordId, function (order) {
+            if(type == 'ordMsg'){
+                //订单
+                if(order.bpmPreviewUrl){
+                    window.open(order.bpmPreviewUrl);
+                }else {
+                    swal({
+                        text: '暂未生成采购申请表',
+                        icon: 'warning',
+                        confirmButtonText: '确认'
+                    });
+                }
+            }
+            if(type == 'elctrInv'){
+                //电子发票
+                if(order.invoiceUrl.length>0){
+                    window.open(order.invoiceUrl[0]);
+                }else {
+                    swal({
+                        text: '暂未生电子发票',
+                        icon: 'warning',
+                        confirmButtonText: '确认'
+                    });
+                }
+            }
+        });
+    };
+
     //获取所有订单总价格
     $scope.productPrice = function(data) {
         var price = 0;

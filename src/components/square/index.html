@@ -43,7 +43,7 @@
     </div>
     <!--品牌馆-->
     <div class="square_brand">
-        <h2 class="title" style="background: #e9f7e1;">品牌馆</h2>
+        <h2 class="title-normal" style="background: #e9f7e1;">品牌馆</h2>
         <div class="brand-contents">
             <div class="brand">
                 <img src="images/square/b08.jpg">
@@ -73,7 +73,7 @@
     </div>
     <!--推荐商品-->
     <div class="square_commend">
-        <h2 class="title">值得买</h2>
+        <h2 class="title-normal">值得买</h2>
         <div  class="square_sibal_t">
             <div class="square_l" ng-repeat="good in worthProts">
                 <s class="save-p weight" ng-show="disCount(good.unitPrice/good.unitPriceShow)<10" ng-bind="disCount(good.unitPrice/good.unitPriceShow) + '折'"></s>
@@ -83,7 +83,7 @@
                 <div class="col_price">{{good.unitPrice | number:2}}</div>
                 <p><s class="s-price">￥{{good.unitPriceShow | number:2}}</s></p>
                 <div class="col_name">
-                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">{{good.name}}</a>
+                    <a title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">{{good.name}}</a>
                 </div>
                 <a class="addcar" ng-click="addGoods(good, 1)"><i class="iconfont icon-shopping2"></i>加入购物车</a>
             </div>

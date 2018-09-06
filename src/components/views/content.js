@@ -59,7 +59,10 @@ var content = app.controller('contentCtrl', function ($scope, $stateParams, $htt
     $scope.getUseMall = function(orgId){
         orgService.getUseMall(orgId, function (data) {
             $scope.mallMsg = data;
-            var esMall = _.find(data, function (item) {
+            $scope.haveEsmall = _.find(data, function (item) {
+                return item.mallBussinessType == 'esmall';
+            });
+            /*var esMall = _.find(data, function (item) {
                 return item.mallBussinessType == 'esmall'
             });
             if(esMall && $scope.currentPath==''){
@@ -74,12 +77,8 @@ var content = app.controller('contentCtrl', function ($scope, $stateParams, $htt
                         $rootScope.productPrice($scope.mallProIds);
                     }
                 });
-            }
+            }*/
 
-            //更多协议热卖
-            $scope.moreEsmallHot = function () {
-                window.open('/#/product?mallId=' + esMall.mallId);
-            };
             if($stateParams.mallId){
                 //设置当前搜索频道
                 var nowChannel = _.find(data, function (item) {

@@ -152,6 +152,18 @@
     line-height: 65px;
   }
 }
+//背景titile
+.title-normal{
+  margin: 20px 0;
+  position: relative;
+  font-family: "微软雅黑";
+  font-weight: 400;
+  font-size: 25px;
+  text-align: center;
+  letter-spacing: 2px;
+  padding: 10px 0;
+  background-color: #e1f0f7;
+}
 
 /*-----------------头部小导航(公用)------------------*/
 .crumbs-bar{
@@ -2920,10 +2932,9 @@
     color: #999;
   }
   .go{
-    color: #666;
+    color: $g3;
     &:hover{
       text-decoration: underline;
-      color: #666;
     }
   }
   .sp-colr{
@@ -2945,7 +2956,7 @@
     border-top: $border-gray;
     line-height: 31px;
     background: #f4f8fa;
-    color: $g6;
+    color: $g3;
   }
   .father-btn{
     vertical-align: middle;
@@ -3882,6 +3893,7 @@
         width: 1000px;
         overflow: hidden;
         margin-top: 20px;
+        font-size: 14px;
         li{
           width: 10%;
           float: left;
@@ -5910,16 +5922,6 @@
   @include  wh(1200px,auto);
   margin:-20px auto 0;
   padding-bottom: 40px;
-  .title{
-    position: relative;
-    font-family: "微软雅黑";
-    font-weight: 400;
-    font-size: 25px;
-    text-align: center;
-    letter-spacing: 2px;
-    padding: 10px 0;
-    background-color: #e1f0f7;
-  }
   .square_header{
     width: 100%;
     overflow:hidden;
@@ -5946,89 +5948,100 @@
       }
     }
   }
-  .square_commend{
-    @include  wh(100%,auto);
-    .square_sibal_t{
-      margin: 20px 0;
-      width: 100%;
-      overflow: hidden;
-      .square_l{
+}
+.square_commend{
+  @include  wh(1200px,auto);
+  margin: 0 auto;
+  .square_sibal_t{
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    .square_l{
+      position: relative;
+      @include  wh(200px,230px);
+      float: left;
+      margin:9px;
+      padding:10px;
+      border: 1px solid transparent;
+      &:hover{
+        border: 1px solid #eaeaea;
+        box-shadow: 0 0 8px 5px #f2f2f2;
+      }
+      .col_img{
+        @include  wh(120px,120px);
+        margin:0  auto  5px;
+        overflow:hidden;
         position: relative;
-        @include  wh(200px,230px);
-        float: left;
-        margin:9px;
-        padding:10px;
-        border: 1px solid transparent;
+        img{
+          display: block;
+          cursor:pointer;
+          @include  wh(100%,100%);
+
+        }
+      }
+      .col_price{
+        position: relative;
+        font-size: 18px;
+        font-weight: 700;
+        color: #ec3e3b;
+        line-height: 20px;
+      }
+      .s-price{
+        text-decoration:line-through;
+        color:#999;
+
+      }
+      .col_name{
+        margin: 4px 0;
+        height: 17px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        a{
+          color:#000;
+        }
+      }
+      .addcar{
+        display: inline-block;
+        width: 96px;
+        border-radius: 2px;
+        border: 1px solid #e11e2d;
+        margin-top: 5px;
+        @include center(26px,#e11e2d);
         &:hover{
-          border: 1px solid #eaeaea;
-          box-shadow: 0 0 8px 5px #f2f2f2;
+          background: #e11e2d;
+          color:#fff;
         }
-        .col_img{
-          @include  wh(120px,120px);
-          margin:0  auto  5px;
-          overflow:hidden;
-          position: relative;
-          img{
-            display: block;
-            cursor:pointer;
-            @include  wh(100%,100%);
-
-          }
+        i{
+          line-height: 1;
+          margin-right: 4px;
         }
-        .col_price{
-          position: relative;
-          font-size: 18px;
-          font-weight: 700;
-          color: #ec3e3b;
-          line-height: 20px;
-        }
-        .s-price{
-          text-decoration:line-through;
-          color:#999;
-
-        }
-        .col_name{
-          margin: 4px 0;
-          height: 17px;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
-
-          a{
-            color:#000;
-          }
-        }
-        .addcar{
-          display: inline-block;
-          width: 96px;
-          border-radius: 2px;
-          border: 1px solid #e11e2d;
-          margin-top: 5px;
-          @include center(26px,#e11e2d);
-          &:hover{
-            background: #e11e2d;
-            color:#fff;
-          }
-          i{
-            line-height: 1;
-            margin-right: 4px;
-          }
-        }
-        .save-p{
-          top: -7px;
-        }
+      }
+      .save-p{
+        top: -7px;
       }
     }
   }
 }
+
 /*-------------------登录-------------------*/
 .logins{
   @extend %position-fixed;
   background: rgba(0, 0, 0, .4);
   z-index: 999;
-  .content-code{
+  .content{
+
     @include position-ab(400px, 420px);
     background: #fff;
+    .close-login{
+      z-index: 10;
+      @include absolute-rt(0, 30px);
+      font-size: 22px;
+      font-weight: 700;
+      color: #000;
+      cursor: pointer;
+    }
     .header{
       position: relative;
       border-bottom: $border #f5f5f5;
@@ -6044,13 +6057,6 @@
       .titleActive{color: $jd-red;}
       .split{
         color: $gf5
-      }
-      .icon{
-        @include absolute-rt(0, 30px);
-        font-size: 22px;
-        font-weight: 700;
-        color: $g9;
-        cursor: pointer;
       }
     }
     .bind-content{
@@ -6100,9 +6106,42 @@
         text-decoration: underline;
       }
     }
+    .sweep-success{
+      @include position-ab(100px, 100px);
+      color: #43F323;
+      margin-top: -100px;
+      font-size: 102px;
+    }
+    .sweep-success-word{
+      margin-top: 280px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .mask{
+      z-index: 9;
+      @include position-ab(400px, 420px);
+      background: rgba(255, 255, 255, .9);
+      font-weight: bold;
+      .detail{
+        margin-top: 180px;
+        font-size: 16px;
+        text-align: center;
+      }
+      .new{
+        margin: 50px auto;
+        @include cube-block(100px, 30px);
+        line-height: 30px;
+        text-align: center;
+        cursor: pointer;
+        background: #f9f9f9;
+        border-radius: 5px;
+        color: #0ca4f5;
+        font-size: 14px;
+        border: 2px solid #ccc;
+      }
+    }
   }
   .content-mobile{
-
   }
 }
 

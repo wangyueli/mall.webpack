@@ -3,7 +3,7 @@
     /*重置分类display*/
     .nav-ct .categorys-f{display: block;}
     .gl-i-wrap{width: 194px; height: 230px; border: 1px solid #f2f2f2;}
-    .gl-i-wrap .p-img{width: 120px; height: 120px; margin: 0 auto 5px;}
+    .gl-i-wrap .p-img{width: 140px; height: 140px; margin: 0 auto 5px;}
     .gl-warp{width: 1212px; margin-left: -7px;}
     .gl-warp > .items{height: auto; width: auto;}
     .gl-i-wrap .p-name{margin: 4px 0; height: 17px; white-space:nowrap; text-overflow:ellipsis;}
@@ -28,15 +28,14 @@
     <div style="width: 1000px; height: 350px; margin: 0 auto; position: relative; left: 100px;"  ng-hide="nowMallId=='JD'">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img style="width: 1000px; height: 350px;" src="/images/banner1.png"></div>
-                <div class="swiper-slide"><img style="width: 1000px; height: 350px;" src="/images/mall-swp3.png"></div>
-                <div class="swiper-slide"><img style="width: 1000px; height: 350px;" src="/images/mall-swp1.jpg"></div>
+               <!-- <div class="swiper-slide"><img src="/images/banner1.png"></div>
+                <div class="swiper-slide"><img src="/images/mall-swp3.png"></div>-->
+                <div class="swiper-slide"><img src="/images/mall-swp1.jpg"></div>
             </div>
             <!-- 如果需要分页器 -->
-            <div class="swiper-pagination"></div>
+            <!--<div class="swiper-pagination"></div>-->
         </div>
     </div>
-
     <div style="width: 1200px; height: 350px; margin: 0 auto; position: relative;" ng-show="nowMallId=='JD'">
         <div class="banner" style="width: 1000px;">
             <ul>
@@ -54,7 +53,7 @@
         <div class="module" ng-show="allHots.hots">
             <div class="md-ctn">
                 <!--每个商品-->
-                <div class="gl-warp clearfix ml10">
+                <div class="gl-warp clearfix ml10" style="height: 245px;">
                     <div class="items" ng-repeat="good in hotProducts">
                         <div class="gl-i-wrap">
                             <s class="save-p weight" ng-show=" disCount(prices[good.data.productId].unitPrice/prices[good.data.productId].unitPriceShow)<10 && prices[good.data.productId].hasOwnProperty('unitPrice') && good.data.mallId=='JD'" ng-bind="disCount(prices[good.data.productId].unitPrice/prices[good.data.productId].unitPriceShow) + '折'"></s>

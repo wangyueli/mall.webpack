@@ -14,11 +14,11 @@
     <div style="width: 1000px; height: 350px; margin: 0 auto; position: relative; left: 100px;">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" ng-if="orgId=='15CCEAE93B72000163E006BB65C13007'"><img style="width: 1000px; height: 350px;" src="images/15CCEAE93B72000163E006BB65C13007.png"></div>
-                <div class="swiper-slide"><img style="width: 1000px; height: 350px;" src="images/banner1.png"></div>
+                <div class="swiper-slide" ng-if="orgId=='15CCEAE93B72000163E006BB65C13007'"><img src="images/15CCEAE93B72000163E006BB65C13007.png"></div>
+                <div class="swiper-slide" ng-if="orgId!=15CAA78F25D2000163E006BB64C3E008"><img src="images/banner1.png"></div>
                 <div class="swiper-slide" ng-if="haveJd"><img src="images/jd-banner.jpg"></div>
-                <div class="swiper-slide"><img style="width: 1000px; height: 350px;" src="images/mall-swp3.png"></div>
-                <div class="swiper-slide"><img style="width: 1000px; height: 350px;" src="images/mall-swp1.jpg"></div>
+                <div class="swiper-slide"><img src="images/mall-swp3.png"></div>
+                <div class="swiper-slide" ng-if="orgId!=15CAA78F25D2000163E006BB64C3E008"><img src="images/mall-swp1.jpg"></div>
             </div>
             <!-- 如果需要分页器 -->
             <div class="swiper-pagination"></div>
@@ -75,6 +75,24 @@
             </li>
         </ul>
     </div>
+    <!--推荐商品-->
+    <div class="square_commend">
+        <h2 class="title-normal">值得买</h2>
+        <div  class="square_sibal_t">
+            <div class="square_l" ng-repeat="good in worthProts">
+                <s class="save-p weight" ng-show="disCount(good.unitPrice/good.unitPriceShow)<10" ng-bind="disCount(good.unitPrice/good.unitPriceShow) + '折'"></s>
+                <div class="col_img">
+                    <a ng-href="#/product/detail?mallId={{good.mallId}}&id={{good.id}}" target="_blank"><img ng-src="{{good.pic}}"></a>
+                </div>
+                <div class="col_price">{{good.unitPrice | number:2}}</div>
+                <p><s class="s-price">￥{{good.unitPriceShow | number:2}}</s></p>
+                <div class="col_name">
+                    <a href=""  title="联想ThinkPad E470c（01CD）14英寸笔记本电脑（i5-6200U 8G 256G SSD 2G独显 Win10）黑色">{{good.name}}</a>
+                </div>
+                <a class="addcar" ng-click="addGoods(good, 1)"><i class="iconfont icon-shopping2"></i>加入购物车</a>
+            </div>
+        </div>
+    </div>
     <!--商城动态订单-->
     <div class="scorll-orders">
         <h2 class="es-hot-title">商城<span>动态</span></h2>
@@ -89,7 +107,7 @@
         </ul>
     </div>
     <!--优惠专区入口-->
-    <div id="home_brand">
+    <!--<div id="home_brand">
         <h2 class="es-hot-title"><span>惠</span>·推荐&nbsp;|&nbsp;<span>选</span>·品质</h2>
         <div class="brand-contents">
             <div class="brand">
@@ -129,7 +147,7 @@
                 <a href="#/sale?id=12&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">松下专场</div></a>
             </div>
         </div>
-    </div>
+    </div>-->
     <div id="hot-content" ng-show="hotProducts || esMallPros">
         <div class="hot-title">
             <span></span>
@@ -196,12 +214,12 @@
             </div>
         </div>
     </div>
-    <div id="see_more">
+    <!--<div id="see_more">
         <div class="hot_center">
             <h3 class="floor_tit">没有找到想要的商品？</h3>
         </div>
         <div class="floor_btn"><a href="#/square?where=more" target="_blank">查看更多优惠热卖</a></div>
-    </div>
+    </div>-->
     <!--底部icon-->
     <div id="main_bottom">
         <div>

@@ -40,8 +40,8 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
         $scope.noPay = false;
         orderService.getList($scope.choiceAddressId, $scope.cartId, $scope.thismallId, function(data) {
             $scope.productList = data;
-            if(data.payPrice>20000 && $cookies.get('orgId')=='58609'){
-                //如果是湖南大学，订单总额超过2万，不容许下单;
+            if( (data.payPrice>20000 && $cookies.get('orgId')=='58609') || (data.payPrice>20000 && $cookies.get('orgId')=='15CAA78F25D2000163E006BB64C3E008') ){
+                //如果是湖南大学 北京师范大学，订单总额超过2万，不容许下单;
                 swal({
                     text: "根据学校要求，单笔订单总额超过2万元，无法下单！",
                     type: 'warning',

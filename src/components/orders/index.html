@@ -188,7 +188,9 @@
                                 <a class="default" ng-click="toPayCard(order.id)" ng-show="order.status=='NEW' ">确认经费</a>
                                 <a class="default" ng-click="toPay(order.id)" ng-show="order.status=='ADOPT' ">去支付</a>
                                 <a class="default" ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' && schoolId=='58212' || order.status=='RECEIVE' && schoolId=='58212' ">确认收货</a>
-                                <a class="gr-colr"  ng-click="delOrder(order.id, '取消订单')" ng-show="order.status=='NEW'|| order.status=='RECEIVE' || order.status=='ADOPT' ">取消订单</a>
+                                <a class="gr-colr" ng-click="delOrder(order.id, '取消订单')" ng-show="order.status=='NEW'|| order.status=='RECEIVE' || order.status=='ADOPT' ">取消订单</a>
+                                <a class="blue" ng-click="print('ordMsg', order.id)" ng-show="order.status=='FINISHED' && order.invoiceSubmit=='school' ">打印采购申请表</a>
+                                <a class="blue" ng-click="print('elctrInv', order.id)" ng-show="order.status=='FINISHED' ">打印电子发票</a>
                             </td>
                         </tr>
                     </tbody>
@@ -203,11 +205,11 @@
                                 <span  class="ml10" ng-bind="order.createTime | date : 'yyyy-MM-dd HH:mm:ss'"></span>
                                 <span class="ml10">
                                     父订单号：
-                                    <a style="color: #999;">
+                                    <a style="color: #333;">
                                         <span ng-bind="order.id"></span>
                                     </a>
                                 </span>
-                                <span style="color: dodgerblue; padding-left: 10px;">您订单中商品在不同仓库或不同商家，故拆分为以下订单分开配送，给您带来的不便敬请谅解。</span>
+                                <span style="color: #333; padding-left: 10px;">您订单中商品在不同仓库或不同商家，故拆分为以下订单分开配送，给您带来的不便敬请谅解。</span>
                                 <s style="color: #ec3e3b;">（订单状态：已拆分）</s>
                             </th>
                         </tr>
@@ -299,8 +301,11 @@
                                                     <div class="mt5"><a class="gr-colr" ng-href="{{'/#/orders/detail?id=' + orderCd.id}}" target="_blank">查看详情</a></div>
                                                 </div>
                                             </td>
+                                            <!--子订单操作-->
                                             <td class="btns">
                                                 <a class="blue" ng-click="copy(orderCd)">立即购买</a>
+                                                <a class="blue" ng-click="print('ordMsg', orderCd.id)" ng-show="orderCd.status=='FINISHED' && orderCd.invoiceSubmit=='school' ">打印采购申请表</a>
+                                                <a class="blue" ng-click="print('elctrInv', orderCd.id)" ng-show="orderCd.status=='FINISHED' ">打印电子发票</a>
                                             </td>
                                         </tr>
                                         </tbody>
