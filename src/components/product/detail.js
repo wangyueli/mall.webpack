@@ -39,7 +39,16 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 			$scope.categoryId = $scope.detail.categories[random].id;
 
 			//品牌优惠
-			productService.getList($stateParams.mallId, $cookies.get('orgId'), $scope.categoryId, null, $scope.detail.brand, 0, 10, null, null, null, null, 'discountRate desc', function (data) {
+			$scope.paramsReduce = {
+				'mallId': $stateParams.mallId,
+				'orgId':  $cookies.get('orgId'),
+				'categoryId': $scope.categoryId,
+				'brand': $scope.detail.brand,
+				'page': 0,
+				'rows': 10,
+				'sort': 'discountRate desc'
+			};
+			productService.getListCache($scope.paramsReduce, function (data) {
 				$scope.bGoods = data.product.rs;
 				$scope.mallProIds = '';
 				_.each($scope.bGoods, function (good) {
@@ -57,7 +66,16 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 			});
 
 			//新品上市
-			productService.getList($stateParams.mallId, $cookies.get('orgId'), $scope.categoryId, null, $scope.detail.brand, 0, 10, null, null, null, null, 'upTime desc', function (data) {
+			$scope.paramsNew = {
+				'mallId': $stateParams.mallId,
+				'orgId':  $cookies.get('orgId'),
+				'categoryId': $scope.categoryId,
+				'brand': $scope.detail.brand,
+				'page': 0,
+				'rows': 10,
+				'sort': 'upTime desc'
+			};
+			productService.getListCache($scope.paramsNew, function (data) {
 				$scope.nGoods = data.product.rs;
 				$scope.mallProIdsNew = '';
 				_.each($scope.nGoods, function (good) {
@@ -72,7 +90,7 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 				});
 				//价格
 				$rootScope.productPrice($scope.mallProIdsNew);
-			});
+			})
 		});
 
 		//推荐商品

@@ -18,11 +18,6 @@ var homeService = app.service('homeService', function ($http) {
         },global.mall.api)).then(f)
     };
 
-    //获取商品列表 （简化）
-    this.getPrtList = function(params, f) {
-        $http.get(url.url('/homerecommend/product/content', params, global.mall.api)).then(f);
-    };
-
     //公告
     this.publics = function (orgId, mallId, f) {
         $http.get(url.url('/announcement/content', {

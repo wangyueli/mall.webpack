@@ -3836,7 +3836,7 @@
     }
     .md-ctn{
       width: 1200px;
-      max-height: 480px;
+      max-height: 500px;
       padding: 10px 0;
       overflow: hidden;
     }
@@ -5958,7 +5958,7 @@
     background: #fff;
     .square_l{
       position: relative;
-      @include  wh(200px,230px);
+      @include  wh(200px,240px);
       float: left;
       margin:9px;
       padding:10px;
@@ -5968,7 +5968,7 @@
         box-shadow: 0 0 8px 5px #f2f2f2;
       }
       .col_img{
-        @include  wh(120px,120px);
+        @include  wh(140px,140px);
         margin:0  auto  5px;
         overflow:hidden;
         position: relative;

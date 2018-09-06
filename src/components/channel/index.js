@@ -47,7 +47,7 @@ var channel = app.controller('channelCtrl', function ($scope, $rootScope, $filte
             'sort': 'discountRate desc',
             'categoryId': cayId
         };
-        homeService.getPrtList($scope.paramsCary, function (prot) {
+        productService.getListCache($scope.paramsCary, function (prot) {
             //图片改为小尺寸的；
             _.each(prot.product.rs, function (good) {
                 good.pic = good.pic.replace('/n0/', '/n2/');

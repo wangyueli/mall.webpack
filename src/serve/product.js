@@ -21,6 +21,11 @@ var productService = app.service('productService', function ($http) {
         }, global.mall.api)).then(f);
     };
 
+    //获取商品列表 （简化）
+    this.getListCache = function(params, f) {
+        $http.get(url.url('/homerecommend/product/content', params, global.mall.api)).then(f);
+    };
+
     //获取详情页面数据;
     this.get = function(mallId, id, f) {
         $http.get(url.url('/mallproduct/detail', {
@@ -28,6 +33,15 @@ var productService = app.service('productService', function ($http) {
             'productId': id
         }, global.mall.api)).then(f);
     };
+
+    //获取详情页面数据cache;
+    this.getDetailCache = function(mallId, id, f) {
+        $http.get(url.url('/mallproduct/detail/cache', {
+            'mallId': mallId,
+            'productId': id
+        }, global.mall.api)).then(f);
+    };
+
 
     //获取路由里分类
     this.getCategory = function (mallId, categoryId, f) {
@@ -88,10 +102,12 @@ var productService = app.service('productService', function ($http) {
     };
 
     //值得购买
-    this.worthBuy = function (sbj, type, f) {
+    this.worthBuy = function (sbj, type, page, rows, f) {
         $http.get(url.url('/recommendSquare/list', {
             'subject': sbj,
-            'type': type
+            'type': type,
+            'page': page,
+            'rows': rows
         }, global.mall.api)).then(f);
     }
 

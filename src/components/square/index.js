@@ -35,7 +35,7 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
         categoryService.get('', data.id, function (cary) {
             _.each(cary.data, function (item, parentIndex) {
                 $scope.paramsHotOrd.categoryId = item.data.categoryId;
-                homeService.getPrtList($scope.paramsHotOrd, function (prts) {
+                productService.getListCache($scope.paramsHotOrd, function (prts) {
                     if(prts.product.rs.length>0){
                         _.each(prts.product.rs, function (good, index) {
                             if(good.salesNum>0){
@@ -57,14 +57,26 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
     /*
     * 值得购买*/
     $scope.worthProts = [];
-    productService.worthBuy('JD-Promo-20180828', 'worthToBuyProduct', function (data) {
-        _.each(data, function (item) {
-            productService.get(item.mallId, item.value, function (detail) {
-                detail.pic = detail.pic.split(',')[0];
-                $scope.worthProts.push(detail);
-            })
+    $scope.pagePrt = 0;
+    $scope.getRecommend = function () {
+        productService.worthBuy('JD-Promo-20180828', 'worthToBuyProduct', $scope.pagePrt, '10', function (data) {
+            if(data.length>0){
+                _.each(data, function (item) {
+                    productService.getDetailCache(item.mallId, item.value, function (detail) {
+                        detail.pic = detail.pic.split(',')[0];
+                        $scope.worthProts.push(detail);
+                    })
+                });
+            }else {
+                clearInterval(timer);
+            }
         });
-    });
+    };
+    $scope.getRecommend();
+    var timer = setInterval(function () {
+        $scope.pagePrt++;
+        $scope.getRecommend();
+    }, 2000);
 
     //banner 初始化
     var mySwiper1= new Swiper(".swiper-container",{

@@ -30,7 +30,7 @@
         </div>
     </div>
     <!--商城动态订单-->
-    <div class="scorll-orders">
+    <div class="scorll-orders" ng-show="hotOrders.length>0">
         <ul id="scroll">
             <li class="item-order" ng-repeat="good in hotOrders">
                 <s class="save-p weight" ng-show="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) < 10" ng-bind="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) + '折'"></s>
