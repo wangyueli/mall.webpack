@@ -947,6 +947,18 @@
 }
 .preview{
   box-sizing: border-box;
+  .my-save{
+    width: 100px;
+    margin-top: 10px;
+    i{
+      color:#ccc;
+      margin-right:20px;
+      font-size: 15px;
+    }
+    &:hover{
+      cursor: pointer;
+    }
+  }
   .big-p{
     width:250px;
     height: 250px;
@@ -981,7 +993,6 @@
     }
   }
 }
-
 .itemInfo-wrap{
   .item-title{
     width: 100%;
@@ -1034,6 +1045,47 @@
       line-height:26px;
       .shuliang{
         @include absolute-lf(0, 108px);
+      }
+    }
+    .annex{
+      .promotion{
+         @include  wh(100%,27px);
+        ul{
+          overflow: hidden;
+          box-sizing:border-box;
+          padding-left: 15px;
+          li{
+            float: left;
+            margin-right: 18px;
+            span{
+               vertical-align: top;
+            }
+            &:first-child  a{
+              color: #ec3e3b;
+              border: 1px solid #ec3e3b;
+              font-size: 14px;
+              margin-left: 10px;
+            }
+            &:last-child{
+              padding-top:5px;
+              color:#d1d1d1;
+            }
+            img{
+              @include   wh(20px,20px);
+              margin-right: 10px;
+              font-weight: 800;
+            }
+          }
+        }
+      }
+      p{
+        margin-left: 15px;
+        span{
+          margin-right: 15px;
+        }
+        .annex_span{
+            color:#ec3e3b;
+        }
       }
     }
     .price-f{
@@ -1102,9 +1154,10 @@
       margin-top: 55px;
       a{
         @extend %red-btn;
-        width: 128px;
+        width: 105px;
         line-height: 38px;
         font-size: 18px;
+        margin-right: 10px;
       }
     }
 
@@ -1337,6 +1390,48 @@
       }
     }
   }
+}
+
+//侧边栏
+.wrap_sidebar{
+   width: 70px;
+   border: 1px solid #ccc;
+   position:fixed;
+   right: 0;
+   top:32%;
+   background-color: #fff;
+   li{
+     border-bottom:1px solid #ccc;
+     text-align: center;
+     a{
+       color:#666;
+       display: block;
+     }
+     &:nth-child(1),
+     &:nth-child(2),
+     &:nth-child(3),
+     &:nth-child(4){
+       line-height: 60px;
+     }
+
+     &:last-child,&:nth-child(5){
+        box-sizing: border-box;
+        padding-top: 8px;
+     }
+     .kefu{
+       @include cube-block(17px, 12px);
+       padding:10px 0  10px  18px;
+       @include bg-center-img("/images/icon.png");
+       background-position: 0  -87px;
+       margin: 0  0  8px  22px;
+     }
+     .back_top{
+       @include cube-block(5px, 0px);
+       padding:26px 0  6px  68px;
+       background-position: 0  -233px;
+       @include bg-center-img("/images/icon.png");
+     }
+   }
 }
 
 /*----------------product >compare 对比-----------------*/
@@ -5130,6 +5225,7 @@
             float: left;
             box-sizing: border-box;
             padding: 15px  0  0  15px;
+            font-size: 17px;
             strong{
               font-size: 22px;
               font-weight:740;

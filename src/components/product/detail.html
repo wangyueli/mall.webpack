@@ -25,7 +25,9 @@
 			</div>
 			<div id="mark"></div>
 			<div id="float-box"></div>
-			<!--<div class="my-save"><i class="icon icon-xin2"></i>关注</div>-->
+			<div class="my-save">
+				<i class="icon icon-xin2"></i>关注
+			</div>
 		</div>
 		<!--放大镜 大图-->
 		<div id="big-box">
@@ -94,6 +96,18 @@
 					<a class="btn-special not-allowed" href="javascript:;">立即购买</a>
 				</div>-->
 				<!--可销售地区-->
+				<div class="annex">
+					<div class="promotion">
+						<ul>
+							<li>促&nbsp;&nbsp;销&nbsp;&nbsp;<a href="">赠品</a></li>
+							<li><img src="images/square/b01.jpg" alt=""><span>x1</span></li>
+							<li><img src="images/square/b02.jpg" alt=""><span>x1</span></li>
+							<li><img src="images/square/b03.jpg" alt=""><span>x1</span></li>
+							<li>(赠完为止)</li>
+						</ul>
+					</div>
+					<p><span>附&nbsp;&nbsp;件</span><span>电源线2米</span><span class="annex_span">附件缺货</span></p>
+				</div>
 				<div class="f-addr clearfix">
 					<span class="float-l ml5">配送至</span>
 					<div class="addr-sl" ng-mouseenter="ifAddrShow=true;" ng-mouseleave="ifAddrShow=false;">
@@ -153,7 +167,10 @@
 					</div>
 					<a href="javascript:;" class="ml15" ng-click="addGoods(detail, num)" ng-hide="haveProduct.stock == 'stock_out'">加入购物车</a>
 					<a href="javascript:;" class="ml15" style="background: #ccc;" ng-show="haveProduct.stock == 'stock_out'">加入购物车</a>
+					<a href="javascript:;"  style="background:#37b537;">立即购买</a>
 				</div>
+
+
 			</div>
 		</div>
 	</div>
@@ -352,4 +369,23 @@
 		</div>
 	</div>
 </div>
+<!--侧边栏-->
+<div class="wrap_sidebar">
+	<ul>
+		<li><a href="">值得买</a></li>
+		<li><a href="">扫码</a></li>
+		<li><a href="">购前调研</a></li>
+		<li><a href="">竞价购</a></li>
+		<li>
+			<a href="">
+				<i class="kefu"></i>
+				   客服热线
+		    </a>
+		</li>
+		<li><a href="javascript:window.scrollTo( 0, 0 );" ><i class="back_top"></i>回顶部</a></li>
 
+
+
+
+	</ul>
+</div>

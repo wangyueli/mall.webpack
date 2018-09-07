@@ -206,6 +206,22 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 	$scope.hideNameHot = function(i) {
 		jquery(".hot-item-name" + i).css({'display':'none', 'top':'170px'});
 	};
+
+	/*
+	* 店铺关注
+	* */
+	var box = document.getElementsByClassName("my-save")[0];
+	var icon = box.getElementsByTagName("i")[0];
+    var count = 0;
+    box.onclick = function() {
+        count++;
+        if (count%2 == 1) {
+            icon.style.color = "#e11e2d";
+        }else {
+            icon.style.color = "#ccc";
+        }
+    }
+
 });
 
 module.exports = productDetail;
