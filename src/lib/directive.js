@@ -861,40 +861,64 @@ module.directive('loginBind', ['$http', function ($http) {
     return {
         restrict: 'EA',
         scope: {
-            orgId: '@orgId'
+            orgId: '@orgId',
+            token: '@accessToken'
         },
         template: require('../components/loginBind/bind.html'),
         link: function ($scope) {
-            if($scope.orgId == 'scu'){
-                //如果是四川大学
-                $scope.loginMask = true;
-
-                $http.get(global.mall.api + '/auths/userMsg').then(function (data) {
-                    console.log(data);
-                    if(data.canBandingWx == true){
-                        if(data.bandingWx == false){
-                            console.log('可以绑定微信');
-                            //没有绑定微信
-                            function guid() {
-                                return 'xxxxxxxxxxxxxx4xxxxyxxxyxxxxxxxx'.replace(/[xy]/g, function(c) {
-                                    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-                                    return v.toString(16);
-                                });
-                            }
-                            var uuid = guid(); //32位随机uuid
-                            console.log(uuid);
-                             var timerInterval = setInterval(function () {
-                             console.log('执行了');
-                             $http.get(global.mall.api + '/auths/wxQrCode?uuid='+uuid + '&type=BANDING').then(function (res) {
-                             console.log(res);
-                             });
-                             }, 10000)
-                        }
-                    }
+            //二维码
+            function guid() {
+                return 'xxxxxxxxxxxxxx4xxxxyxxxyxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                    return v.toString(16);
                 });
-                $scope.closeLogin = function () {
+            }
+            var uuid = guid(); //32位随机uuid
+            console.log(uuid);
+            $scope.codeImg = global.mall.api + '/auths/wxQrCode?uuid='+uuid + '&type=BANDING' + '&access_token=' + $scope.token;
+
+            //绑定微信权利
+            $http.get(global.mall.api + '/auths/userMsg').then(function (data) {
+                if(data.canBandingWx == true){
+                    if(data.bandingWx == false){
+                        //没有绑定微信
+                        if($scope.orgId == 'scu'){
+                            //如果是四川大学
+                            $scope.loginMask = true;
+                        }
+
+                    }
+                }else {
                     $scope.loginMask = false;
                 }
+            });
+
+            //有没有扫码, 有没有过期
+            $scope.Ifoverdue = function () {
+                 $http.get(global.mall.api + '/auths/wxReuslt?uuid='+uuid).then(function (res) {
+                     console.log(res);
+                     if(res.type == 'ACTION'){
+                         //已被扫码
+                         $scope.alreadyScan = true;
+                     }else if(res.type == 'TIMEOUT'){
+                         //二维码过期
+                     }else if(res.type == 'OK'){
+                         //绑定操作成
+                         clearInterval(timerInterval);
+                     }else {
+                         console.log('出现意料之外的错误');
+                     }
+                 });
+             };
+             $scope.Ifoverdue();
+            var timerInterval = setInterval(function () {
+                $scope.Ifoverdue();
+                console.log('在问后台有没有扫码，有没有过期');
+            }, 2000);
+
+
+            $scope.closeLogin = function () {
+                $scope.loginMask = false;
             }
         }
     }

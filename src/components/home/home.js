@@ -39,6 +39,30 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
             _.each(data, function (item) {
                 if(item.mallId=='JD'){
                     $rootScope.haveJd = true;
+
+                    /*
+                     * 值得购买*/
+                    $scope.worthProts = [];
+                    $scope.pagePrt = 0;
+                    $scope.getRecommend = function () {
+                        productService.worthBuy('JD-Promo-20180828', 'worthToBuyProduct', $scope.pagePrt, '10', function (data) {
+                            if(data.length>0){
+                                _.each(data, function (item) {
+                                    productService.getDetailCache(item.mallId, item.value, function (detail) {
+                                        detail.pic = detail.pic.split(',')[0];
+                                        $scope.worthProts.push(detail);
+                                    })
+                                });
+                            }else {
+                                clearInterval(timer);
+                            }
+                        });
+                    };
+                    $scope.getRecommend();
+                    var timer = setInterval(function () {
+                        $scope.pagePrt++;
+                        $scope.getRecommend();
+                    }, 2000);
                 }
             });
             //banner 初始化
@@ -59,7 +83,7 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
     });
 
     /*
-    * 热卖订单*/
+    * 动态订单*/
     $scope.mallOrderIds = '';
     $scope.hotOrders = [];
     $scope.paramsHotOrd = {
@@ -89,30 +113,6 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
             })
         });
     });
-
-    /*
-     * 值得购买*/
-    $scope.worthProts = [];
-    $scope.pagePrt = 0;
-    $scope.getRecommend = function () {
-        productService.worthBuy('JD-Promo-20180828', 'worthToBuyProduct', $scope.pagePrt, '10', function (data) {
-            if(data.length>0){
-                _.each(data, function (item) {
-                    productService.getDetailCache(item.mallId, item.value, function (detail) {
-                        detail.pic = detail.pic.split(',')[0];
-                        $scope.worthProts.push(detail);
-                    })
-                });
-            }else {
-                clearInterval(timer);
-            }
-        });
-    };
-    $scope.getRecommend();
-    var timer = setInterval(function () {
-        $scope.pagePrt++;
-        $scope.getRecommend();
-    }, 2000);
 
     /**
      * 热卖商品 热卖品类*/

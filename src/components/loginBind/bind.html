@@ -1,5 +1,5 @@
 <div class="logins" ng-show="loginMask">
-    <div class="content">
+    <div class="content" ng-hide="alreadyScan">
         <i class="close-login icon icon-close1" ng-click="closeLogin()"></i>
         <div class="header">
             <span class="title titleActive">绑定微信</span>
@@ -14,10 +14,10 @@
             </a>
             <div class="align-c color3">如果您已绑定「资采通」请打开&nbsp;<span class="weight colorRed">手机微信</span>&nbsp;扫码登录</div>-->
             <div class="code">
-                <img src="images/weixin.jpg" width="170" height="170">
+                <img ng-src="{{codeImg}}" width="170" height="170">
             </div>
             <div class="mt20 align-c font14">打开<span class="colorRed weight">&nbsp;手机微信&nbsp;</span>扫码绑定</div>
-<!--            <div class="mt20 align-c font14">打开<span class="colorRed weight">&nbsp;手机微信&nbsp;</span>扫码登录</div>-->
+            <!--<div class="mt20 align-c font14">打开<span class="colorRed weight">&nbsp;手机微信&nbsp;</span>扫码登录</div>-->
             <div class="tips">
                 <span><i class="icon icon-shuru1"></i>免输入</span>
                 <span>&nbsp;<i class="icon icon-shandian"></i>更快</span>
@@ -37,11 +37,11 @@
         </div>-->
     </div>
     <!--扫码接受在手机端确认-->
-    <!--<div class="content">
+    <div class="content" ng-show="alreadyScan">
         <i class="sweep-success icon icon-roundcheck"></i>
         <p class="sweep-success-word">请在手机端确认</p>
-    </div>-->
+    </div>
     <!--手机登录-->
-    <div class="content-mobile"></div>\
+    <div class="content-mobile"></div>
 
 </div>

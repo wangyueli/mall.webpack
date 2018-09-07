@@ -22,7 +22,7 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
     $scope.orgId = $cookies.get('orgId');
 
     /*
-     * 热卖订单*/
+     * 动态订单*/
     $scope.mallOrderIds = '';
     $scope.hotOrders = [];
     $scope.paramsHotOrd = {

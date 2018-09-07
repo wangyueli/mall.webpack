@@ -88,7 +88,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
 
             //是否协议商城
             $scope.esMall = data.esmall;
-            $rootScope.allPay = data.sumPrice;
+            $rootScope.allPay = data.payPrice;
         });
     };
 

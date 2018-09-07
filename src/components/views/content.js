@@ -13,6 +13,10 @@ var content = app.controller('contentCtrl', function ($scope, $stateParams, $htt
 
     //////////////////////////////////商城顶部配置////////////////////////////////////
 
+
+    $scope.accessToken = $cookies.get('access_token');
+
+
 /*    var windowUrl = window.location.href;
     if(windowUrl.indexOf('https://scu-mall') != -1){
         $scope.isScu = 'scu';

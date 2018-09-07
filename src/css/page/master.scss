@@ -3836,7 +3836,7 @@
     }
     .md-ctn{
       width: 1200px;
-      max-height: 500px;
+      max-height: 480px;
       padding: 10px 0;
       overflow: hidden;
     }
@@ -6074,7 +6074,7 @@
       }*/
       .code{
         @include wh(170px, 170px);
-        border: $border $gf5;
+        border: $border $ge;
         padding: 10px;
         margin: 20px auto 0;
       }

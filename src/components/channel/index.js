@@ -45,7 +45,9 @@ var channel = app.controller('channelCtrl', function ($scope, $rootScope, $filte
         $scope.paramsCary = {
             'orgId': $cookies.get('orgId'),
             'sort': 'discountRate desc',
-            'categoryId': cayId
+            'categoryId': cayId,
+            'page': 0,
+            'rows': 12
         };
         productService.getListCache($scope.paramsCary, function (prot) {
             //图片改为小尺寸的；
