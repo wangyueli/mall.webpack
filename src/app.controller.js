@@ -231,6 +231,18 @@ var AppController =app.controller("AppController",
             }
         };
         /*
+         * 立即购买*/
+        $scope.buyNow = function (pId, mallId) {
+            if($scope.o){
+                cartService.insert(pId, mallId, 1, function(data) {
+                    window.location = '/#/cart';
+                }, function() {
+                });
+            }else {
+                window.location = $scope.getLoginUrlMall();
+            }
+        };
+        /*
          删除商品
          */
         $scope.dellCart = function(id){

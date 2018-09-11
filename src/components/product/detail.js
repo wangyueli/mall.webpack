@@ -208,23 +208,7 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 		jquery(".hot-item-name" + i).css({'display':'none', 'top':'170px'});
 	};
 
-	/*
-	* 立即购买*/
-	$scope.buyNow = function (pId, mallId) {
-		/*cartService.updateMall(mallId, false, function() {
-		});
 
-		cartService.updateProduct(pId, true, function() {
-		});
-
-		window.location = '#/order?cartMallId=' + mallId;*/
-
-
-		cartService.insert(pId, mallId, 1, function(data) {
-			window.location = '/#/cart';
-		}, function() {
-		});
-	};
 
 });
 

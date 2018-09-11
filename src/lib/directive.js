@@ -912,7 +912,7 @@ module.directive('loginBind', ['$http', function ($http) {
                          $scope.alreadyScan = false;
                          $scope.bindSucces = true;
                          clearInterval(timerInterval);
-                         setTimeout('$scope.closeBind()', 800);
+                         setTimeout($scope.closeBind, 1000);
                      }else {
                          $scope.msg = res.msg;
                          $scope.alreadyScan = false;
@@ -989,7 +989,7 @@ module.directive('toLogin', ['$http', function ($http) {
                         $scope.alreadyScan = false;
                         $scope.loginSucces = true;
                         clearInterval(timerInterval);
-                        setTimeout('$scope.closeLogin()', 800);
+                        setTimeout($scope.closeLogin, 1000);
                     }else {
                         $scope.msg = res.msg;
                         $scope.alreadyScan = false;

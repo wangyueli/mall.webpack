@@ -161,7 +161,7 @@
 					</div>
 					<a class="ml15" ng-click="addGoods(detail, num)" ng-hide="haveProduct.stock == 'stock_out'">加入购物车</a>
 					<a class="ml15" style="background: #ccc;" ng-show="haveProduct.stock == 'stock_out'">加入购物车</a>
-					<a class="colorgreen" ng-hide="haveProduct.stock == 'stock_out'" ng-click="buyNow(detail.id, detail.mallId)">立即购买</a>
+					<a class="buy-now" ng-hide="haveProduct.stock == 'stock_out'" ng-click="buyNow(detail.id, detail.mallId)">立即购买</a>
 				</div>
 			</div>
 		</div>
