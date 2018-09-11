@@ -1,7 +1,8 @@
+
 <div id="person_msg">
     <div class="person_sibal">
-        <h1>基本信息</h1>
-        <div class="person_sibab">
+        <h1>个人信息</h1>
+       <!-- <div class="person_sibab">
             <p>
                 <label for="user"> 用户名：</label><input type="text"  placeholder="请输入用户名"  id="user">
             </p>
@@ -21,6 +22,26 @@
                 <label for="school">学校：&nbsp;&nbsp;&nbsp;</label><input type="text"  placeholder="请输入学校名"  id="school">
             </p>
         </div>
-        <button class="person_btn">保存</button>
+        <button class="person_btn">保存</button>-->
+        <div class="person_sub">
+            <p>
+                <i class="icon  icon-denglu"></i>
+                姓名：<span>张三</span>
+            </p>
+            <p>
+                <i class="icon  icon-gaoxiao"></i>
+                学校：<span>四川大学</span>
+            </p>
+            <p ng-show="bindWeixin">
+                <i class="icon  icon-weixin"></i>微信
+                <span  class="person_vx">未绑定</span>
+                <a ng-click="showBind()">绑定微信</a>
+            </p>
+            <p ng-show="!bindWeixin">
+                <i class="icon  icon-weixin"></i>微信
+                <span  class="person_vx">已绑定</span>
+                <a href="">解除绑定</a>
+            </p>
+        </div>
     </div>
 </div>

@@ -25,6 +25,7 @@ var AppController =app.controller("AppController",
         if(windowUrl.indexOf('https://scu-mall') != -1){
             //四川大学（深红色）
             linkNode.setAttribute("href","skin-css/scu-skin.css");
+            $rootScope.isScu = true;
         }else if(windowUrl.indexOf('https://hfut-mall') != -1){
             //合肥工大（红棕色）
             linkNode.setAttribute("href","skin-css/hfut-skin.css");
@@ -63,7 +64,6 @@ var AppController =app.controller("AppController",
             linkNode.setAttribute("href","skin-css/bnu-skin.css");
         }else {
             //默认云采通红
-            $rootScope.isScu = true;
             linkNode.setAttribute("href","skin-css/yct-skin.css");
         }
         document.head.appendChild(linkNode);
@@ -114,7 +114,20 @@ var AppController =app.controller("AppController",
                 if (a != null) {
                     //如果登录了，可以弹出让他绑定微信，手机
                     $scope.accessToken = $cookies.get('access_token');
-                    $scope.showBind();
+                    //绑定微信权利
+                    $http.get(global.mall.api + '/auths/userMsg').then(function (data) {
+                        if(data.canBandingWx == true){
+                            if(data.bandingWx == false){
+                                //没有绑定微信
+                                $scope.bindWeixin = true;
+                                if($location.url() == '/'){
+                                    $scope.showBind();
+                                }
+                            }else {
+                                $scope.bindWeixin = false;
+                            }
+                        }
+                    });
 
                     $scope.p = a.p;
                     $scope.o = _.find(a.o, function(o) {

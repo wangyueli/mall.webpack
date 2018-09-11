@@ -8,8 +8,7 @@
         <div class="menu-right clearfix hide" ng-class="{display:o==null}">
             <div class="item login-btn">
                 <a ng-show="isScu" ng-click="showLogin()">扫码登录</a>
-                <a ng-show="isScu" ng-click="showBind()">扫码绑定</a>
-                <a class="font-red" ng-href="{{getLoginUrlMall()}}">教师登录</a>
+                <a ng-show="!isScu" class="font-red" ng-href="{{getLoginUrlMall()}}">教师登录</a>
                 <a class="font-red" ng-href="{{getLoginUrlBack()}}" style="margin-left: 20px;">供应商登录</a>
                 <!--<a class="ml15 mr20" ng-href="{{global.app.url}}/#/register/enterprise/index">免费注册</a>-->
             </div>

@@ -867,17 +867,6 @@ module.directive('loginBind', ['$http', function ($http) {
         },
         template: require('../components/loginBind/bind.html'),
         link: function ($scope) {
-            //绑定微信权利
-            $http.get(global.mall.api + '/auths/userMsg').then(function (data) {
-                console.log(data);
-                if(data.canBandingWx == true){
-                    if(data.bandingWx == false){
-                        //没有绑定微信
-                        $scope.canBind = true;
-                    }
-                }
-            });
-
            //32位随机uuid
             function guid() {
                 return 'xxxxxxxxxxxxxx4xxxxyxxxyxxxxxxxx'.replace(/[xy]/g, function(c) {

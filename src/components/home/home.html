@@ -10,10 +10,6 @@
     .g-left{width: 990px; float: right;}
     .md-ctn-hei{height: 440px}
 </style>
-<!--微信 登录 绑定-->
-<login-bind ng-if="bindMask"  access-token="{{accessToken}}" close-bind="closeBind();" show-bind="showBind()"></login-bind>
-<to-login ng-if="loginMask" close-login="closeLogin();"></to-login>
-
 
 <div style="background: #f5f5f5; padding-bottom: 0;">
     <!--banner 分类导航-->
@@ -82,6 +78,49 @@
         </ul>
     </div>
     <!--推荐商品-->
+    <!--<div class="square_commend" ng-show="worthProts.length>0">
+        &lt;!&ndash;<h2 class="title-normal">超 值 推 荐</h2>&ndash;&gt;
+        <div class="head_main_column">
+           <div class="head_title">
+               <img src="images/gift.png" alt="">
+               <h1>今日超值推荐<span>每天为您挑选京东优惠商品!</span></h1>
+           </div>
+            <div class="head_main_nav">
+                <ul>
+                    <li>
+                        <a  target="_blank">办公设备</a>
+                    </li>
+                    <li>
+                        <a  target="_blank">电脑整机</a>
+                    </li>
+                    <li>
+                        <a  target="_blank">电脑配件</a>
+                    </li>
+                    <li>
+                        <a  target="_blank">家用电器</a>
+                    </li>
+                    <li>
+                        <a  target="_blank">数码设备</a>
+                    </li>
+                    <li>
+                        <a  target="_blank">工业品</a>
+                    </li>
+                    <li>
+                        <a  target="_blank">家具</a>
+                    </li>
+                    <li>
+                        <a  target="_blank">食品饮料</a>
+                    </li>
+                    <li>
+                        <a  target="_blank">运动户外</a>
+                    </li>
+                    <li>
+                        <a  target="_blank">酒水</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>-->
     <div class="square_commend" ng-show="worthProts.length>0">
         <h2 class="title-normal">超 值 推 荐</h2>
         <div  class="square_sibal_t">
@@ -220,6 +259,23 @@
             </div>
         </div>
     </div>
+    <!--优惠入口-->
+    <!--<div id="offer_entrance">
+        <ul>
+            <li><a href="">优惠专区</a></li>
+            <li><a href="">优惠专区</a></li>
+            <li><a href="">优惠专区</a></li>
+            <li><a href="">优惠专区</a></li>
+            <li><a href="">优惠专区</a></li>
+            <li><a href="">优惠专区</a></li>
+            <li><a href="">优惠专区</a></li>
+            <li><a href="">优惠专区</a></li>
+            <li><a href="">优惠专区</a></li>
+            <li><a href="">优惠专区</a></li>
+            <li><a href="">优惠专区</a></li>
+            <li><a href="">优惠专区</a></li>
+        </ul>
+    </div>-->
     <!--<div id="see_more">
         <div class="hot_center">
             <h3 class="floor_tit">没有找到想要的商品？</h3>
@@ -232,7 +288,7 @@
             <ul>
                 <li>
                     <img src="images/www/img01.png" alt="">
-                    <span><strong>海量商品</strong><br>集成主流电商，内置专业科教供应商<br>支持学校遴选优质协议供货</span>
+                    <span><strong>海量商品</strong><br>集成主流电商,内置专业科教供应商<br>支持学校遴选优质协议供货</span>
                 </li>
                 <li>
                     <img src="images/www/img02.png" alt="">
@@ -240,7 +296,7 @@
                 </li>
                 <li>
                     <img src="images/www/img03.png" alt="">
-                    <span><strong>阳光合规</strong><br>关联采购计划，匹配校内经费卡<br>自定义校内订单审批流程</span>
+                    <span><strong>阳光合规</strong><br>关联采购计划,匹配校内经费卡<br>自定义校内订单审批流程</span>
                 </li>
                 <li>
                     <img src="images/www/img04.png" alt="">
@@ -248,7 +304,7 @@
                 </li>
                 <li>
                     <img src="images/www/img05.png" alt="">
-                    <span><strong>高效智能</strong><br>电子发票，电子合同<br>订单凭证,审批单，报账单</span>
+                    <span><strong>高效智能</strong><br>电子发票,电子合同<br>订单凭证、审批单、报账单</span>
                 </li>
                 <li>
                     <img src="images/www/img06.png" alt="">
@@ -260,7 +316,7 @@
                 </li>
                 <li>
                     <img src="images/www/img08.png" alt="">
-                    <span><strong>内控监察</strong><br>杜绝虚假购买，全程留痕,随时备查<br>大数据分析,监督有力</span>
+                    <span><strong>内控监察</strong><br>杜绝虚假购买,全程留痕,随时备查<br>大数据分析,监督有力</span>
                 </li>
             </ul>
         </div>

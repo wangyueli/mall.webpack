@@ -23,7 +23,10 @@
     </script>
 </head>
 <body ng-controller="AppController">
-<!--<div loginmall-dialog></div>-->
+<!--微信 登录 绑定-->
+<login-bind ng-if="bindMask"  access-token="{{accessToken}}" close-bind="closeBind();" show-bind="showBind()"></login-bind>
+<to-login ng-if="loginMask" close-login="closeLogin();"></to-login>
+
 <div ui-view></div>
 <script src="vendors.dll.js"></script>
 <script>

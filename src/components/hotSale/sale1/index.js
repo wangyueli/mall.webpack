@@ -822,7 +822,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
     /* ***************专区11****************/
     if($stateParams.id == 11){
         /*
-         * 10人办公组*/
+         * 小型团队之选*/
         var pIds111 = ['5602175', '5675807', '5602175', '5602177','3836894', '3400523'];
         $scope.product111 = [];
         _.each(pIds111, function (pId, index) {
@@ -831,7 +831,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
                 data.pic = data.pic.split(',')[0];
                 if(index == pIds111.length-1){
                     $scope.products.push({
-                        name: '10人办公组',
+                        name: '小型团队之选',
                         data: $scope.product111
                     })
                 }
@@ -839,7 +839,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
         });
 
         /*
-         * 50人工作群*/
+         * 中型团队之选*/
         var pIds112 = ['5872629', '5602161', '5936932', '5602159', '2619408', '2619479'];
         $scope.product112 = [];
         _.each(pIds112, function (pId, index) {
@@ -848,7 +848,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
                 data.pic = data.pic.split(',')[0];
                 if(index == pIds112.length-1){
                     $scope.products.push({
-                        name: '50人工作群',
+                        name: '中型团队之选',
                         data: $scope.product112
                     })
                 }
@@ -857,7 +857,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
 
 
         /*
-        * 200人规模企业*/
+        * 大型团队之选*/
         var pIds113 = ['5756286', '5756292', '5936956', '5756296', '5756318', '5756294', '5602195'];
         $scope.product113 = [];
         _.each(pIds113, function (pId, index) {
@@ -866,7 +866,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
                 data.pic = data.pic.split(',')[0];
                 if(index == pIds113.length-1){
                     $scope.products.push({
-                        name: '200人规模企业',
+                        name: '大型团队之选',
                         data: $scope.product113
                     })
                 }
@@ -874,7 +874,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
         });
 
         /*
-       * 金融机构适用*/
+       * 办公室之选*/
         var pIds114 = ['5602163', '5756290', '5602161', '5756288', '5570500', '5602161', '5756286', '3125257', '3554758'];
         $scope.product114 = [];
         _.each(pIds114, function (pId, index) {
@@ -883,7 +883,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
                 data.pic = data.pic.split(',')[0];
                 if(index == pIds114.length-1){
                     $scope.products.push({
-                        name: '金融机构适用',
+                        name: '办公室之选',
                         data: $scope.product114
                     })
                 }
@@ -891,7 +891,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
         });
 
         /*
-      * 设计院适用*/
+      * 机构之选*/
         var pIds115 = ['5756296', '5756276', '5756322', '3244132', '2927842'];
         $scope.product115 = [];
         _.each(pIds115, function (pId, index) {
@@ -900,7 +900,7 @@ var hotSale = app.controller('hotSaleCtrlOne', function ($scope, $stateParams, $
                 data.pic = data.pic.split(',')[0];
                 if(index == pIds115.length-1){
                     $scope.products.push({
-                        name: '设计院适用',
+                        name: '机构之选',
                         data: $scope.product115
                     })
                 }
