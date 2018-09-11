@@ -5679,16 +5679,12 @@
           font-weight: 600;
           position:relative;
           i{
-            /*color:#ffA952;*/
             position: absolute;
             left:24px;
           }
         }
-        dd{
-          &:hover{
-            /*color: #ff5606;*/
-            cursor:pointer;
-          }
+        .item{
+          color: #000;
           @include  v-center(30px,30px);
         }
       }

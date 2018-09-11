@@ -88,12 +88,12 @@
         <div class="sidebar_l">
             <dl>
                 <dt><i class="icon  icon-ruzhu"></i>订单中心</dt>
-                <dd>我的订单</dd>
+                <dd><a class="item" ng-class="{'active': currentPath=='orders'}" ng-href="#/orders">我的订单</a></dd>
             </dl>
-            <!--<dl>
-                <dt><i class="icon  icon-browse"></i>关注中心</dt>
-                <dd>关注的商品</dd>
-            </dl>-->
+            <dl>
+                <dt><i class="icon  icon-browse"></i>个人信息</dt>
+                <dd><a class="item" ng-class="{'active': currentPath=='person/core'}" ng-href="#/person/core">基本信息</a></dd>
+            </dl>
         </div>
         <div class="side_r" ui-view></div>
     </div>

@@ -16,19 +16,15 @@
         </div>
         <div class="menu-right clearfix hide" ng-class="{display:o!=null}">
             <div class="item">
-                <a href="javascript:;" ng-hide="orgType=='school'">
-                    <span ng-bind="o.name"></span>
-                </a>
-                <span ng-bind="o.name" ng-show="orgType=='school'"></span>
+                <span ng-bind="o.name"></span>
             </div>
             <div class="item" ng-mouseenter="showQuit()" ng-mouseleave="hideQuit()">
-                <a class="has-drop icon" href="javascript:;" target="_blank;">
-                    <span>{{p.name}}</span>
-                </a>
+                <a ng-href="#/person/core" class="has-drop icon">{{p.name}}</a>
                 <div class="dorpmenu hide" style="text-align: right">
                     <div class="list-btn">
-                        <a ng-href="{{global.app.url}}/#/" ng-hide="orgType=='school'">个人中心</a>
-                        <a href="javascript:;" ng-click="logout()">退出登录</a>
+                        <a ng-href="{{global.app.url}}/#/" ng-show="orgType=='enterprise'">个人中心</a>
+                        <a ng-href="#/person/core" ng-show="orgType=='school'">个人中心</a>
+                        <a ng-click="logout()">退出登录</a>
                     </div>
                 </div>
             </div>
