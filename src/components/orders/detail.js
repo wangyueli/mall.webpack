@@ -154,9 +154,8 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
 
     /**再次购买**/
     $scope.copy = function(order) {
-        var cartId = $cookies.cart_id;
         _.each(order.productList, function(product) {
-            cartService.insert(cartId, product.productId, order.mallId, product.num, function(data) {
+            cartService.insert(product.productId, order.mallId, product.num, function(data) {
                 window.location = '/#/cart';
             }, function() {
             });

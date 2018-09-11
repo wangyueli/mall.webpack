@@ -8,7 +8,6 @@ require('serve/cart.js');
 
 var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $log, $location, $stateParams, $anchorScroll, $modal, authService, cartService) {
 	$scope.$parent.shopStep = 1;
-	$scope.cartId = $cookies.get('cart_id');
 	$scope.storeList = null;
 
 	/**
@@ -17,7 +16,7 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 
 	/**获取购物车列表**/
 	$scope.refresh = function () {
-		cartService.get($scope.cartId, function(data) {
+		cartService.get(function(data) {
 			$scope.originData = data;
 			var mallMap = {};
 			_.each(data, function(product) {
@@ -57,7 +56,7 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 	//勾选购物车中的某一个店铺
 	$scope.checkStore = function(store) {
 		var checked = !$scope.isStoreChecked(store);
-		cartService.updateStore($scope.cartId, store.id, checked, function() {
+		cartService.updateStore(store.id, checked, function() {
 			_.each(store.productList, function(product) {
 				product.checked = checked;
 			});
@@ -67,7 +66,7 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 	//勾选购物车中的某一个商城
 	$scope.checkMall = function(mall) {
 		var checked = !$scope.isMallChecked(mall);
-		cartService.updateMall($scope.cartId, mall.id, checked, function() {
+		cartService.updateMall(mall.id, checked, function() {
 			_.each(mall.storeList, function (store) {
 				_.each(store.productList, function(product) {
 					product.checked = checked;
@@ -79,7 +78,7 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 	//勾选全选
 	$scope.checkMallAll = function(mallId) {
 		var checked = !$scope.isMallAllChecked();
-		cartService.updateMall($scope.cartId, mallId, checked, function() {
+		cartService.updateMall(mallId, checked, function() {
 			_.each($scope.originData, function (product) {
 				product.checked = checked;
 			});
@@ -281,7 +280,7 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 					});
 				} else {
 					//删除某个商城下多个商品；
-					cartService.deletePrt($scope.cartId, mallId, function () {
+					cartService.deletePrt(mallId, function () {
 						swal({
 							text: '选中的商品已删除!',
 							icon: 'success',
@@ -309,7 +308,7 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 		if (product) {
 			if($scope.o){
 				//后台校验
-				cartService.Checkout($scope.cartId, mallId, function (data) {
+				cartService.Checkout(mallId, function (data) {
 					if(data.success == true){
 						window.location = data.hrefUrl +  '/#/order?cartMallId=' +mallId;
 					}else {

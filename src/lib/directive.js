@@ -861,64 +861,161 @@ module.directive('loginBind', ['$http', function ($http) {
     return {
         restrict: 'EA',
         scope: {
-            orgId: '@orgId',
-            token: '@accessToken'
+            token: '@accessToken',
+            showBind: '&',
+            closeBind: '&'
         },
         template: require('../components/loginBind/bind.html'),
         link: function ($scope) {
-            //二维码
+            //绑定微信权利
+            $http.get(global.mall.api + '/auths/userMsg').then(function (data) {
+                console.log(data);
+                if(data.canBandingWx == true){
+                    if(data.bandingWx == false){
+                        //没有绑定微信
+                        $scope.canBind = true;
+                    }
+                }
+            });
+
+           //32位随机uuid
             function guid() {
                 return 'xxxxxxxxxxxxxx4xxxxyxxxyxxxxxxxx'.replace(/[xy]/g, function(c) {
                     var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
                     return v.toString(16);
                 });
             }
-            var uuid = guid(); //32位随机uuid
-            console.log(uuid);
-            $scope.codeImg = global.mall.api + '/auths/wxQrCode?uuid='+uuid + '&type=BANDING' + '&access_token=' + $scope.token;
-
-            //绑定微信权利
-            $http.get(global.mall.api + '/auths/userMsg').then(function (data) {
-                if(data.canBandingWx == true){
-                    if(data.bandingWx == false){
-                        //没有绑定微信
-                        if($scope.orgId == 'scu'){
-                            //如果是四川大学
-                            $scope.loginMask = true;
-                        }
-
-                    }
-                }else {
-                    $scope.loginMask = false;
-                }
-            });
+            $scope.uuid = guid();
+            //二维码
+            $scope.codeImg = global.mall.api + '/auths/wxQrCode?uuid='+$scope.uuid + '&type=BANDING' + '&access_token=' + $scope.token;
 
             //有没有扫码, 有没有过期
             $scope.Ifoverdue = function () {
-                 $http.get(global.mall.api + '/auths/wxReuslt?uuid='+uuid).then(function (res) {
+                 $http.get(global.mall.api + '/auths/wxResult?uuid='+$scope.uuid).then(function (res) {
                      console.log(res);
-                     if(res.type == 'ACTION'){
+                     if(res.type == 'NO_ACTION'){
+                         //没有扫
+                         console.log('没有扫');
+                     }
+                     else if(res.type == 'ACTION'){
                          //已被扫码
                          $scope.alreadyScan = true;
                      }else if(res.type == 'TIMEOUT'){
                          //二维码过期
+                         $scope.msg = '二维码已失效';
+                         $scope.alreadyScan = false;
+                         $scope.codeOut = true;
+                         clearInterval(timerInterval);
+
                      }else if(res.type == 'OK'){
                          //绑定操作成
+                         $scope.alreadyScan = false;
+                         $scope.bindSucces = true;
                          clearInterval(timerInterval);
+                         setTimeout('$scope.closeBind()', 800);
                      }else {
+                         $scope.msg = res.msg;
+                         $scope.alreadyScan = false;
+                         $scope.codeOut = true;
+                         clearInterval(timerInterval);
                          console.log('出现意料之外的错误');
                      }
                  });
              };
-             $scope.Ifoverdue();
             var timerInterval = setInterval(function () {
                 $scope.Ifoverdue();
-                console.log('在问后台有没有扫码，有没有过期');
-            }, 2000);
+            }, 1500);
 
+            $scope.closeBindOwn = function () {
+                clearInterval(timerInterval);
+                $scope.closeBind();
+            };
 
-            $scope.closeLogin = function () {
-                $scope.loginMask = false;
+            $scope.refresh = function () {
+                $scope.uuid = guid();
+                //二维码
+                $scope.codeImg = global.mall.api + '/auths/wxQrCode?uuid='+$scope.uuid + '&type=BANDING' + '&access_token=' + $scope.token;
+                $scope.codeOut = false;
+                timerInterval = setInterval(function () {
+                    $scope.Ifoverdue();
+                }, 1500);
+            }
+        }
+    }
+}]);
+
+module.directive('toLogin', ['$http', function ($http) {
+    return{
+        restrict: 'EA',
+        scope: {
+            closeLogin: '&'
+        },
+        template: require('../components/loginBind/login.html'),
+        link: function ($scope) {
+            //32位随机uuid
+            function guid() {
+                return 'xxxxxxxxxxxxxx4xxxxyxxxyxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                    return v.toString(16);
+                });
+            }
+            $scope.uuid = guid();
+            //二维码
+             $scope.codeImg =  global.mall.api + '/auths/wxQrCode?uuid='+$scope.uuid + '&type=LOGIN';
+
+            //有没有扫码, 有没有过期
+            $scope.Ifoverdue = function () {
+                $http.get(global.mall.api + '/auths/wxResult?uuid='+$scope.uuid).then(function (res) {
+                    console.log(res);
+                    if(res.type == 'NO_ACTION'){
+                        //没有扫
+                        console.log('没有扫');
+                    }
+                    else if(res.type == 'ACTION'){
+                        //已被扫码
+                        $scope.alreadyScan = true;
+                    }else if(res.type == 'TIMEOUT'){
+                        //二维码过期
+                        $scope.msg = '二维码已失效';
+                        $scope.alreadyScan = false;
+                        $scope.codeOut = true;
+                        clearInterval(timerInterval);
+                    }else if(res.type == 'OK'){
+                        //绑定操作成
+                        $.cookie('access_token', res.token, {
+                            'domain': global.domain,
+                            'path': '/'
+                        });
+                        $scope.alreadyScan = false;
+                        $scope.loginSucces = true;
+                        clearInterval(timerInterval);
+                        setTimeout('$scope.closeLogin()', 800);
+                    }else {
+                        $scope.msg = res.msg;
+                        $scope.alreadyScan = false;
+                        $scope.codeOut = true;
+                        clearInterval(timerInterval);
+                        console.log('出现意料之外的错误');
+                    }
+                });
+            };
+            var timerInterval = setInterval(function () {
+                $scope.Ifoverdue();
+            }, 1500);
+
+            $scope.closeLoginOwn = function () {
+                clearInterval(timerInterval);
+                $scope.closeLogin();
+            };
+
+            $scope.refresh = function () {
+                $scope.uuid = guid();
+                //二维码
+                $scope.codeImg =  global.mall.api + '/auths/wxQrCode?uuid='+$scope.uuid + '&type=LOGIN';
+                $scope.codeOut = false;
+                timerInterval = setInterval(function () {
+                    $scope.Ifoverdue();
+                }, 1500);
             }
         }
     }

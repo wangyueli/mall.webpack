@@ -5,9 +5,8 @@ var url = require('util/url.js');
 
 var orderService = app.service('orderService', function ($http) {
 	//获取待提交订单商品列表
-	this.getList = function(personAddressId, cartId, thismallId, f) {
-		$http.get(url.url('/orders/cart/'+cartId+'/product', {
-			'cartId' : cartId,
+	this.getList = function(personAddressId, thismallId, f) {
+		$http.get(url.url('/orders/cart/0/product', {
 			'personAddressId' : personAddressId,
 			'mallId' : thismallId
 		}, global.mall.api)).then(f);
@@ -37,8 +36,8 @@ var orderService = app.service('orderService', function ($http) {
 	};
 
 	//线下议价 显示供应商信息
-	this.getOrgMsg = function (cartId, mallId, f) {
-		$http.get(url.url('/orders/cart/' + cartId + '/list', {
+	this.getOrgMsg = function (mallId, f) {
+		$http.get(url.url('/orders/cart/0/list', {
 			"mallId": mallId
 		}, global.mall.api)).then(f);
 	};

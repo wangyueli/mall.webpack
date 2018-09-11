@@ -25,9 +25,11 @@
 			</div>
 			<div id="mark"></div>
 			<div id="float-box"></div>
+<!--
 			<div class="my-save">
 				<i class="icon icon-xin2"></i>关注
 			</div>
+-->
 		</div>
 		<!--放大镜 大图-->
 		<div id="big-box">
@@ -87,29 +89,22 @@
 						</span>
 					</p>
 				</div>
-				<!--产品服务-->
-				<!--<div class="number mb10" ng-show="mallType=='JD'">
-					<span class="tip-label" style="margin: 0; color: #000;">产品服务：支持7天无理由退货，可开增票</span>
-				</div>-->
-				<!--<div class="number mb10" ng-hide="dialog == 'dialog'">
-					<span class="tip-label" style="margin: 0; font-size: 14px; color: #999;">购买数量：</span>
-					<a class="btn-special not-allowed" href="javascript:;">立即购买</a>
-				</div>-->
-				<!--可销售地区-->
-				<div class="annex">
+				<!--赠品-->
+				<!--<div class="annex">
 					<div class="promotion">
 						<ul>
-							<li>促&nbsp;&nbsp;销&nbsp;&nbsp;<a href="">赠品</a></li>
+							<li>促&nbsp;&nbsp;销：<a href="">赠品</a></li>
 							<li><img src="images/square/b01.jpg" alt=""><span>x1</span></li>
 							<li><img src="images/square/b02.jpg" alt=""><span>x1</span></li>
 							<li><img src="images/square/b03.jpg" alt=""><span>x1</span></li>
 							<li>(赠完为止)</li>
 						</ul>
 					</div>
-					<p><span>附&nbsp;&nbsp;件</span><span>电源线2米</span><span class="annex_span">附件缺货</span></p>
-				</div>
+					<p><span>附&nbsp;&nbsp;件：</span><span>电源线2米</span><span class="annex_span">附件缺货</span></p>
+				</div>-->
+				<!--可销售地区-->
 				<div class="f-addr clearfix">
-					<span class="float-l ml5">配送至</span>
+					<span class="float-l ml5">配 送 至：</span>
 					<div class="addr-sl" ng-mouseenter="ifAddrShow=true;" ng-mouseleave="ifAddrShow=false;">
 						<a class="open" ng-class="{'noBorder': ifAddrShow}" ng-click="ifAddrShow=true; ifList=false;">{{address}}
 							<i class="iconfont icon-arrowdownfilling"></i>
@@ -159,18 +154,15 @@
 					<span class="ml5" ng-bind="haveProduct.stock == 'stock_out'? '无货' : '有货'" ng-class="{noPrt: haveProduct.stock == 'stock_out'}"></span>
 				</div>
 				<div class="btn-bar mb30" ng-hide="dialog == 'dialog'">
-					<!--<a class="not-allowed" href="javascript:;">立即购买</a>-->
 					<div class="float-l pt-num detailPt-num">
 						<input maxlength="4" type="text" ng-model="num" ng-blur="chageNum()" />
 						<button ng-class="{'not-allowed': num==1}" type="button" ng-click="shop('reduce')">-</button>
 						<button style="top:0;" ng-class="{'not-allowed': 9999 <=num}" type="button" ng-click="shop('add')">+</button>
 					</div>
-					<a href="javascript:;" class="ml15" ng-click="addGoods(detail, num)" ng-hide="haveProduct.stock == 'stock_out'">加入购物车</a>
-					<a href="javascript:;" class="ml15" style="background: #ccc;" ng-show="haveProduct.stock == 'stock_out'">加入购物车</a>
-					<a href="javascript:;"  style="background:#37b537;">立即购买</a>
+					<a class="ml15" ng-click="addGoods(detail, num)" ng-hide="haveProduct.stock == 'stock_out'">加入购物车</a>
+					<a class="ml15" style="background: #ccc;" ng-show="haveProduct.stock == 'stock_out'">加入购物车</a>
+					<a class="colorgreen" ng-hide="haveProduct.stock == 'stock_out'" ng-click="buyNow(detail.id, detail.mallId)">立即购买</a>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
@@ -370,6 +362,7 @@
 	</div>
 </div>
 <!--侧边栏-->
+<!--
 <div class="wrap_sidebar">
 	<ul>
 		<li><a href="">值得买</a></li>
@@ -389,3 +382,4 @@
 
 	</ul>
 </div>
+-->

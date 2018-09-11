@@ -1,18 +1,21 @@
-<div class="logins" ng-if="canBind">
+<div class="logins">
     <div class="main-content">
-        <i class="close-login icon icon-close1" ng-click="closeBindOwn()"></i>
-        <div class="content-item" ng-hide="alreadyScan || bindSucces">
+        <i class="close-login icon icon-close1" ng-click="closeLoginOwn()"></i>
+        <div class="content-item" ng-hide="alreadyScan || loginSucces">
             <div class="header">
-                <span class="title titleActive">绑定微信</span>
+                <span class="title titleActive">微信登录</span>
                 <s class="split">|</s>
-                <!--<span class="title">绑定手机</span>-->
+                <!--<span class="title">手机登录</span>-->
             </div>
             <div class="bind-content">
+                <!--<a class="how" target="_blank" ng-href="{{'/#/bind'}}">
+                    <i class="iconfont icon-ruheshiyong"></i>如何绑定资采通
+                </a>
+                <div class="align-c color3">如果您已绑定「资采通」请打开&nbsp;<span class="weight colorRed">手机微信</span>&nbsp;扫码登录</div>-->
                 <div class="code">
                     <img ng-src="{{codeImg}}" width="170" height="170">
                 </div>
-                <div class="mt20 align-c font14">打开<span class="colorRed weight">&nbsp;手机微信&nbsp;</span>扫码绑定</div>
-                <!--<div class="mt20 align-c font14">打开<span class="colorRed weight">&nbsp;手机微信&nbsp;</span>扫码登录</div>-->
+                <div class="mt20 align-c font14">打开<span class="colorRed weight">&nbsp;手机微信&nbsp;</span>扫码登录</div>
                 <div class="tips">
                     <span><i class="icon icon-shuru1"></i>免输入</span>
                     <span>&nbsp;<i class="icon icon-shandian"></i>更快</span>
@@ -26,22 +29,19 @@
             <div class="mask" ng-show="codeOut">
                 <p class="detail">{{msg}}</p>
                 <span class="new" ng-click="refresh()">点击刷新</span>
-                <!--<div class="new">
-                    <img class="loading" src="images/loading.gif">
-                </div>-->
             </div>
         </div>
         <!--扫码接受在手机端确认-->
         <div class="content-item" ng-show="alreadyScan">
             <i class="success sweep-success icon icon-roundcheck"></i>
-            <p class="success-word">已扫码</p>
+            <p class="success-word">扫码成功</p>
         </div>
-        <div class="content-item" ng-show="bindSucces">
+        <!--登录成功-->
+        <div class="content-item" ng-show="loginSucces">
             <i class="success login-success icon icon-roundcheck"></i>
-            <p class="success-word">绑定成功</p>
+            <p class="success-word">登录成功</p>
         </div>
-        <!--手机绑定-->
+        <!--手机登录-->
         <div class="content-mobile"></div>
     </div>
-
 </div>

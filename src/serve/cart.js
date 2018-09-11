@@ -4,13 +4,13 @@ var url = require('util/url.js');
 
 var cartService = app.service('cartService', function ($http) {
 	//获取购物车里商品数据(公共)
-	this.get = function(id, f){
-		$http.get(url.url('/cart/' + id, null, global.mall.api)).then(f);
+	this.get = function(f){
+		$http.get(url.url('/cart/0', null, global.mall.api)).then(f);
 	};
 
 	//加入购物车
-	this.insert = function(cartId, productId, mallId, cartNum, sf, ff) {
-		$http.post(url.url('/cart/' + cartId + '/' + productId, {
+	this.insert = function(productId, mallId, cartNum, sf, ff) {
+		$http.post(url.url('/cart/0/' + productId, {
 			'mallId': mallId
 		}, global.mall.api), cartNum).then(sf, ff);
 	};
@@ -26,31 +26,31 @@ var cartService = app.service('cartService', function ($http) {
 	};
 
 	//修改店铺的选中状态；
-	this.updateStore = function (cartId, storeId, checked, sf, ff) {
+	this.updateStore = function (storeId, checked, sf, ff) {
 		$http.put(url.url('/cart/product/checked',{
-			'cartId': cartId,
+			'cartId': 0,
 			'storeId': storeId
 		}, global.mall.api), ''+checked).then(sf, ff);
 	};
 
 	//修改商城的选中状态；
-	this.updateMall = function (cartId, mallId, checked, sf, ff) {
+	this.updateMall = function (mallId, checked, sf, ff) {
 		$http.put(url.url('/cart/product/checked',{
-			'cartId': cartId,
+			'cartId': 0,
 			'mallId': mallId
 		}, global.mall.api), ''+checked).then(sf, ff);
 	};
 
 	//删除购物车中商品所有选中的
-	this.deletePrt = function(id, mallId, sf, ff) {
-		$http.delete(url.url('/cart/' + id + '/checked',{
+	this.deletePrt = function(mallId, sf, ff) {
+		$http.delete(url.url('/cart/0/checked',{
 			'mallId': mallId
 		},global.mall.api)).then(sf, ff);
 	};
 
 	//下单前校验（公共）
-	this.Checkout = function (cartId, mallId, f) {
-		$http.get(url.url('/cart/'+ cartId +'/verification', {
+	this.Checkout = function (mallId, f) {
+		$http.get(url.url('/cart/0/verification', {
 			'mallId': mallId
 		}, global.mall.api)).then(f);
 

@@ -10,6 +10,11 @@
     .g-left{width: 990px; float: right;}
     .md-ctn-hei{height: 440px}
 </style>
+<!--微信 登录 绑定-->
+<login-bind ng-if="bindMask"  access-token="{{accessToken}}" close-bind="closeBind();" show-bind="showBind()"></login-bind>
+<to-login ng-if="loginMask" close-login="closeLogin();"></to-login>
+
+
 <div style="background: #f5f5f5; padding-bottom: 0;">
     <!--banner 分类导航-->
     <div style="width: 1000px; height: 350px; margin: 0 auto; position: relative; left: 100px;">

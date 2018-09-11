@@ -18,7 +18,6 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
     $scope.page = 0;
     $scope.rows = 256;
     $scope.shoperBargain = false;
-    $scope.cartId = $cookies.get('cart_id');
     $scope.productList = null;
     $scope.invoices = {
         'invoiceContentType' : 'detail'
@@ -38,7 +37,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
      * 订单列表*/
     $scope.refresh = function() {
         $scope.noPay = false;
-        orderService.getList($scope.choiceAddressId, $scope.cartId, $scope.thismallId, function(data) {
+        orderService.getList($scope.choiceAddressId, $scope.thismallId, function(data) {
             $scope.productList = data;
             if( (data.payPrice>20000 && $cookies.get('orgId')=='58609') || (data.payPrice>20000 && $cookies.get('orgId')=='15CAA78F25D2000163E006BB64C3E008') ){
                 //如果是湖南大学 北京师范大学，订单总额超过2万，不容许下单;
@@ -59,7 +58,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
                     $scope.noPay = true;
                     return false;
                 }
-                //如果有赠品或附件, 不支持购买，则显示不能提交按钮
+                //如果有附件, 不支持购买，则显示不能提交按钮
                 if(cart.gifts.length>0){
                     _.each(cart.gifts, function (gif) {
                         if(gif.canBuy == false){
@@ -447,7 +446,6 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
 
         //要提交的订单新消息
         $scope.orders = {
-            'cartId': $scope.cartId,
             'personAddressId': $scope.sureAddress.id,
             'shoperBargain' : $scope.shoperBargain,
             'invoiceType' : $scope.invoiceType,
@@ -481,7 +479,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
     };
 
     //线下议价 信息
-    orderService.getOrgMsg($scope.cartId, $scope.thismallId, function (data) {
+    orderService.getOrgMsg($scope.thismallId, function (data) {
         $scope.orgMsg = data;
     })
 });

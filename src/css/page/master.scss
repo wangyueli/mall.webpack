@@ -666,7 +666,7 @@
   .addr-sl{
     position: relative;
     float: left;
-    margin-left:5px;
+    margin-left:15px;
     .open{
       position: relative;
       z-index: 99;
@@ -1064,7 +1064,7 @@
               color: #ec3e3b;
               border: 1px solid #ec3e3b;
               font-size: 14px;
-              margin-left: 10px;
+              margin-left: 15px;
             }
             &:last-child{
               padding-top:5px;
@@ -1842,7 +1842,7 @@
     }
     &.info{height: 98px;}
   }
-  .info a{color: $g3;}
+  .info a{color: #000;}
   .table-items{
     width: 100%;
     box-sizing: border-box;
@@ -6124,10 +6124,11 @@
 /*-------------------登录-------------------*/
 .logins{
   @extend %position-fixed;
+  top: 0;
+  left: 0;
   background: rgba(0, 0, 0, .4);
   z-index: 999;
-  .content{
-
+  .main-content{
     @include position-ab(400px, 420px);
     background: #fff;
     .close-login{
@@ -6138,105 +6139,113 @@
       color: #000;
       cursor: pointer;
     }
-    .header{
-      position: relative;
-      border-bottom: $border #f5f5f5;
-      .title{
-        line-height: 60px;
-        @include cube-inline(195px, 60px);
-        font-size: 18px;
-        font-weight: 700;
-        color: $g3;
-        text-align: center;
-        cursor: pointer;
-      }
-      .titleActive{color: $jd-red;}
-      .split{
-        color: $gf5
-      }
-    }
-    .bind-content{
-      position: relative;
-      /*.how{
-        @extend %tip-box-bottom;
-        top: -36px;
-        left: 152px;
-        color: #c5670d;
-        padding: 0 4px;
-        .iconfont{
-          font-size: 15px;
-          margin-right: 2px;
-        }
-      }*/
-      .code{
-        @include wh(170px, 170px);
-        border: $border $ge;
-        padding: 10px;
-        margin: 20px auto 0;
-      }
-      .tips{
-        width: 210px;
-        margin: 10px auto;
-        span{
-          @include cube-inline(70px, 20px);
-          line-height: 20px;
-          float: left;
-          color: $g3;
-        }
-        .icon{
+    .content-item{
+      .header{
+        position: relative;
+        border-bottom: $border #f5f5f5;
+        .title{
+          line-height: 60px;
+          @include cube-inline(195px, 60px);
           font-size: 18px;
-          color: $gb;
-          float: left;
-          @include cube-inline(22px, 20px);
+          font-weight: 700;
+          color: $g3;
+          text-align: center;
+          cursor: pointer;
+        }
+        .titleActive{color: $jd-red;}
+        .split{
+          color: $gf5
         }
       }
-    }
-    .footer{
-      margin-top: 55px;
-      @include v-center(50px, 50px);
-      background: $gf5;
-      font-size: 13px;
-      color: #000;
-      a{
-        color: $blue;
-        text-decoration: underline;
+      .bind-content{
+        position: relative;
+        /*.how{
+          @extend %tip-box-bottom;
+          top: -36px;
+          left: 152px;
+          color: #c5670d;
+          padding: 0 4px;
+          .iconfont{
+            font-size: 15px;
+            margin-right: 2px;
+          }
+        }*/
+        .code{
+          @include wh(170px, 170px);
+          border: $border $ge;
+          padding: 10px;
+          margin: 20px auto 0;
+        }
+        .tips{
+          width: 210px;
+          margin: 10px auto;
+          span{
+            @include cube-inline(70px, 20px);
+            line-height: 20px;
+            float: left;
+            color: $g3;
+          }
+          .icon{
+            font-size: 18px;
+            color: $gb;
+            float: left;
+            @include cube-inline(22px, 20px);
+          }
+        }
       }
-    }
-    .sweep-success{
-      @include position-ab(100px, 100px);
-      color: #43F323;
-      margin-top: -100px;
-      font-size: 102px;
-    }
-    .sweep-success-word{
-      margin-top: 280px;
-      font-size: 16px;
-      text-align: center;
-    }
-    .mask{
-      z-index: 9;
-      @include position-ab(400px, 420px);
-      background: rgba(255, 255, 255, .9);
-      font-weight: bold;
-      .detail{
-        margin-top: 180px;
+      .footer{
+        margin-top: 55px;
+        @include v-center(50px, 50px);
+        background: $gf5;
+        font-size: 13px;
+        color: #000;
+        a{
+          color: $blue;
+          text-decoration: underline;
+        }
+      }
+      .success{
+        @include position-ab(100px, 100px);
+        margin-top: -100px;
+        font-size: 102px;
+      }
+      .sweep-success{
+        color: $g9;
+      }
+      .login-success{
+        color: #64980a;
+      }
+      .success-word{
+        margin-top: 280px;
         font-size: 16px;
         text-align: center;
       }
-      .new{
-        margin: 50px auto;
-        @include cube-block(100px, 30px);
-        line-height: 30px;
-        text-align: center;
-        cursor: pointer;
-        background: #f9f9f9;
-        border-radius: 5px;
-        color: #0ca4f5;
-        font-size: 14px;
-        border: 2px solid #ccc;
+      .mask{
+        z-index: 9;
+        @include position-ab(400px, 420px);
+        background: rgba(255, 255, 255, .9);
+        font-weight: bold;
+        .detail{
+          margin-top: 180px;
+          font-size: 16px;
+          text-align: center;
+        }
+        .new{
+          margin: 50px auto;
+          @include cube-block(100px, 30px);
+          line-height: 30px;
+          text-align: center;
+          cursor: pointer;
+          background: #f9f9f9;
+          border-radius: 5px;
+          color: #0ca4f5;
+          font-size: 14px;
+          border: 2px solid #ccc;
+        }
       }
     }
   }
+
   .content-mobile{
   }
 }

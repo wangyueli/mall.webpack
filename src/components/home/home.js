@@ -10,7 +10,7 @@ require('serve/product.js');
 require('serve/org.js');
 require('serve/category.js');
 
-var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $filter, homeService, productService, orgService, categoryService, $stateParams) {
+var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $filter, $cookies, homeService, productService, orgService, categoryService, $stateParams) {
     $scope.IEVersion = function () {
         var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
         var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器
@@ -29,7 +29,6 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
     $scope.IEVersion();
 
     $rootScope.Tabtitle = $scope.title + $rootScope.titleMall;
-
     /**
      * 获取orgId*/
     orgService.getSchool($stateParams.orgId, function (data) {

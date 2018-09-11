@@ -63,6 +63,7 @@ var AppController =app.controller("AppController",
             linkNode.setAttribute("href","skin-css/bnu-skin.css");
         }else {
             //默认云采通红
+            $rootScope.isScu = true;
             linkNode.setAttribute("href","skin-css/yct-skin.css");
         }
         document.head.appendChild(linkNode);
@@ -90,11 +91,6 @@ var AppController =app.controller("AppController",
         /**登出**/
         $scope.logout = function() {
             $cookieStore.remove("access_token");
-            jquery.cookie('cart_id', null, {
-                'expires': -1,
-                'domain': global.domain,
-                'path': '/'
-            });
             jquery.cookie('access_token', null, {
                 'expires': -1,
                 'domain': global.domain,
@@ -102,7 +98,6 @@ var AppController =app.controller("AppController",
             });
             $scope.p = null;
             $scope.o = null;
-            $scope.cartId = 0;
             $scope.getCartList();
         };
 
@@ -117,6 +112,10 @@ var AppController =app.controller("AppController",
         $scope.getUserInfo = function() {
             authService.get(function(a) {
                 if (a != null) {
+                    //如果登录了，可以弹出让他绑定微信，手机
+                    $scope.accessToken = $cookies.get('access_token');
+                    $scope.showBind();
+
                     $scope.p = a.p;
                     $scope.o = _.find(a.o, function(o) {
                         return o.current == true;
@@ -152,16 +151,9 @@ var AppController =app.controller("AppController",
             $scope.runningCount = count;
         });
 
-        /**一开始设置cart_id**/
-        jquery.cookie('cart_id', 0, {
-            'domain' : global.domain,
-            'path' : '/'
-        });
-        $scope.cartId = 0;
-
         /**刷新购物车列表**/
         $scope.getCartList = function(){
-            cartService.get($scope.cartId, function(data) {
+            cartService.get(function(data) {
                 $scope.cartList = data;
                 $scope.addUnitPrice();
             });
@@ -209,7 +201,7 @@ var AppController =app.controller("AppController",
         $scope.addGoods = function(product,  cartNum){
             //是否能购买
             if($scope.o){
-                cartService.insert($scope.cartId, product.productId, product.mallId, cartNum, function(data){
+                cartService.insert(product.productId, product.mallId, cartNum, function(data){
                     swal({
                         text: '成功加入购物车!',
                         icon: "success",
@@ -225,13 +217,6 @@ var AppController =app.controller("AppController",
                             window.open('/#/cart');
                         }
                     });
-                    if($scope.cartId == 0){
-                        jquery.cookie('cart_id', data.cartId, {
-                            'domain': global.domain,
-                            'path': '/'
-                        });
-                        $scope.cartId = data.cartId;
-                    }
                     $scope.getCartList(0);
                 },function(data){
                     swal({
@@ -475,7 +460,24 @@ var AppController =app.controller("AppController",
         $scope.hideQuit = function () {
             jquery('.has-drop').removeClass('arrow-v');
             jquery('.dorpmenu').fadeOut('fast');
+        };
+
+        $scope.showLogin = function () {
+            $scope.loginMask = true;
+        };
+
+        $scope.closeLogin = function () {
+            $scope.loginMask = false;
+        };
+
+        $scope.showBind = function () {
+            $scope.bindMask = true;
+        };
+
+        $scope.closeBind = function () {
+            $scope.bindMask = false;
         }
+
     });
 
 module.exports = AppController;

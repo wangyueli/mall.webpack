@@ -10,8 +10,9 @@ require('serve/auth.js');
 require('serve/category.js');
 require('serve/store.js');
 require('serve/personAddress.js');
+require('serve/cart.js');
 
-var productDetail = app.controller('productDetailCtrl', function ($scope, $rootScope, $log, $location, $stateParams, $anchorScroll, $modal, $filter, $cookies, $http, authService, productService, personAddressService) {
+var productDetail = app.controller('productDetailCtrl', function ($scope, $rootScope, $log, $location, $stateParams, $anchorScroll, $modal, $filter, $cookies, $http, authService, productService, cartService, personAddressService) {
 	$scope.id = $stateParams.id;
 	$scope.num = 1;
 	$scope.detailMallId = $stateParams.mallId;
@@ -208,19 +209,22 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 	};
 
 	/*
-	* 店铺关注
-	* */
-	var box = document.getElementsByClassName("my-save")[0];
-	var icon = box.getElementsByTagName("i")[0];
-    var count = 0;
-    box.onclick = function() {
-        count++;
-        if (count%2 == 1) {
-            icon.style.color = "#e11e2d";
-        }else {
-            icon.style.color = "#ccc";
-        }
-    }
+	* 立即购买*/
+	$scope.buyNow = function (pId, mallId) {
+		/*cartService.updateMall(mallId, false, function() {
+		});
+
+		cartService.updateProduct(pId, true, function() {
+		});
+
+		window.location = '#/order?cartMallId=' + mallId;*/
+
+
+		cartService.insert(pId, mallId, 1, function(data) {
+			window.location = '/#/cart';
+		}, function() {
+		});
+	};
 
 });
 
