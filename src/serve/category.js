@@ -4,10 +4,9 @@ var url = require('util/url.js');
 
 var categoryService = app.service('categoryService', function ($http) {
 	//获取分类列表
-	this.get = function(mallId, orgId, f) {
+	this.get = function(mallId, f) {
 		$http.get(url.url('/category/list', {
-			'mallId': mallId,
-			'orgId': orgId
+			'mallId': mallId
 		}, global.mall.api)).then(f);
 	};
 });

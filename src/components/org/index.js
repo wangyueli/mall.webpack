@@ -5,7 +5,7 @@ var global = require('global');
 
 require('serve/org.js');
 
-var org = app.controller('orgCtrl', function ($scope, $cookies, orgService) {
+var org = app.controller('orgCtrl', function ($scope, $rootScope, $cookies, orgService) {
     $scope.keywordTemp = null;
     $scope.page = 1;
     $scope.rows = 10;
@@ -13,10 +13,9 @@ var org = app.controller('orgCtrl', function ($scope, $cookies, orgService) {
     $scope.orgList = [];
 
     /**获取行业**/
-    orgService.getCt($cookies.get('orgId'), function (categoryList) {
+    orgService.getCt(function (categoryList) {
         $scope.idParent = categoryList;
     });
-
 
     /**行业选择全(不)选**/
     $scope.choice = function(category){
@@ -40,7 +39,7 @@ var org = app.controller('orgCtrl', function ($scope, $cookies, orgService) {
     $scope.getList = function(page){
         $scope.page = page ? page : 1;
         $scope.orgIconLoader = true;
-        orgService.getMorgList($cookies.get('orgId'), $scope.page - 1, $scope.rows, $scope.categories, $scope.keywordTemp, function(orgList){
+        orgService.getMorgList($scope.page - 1, $scope.rows, $scope.categories, $scope.keywordTemp, function(orgList){
             if(_.isEmpty(orgList.stores)){
                 $scope.orgMore = true;
                 $scope.orgList = [];

@@ -19,15 +19,6 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
      * 获取登录信息*/
     $scope.ifSign();
 
-    /**
-     * 获取当前学校 logo name**/
-    orgService.getSchool($cookies.get('orgId'),function (data) {
-        $scope.schoolId = data.id;
-        $rootScope.titleMall = data.name + '采购商城';
-        $rootScope.Tabtitle = $scope.title + $rootScope.titleMall;
-        $rootScope.tlImg = global.file.url+ '/'+ data.logo;
-    });
-
     /**获取订单信息**/
     $scope.getList = function () {
         ordersService.getList($scope.state, $scope.ifPay, $scope.keyword, $scope.page-1, $scope.rows, function (data) {

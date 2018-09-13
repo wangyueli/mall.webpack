@@ -46,10 +46,10 @@ app.run([
             var _hmt = _hmt || [];
             _hmt.push(['_trackPageview', encodeURIComponent('/#' + toState.url)]);
             if (toState.url != null) {
-                $rootScope.title = toState.data.title;
+                $rootScope.titleTab = toState.data.title + $rootScope.titleMall;
                 $rootScope.currentPath = toState.url;
             }
-            $rootScope.title = toState.data.title;
+            $rootScope.titleTab = toState.data.title + $rootScope.titleMall;
             if (toState.data.pathCode) {
                 $rootScope.accessToken = $cookies.get("access_token");
 

@@ -42,7 +42,6 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 			//品牌优惠
 			$scope.paramsReduce = {
 				'mallId': $stateParams.mallId,
-				'orgId':  $cookies.get('orgId'),
 				'categoryId': $scope.categoryId,
 				'brand': $scope.detail.brand,
 				'page': 0,
@@ -69,7 +68,6 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 			//新品上市
 			$scope.paramsNew = {
 				'mallId': $stateParams.mallId,
-				'orgId':  $cookies.get('orgId'),
 				'categoryId': $scope.categoryId,
 				'brand': $scope.detail.brand,
 				'page': 0,

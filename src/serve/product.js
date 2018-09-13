@@ -4,7 +4,7 @@ var app = require('appModule');
 var url = require('util/url.js');
 var productService = app.service('productService', function ($http) {
     //获取列表数据
-    this.getList = function(mallId, orgId, categoryId, keyword, brand, page, rows, property, minp, maxp, imported, sort, f) {
+    this.getList = function(mallId, categoryId, keyword, brand, page, rows, property, minp, maxp, imported, sort, f) {
         $http.get(url.url('/mall/search', {
             'keyword' : keyword,
             'categoryId': categoryId,
@@ -16,7 +16,6 @@ var productService = app.service('productService', function ($http) {
             'maxPrice' : maxp,
             'imported' : imported,
             'sort' : sort,
-            'orgId': orgId,
             'mallId': mallId
         }, global.mall.api)).then(f);
     };

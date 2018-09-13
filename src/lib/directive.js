@@ -937,6 +937,7 @@ module.directive('toLogin', ['$http', function ($http) {
     return{
         restrict: 'EA',
         scope: {
+            schoolUrl: '@schoolUrl',
             closeLogin: '&'
         },
         template: require('../components/loginBind/login.html'),

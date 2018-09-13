@@ -6,7 +6,7 @@
     <meta name="renderer" content="webkit" />
     <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=yes" />
     <meta name="description" content="商城" />
-    <title ng-bind="Tabtitle"></title>
+    <title ng-bind="titleTab"></title>
     <link rel="icon" type="image/png" ng-href="{{tlImg}}">
     <!--<link rel="stylesheet" type="text/css" href="//static.yuncaitong.cn/asset/iconfont/iconfont.css?201807090000" />-->
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_99767_rzt74z0a1q.css" />
@@ -25,7 +25,7 @@
 <body ng-controller="AppController">
 <!--微信 登录 绑定-->
 <login-bind ng-if="bindMask"  access-token="{{accessToken}}" close-bind="closeBind();" show-bind="showBind()"></login-bind>
-<to-login ng-if="loginMask" close-login="closeLogin();"></to-login>
+<to-login ng-if="loginMask" school-url="{{schoolLoginUrl}}" close-login="closeLogin();"></to-login>
 
 <div ui-view></div>
 <script src="vendors.dll.js"></script>

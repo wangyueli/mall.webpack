@@ -184,7 +184,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
 
         /**
          * 用户地址*/
-        orgService.defaultAdress($cookies.get('orgId'), $scope.thismallId, function (data) {
+        orgService.defaultAdress($scope.thismallId, function (data) {
             if(data.town){
                 $scope.personAddress.region = data.town;
             }else if(data.county){

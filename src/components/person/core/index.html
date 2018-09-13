@@ -26,22 +26,24 @@
         <div class="person_sub">
             <p>
                 <i class="icon  icon-denglu"></i>
-                姓名：<span>张三</span>
+                姓名：<span>{{p.name}}</span>
             </p>
             <p>
                 <i class="icon  icon-gaoxiao"></i>
-                学校：<span>四川大学</span>
+                学校：<span>{{o.name}}</span>
             </p>
-            <p ng-show="bindWeixin">
-                <i class="icon  icon-weixin"></i>微信
-                <span  class="person_vx">未绑定</span>
-                <a ng-click="showBind()">绑定微信</a>
-            </p>
-            <p ng-show="!bindWeixin">
-                <i class="icon  icon-weixin"></i>微信
-                <span  class="person_vx">已绑定</span>
-                <a href="">解除绑定</a>
-            </p>
+            <div ng-hide="noOpenWeixin">
+                <p ng-show="bindWeixin">
+                    <i class="icon  icon-weixin"></i>微信
+                    <span  class="person_vx">未绑定</span>
+                    <a ng-click="showBind()">绑定微信</a>
+                </p>
+                <p ng-show="!bindWeixin">
+                    <i class="icon  icon-weixin"></i>微信
+                    <span  class="person_vx">已绑定</span>
+                    <!--<a href="">解除绑定</a>-->
+                </p>
+            </div>
         </div>
     </div>
 </div>

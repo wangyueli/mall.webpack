@@ -4,6 +4,7 @@ require('swiper');
 require('serve/mall.js');
 
 var wwwHome = app.controller('wwwHomeCtrl', function ($scope, $rootScope,  mallService) {
+    $rootScope.tlImg = 'images/favicon.ico';
 
     //banner 初始化
     var mySwiper1= new Swiper(".swiper-container",{

@@ -9,93 +9,58 @@ require('serve/home.js');
 require('serve/category.js');
 
 var content = app.controller('contentCtrl', function ($scope, $stateParams, $http, $cookies, $rootScope, $location, productService, orgService, homeService, categoryService) {
+
     $rootScope.nowMallId = $stateParams.mallId;
 
     //////////////////////////////////商城顶部配置////////////////////////////////////
 
     /**
-     * 获取当前学校 logo name**/
-    orgService.getSchool($stateParams.orgId, function (data) {
-        $scope.schoolId = data.id;
-        $scope.schoolName = data.name;
-        if($scope.currentPath=='mall'){
-            //www 上的特殊title设置
-            $rootScope.Tabtitle = '云采通-专业科教商城';
-            $rootScope.tlImg = 'images/favicon.ico'
-        }else {
-            if(data.id==58212){
-                $rootScope.titleMall = data.name + '采购商城';
-            }else {
-                $rootScope.titleMall = data.name + '网上商城';
-            }
-            if($scope.currentPath=='product?keyword&categoryId&brand&mallId'){
-                $rootScope.Tabtitle = $rootScope.keyword +'-'+ $rootScope.titleMall;
-            }else {
-                $rootScope.Tabtitle = $scope.title + $rootScope.titleMall;
-            }
-            $rootScope.tlImg = global.file.url+ '/'+ data.logo;
-            //返回的orgId 存cookie；
-            jquery.cookie('orgId', data.id, {
-                'domain': global.domain,
-                'path': '/'
+     * 获取该学校下 可访问频道*/
+    orgService.getUseMall(function (data) {
+        $scope.mallMsg = data;
+        $scope.haveEsmall = _.find(data, function (item) {
+            return item.mallBussinessType == 'esmall';
+        });
+        /*var esMall = _.find(data, function (item) {
+         return item.mallBussinessType == 'esmall'
+         });
+         if(esMall && $scope.currentPath==''){
+         //如果有协议供货频道 获取协议供货热卖
+         homeService.getList(esMall.mallId, function (data) {
+         if(data.hots){
+         $scope.mallProIds = '';
+         _.each(data.hots.children, function (good) {
+         $scope.mallProIds += good.data.mallId + '.' + good.data.productId + ',';
+         });
+         $scope.esMallPros = data.hots.children;
+         $rootScope.productPrice($scope.mallProIds);
+         }
+         });
+         }*/
+        if($location.path() == '/channel'){
+            //设置当前搜索频道
+            var nowChannel = _.find(data, function (item) {
+                return item.mallId == $stateParams.mallId;
             });
-            //获取所有频道的品类 合并
-            categoryService.get('', data.id, function (cary) {
-                $rootScope.goodsType = cary.data;
-            });
-            $scope.getUseMall(data.id);
-            $scope.getGoodsTy(data.id);
+            $scope.nowMall = nowChannel.mallSimpleName;
+            $rootScope.titleTab = $scope.nowMall +'-'+ $rootScope.titleMall;
         }
     });
 
-    /**
-     * 获取该学校下 可访问频道*/
-    $scope.getUseMall = function(orgId){
-        orgService.getUseMall(orgId, function (data) {
-            $scope.mallMsg = data;
-            $scope.haveEsmall = _.find(data, function (item) {
-                return item.mallBussinessType == 'esmall';
-            });
-            /*var esMall = _.find(data, function (item) {
-                return item.mallBussinessType == 'esmall'
-            });
-            if(esMall && $scope.currentPath==''){
-                //如果有协议供货频道 获取协议供货热卖
-                homeService.getList(esMall.mallId, orgId, function (data) {
-                    if(data.hots){
-                        $scope.mallProIds = '';
-                        _.each(data.hots.children, function (good) {
-                            $scope.mallProIds += good.data.mallId + '.' + good.data.productId + ',';
-                        });
-                        $scope.esMallPros = data.hots.children;
-                        $rootScope.productPrice($scope.mallProIds);
-                    }
-                });
-            }*/
+    /*
+    * 获取所有频道的品类*/
+    categoryService.get('', function (cary) {
+        $rootScope.goodsType = cary.data;
+    });
 
-            if($stateParams.mallId){
-                //设置当前搜索频道
-                var nowChannel = _.find(data, function (item) {
-                    return item.mallId == $stateParams.mallId;
-                });
-                $scope.nowMall = nowChannel.mallSimpleName;
-                if($scope.currentPath=='channel?mallId'){
-                    $rootScope.Tabtitle = $scope.nowMall +'-'+ $rootScope.titleMall;
-                }
-            }
-        });
-    };
-
-    /**
-     * 获取导航分类 频道**/
-    $scope.getGoodsTy = function (orgId) {
-        if($scope.currentPath == 'channel?mallId' || $scope.currentPath=='helper?mallId'){
-            categoryService.get($stateParams.mallId, orgId, function (data) {
-                $rootScope.goodsTypeChannel = data.data;
-                $rootScope.goodsTypeChannelBack = data.data;
-            })
-        }
-    };
+    /*
+    * 获取导航分类 频道*/
+    if($scope.currentPath == 'channel?mallId' || $scope.currentPath=='helper?mallId'){
+        categoryService.get($stateParams.mallId, function (data) {
+            $rootScope.goodsTypeChannel = data.data;
+            $rootScope.goodsTypeChannelBack = data.data;
+        })
+    }
 
     /////////////////////////////////////end///////////////////////////////////////
 
@@ -127,7 +92,7 @@ var content = app.controller('contentCtrl', function ($scope, $stateParams, $htt
         }else if(mall.mallId=='15E83983E00005C0241002C062006843'){
             $location.url('helper?mallId='+mall.mallId);
         }else {
-            $location.url('channel?orgId=' + $cookies.get('orgId') + '&mallId=' +mall.mallId);
+            $location.url('channel?mallId='+ mall.mallId);
         }
     };
 

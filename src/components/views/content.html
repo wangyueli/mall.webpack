@@ -190,7 +190,7 @@
             <!--可访问频道-->
             <ul class="nav-menu marginLeft">
                 <li class="nav-menu-class" ng-repeat="item in mallMsg">
-                    <a ng-class="{active: item.mallId==$parent.nowMallId && currentPath!='product?keyword&categoryId&brand&mallId' }"  ng-click="chooseMall(item);">
+                    <a ng-class="{active: item.mallId==nowMallId && currentPath!='product?keyword&categoryId&brand&mallId' }"  ng-click="chooseMall(item);">
                         {{item.mallSimpleName}}
                     </a>
                 </li>

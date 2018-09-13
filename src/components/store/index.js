@@ -15,11 +15,10 @@ var store = app.controller('storeCtrl', function ($scope, $stateParams, $cookies
         $scope.pageChanged();
     });
 
-
     /*
      * 该公司所售商品*/
     $scope.pageChanged = function(){
-        storeService.getList($cookies.get('orgId'), $stateParams.id, $scope.page-1, $scope.rows, function(data){
+        storeService.getList($stateParams.id, $scope.page-1, $scope.rows, function(data){
             $scope.list = data.product.rs;
             $scope.listCount = data.product.count;
         });

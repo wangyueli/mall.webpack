@@ -4,9 +4,8 @@ var app = require('appModule');
 var url = require('util/url.js');
 var homeService = app.service('homeService', function ($http) {
     //获取热卖商品以及热卖分类
-    this.getList = function(mallId, orgId, f) {
+    this.getList = function(mallId, f) {
         $http.get(url.url('/homerecommend/content', {
-            'orgId' : orgId,
             'mallId' : mallId
         },global.mall.api)).then(f);
     };
@@ -19,9 +18,8 @@ var homeService = app.service('homeService', function ($http) {
     };
 
     //公告
-    this.publics = function (orgId, mallId, f) {
+    this.publics = function (mallId, f) {
         $http.get(url.url('/announcement/content', {
-            'orgId' : orgId,
             'mallId' : mallId
         }, global.mall.api)).then(f)
     }

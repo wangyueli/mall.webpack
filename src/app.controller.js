@@ -25,7 +25,6 @@ var AppController =app.controller("AppController",
         if(windowUrl.indexOf('https://scu-mall') != -1){
             //四川大学（深红色）
             linkNode.setAttribute("href","skin-css/scu-skin.css");
-            $rootScope.isScu = true;
         }else if(windowUrl.indexOf('https://hfut-mall') != -1){
             //合肥工大（红棕色）
             linkNode.setAttribute("href","skin-css/hfut-skin.css");
@@ -67,6 +66,27 @@ var AppController =app.controller("AppController",
             linkNode.setAttribute("href","skin-css/yct-skin.css");
         }
         document.head.appendChild(linkNode);
+
+        /**
+         * 获取当前学校信息**/
+        orgService.getSchool(function (data) {
+            jquery.cookie('orgId', data.id, {
+                'expires': -1,
+                'domain': global.domain,
+                'path': '/'
+            });
+            $scope.schoolName = data.name;
+            $scope.orgId = data.id;
+            $scope.canTwoCode = data.wxValid;
+            $scope.schoolLoginUrl = data.schoolLoginUrl;
+            if(data.id==58212){
+                $rootScope.titleMall = data.name + '采购商城';
+            }else {
+                $rootScope.titleMall = data.name + '网上商城';
+            }
+            $rootScope.tlImg = global.file.url+ '/'+ data.logo;
+
+        });
 
         /**
          * 是否登录*/
@@ -120,12 +140,14 @@ var AppController =app.controller("AppController",
                             if(data.bandingWx == false){
                                 //没有绑定微信
                                 $scope.bindWeixin = true;
-                                if($location.url() == '/'){
+                                if($location.path() == '/'){
                                     $scope.showBind();
                                 }
                             }else {
                                 $scope.bindWeixin = false;
                             }
+                        }else {
+                            $scope.noOpenWeixin = true;
                         }
                     });
 
@@ -302,7 +324,7 @@ var AppController =app.controller("AppController",
         /*
          * 获取当前用户所在地址*/
         $rootScope.getRegion = function (mallId, f) {
-            orgService.defaultAdress($cookies.get('orgId'), mallId, function (data) {
+            orgService.defaultAdress(mallId, function (data) {
                 if(data){
                     //如果后台有配数据
                     $scope.address = data.provinceName + data.cityName;

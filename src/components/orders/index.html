@@ -187,7 +187,7 @@
                                 <a class="blue" ng-click="copy(order)">立即购买</a>
                                 <a class="default" ng-click="toPayCard(order.id)" ng-show="order.status=='NEW' ">确认经费</a>
                                 <a class="default" ng-click="toPay(order.id)" ng-show="order.status=='ADOPT' ">去支付</a>
-                                <a class="default" ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' && schoolId=='58212' || order.status=='RECEIVE' && schoolId=='58212' ">确认收货</a>
+                                <a class="default" ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' || order.status=='RECEIVE'">确认收货</a>
                                 <a class="gr-colr" ng-click="delOrder(order.id, '取消订单')" ng-show="order.status=='NEW'|| order.status=='RECEIVE' || order.status=='ADOPT' ">取消订单</a>
                                 <a class="blue" ng-click="print('ordMsg', order.id)" ng-show="order.status=='FINISHED' && order.invoiceSubmit=='school' ">打印采购申请表</a>
                                 <a class="blue" ng-click="print('elctrInv', order.id)" ng-show="order.status=='FINISHED' ">打印电子发票</a>
@@ -316,7 +316,7 @@
                                     <a class="gr-colr" ng-click="delOrder(order.id, '取消订单')" ng-show="order.status=='NEW'|| order.status=='RECEIVE' || order.status=='ADOPT' ">取消订单</a>
                                     <a class="default" ng-click="toPayCard(order.id)" ng-show="order.status=='NEW' ">确认经费</a>
                                     <a class="default" ng-click="toPay(order.id)" ng-show="order.status=='ADOPT' ">去支付</a>
-                                    <a class="default" ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' && schoolId=='58212' || order.status=='RECEIVE' && schoolId=='58212' ">确认收货</a>
+                                    <a class="default" ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' || order.status=='RECEIVE'">确认收货</a>
                                 </td>
                             </tr>
                         </table>

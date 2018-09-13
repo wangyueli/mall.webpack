@@ -7,7 +7,7 @@
 .red-btn{@extend %red-btn}
 
 .save-p{
-  @include absolute-rt(5px, 5px);
+  @include absolute-rt(-5px, -5px);
   @include cube-inline-equal(80px);
   @include bg-center-img("/images/save-p.png");
   background-size: cover;
@@ -834,10 +834,6 @@
     line-height: 20px;
     margin:5px 0;
   }
-  .s-price{
-    text-decoration: line-through;
-  }
-
   .sp-price{
     overflow: hidden;
     @include v-center(18px, 18px);
@@ -926,8 +922,20 @@
     }
 
   }
-
-
+  .save-count{
+    @include absolute-lf(120px, 0);
+    @include wh(100%, 30px);
+    color: #538203;
+    text-align: center;
+    line-height: 30px;
+    background: rgba(225, 225, 225, 0.9);
+    font-weight: 600;
+    font-size: 14px;
+    display: none;
+  }
+  &:hover{
+    .save-count{display: block;}
+  }
 }
 
 /*--------------product>detail 商品详情---------------*/
@@ -3906,7 +3914,7 @@
     }
   }
 }
- #hot-content{
+ .hot-content{
   width:1200px;
   margin:0 auto;
   .module{
@@ -3936,34 +3944,9 @@
     }
     .md-ctn{
       width: 1200px;
-      max-height: 480px;
+      max-height: 500px;
       padding: 10px 0;
       overflow: hidden;
-    }
-    .home-category{
-      float: left;
-      width: 204px;
-      li{
-        float: left;
-      }
-      a{
-        @include cube-inline(90px, 38px);
-        @include center(38px, #005aa0);
-        border:$border-light-gray;
-        margin:8px 0 1.5px 8px;
-        font-size: 14px;
-        overflow: hidden;
-        &:hover{
-          color: $g6;
-          border:1px solid $jd-red;
-          box-shadow: 0 0 1px 1px $jd-red;
-        }
-      }
-      .cay-pic{
-        width: 200px;
-        height: 200px;
-        margin-top: 5px;
-      }
     }
   }
   .head_main_column{
@@ -6059,11 +6042,6 @@
            color: #ec3e3b;
            line-height: 20px;
          }
-         .s-price{
-             text-decoration:line-through;
-             color:#999;
-
-         }
          .col_name{
            margin: 4px 0;
            height: 17px;
@@ -6202,11 +6180,6 @@
         font-weight: 700;
         color: #ec3e3b;
         line-height: 20px;
-      }
-      .s-price{
-        text-decoration:line-through;
-        color:#999;
-
       }
       .col_name{
         margin: 4px 0;

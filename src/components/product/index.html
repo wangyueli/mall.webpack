@@ -257,8 +257,7 @@
                                             <span class="weight" ng-hide="good.mallId=='JD' || good.mallId=='BGHB' ">参考价：</span>
                                             <span class="weight" ng-show="good.mallId=='JD'">京东价：</span>
                                             <span class="weight" ng-show="good.mallId=='BGHB'">办公伙伴价：</span>
-                                            <s class="s-price">￥{{prices[good.productId].unitPriceShow | number:2}}</s>
-
+                                            <s class="linethrough">￥{{prices[good.productId].unitPriceShow | number:2}}</s>
                                         </p>
                                     </div>
                                     <div class="p-price" ng-show="prices[good.productId].hasOwnProperty('unitPriceMax')">￥{{prices[good.productId].unitPriceMin | number:2}}-{{prices[good.productId].unitPriceMax | number:2}}</div>

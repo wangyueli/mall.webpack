@@ -214,7 +214,7 @@
             <a class="btn" ng-click="delOrder(order.id)" ng-show="order.status=='NEW'&& !order.hasOwnProperty('parentId') || order.status=='PAY'&& !order.hasOwnProperty('parentId') || order.status=='CONFIRM'&& !order.hasOwnProperty('parentId') || order.status=='ADOPT'&& !order.hasOwnProperty('parentId') ">取消订单</a>
             <a class="btn" ng-click="toPayCard(order.id)" ng-show="order.status=='NEW' && !order.hasOwnProperty('parentId') ">确认经费</a>
             <a class="btn" ng-click="toPay(order.id)" ng-show="order.status=='ADOPT' && !order.hasOwnProperty('parentId') ">去支付</a>
-            <a class="btn" ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' && schoolId=='58212' || order.status=='RECEIVE' && schoolId=='58212' ">确认收货</a>
+            <a class="btn" ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' || order.status=='RECEIVE'">确认收货</a>
             <a class="btn" ng-click="toAsset(order.id)" ng-show="order.assetsSystemRecoreded==true && order.assetsSystem==true;" ng-bind="toAssetWd" ng-init="toAssetWd='验收入账'"></a>
         </div>
     </div>

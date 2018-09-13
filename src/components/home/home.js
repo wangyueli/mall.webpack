@@ -28,62 +28,38 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
     };
     $scope.IEVersion();
 
-    $rootScope.Tabtitle = $scope.title + $rootScope.titleMall;
-    /**
-     * 获取orgId*/
-    orgService.getSchool($stateParams.orgId, function (data) {
-        $scope.orgId = data.id;
-        orgService.getUseMall($scope.orgId, function (data) {
-            //判断是否开通京东
-            _.each(data, function (item) {
-                if(item.mallId=='JD'){
-                    $rootScope.haveJd = true;
-
-                    /*
-                     * 值得购买*/
-                    $scope.worthProts = [];
-                    $scope.pagePrt = 0;
-                    $scope.getRecommend = function () {
-                        productService.worthBuy('JD-Promo-20180828', 'worthToBuyProduct', $scope.pagePrt, '10', function (data) {
-                            if(data.length>0){
-                                _.each(data, function (item) {
-                                    productService.getDetailCache(item.mallId, item.value, function (detail) {
-                                        detail.pic = detail.pic.split(',')[0];
-                                        $scope.worthProts.push(detail);
-                                    })
-                                });
-                            }else {
-                                clearInterval(timer);
-                            }
-                        });
-                    };
-                    $scope.getRecommend();
-                    var timer = setInterval(function () {
-                        $scope.pagePrt++;
-                        $scope.getRecommend();
-                    }, 2000);
-                }
-            });
-            //banner 初始化
-            var mySwiper1= new Swiper(".swiper-container",{
-                autoplay:6000,
-                loop:true,
-                autoplayDisableOnInteraction:false,
-                pagination:".swiper-pagination",
-                paginationClickable :true
-            });
+    /*
+    * 可访问频道*/
+    orgService.getUseMall(function (data) {
+        //判断是否开通京东
+        $scope.haveJd = _.find(data,function (item) {
+            return item.mallId == 'JD';
         });
+        if($scope.haveJd){
+            $scope.mallId = 'JD'
+        }else {
+            $scope.mallId = null;
+        }
         $scope.getHot();
-        /* 公告*/
-        homeService.publics($scope.orgId, null, function (data) {
-            $scope.publics = data;
-        })
 
+        //banner 初始化
+        var mySwiper1= new Swiper(".swiper-container",{
+            autoplay:6000,
+            loop:true,
+            autoplayDisableOnInteraction:false,
+            pagination:".swiper-pagination",
+            paginationClickable :true
+        });
+    });
+
+    /* 公告*/
+    homeService.publics(null, function (data) {
+        $scope.publics = data;
     });
 
     /*
     * 动态订单*/
-    $scope.mallOrderIds = '';
+    /*$scope.mallOrderIds = '';
     $scope.hotOrders = [];
     $scope.paramsHotOrd = {
         'sort': 'salesNum desc',
@@ -91,56 +67,80 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
         'page': 0,
         'rows': 10
     };
-    orgService.getSchool('', function (data) {
-        categoryService.get('', data.id, function (cary) {
-            _.each(cary.data, function (item, parentIndex) {
-                $scope.paramsHotOrd.categoryId = item.data.categoryId;
-                homeService.getPrtList($scope.paramsHotOrd, function (prts) {
-                    if(prts.product.rs.length>0){
-                        _.each(prts.product.rs, function (good, index) {
-                             if(good.salesNum>0){
-                                 $scope.hotOrders.push(good);
-                                 $scope.mallOrderIds += good.mallId + '.' + good.productId + ',';
-                             }
-                             if(parentIndex == cary.data.length-1 && index == prts.product.rs.length-1){
-                                //等到便利到最后一次时再掉价格接口；
-                                $rootScope.productPrice($scope.mallOrderIds);
-                             }
-                        })
-                    }
-                })
+    categoryService.get('', function (cary) {
+        _.each(cary.data, function (item, parentIndex) {
+            $scope.paramsHotOrd.categoryId = item.data.categoryId;
+            homeService.getPrtList($scope.paramsHotOrd, function (prts) {
+                if(prts.product.rs.length>0){
+                    _.each(prts.product.rs, function (good, index) {
+                         if(good.salesNum>0){
+                             $scope.hotOrders.push(good);
+                             $scope.mallOrderIds += good.mallId + '.' + good.productId + ',';
+                         }
+                         if(parentIndex == cary.data.length-1 && index == prts.product.rs.length-1){
+                            //等到便利到最后一次时再掉价格接口；
+                            $rootScope.productPrice($scope.mallOrderIds);
+                         }
+                    })
+                }
             })
-        });
-    });
+        })
+    });*/
 
     /**
      * 热卖商品 热卖品类*/
     $scope.mallProIds = '';
     $scope.getHot = function () {
-        homeService.getList(null, $scope.orgId, function (data) {
+        homeService.getList($scope.mallId, function (data) {
             $scope.allHots =data;
-            //图片改为小尺寸的
+            if(data.shows){
+                $scope.hotCategorys = data.shows.children;
+            }
             if(data.hots){
                 _.each(data.hots.children, function (good) {
                     if(good.data.pic){
                         good.data.pic = good.data.pic.replace('/n0/', '/n2/');
                         $scope.mallProIds += good.data.mallId + '.' + good.data.productId + ',';
                     }
-                    if(good.targetMallId=='JD'){
-                        $scope.haveJd = true;
-                    }
                 });
                 $scope.hotProducts = data.hots.children;
                 $rootScope.productPrice($scope.mallProIds);
             }
-            if(data.shows){
-                $scope.hotCategorys = data.shows.children;
+        });
+    };
+    $scope.getCayPrtList = function (cayId, floor, parentIndex, index) {
+        $scope.paramsCary = {
+            'sort': 'discountRate desc',
+            'categoryId': cayId,
+            'page': 0,
+            'rows': 12
+        };
+        productService.getListCache($scope.paramsCary, function (prot) {
+            //图片改为小尺寸的；
+            _.each(prot.product.rs, function (good) {
+                good.pic = good.pic.replace('/n0/', '/n2/');
+                $scope.mallProIds += good.mallId + '.' + good.productId + ',';
+            });
+
+            floor[cayId] = prot;
+            if(index==0){
+                $scope['activeId'+parentIndex] = cayId;
+            }
+            if(parentIndex==$scope.hotCategorys.length-1 && index==floor.children.length-1){
+                //等到便利到最后一次时再掉价格接口；
+                $rootScope.productPrice($scope.mallProIds);
             }
         });
     };
 
+    $scope.findContent = function (cayId, parentIndex) {
+        $scope['activeId'+parentIndex] = cayId;
+
+    };
+
+
     /* --------无缝滚动---------*/
-    var timer1 = setInterval(autoPlay,10);
+    /*    var timer1 = setInterval(autoPlay,10);
     var num1 = 0;
     var scroll = document.getElementById("scroll");
     function autoPlay() {
@@ -153,7 +153,7 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
     }
     scroll.onmouseout = function() {
         timer1 = setInterval(autoPlay,10);  // 开启定时器
-    }
+    }*/
 });
 
 module.exports = home;

@@ -20,6 +20,11 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
     $scope.property = {};
     $scope.imported = null;
     $scope.sort = 'scale desc';
+
+    if($scope.keyword){
+        $rootScope.titleTab = $rootScope.keyword +  '-' + $rootScope.titleMall;
+    }
+
     if($stateParams.mallId){
         $scope.mallId = $stateParams.mallId;
         //地区获取
@@ -37,7 +42,7 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
     if($scope.categoryId){
         productService.getCategory($stateParams.mallId, $scope.categoryId, function (data) {
             $scope.categoryName = data.name;
-            $rootScope.Tabtitle = $scope.categoryName +'-'+ $rootScope.titleMall;
+            $rootScope.titleTab = $scope.categoryName +'-'+ $rootScope.titleMall;
         });
     }
 
@@ -62,7 +67,7 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
     /**
      * 获取商品数据**/
     $scope.getList = function () {
-        productService.getList($scope.mallId, $cookies.get('orgId'), $scope.categoryId, $rootScope.keyword, $scope.brand, $scope.page-1, $scope.rows, $scope.property, $scope.minp, $scope.maxp, $scope.imported, $scope.sort, function(data){
+        productService.getList($scope.mallId, $scope.categoryId, $rootScope.keyword, $scope.brand, $scope.page-1, $scope.rows, $scope.property, $scope.minp, $scope.maxp, $scope.imported, $scope.sort, function(data){
             //判断某个频道种类商品库存 获取价格
             $scope.mallProIds = '';
             _.each(data.product.rs, function (good) {

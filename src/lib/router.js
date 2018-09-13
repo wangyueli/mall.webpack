@@ -21,7 +21,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
     $stateProvider
         .state('content', {
             abstract: true,
-            url: "/?orgId&mallId",
+            url: "/?mallId",
             views: {
                 "": {
                     template: content,
@@ -582,7 +582,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'mall',
             data: {
                 code: 'mall',
-                title: '云采通-商城首页--',
+                title: '云采通-专业科教商城',
                 pathCode: 'mall'
             },
             templateProvider: function($q) {

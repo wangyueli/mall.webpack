@@ -19,7 +19,6 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
 
 
     }
-    $scope.orgId = $cookies.get('orgId');
 
     /*
      * 动态订单*/
@@ -31,27 +30,27 @@ var square = app.controller('squareCtrl', function ($scope, $rootScope, $cookies
         'page': 0,
         'rows': 10
     };
-    orgService.getSchool('', function (data) {
-        categoryService.get('', data.id, function (cary) {
-            _.each(cary.data, function (item, parentIndex) {
-                $scope.paramsHotOrd.categoryId = item.data.categoryId;
-                productService.getListCache($scope.paramsHotOrd, function (prts) {
-                    if(prts.product.rs.length>0){
-                        _.each(prts.product.rs, function (good, index) {
-                            if(good.salesNum>0){
-                                $scope.hotOrders.push(good);
-                                $scope.mallOrderIds += good.mallId + '.' + good.productId + ',';
-                            }
-                            if(parentIndex == cary.data.length-1 && index == prts.product.rs.length-1){
-                                //等到便利到最后一次时再掉价格接口；
-                                $rootScope.productPrice($scope.mallOrderIds);
-                            }
-                        })
-                    }
-                })
+
+    categoryService.get('', function (cary) {
+        _.each(cary.data, function (item, parentIndex) {
+            $scope.paramsHotOrd.categoryId = item.data.categoryId;
+            productService.getListCache($scope.paramsHotOrd, function (prts) {
+                if(prts.product.rs.length>0){
+                    _.each(prts.product.rs, function (good, index) {
+                        if(good.salesNum>0){
+                            $scope.hotOrders.push(good);
+                            $scope.mallOrderIds += good.mallId + '.' + good.productId + ',';
+                        }
+                        if(parentIndex == cary.data.length-1 && index == prts.product.rs.length-1){
+                            //等到便利到最后一次时再掉价格接口；
+                            $rootScope.productPrice($scope.mallOrderIds);
+                        }
+                    })
+                }
             })
-        });
+        })
     });
+
 
 
     /*

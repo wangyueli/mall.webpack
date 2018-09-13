@@ -4,6 +4,7 @@ require('swiper');
 require('serve/helper.js');
 
 var helpPoor = app.controller('helpPoorCtrl', function ($scope, $cookies, $stateParams, $rootScope, helperService) {
+
     var mySwiper1= new Swiper(".swiper-container1",{
         autoplay:3000,
         loop:true,
