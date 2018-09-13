@@ -20,9 +20,12 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
     $scope.property = {};
     $scope.imported = null;
     $scope.sort = 'scale desc';
-
+    /*
+     * title*/
     if($scope.keyword){
         $rootScope.titleTab = $rootScope.keyword +  '-' + $rootScope.titleMall;
+    }else {
+        $rootScope.titleTab = '商品列表-' + $rootScope.titleMall;
     }
 
     if($stateParams.mallId){
@@ -42,7 +45,7 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
     if($scope.categoryId){
         productService.getCategory($stateParams.mallId, $scope.categoryId, function (data) {
             $scope.categoryName = data.name;
-            $rootScope.titleTab = $scope.categoryName +'-'+ $rootScope.titleMall;
+            $rootScope.Tabtitle = $scope.categoryName +'-'+ $rootScope.titleMall;
         });
     }
 
@@ -163,6 +166,12 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
 
     /**
      * 选择地区*/
+    jquery('.addr-sl').mouseover(function () {
+        jquery('.tab-address').show();
+    });
+    jquery('.addr-sl').mouseout(function () {
+        jquery('.tab-address').hide();
+    });
     $scope.addressChoose = function (ad, adId, adName) {
         $rootScope.addressChooseAll($scope.mallId, ad, adId, adName, function () {
             $scope.getList();

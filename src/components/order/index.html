@@ -56,14 +56,14 @@
                                         <a ng-href="{{'/#/product/detail?id=' + product.productId + '&mallId=' + product.mallId}}" target="_blank">{{product.name}}</a>
                                         <div class="no-pay" ng-hide="product.canBuy"><i class="iconfont icon-tubiao06"></i>{{product.msg}}</div>
                                         <div class="color6">
-                                            <span ng-repeat="gif in product.gifts">
+                                            <span ng-repeat="gif in product.gifts" class="gifts">
                                                 <span ng-show="gif.buyType=='annex'">
-                                                    附件：{{gif.remark}}
-                                                    <a class="no-pay" ng-hide="gif.canBuy"><i class="iconfont icon-tubiao06"></i>附件缺货</a>
+                                                    <s class="weight">附件：</s>{{gif.remark}}
+                                                    <s class="no-pay" ng-hide="gif.canBuy"><i class="iconfont icon-tubiao06"></i>附件缺货</s>
                                                 </span>
-                                                <span ng-show="gif.buyType=='gits'">
-                                                    赠品：{{gif.remark}}
-                                                    <a class="no-pay" ng-hide="gif.canBuy"><i class="iconfont icon-tubiao06"></i>附件缺货</a>
+                                                <span ng-show="gif.buyType=='gifts'">
+                                                    <s class="weight">赠品：</s>{{gif.remark}}
+                                                    <s class="no-pay" ng-hide="gif.canBuy"><i class="iconfont icon-tubiao06"></i>赠品缺货</s>
                                                 </span>
                                             </span>
                                         </div>

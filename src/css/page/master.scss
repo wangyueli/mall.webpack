@@ -667,14 +667,16 @@
     position: relative;
     float: left;
     margin-left:15px;
+    &:hover{
+      .open{
+        border-bottom: none;
+        height: 28px;
+      }
+    }
     .open{
       position: relative;
       z-index: 99;
       @extend %write-btn;
-    }
-    .noBorder{
-      border-bottom: none;
-      height: 28px;
     }
     .open i{
       line-height: 1;
@@ -693,11 +695,7 @@
     border: $border $gb;
     padding: 10px;
     z-index: 8;
-    .close{
-      @include absolute-rt(5px, 10px);
-      display: block;
-      color: #555;
-    }
+    display: none;
   }
 
   .noPrt{
@@ -736,7 +734,7 @@
       padding-left: 15px;
     }
     a{
-      color: $g6;
+      color: $g3;
       /*&:hover{color: $jd-red;}*/
     }
   }
@@ -1057,11 +1055,10 @@
     }
     .annex{
       .promotion{
-         @include  wh(100%,27px);
+        @include  wh(100%,27px);
         ul{
           overflow: hidden;
           box-sizing:border-box;
-          padding-left: 15px;
           li{
             float: left;
             margin-right: 18px;
@@ -1072,7 +1069,6 @@
               color: #ec3e3b;
               border: 1px solid #ec3e3b;
               font-size: 14px;
-              margin-left: 15px;
             }
             &:last-child{
               padding-top:5px;
@@ -1086,24 +1082,15 @@
           }
         }
       }
-      p{
-        margin-left: 15px;
-        span{
-          margin-right: 15px;
-        }
-        .annex_span{
-            color:#ec3e3b;
-        }
-      }
     }
     .price-f{
       position: relative;
-      height: 45px;
+      height: 55px;
       border-top:1px solid;
     }
     .price{
       @include absolute-lf(0, 0);
-      line-height: 45px;
+      line-height: 50px;
       color: $g6;
       z-index: 1;
       /*background: #fef1f1;
@@ -1150,7 +1137,7 @@
     }
 
     .tip-label{
-      color: $g9;
+      color: $g3;
       margin:0 5px 0 12px;
     }
     .tip-label-jd{
@@ -2230,6 +2217,11 @@
     border: 0;
     tr{
       background: #f2f8ff;
+    }
+    .gifts{
+      display: inline-block;
+      line-height: 15px;
+      padding-top: 5px;
     }
   }
   .public{margin-bottom: 0;}

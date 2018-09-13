@@ -61,7 +61,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
                 //如果有附件, 不支持购买，则显示不能提交按钮
                 if(cart.gifts.length>0){
                     _.each(cart.gifts, function (gif) {
-                        if(gif.canBuy == false){
+                        if(gif.canBuy == false && gif.buyType=='annex'){
                             $scope.noPay = true;
                             return false;
                         }
@@ -420,7 +420,8 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
         }
     };
 
-    /**提交订单**/
+    /**
+     * 提交订单**/
     $scope.submit = function(){
         $scope.ifSign();
         if($scope.sureAddress == null){

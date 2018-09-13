@@ -32,8 +32,7 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 			$scope.imgSrcs = (data.pic).split(",");
 			$scope.bigImg = $scope.imgSrcs[0];
 			$scope.haveProductCount(data.mallId+ '.' + data.productId);
-			$rootScope.Tabtitle = data.name + '-' + $rootScope.titleMall;
-
+			$rootScope.titleTab = data.name + '-' + $rootScope.titleMall;
 			var categoryLength = $scope.detail.categories.length;
 			$scope.categoryIdLast = $scope.detail.categories[categoryLength-1].id;
 			var random = Math.floor(Math.random()*categoryLength);
@@ -111,6 +110,12 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 
 	/**
 	 * 选择地区*/
+	jquery('.addr-sl').mouseover(function () {
+		jquery('.tab-address').show();
+	});
+	jquery('.addr-sl').mouseout(function () {
+		jquery('.tab-address').hide();
+	});
 	$scope.addressChoose1 = function (ad, adId, adName) {
 		$rootScope.addressChooseAll($stateParams.mallId, ad, adId, adName, function () {
 			$scope.getDetail();

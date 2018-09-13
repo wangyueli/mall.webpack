@@ -401,7 +401,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'orders',
             data: {
                 code: 'orders',
-                title: '我的订单列表',
+                title: '我的订单',
                 pathCode: 'orders'
             },
             templateProvider: function($q) {
@@ -425,7 +425,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'orders/detail?id',
             data: {
                 code: 'ordersDetail',
-                title: '我的订单详情',
+                title: '订单详情',
                 pathCode: 'ordersDetail'
             },
             templateProvider: function($q) {

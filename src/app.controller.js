@@ -70,11 +70,6 @@ var AppController =app.controller("AppController",
         /**
          * 获取当前学校信息**/
         orgService.getSchool(function (data) {
-            jquery.cookie('orgId', data.id, {
-                'expires': -1,
-                'domain': global.domain,
-                'path': '/'
-            });
             $scope.schoolName = data.name;
             $scope.orgId = data.id;
             $scope.canTwoCode = data.wxValid;
@@ -85,7 +80,9 @@ var AppController =app.controller("AppController",
                 $rootScope.titleMall = data.name + '网上商城';
             }
             $rootScope.tlImg = global.file.url+ '/'+ data.logo;
-
+            if($location.path() == '/'){
+                $rootScope.titleTab = $rootScope.titleMall;
+            }
         });
 
         /**
@@ -410,7 +407,7 @@ var AppController =app.controller("AppController",
                     }else {
                         $rootScope.region = adId;
                         f();
-                        $scope.ifAddrShow = false;
+                        jquery('.tab-address').hide();
                     }
                 })
             }else if(ad=='county'){
@@ -424,14 +421,14 @@ var AppController =app.controller("AppController",
                     }else {
                         $rootScope.region = adId;
                         f();
-                        $scope.ifAddrShow = false;
+                        jquery('.tab-address').hide();
                     }
                 })
             }else if(ad=='town'){
                 $scope.titleTown = adName;
                 $rootScope.region = adId;
                 $scope.address = $scope.titleProv + $scope.titleCity + $scope.titleCounty + $scope.titleTown;
-                $scope.ifAddrShow = false;
+                jquery('.tab-address').hide();
                 f();
             }
         };

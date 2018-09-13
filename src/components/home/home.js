@@ -27,6 +27,13 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
         }
     };
     $scope.IEVersion();
+    $rootScope.titleTab = $rootScope.titleMall;
+    orgService.getSchool(function (data) {
+        jquery.cookie('orgId', data.id, {
+            'domain': global.domain,
+            'path': '/'
+        });
+    });
 
     /*
     * 可访问频道*/

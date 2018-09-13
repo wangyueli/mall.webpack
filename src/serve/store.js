@@ -7,7 +7,7 @@ var storeService = app.service('storeService', function ($http) {
 	//获取店铺商品列表
 	this.getList = function(storeId, page, rows, f) {
 		$http.get(url.url('/mall/search', {
-			orgId: orgId,
+			storeId: storeId,
 			page : page,
 			rows : rows
 		}, global.mall.api)).then(f);

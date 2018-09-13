@@ -49,12 +49,7 @@ app.run([
                 $rootScope.currentPath = toState.url;
             }
             if($rootScope.titleMall){
-                if(toState.url != null){
-                    $rootScope.titleTab = toState.data.title + $rootScope.titleMall;
-
-                }else {
-                    $rootScope.titleTab = toState.data.title + '-' + $rootScope.titleMall;
-                }
+                $rootScope.titleTab = toState.data.title + '-' + $rootScope.titleMall;
             }else {
                 $rootScope.titleTab = toState.data.title;
             }

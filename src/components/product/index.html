@@ -153,12 +153,11 @@
                         <!--配送地点选择-->
                         <div class="f-addr clearfix" ng-show="mallId">
                             <span class="float-l ml5">配送地</span>
-                            <div class="addr-sl" ng-mouseenter="ifAddrShow=true;" ng-mouseleave="ifAddrShow=false;">
-                                <a class="open" ng-class="{'noBorder': ifAddrShow}">{{address}}
+                            <div class="addr-sl">
+                                <a class="open">{{address}}
                                     <i class="iconfont icon-arrowdownfilling"></i>
                                 </a>
-                                <div class="drop-down" ng-show="ifAddrShow">
-                                    <a class="close" ng-click="ifAddrShow=false;"><i class=" iconfont icon-close1"></i></a>
+                                <div class="drop-down tab-address">
                                     <div class="tabox">
                                         <div class="tab clearfix">
                                             <a ng-class="{'active': actRegion=='省'}" ng-click="actTitleClick(0);">
