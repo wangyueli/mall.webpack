@@ -1053,36 +1053,32 @@
         @include absolute-lf(0, 108px);
       }
     }
-    .annex{
-      .promotion{
-        @include  wh(100%,27px);
+    .promotion{
         ul{
+          padding: 5px 0;
+          margin-bottom: 5px;
           overflow: hidden;
           box-sizing:border-box;
+          line-height: 30px;
+          background: $gf5;
+
           li{
             float: left;
             margin-right: 18px;
-            span{
-               vertical-align: top;
-            }
             &:first-child  a{
               color: #ec3e3b;
               border: 1px solid #ec3e3b;
               font-size: 14px;
             }
-            &:last-child{
-              padding-top:5px;
-              color:#d1d1d1;
-            }
             img{
-              @include   wh(20px,20px);
+              @include wh(30px,30px);
               margin-right: 10px;
-              font-weight: 800;
+              vertical-align: middle;
+              cursor: pointer;
             }
           }
         }
       }
-    }
     .price-f{
       position: relative;
       height: 55px;
@@ -3842,12 +3838,13 @@
   font-size: 13px;
   z-index: 2;
   h2{
+    margin-bottom: 5px;
     line-height: 40px;
     padding-left: 10px;
     border-bottom: 1px dashed $g9;
   }
   .notice{
-    line-height: 30px;
+    line-height: 25px;
     padding: 0 10px;
     @extend %overflow-dot;
     a{
@@ -6220,9 +6217,9 @@
     .close-login{
       z-index: 10;
       @include absolute-rt(0, 30px);
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
-      color: #000;
+      color: $g6;
       cursor: pointer;
     }
     .content-item{

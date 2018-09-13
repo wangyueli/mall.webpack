@@ -108,6 +108,16 @@ var productService = app.service('productService', function ($http) {
             'page': page,
             'rows': rows
         }, global.mall.api)).then(f);
+    };
+    
+    //商品详情赠品
+    this.getGifs = function (mallId, productId, regionCode, num, f) {
+        $http.get(url.url('/mallproduct/gifts', {
+            'mallId': mallId,
+            'productId': productId,
+            'regionCode': regionCode,
+            'num': num
+        }, global.mall.api)).then(f);
     }
 
 

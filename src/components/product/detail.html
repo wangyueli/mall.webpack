@@ -90,18 +90,15 @@
 					</p>
 				</div>
 				<!--赠品 附件-->
-				<!--<div class="annex">
-					<div class="promotion">
-						<ul>
-							<li><s class="mr10">促&nbsp;&nbsp;销：</s><a href="">赠品</a></li>
-							<li><img src="images/square/b01.jpg" alt=""><span>x1</span></li>
-							<li><img src="images/square/b02.jpg" alt=""><span>x1</span></li>
-							<li><img src="images/square/b03.jpg" alt=""><span>x1</span></li>
-							<li>(赠完为止)</li>
-						</ul>
-					</div>
-					<p><span class="mr10">附&nbsp;&nbsp;件：</span><span>电源线2米</span><span class="colorRed ml10">附件缺货</span></p>
-				</div>-->
+				<div class="promotion" ng-show="gifs.length>0">
+					<ul>
+						<li><s class="mr10 ml15">促&nbsp;&nbsp;销：</s><a href="">赠品</a></li>
+						<li ng-repeat="gif in gifs">
+							<a ng-href="#/product/detail?mallId={{gif.prt.mallId}}&id={{gif.prt.productId}}" target="_blank"><img ng-src="{{gif.prt.pic}}"> x{{gif.num}}</a>
+						</li>
+						<li>(赠完为止)</li>
+					</ul>
+				</div>
 				<!--可销售地区-->
 				<div class="f-addr clearfix">
 					<span class="float-l">配 送 至：</span>
@@ -150,7 +147,7 @@
 							</div>
 						</div>
 					</div>
-					<span class="ml5" ng-bind="haveProduct.stock == 'stock_out'? '无货' : '有货'" ng-class="{noPrt: haveProduct.stock == 'stock_out'}"></span>
+					<span class="ml10 weight color3" ng-bind="haveProduct.stock == 'stock_out'? '无货' : '有货'" ng-class="{noPrt: haveProduct.stock == 'stock_out'}"></span>
 				</div>
 				<div class="btn-bar mb30" ng-hide="dialog == 'dialog'">
 					<div class="float-l pt-num detailPt-num">

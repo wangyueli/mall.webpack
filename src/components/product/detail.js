@@ -18,26 +18,18 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 	$scope.detailMallId = $stateParams.mallId;
 
 	/**
-	 * 该商品库存状态*/
-	$scope.haveProductCount = function (mallProId) {
-		productService.haveProductCount($rootScope.region, mallProId, function (data) {
-			$scope.haveProduct = data[0];
-		})
-	};
-
-	//获取详情页数据；
+	* 获取详情页数据*/
 	$scope.getDetail = function () {
 		productService.get($stateParams.mallId, $scope.id, function(data) {
 			$scope.detail = data;
 			$scope.imgSrcs = (data.pic).split(",");
 			$scope.bigImg = $scope.imgSrcs[0];
-			$scope.haveProductCount(data.mallId+ '.' + data.productId);
 			$rootScope.titleTab = data.name + '-' + $rootScope.titleMall;
 			var categoryLength = $scope.detail.categories.length;
 			$scope.categoryIdLast = $scope.detail.categories[categoryLength-1].id;
+
 			var random = Math.floor(Math.random()*categoryLength);
 			$scope.categoryId = $scope.detail.categories[random].id;
-
 			//品牌优惠
 			$scope.paramsReduce = {
 				'mallId': $stateParams.mallId,
@@ -88,7 +80,10 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 				});
 				//价格
 				$rootScope.productPrice($scope.mallProIdsNew);
-			})
+			});
+
+			$scope.getGifs();
+			$scope.haveProductCount();
 		});
 
 		//推荐商品
@@ -102,6 +97,30 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 				}
 			})
 		});
+	};
+
+	/**
+	 * 该商品库存状态*/
+	$scope.haveProductCount = function () {
+		productService.haveProductCount($rootScope.region, $stateParams.mallId + '.' + $stateParams.id, function (data) {
+			$scope.haveProduct = data[0];
+		});
+	};
+
+
+	/**
+	 * 该商品赠品 附件*/
+	$scope.getGifs = function () {
+		$scope.gifs = [];
+		productService.getGifs($scope.detailMallId, $scope.id, $rootScope.region, $scope.num, function (data) {
+			_.each(data, function (item) {
+				if(item.buyType == 'gifts'){
+					productService.get($stateParams.mallId, item.productId, function(data) {
+						$scope.gifs.push({prt: data, num: item.num});
+					});
+				}
+			})
+		})
 	};
 
     /**
@@ -127,10 +146,12 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 		if (type == 'add') {
 			if (9999 > $scope.num) {
 				$scope.num++;
+				$scope.getGifs();
 			}
 		} else {
 			if ($scope.num >= 2) {
 				$scope.num--;
+				$scope.getGifs();
 			}
 		}
 	};
