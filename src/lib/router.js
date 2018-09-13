@@ -185,7 +185,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'product?keyword&categoryId&brand&mallId',
             data: {
                 code: 'product',
-                title: '商品列表-',
+                title: '商品列表',
                 pathCode: 'product'
             },
             templateProvider: function($q) {
@@ -209,7 +209,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'channel?mallId',
             data: {
                 code: 'channel',
-                title: '频道首页-',
+                title: '频道首页',
                 pathCode: 'channel'
             },
             templateProvider: function($q) {
@@ -233,7 +233,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'org',
             data: {
                 code: 'org',
-                title: '供应商名录-',
+                title: '供应商名录',
                 pathCode: 'org'
             },
             templateProvider: function($q) {
@@ -257,7 +257,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'product/detail?mallId&id',
             data: {
                 code: 'productDetail',
-                title: '商品详情-',
+                title: '商品详情',
                 pathCode: 'productDetail'
             },
             templateProvider: function($q) {
@@ -281,7 +281,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'cart',
             data: {
                 code: 'cart',
-                title: '我的购物车-',
+                title: '我的购物车',
                 pathCode: 'cart'
             },
             templateProvider: function($q) {
@@ -305,7 +305,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'order?cartMallId',
             data: {
                 code: 'order',
-                title: '订单信息-',
+                title: '订单信息',
                 pathCode: 'order'
             },
             templateProvider: function($q) {
@@ -377,7 +377,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'pay-success',
             data: {
                 code: 'orderPaySuccess',
-                title: '订单信息-',
+                title: '订单信息',
                 pathCode: 'orderPaySuccess'
             },
             templateProvider: function($q) {
@@ -401,7 +401,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'orders',
             data: {
                 code: 'orders',
-                title: '我的订单列表-',
+                title: '我的订单列表',
                 pathCode: 'orders'
             },
             templateProvider: function($q) {
@@ -425,7 +425,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'orders/detail?id',
             data: {
                 code: 'ordersDetail',
-                title: '我的订单详情-',
+                title: '我的订单详情',
                 pathCode: 'ordersDetail'
             },
             templateProvider: function($q) {
@@ -449,7 +449,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'orders/asset?id',
             data: {
                 code: 'ordersAsset',
-                title: '资产入账-',
+                title: '资产入账',
                 pathCode: 'ordersAsset'
             },
             templateProvider: function($q) {
@@ -473,7 +473,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'store?id',
             data: {
                 code: 'store',
-                title: '我的店铺-',
+                title: '我的店铺',
                 pathCode: 'store'
             },
             templateProvider: function($q) {
@@ -497,7 +497,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'helper?mallId',
             data: {
                 code: 'helpPoor',
-                title: '精准扶贫-',
+                title: '精准扶贫',
                 pathCode: 'helpPoor'
             },
             templateProvider: function($q) {
@@ -521,7 +521,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'sale?id&?equre&?targetUrl',
             data: {
                 code: 'hotSale',
-                title: '热卖专区-',
+                title: '热卖专区',
                 pathCode: 'hotSale'
             },
             templateProvider: function($q) {
@@ -545,7 +545,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'saleMobile?id&?equre&?targetUrl',
             data: {
                 code: 'hotSaleMobile',
-                title: '热卖专区-',
+                title: '热卖专区',
                 pathCode: 'hotSaleMobile'
             },
             templateProvider: function($q) {
@@ -569,7 +569,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'bind',
             data: {
                 code: 'bindLogin',
-                title: '如何绑定资采通-',
+                title: '如何绑定资采通',
                 pathCode: 'bindLogin'
             },
             templateProvider: function($q) {
@@ -606,7 +606,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'login',
             data: {
                 code: 'login',
-                title: '教师登录--',
+                title: '教师登录',
                 pathCode: 'login'
             },
             templateProvider: function($q) {
@@ -630,7 +630,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'compare',
             data: {
                 code: 'compare',
-                title: '我的对比--',
+                title: '我的对比',
                 pathCode: 'compareCtrl'
             },
             templateProvider: function($q) {
@@ -654,7 +654,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'person/evaluate',
             data: {
                 code: 'evaluate',
-                title: '评价--',
+                title: '评价',
                 pathCode: 'evaluateCtrl'
             },
             templateProvider: function ($q) {
@@ -678,7 +678,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'person/address',
             data: {
                 code: 'address',
-                title: '我的地址信息--',
+                title: '我的地址信息',
                 pathCode: 'personAddrCtrl'
             },
             templateProvider: function ($q) {
@@ -702,7 +702,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'person/core',
             data: {
                 code: 'core',
-                title: '个人信息--',
+                title: '个人信息',
                 pathCode: 'personCoreCtrl'
             },
             templateProvider: function ($q) {
@@ -726,7 +726,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'person/collect',
             data: {
                 code: 'collect',
-                title: '个人收藏-',
+                title: '个人收藏',
                 pathCode: 'personCollectCtrl'
             },
             templateProvider: function ($q) {
@@ -750,7 +750,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'square?where',
             data: {
                 code: 'square',
-                title: '优惠广场-',
+                title: '优惠广场',
                 pathCode: 'square'
             },
             templateProvider: function ($q) {

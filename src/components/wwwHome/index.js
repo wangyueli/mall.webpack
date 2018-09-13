@@ -83,7 +83,7 @@ var wwwHome = app.controller('wwwHomeCtrl', function ($scope, $rootScope,  mallS
 
     /**
      * 成交订单动画*/
-    setInterval(function () {
+    var timer1 =  setInterval(function () {
         jquery('.label_main_b').find("ul:first").animate({
             marginTop:"-90px"
         },500,function(){
@@ -112,7 +112,7 @@ var wwwHome = app.controller('wwwHomeCtrl', function ($scope, $rootScope,  mallS
 
     //缓动动画
     var leader = 0,target = 0;
-    setInterval(function() {
+    var timer2 = setInterval(function() {
         if(target >= 0)
         {
             target = 0;
@@ -134,6 +134,8 @@ var wwwHome = app.controller('wwwHomeCtrl', function ($scope, $rootScope,  mallS
             $scope.noOpen = univer.orgId;
         }*/
         window.open(univer.hrefUrl);
+        clearInterval(timer1);
+        clearInterval(timer2);
     }
 });
 module.exports = wwwHome;

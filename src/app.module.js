@@ -46,10 +46,18 @@ app.run([
             var _hmt = _hmt || [];
             _hmt.push(['_trackPageview', encodeURIComponent('/#' + toState.url)]);
             if (toState.url != null) {
-                $rootScope.titleTab = toState.data.title + $rootScope.titleMall;
                 $rootScope.currentPath = toState.url;
             }
-            $rootScope.titleTab = toState.data.title + $rootScope.titleMall;
+            if($rootScope.titleMall){
+                if(toState.url != null){
+                    $rootScope.titleTab = toState.data.title + $rootScope.titleMall;
+
+                }else {
+                    $rootScope.titleTab = toState.data.title + '-' + $rootScope.titleMall;
+                }
+            }else {
+                $rootScope.titleTab = toState.data.title;
+            }
             if (toState.data.pathCode) {
                 $rootScope.accessToken = $cookies.get("access_token");
 
