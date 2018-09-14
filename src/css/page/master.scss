@@ -3948,7 +3948,7 @@
       font-size: 25px;
       text-align: center;
       letter-spacing:2px;
-      padding-top: 15px;
+      padding-top: 12px;
     }
     .head_more{
       margin-top: 20px;
@@ -3969,6 +3969,9 @@
         li{
           width: 10%;
           float: left;
+          @include v-center(20px, 20px);
+          text-align: center;
+          overflow: hidden;
           padding-left:25px;
           a{color:$g3;}
           .active{
@@ -3984,6 +3987,7 @@
   .bgOne{background-color:#e1f0f7;}
   .bgTwo{background-color:#dbf3e5;}
   .bgThird{background-color:#faeceb;}
+  .bgFour{background-color:#ded8bf57;}
 }
 
 //优惠专区入口
@@ -6084,58 +6088,6 @@
 .square_commend{
   @include  wh(1200px,auto);
   margin: 0 auto;
-  .head_main_column{
-    height:125px;
-    margin:40px auto 10px;
-    position:relative;
-    background-color: #fff;
-    .head_title{
-      text-align: center;
-      position: relative;
-      img{
-        @include  wh(50px,50px);
-        @include absolute-lf(20px, 425px);
-      }
-      h1{
-        font-family: 微软雅黑;
-        font-weight:normal;
-        font-size: 25px;
-        text-align: center;
-        padding-top: 15px;
-        color:#e51c23;
-        display:inline-block;
-        letter-spacing: 7px;
-        span{
-          color:#646464;
-          font-size: 15px;
-          letter-spacing: 2px;
-          display: block;
-          letter-spacing: 3px;
-        }
-      }
-    }
-    .head_main_nav{
-      float: left;
-      ul{
-        width: 1200px;
-        overflow: hidden;
-        margin-top: 20px;
-        font-size: 14px;
-        text-align: center;
-        li{
-          width: 10%;
-          float: left;
-          a{color:$g3;}
-          .active{
-            color:$normal-red;
-            border-bottom:3px solid  $normal-red;
-            cursor:pointer;
-          }
-        }
-      }
-    }
-
-  }
   .square_sibal_t{
     width: 100%;
     overflow: hidden;

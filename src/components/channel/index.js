@@ -20,29 +20,43 @@ var channel = app.controller('channelCtrl', function ($scope, $rootScope, $filte
 
     /*
      * 值得购买*/
+    $scope.recommendCays = '';
+    $scope.recomendPrts = {};
+    $scope.mallCayProIds = '';
+    $scope.paramsCary = {
+        'sort': 'discountRate desc',
+        'page': 0,
+        'rows': 12
+    };
     if($stateParams.mallId == 'JD'){
-        $scope.worthProts = [];
-        $scope.pagePrt = 0;
-        $scope.getRecommend = function () {
-            productService.worthBuy('JD-Promo-20180828', 'worthToBuyProduct', $scope.pagePrt, '10', function (data) {
-                if(data.length>0){
-                    _.each(data, function (item) {
-                        productService.getDetailCache(item.mallId, item.value, function (detail) {
-                            detail.pic = detail.pic.split(',')[0];
-                            $scope.worthProts.push(detail);
-                        })
+        productService.worthBuy('JD-Promo-20180828', 'productCategory', function (cays) {
+            $scope.recommendCays = cays;
+            console.log(cays);
+            _.each($scope.recommendCays, function (cay, index) {
+                $scope.paramsCary.categoryId = cay.value;
+                productService.getListCache($scope.paramsCary, function (prot) {
+                    $scope.recomendPrts[cay.value] = prot.product.rs;
+                    if(index == 0){
+                        $scope.cayIndex = cay.value;
+                        $scope.recomendPrt = prot.product.rs
+                    }
+                    //图片改为小尺寸的；
+                    _.each(prot.product.rs, function (good, indexChid) {
+                        good.pic = good.pic.replace('/n0/', '/n2/');
+                        $scope.mallCayProIds += good.mallId + '.' + good.productId + ',';
+                        if(indexChid==prot.product.rs.length-1 && index==cays.length-1){
+                            //等到便利到最后一次时再掉价格接口；
+                            $rootScope.productPrice($scope.mallCayProIds);
+                        }
                     });
-                }else {
-                    clearInterval(timer);
-                }
+                });
             });
-        };
-        $scope.getRecommend();
-        var timer = setInterval(function () {
-            $scope.pagePrt++;
-            $scope.getRecommend();
-        }, 2000);
+        });
     }
+    $scope.findRecommend = function (cayId) {
+        $scope.recomendPrt = $scope.recomendPrts[cayId];
+        $scope.cayIndex = cayId;
+    };
 
     /**
      * 热卖商品 热卖品类*/
@@ -91,7 +105,6 @@ var channel = app.controller('channelCtrl', function ($scope, $rootScope, $filte
 
     $scope.findContent = function (cayId, parentIndex) {
         $scope['activeId'+parentIndex] = cayId;
-
     };
 
 });

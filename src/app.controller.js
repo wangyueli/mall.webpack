@@ -532,6 +532,9 @@ var AppController =app.controller("AppController",
 
         $scope.closeBind = function () {
             $scope.bindMask = false;
+        };
+        $scope.bindAlready = function () {
+            $scope.noBindWeixin = false;
         }
 
     });

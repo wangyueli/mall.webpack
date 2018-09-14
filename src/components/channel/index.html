@@ -48,8 +48,49 @@
         </div>
     </div>
     <!--热卖-->
-    <div class="hot-content" ng-show="hotProducts || esMallPros">
-        <div class="hot-title">
+    <div class="hot-content" ng-show="hotProducts || esMallPros || true">
+        <!--超值推荐-->
+        <div class="module" ng-show="recommendCays.length>0">
+            <div class="head_main_column bgFour" style="height: 115px;">
+                <h1 class="font22 colorRed"><i class="icon icon-liwu font26"></i>今 日 超 值 推 荐</h1>
+                <p class="align-c color6 font13">每 天 为 您 挑 选 京 东 优 惠 商 品</p>
+                <div class="head_main_nav">
+                    <ul style="width: 1200px; margin-top: 15px;">
+                        <li ng-repeat="cary in recommendCays" style="width: 7.9%;">
+                            <a ng-class="{active: cary.value == cayIndex}" ng-mouseover="findRecommend(cary.value);" ng-href="/#/product?categoryId={{cary.value}}&mallId={{cary.mallId}}" target="_blank">{{cary.valuea}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="md-ctn">
+                <!--每个商品-->
+                <div class="gl-warp clearfix">
+                    <div class="items" ng-repeat="good in recomendPrt">
+                        <div class="gl-i-wrap no-sotre">
+                            <s class="save-p weight" ng-show="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow)<10 && prices[good.productId].hasOwnProperty('unitPrice')" ng-bind="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow) + '折'"></s>
+                            <div class="p-img">
+                                <a ng-href="{{'/#/product/detail?mallId=' + good.mallId + '&id=' + good.productId }}" target="_blank">
+                                    <img ng-src="{{good.pic}}">
+                                </a>
+                            </div>
+                            <div class="p-price" ng-show="prices[good.productId].hasOwnProperty('unitPrice')">￥{{prices[good.productId].unitPrice==0 ? '内部协议价' : (prices[good.productId].unitPrice | number:2)}}</div>
+                            <div class="p-price" ng-show="prices[good.productId].hasOwnProperty('unitPriceMin')">￥{{prices[good.productId].unitPriceMin | number:2}}-{{prices[good.productId].unitPriceMax | number:2}}</div>
+                            <div class="p-price font12" ng-show="prices[good.productId].priceStatus=='notLogin'">登录显示价格</div>
+                            <p class="color9" ng-show="prices[good.productId].hasOwnProperty('unitPriceShow')">
+                                <span class="weight" ng-hide="good.mallId=='JD' || good.mallId=='BGHB' ">参考价：</span>
+                                <span class="weight" ng-show="good.mallId=='JD'">京东价：</span>
+                                <s class="linethrough">￥{{prices[good.productId].unitPriceShow | number:2}}</s>
+                            </p>
+                            <div class="save-count" ng-show="disCount(prices[good.productId].unitPrice/prices[good.productId].unitPriceShow)<10 && prices[good.productId].hasOwnProperty('unitPrice')">
+                                立省：￥<s class="font16">{{(prices[good.productId].unitPriceShow - prices[good.productId].unitPrice)| number:2}}</s>
+                            </div>
+                            <div class="p-name"><a ng-href="{{'/#/product/detail?mallId=' + good.mallId + '&id=' + good.productId }}" ng-bind-html="good.name" target="_blank"></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hot-title" ng-show="hotProducts">
             <span></span>
             <b>&nbsp;&nbsp;热卖商品</b>
             <img src="/images/hot.png">

@@ -863,7 +863,8 @@ module.directive('loginBind', ['$http', function ($http) {
         scope: {
             token: '@accessToken',
             showBind: '&',
-            closeBind: '&'
+            closeBind: '&',
+            bindAlready: '&'
         },
         template: require('../components/loginBind/bind.html'),
         link: function ($scope) {
@@ -901,6 +902,7 @@ module.directive('loginBind', ['$http', function ($http) {
                          $scope.bindSucces = true;
                          setTimeout(function () {
                              $scope.closeBind();
+                             $scope.bindAlready();
                          }, 1000);
                          setTimeout(function () {
                              clearInterval(timerInterval);
@@ -919,8 +921,8 @@ module.directive('loginBind', ['$http', function ($http) {
             }, 1500);
 
             $scope.closeBindOwn = function () {
-                clearInterval(timerInterval);
                 $scope.closeBind();
+                clearInterval(timerInterval);
             };
 
             $scope.refresh = function () {

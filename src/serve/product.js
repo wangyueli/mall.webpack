@@ -101,12 +101,10 @@ var productService = app.service('productService', function ($http) {
     };
 
     //值得购买
-    this.worthBuy = function (sbj, type, page, rows, f) {
+    this.worthBuy = function (sbj, type, f) {
         $http.get(url.url('/recommendSquare/list', {
             'subject': sbj,
-            'type': type,
-            'page': page,
-            'rows': rows
+            'type': type
         }, global.mall.api)).then(f);
     };
     
