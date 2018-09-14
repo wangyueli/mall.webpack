@@ -90,7 +90,11 @@ var AppController =app.controller("AppController",
         $scope.ifSign = function () {
             authService.get(function (data) {
                 if(data==null){
-                    window.location = $scope.getLoginUrlMall();
+                    if($scope.canTwoCode){
+                        $scope.loginMask = true;
+                    }else {
+                        window.location = $scope.getLoginUrlMall();
+                    }
                 }
             });
         };
@@ -136,12 +140,12 @@ var AppController =app.controller("AppController",
                         if(data.canBandingWx == true){
                             if(data.bandingWx == false){
                                 //没有绑定微信
-                                $scope.bindWeixin = true;
+                                $scope.noBindWeixin = true;
                                 if($location.path() == '/'){
                                     $scope.showBind();
                                 }
                             }else {
-                                $scope.bindWeixin = false;
+                                $scope.noBindWeixin = false;
                             }
                         }else {
                             $scope.noOpenWeixin = true;
@@ -259,7 +263,11 @@ var AppController =app.controller("AppController",
                 })
 
             }else{
-                window.location = $scope.getLoginUrlMall();
+                if($scope.canTwoCode){
+                    $scope.loginMask = true;
+                }else {
+                    window.location = $scope.getLoginUrlMall();
+                }
             }
         };
         /*
@@ -271,7 +279,11 @@ var AppController =app.controller("AppController",
                 }, function() {
                 });
             }else {
-                window.location = $scope.getLoginUrlMall();
+                if($scope.canTwoCode){
+                    $scope.loginMask = true;
+                }else {
+                    window.location = $scope.getLoginUrlMall();
+                }
             }
         };
         /*

@@ -33,12 +33,12 @@
                 学校：<span>{{o.name}}</span>
             </p>
             <div ng-hide="noOpenWeixin">
-                <p ng-show="bindWeixin">
+                <p ng-show="noBindWeixin">
                     <i class="icon  icon-weixin"></i>微信
                     <span  class="person_vx">未绑定</span>
                     <a ng-click="showBind()">绑定微信</a>
                 </p>
-                <p ng-show="!bindWeixin">
+                <p ng-show="!noBindWeixin">
                     <i class="icon  icon-weixin"></i>微信
                     <span  class="person_vx">已绑定</span>
                     <!--<a href="">解除绑定</a>-->

@@ -29,7 +29,6 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
                 data.orderTrack.reverse();
             }
             $scope.order = data;
-            console.log(data);
             $rootScope.Tabtitle = $scope.title + $rootScope.titleMall;
             $scope.orderTime = data.createTime;
             $scope.lastTime();

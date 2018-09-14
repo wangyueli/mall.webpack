@@ -884,7 +884,6 @@ module.directive('loginBind', ['$http', function ($http) {
                      console.log(res);
                      if(res.type == 'NO_ACTION'){
                          //没有扫
-                         console.log('没有扫');
                      }
                      else if(res.type == 'ACTION'){
                          //已被扫码
@@ -900,8 +899,12 @@ module.directive('loginBind', ['$http', function ($http) {
                          //绑定操作成
                          $scope.alreadyScan = false;
                          $scope.bindSucces = true;
-                         setTimeout($scope.closeBind, 1000);
-                         clearInterval(timerInterval);
+                         setTimeout(function () {
+                             $scope.closeBind();
+                         }, 1000);
+                         setTimeout(function () {
+                             clearInterval(timerInterval);
+                         }, 2000);
                      }else {
                          $scope.msg = res.msg;
                          $scope.alreadyScan = false;
@@ -959,7 +962,6 @@ module.directive('toLogin', ['$http', function ($http) {
                     console.log(res);
                     if(res.type == 'NO_ACTION'){
                         //没有扫
-                        console.log('没有扫');
                     }
                     else if(res.type == 'ACTION'){
                         //已被扫码
@@ -978,8 +980,12 @@ module.directive('toLogin', ['$http', function ($http) {
                         });
                         $scope.alreadyScan = false;
                         $scope.loginSucces = true;
-                        setTimeout($scope.closeLogin, 1000);
-                        clearInterval(timerInterval);
+                        setTimeout(function () {
+                            $scope.closeLogin();
+                        }, 1000);
+                        setTimeout(function () {
+                            clearInterval(timerInterval);
+                        }, 2000);
                     }else {
                         $scope.msg = res.msg;
                         $scope.alreadyScan = false;

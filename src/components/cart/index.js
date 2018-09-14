@@ -313,7 +313,12 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 						window.location = data.hrefUrl +  '/#/order?cartMallId=' +mallId;
 					}else {
 						if(data.code == 'not_login'){
-							window.location = $scope.getLoginUrlMall();
+							if($scope.canTwoCode){
+								$scope.loginMask = true;
+							}else {
+								window.location = $scope.getLoginUrlMall();
+							}
+
 						}else {
 							swal({
 								text: data.message,
@@ -324,7 +329,11 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 					}
 				});
 			}else {
-				window.location = $scope.getLoginUrlMall();
+				if($scope.canTwoCode){
+					$scope.loginMask = true;
+				}else {
+					window.location = $scope.getLoginUrlMall();
+				}
 			}
 		}else {
 			swal({

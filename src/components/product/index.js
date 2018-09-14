@@ -319,7 +319,11 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
                 });
             }
         }else {
-            window.location = $scope.getLoginUrlMall();
+            if($scope.canTwoCode){
+                $scope.loginMask = true;
+            }else {
+                window.location = $scope.getLoginUrlMall();
+            }
         }
     };
 

@@ -54,7 +54,6 @@
                                             <img ng-show="product.pic" ng-src="{{product.pic.slice(0,4)=='http'? product.pic : global.file.url+'/'+product.pic.split(',')[0]}}">
                                         </div>
                                         <a ng-href="{{'/#/product/detail?id=' + product.productId + '&mallId=' + product.mallId}}" target="_blank">{{product.name}}</a>
-                                        <div class="no-pay" ng-hide="product.canBuy"><i class="iconfont icon-tubiao06"></i>{{product.msg}}</div>
                                         <div class="color6">
                                             <span ng-repeat="gif in product.gifts" class="gifts">
                                                 <span ng-show="gif.buyType=='annex'">
@@ -67,6 +66,7 @@
                                                 </span>
                                             </span>
                                         </div>
+                                        <div class="no-pay" ng-hide="product.canBuy"><i class="iconfont icon-tubiao06"></i>{{product.msg}}</div>
                                     </div>
                                 </td>
                                 <!--一口价-->

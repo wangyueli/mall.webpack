@@ -17,7 +17,8 @@
 		<div class="no-data-tip" ng-show="mallList.length==0">
 			<span></span>
 			<i ng-show="o==null">购物车内暂时没有商品，登录后将显示您之前加入的商品~&nbsp;&nbsp;
-				<a class="cart-login" ng-href="{{getLoginUrlMall()}}">&nbsp;&nbsp;登录&nbsp;&nbsp;</a>
+				<a class="cart-login" ng-show="canTwoCode" ng-click="showLogin()">&nbsp;&nbsp;登录&nbsp;&nbsp;</a>
+				<a class="cart-login" ng-show="!canTwoCode" ng-href="{{getLoginUrlMall()}}">&nbsp;&nbsp;登录&nbsp;&nbsp;</a>
 				<a class="colorDarkBlue" href="#">&nbsp;&nbsp;去选购&nbsp;&nbsp;</a>
 			</i>
 			<i ng-show="o!=null">购物车内暂时没有商品~&nbsp;&nbsp;<a class="colorDarkBlue" href="#">&nbsp;&nbsp;去选购&nbsp;&nbsp;</a></i>

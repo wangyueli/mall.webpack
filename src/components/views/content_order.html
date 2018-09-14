@@ -25,7 +25,10 @@
                 <div class="drop-list">
                     <div class="empty" ng-hide="cartList.length >= 1">
                         <p class="font14 mb15">购物车还没有商品，赶紧选购吧！</p>
-                        <a ng-show="o==null" ng-href="{{getLoginUrlMall()}}">登录</a>
+                        <span ng-show="o==null">
+                            <a ng-show="canTwoCode" ng-click="showLogin()">登录</a>
+                            <a ng-show="!canTwoCode" ng-href="{{getLoginUrlMall()}}">登录</a>
+                        </span>
                     </div>
                     <div class="items-list" ng-show="cartList.length >= 1">
                         <div style="max-height: 380px; overflow-y: scroll;">
