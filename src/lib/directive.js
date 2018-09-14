@@ -900,8 +900,8 @@ module.directive('loginBind', ['$http', function ($http) {
                          //绑定操作成
                          $scope.alreadyScan = false;
                          $scope.bindSucces = true;
-                         clearInterval(timerInterval);
                          setTimeout($scope.closeBind, 1000);
+                         clearInterval(timerInterval);
                      }else {
                          $scope.msg = res.msg;
                          $scope.alreadyScan = false;
@@ -978,8 +978,8 @@ module.directive('toLogin', ['$http', function ($http) {
                         });
                         $scope.alreadyScan = false;
                         $scope.loginSucces = true;
-                        clearInterval(timerInterval);
                         setTimeout($scope.closeLogin, 1000);
+                        clearInterval(timerInterval);
                     }else {
                         $scope.msg = res.msg;
                         $scope.alreadyScan = false;

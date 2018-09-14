@@ -14,7 +14,6 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
      * 获取登录信息*/
     $scope.ifSign();
 
-
     /**
      * 获取订单状态追踪*/
     $scope.getFoll = function () {
@@ -164,6 +163,9 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
             alert('提交失败！');
         })
     }
+
+
+
 
 });
 module.exports = orderDetail;

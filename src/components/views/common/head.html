@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="menu-right clearfix hide" ng-class="{display:o!=null}">
-            <a ng-show="bindWeixin" class="item colorRed" ng-click="showBind()">绑定微信</a>
+            <a ng-show="bindWeixin || !bindMask" class="item colorRed" ng-click="showBind()">绑定微信</a>
             <div class="item">
                 <span ng-bind="o.name"></span>
             </div>

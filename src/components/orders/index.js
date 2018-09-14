@@ -105,7 +105,8 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
             if(type == 'ordMsg'){
                 //订单
                 if(order.bpmPreviewUrl){
-                    window.open(order.bpmPreviewUrl);
+                    var tempwindow1 = window.open('_blank');
+                    tempwindow1.location = order.bpmPreviewUrl;
                 }else {
                     swal({
                         text: '暂未生成采购申请表',
@@ -117,7 +118,8 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
             if(type == 'elctrInv'){
                 //电子发票
                 if(order.invoiceUrl.length>0){
-                    window.open(order.invoiceUrl[0]);
+                    var tempwindow2 = window.open('_blank');
+                    tempwindow2.location = order.invoiceUrl[0];
                 }else {
                     swal({
                         text: '暂未生电子发票',
