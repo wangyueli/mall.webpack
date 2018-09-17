@@ -83,6 +83,9 @@ var AppController =app.controller("AppController",
             if($location.path() == '/'){
                 $rootScope.titleTab = $rootScope.titleMall;
             }
+            if($location.search().login == 'true'){
+                $scope.ifSign();
+            }
         });
 
         /**

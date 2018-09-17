@@ -23,12 +23,17 @@
                 </div>
             </div>
             <div class="footer">
-                <span class="weight">职工号登录：</span><a ng-href="{{schoolUrl}}">点此去登录 >></a>
+                <span class="weight colorRed">职工号登录：</span><a ng-href="{{schoolUrl}}">点此去登录 >></a>
             </div>
             <!--二维码失效-->
             <div class="mask" ng-show="codeOut">
-                <p class="detail">{{msg}}</p>
-                <span class="new" ng-click="refresh()">点击刷新</span>
+                <p class="mt40 align-c colorRed" ng-show="noBind">扫码失败</p>
+                <p class="detail" ng-class="{marginTop: noBind}">{{msg}}</p>
+                <p class="align-c font14 mt20" ng-show="noBind">
+                    <span class="weight colorRed">职工号登录：</span><a class="colorBlue" ng-href="{{schoolUrl}}">点此去登录 >></a>
+                </p>
+                <span class="new" ng-show="!noBind" ng-click="refresh()">点击刷新</span>
+                <span class="new color6" ng-show="noBind" ng-click="refresh()">返回</span>
             </div>
         </div>
         <!--扫码接受在手机端确认-->

@@ -34,10 +34,11 @@ var productService = app.service('productService', function ($http) {
     };
 
     //获取详情页面数据cache;
-    this.getDetailCache = function(mallId, id, f) {
+    this.getDetailCache = function(mallId, id, excludeFields, f) {
         $http.get(url.url('/mallproduct/detail/cache', {
             'mallId': mallId,
-            'productId': id
+            'productId': id,
+            'excludeFields': excludeFields
         }, global.mall.api)).then(f);
     };
 

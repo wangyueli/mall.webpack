@@ -52,17 +52,17 @@
         <!--超值推荐-->
         <div class="module" ng-show="recommendCays.length>0">
             <div class="head_main_column bgFour" style="height: 115px;">
-                <h1 class="font22 colorRed"><i class="icon icon-liwu font26"></i>今 日 超 值 推 荐</h1>
+                <h1 class="font22 colorRed"><i class="icon icon-liwu font26 mr40"></i>今 日 超 值 推 荐</h1>
                 <p class="align-c color6 font13">每 天 为 您 挑 选 京 东 优 惠 商 品</p>
                 <div class="head_main_nav">
                     <ul style="width: 1200px; margin-top: 15px;">
                         <li ng-repeat="cary in recommendCays" style="width: 7.9%;">
-                            <a ng-class="{active: cary.value == cayIndex}" ng-mouseover="findRecommend(cary.value);" ng-href="/#/product?categoryId={{cary.value}}&mallId={{cary.mallId}}" target="_blank">{{cary.valuea}}</a>
+                            <a ng-class="{active: cary.valuea == cayIndex}" ng-mouseover="getRecommendPrts(cary);">{{cary.valuea}}</a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="md-ctn">
+            <div class="md-ctn" style="max-height: none;">
                 <!--每个商品-->
                 <div class="gl-warp clearfix">
                     <div class="items" ng-repeat="good in recomendPrt">

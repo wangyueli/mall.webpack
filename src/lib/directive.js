@@ -912,7 +912,6 @@ module.directive('loginBind', ['$http', function ($http) {
                          $scope.alreadyScan = false;
                          $scope.codeOut = true;
                          clearInterval(timerInterval);
-                         console.log('出现意料之外的错误');
                      }
                  });
              };
@@ -992,8 +991,10 @@ module.directive('toLogin', ['$http', function ($http) {
                         $scope.msg = res.msg;
                         $scope.alreadyScan = false;
                         $scope.codeOut = true;
+                        if(res.code == 'NOT_BANDING'){
+                            $scope.noBind = true;
+                        }
                         clearInterval(timerInterval);
-                        console.log('出现意料之外的错误');
                     }
                 });
             };
