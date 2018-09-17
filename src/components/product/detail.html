@@ -94,7 +94,7 @@
 					<ul>
 						<li><s class="mr10 ml15">促&nbsp;&nbsp;销：</s><a href="">赠品</a></li>
 						<li ng-repeat="gif in gifs">
-							<a ng-href="#/product/detail?mallId={{gif.prt.mallId}}&id={{gif.prt.productId}}" target="_blank"><img ng-src="{{gif.prt.pic}}"> x{{gif.num}}</a>
+							<a ng-href="#/product/detail?mallId={{gif.prt.mallId}}&id={{gif.prt.productId}}" target="_blank"><img ng-src="{{(gif.prt.pic).split(',')[0]}}"> x{{gif.num}}</a>
 						</li>
 						<li>(赠完为止)</li>
 					</ul>
