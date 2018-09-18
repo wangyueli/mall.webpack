@@ -42,6 +42,17 @@ var orgService = app.service('orgService', function ($http) {
 			'mallId' : mallId
 		}, global.mall.api)).then(f)
 	};
+
+	//已绑定用户
+	this.getBindUsers = function (f) {
+		$http.get(url.url('/wx/bandingUsers', null, global.mall.api)).then(f);
+	};
+
+	//解除绑定
+	this.delBindUser = function (id, sf, ff) {
+		$http.put(url.url('/wx/unbind', null, global.mall.api), {'id': id}).then(sf, ff);
+	};
+
 });
 
 module.exports = orgService;

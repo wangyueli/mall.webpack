@@ -24,7 +24,7 @@
 </head>
 <body ng-controller="AppController">
 <!--微信 登录 绑定-->
-<login-bind ng-if="bindMask"  access-token="{{accessToken}}" close-bind="closeBind();" show-bind="showBind()" bind-already="bindAlready()"></login-bind>
+<login-bind ng-if="bindMask"  access-token="{{accessToken}}" close-bind="closeBind();" show-bind="showBind()" bind-already="bindAlready()" wei-users="weiUsers()"></login-bind>
 <to-login ng-if="loginMask" school-url="{{schoolLoginUrl}}" close-login="closeLogin();"></to-login>
 
 <div ui-view></div>

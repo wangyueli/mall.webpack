@@ -5934,14 +5934,17 @@
       }
     }*/
      .person_sub{
-       @include wh(95%,160px);
+       width: 95%;
+       min-height: 160px;
        background:#f5f5f58f;
        box-sizing: border-box;
        padding:20px;
-       p{
-         @include wh(100%,40px);
+       .msg{
+         width: 100%;
+         line-height: 40px;
          font-size: 15px;
          color: $g6;
+         overflow: hidden;
          i{
            margin-right: 40px;
            font-size: 20px;
@@ -5952,11 +5955,33 @@
            color: #000;
          }
          .person_vx{
-           margin-left: 30px;
+           margin: 0 10px 0 26px;
          }
-         a{
-           color:#007DC5;
-           margin-left: 18px;
+         .right{
+           width: 840px;
+           float: right;
+         }
+         .person{
+           display: inline-block;
+           min-width: 100px;
+           background: #fff;
+           padding: 5px 10px;
+           -webkit-border-radius: 10px;
+           -moz-border-radius: 10px;
+           border-radius: 10px;;
+           margin: 0 10px 10px 0;
+           img{
+             vertical-align: middle;
+             margin-right: 5px;
+           }
+           .del{
+             text-decoration: underline;
+             color: $g6;
+             cursor: pointer;
+             font-size: 12px;
+             margin-left: 5px;
+             &:hover{color: $jd-red;}
+           }
          }
        }
      }

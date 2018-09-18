@@ -864,7 +864,8 @@ module.directive('loginBind', ['$http', function ($http) {
             token: '@accessToken',
             showBind: '&',
             closeBind: '&',
-            bindAlready: '&'
+            bindAlready: '&',
+            weiUsers: '&'
         },
         template: require('../components/loginBind/bind.html'),
         link: function ($scope) {
@@ -903,6 +904,9 @@ module.directive('loginBind', ['$http', function ($http) {
                          setTimeout(function () {
                              $scope.closeBind();
                              $scope.bindAlready();
+                             if(window.location.hash == '#/person/core'){
+                                 $scope.weiUsers();
+                             }
                          }, 1000);
                          setTimeout(function () {
                              clearInterval(timerInterval);
@@ -974,7 +978,7 @@ module.directive('toLogin', ['$http', function ($http) {
                         $scope.codeOut = true;
                         clearInterval(timerInterval);
                     }else if(res.type == 'OK'){
-                        //绑定操作成
+                        //登录操作成
                         $.cookie('access_token', res.token, {
                             'domain': global.domain,
                             'path': '/'

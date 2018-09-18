@@ -510,6 +510,15 @@ var AppController =app.controller("AppController",
         $scope.toWindowTop = function () {
             jquery('body,html').animate({scrollTop:0},500);
         };
+
+        /**
+         * 已绑定微信用户*/
+        $scope.weiUsers = function () {
+            orgService.getBindUsers(function (data) {
+                $scope.weiBindings = data;
+            });
+        };
+
         /**
          * 退出登录*/
         $scope.showQuit = function () {

@@ -24,25 +24,31 @@
         </div>
         <button class="person_btn">保存</button>-->
         <div class="person_sub">
-            <p>
+            <div class="msg">
                 <i class="icon  icon-denglu"></i>
                 姓名：<span>{{p.name}}</span>
-            </p>
-            <p>
+            </div>
+            <div class="msg">
                 <i class="icon  icon-gaoxiao"></i>
                 学校：<span>{{o.name}}</span>
-            </p>
+            </div>
             <div ng-hide="noOpenWeixin">
-                <p ng-show="noBindWeixin">
+                <p class="msg" ng-show="noBindWeixin">
                     <i class="icon  icon-weixin"></i>微信
                     <span  class="person_vx">未绑定</span>
-                    <a ng-click="showBind()">绑定微信</a>
+                    <a class="colorBlue" ng-click="showBind()">绑定微信</a>
                 </p>
-                <p ng-show="!noBindWeixin">
+                <div class="msg" ng-show="!noBindWeixin">
                     <i class="icon  icon-weixin"></i>微信
-                    <span  class="person_vx">已绑定</span>
-                    <!--<a href="">解除绑定</a>-->
-                </p>
+                    <div class="right">
+                        <span class="person" ng-repeat="user in weiBindings">
+                            <img ng-src="{{user.headImg}}" width="30" height="30">
+                            <s>{{user.nickName}}</s>
+                            <s class="del" ng-click="delBindUser(user.id)">解除绑定</s>
+                        </span>
+                        <a class="colorBlue" ng-click="showBind()">绑定微信</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
