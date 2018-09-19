@@ -109,6 +109,7 @@
                                 <s ng-show="order.bpmAuditStatus == 'approve' && order.bpmIsAudit == 'Y'">审核通过</s>
                                 <s ng-show="order.bpmAuditStatus == 'reject' && order.bpmIsAudit == 'Y'">被驳回</s>
                                 <a class="bill-yes" target="_blank" ng-hide="order.bpmAuditStatus == 'pending'" ng-href="{{order.bpmDetailUrl}}">查看详情</a>
+                                <a class="bill-yes" target="_blank" ng-show="order.orderListUrl" ng-href="{{order.orderListUrl}}">打印订单</a>
                                 <a class="bill-yes" target="_blank" ng-show="order.bpmPreviewUrl" ng-href="{{order.bpmPreviewUrl}}">打印采购申请表</a>
                             </p>
                         </li>

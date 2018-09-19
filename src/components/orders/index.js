@@ -102,8 +102,21 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
     * 打印订单 电子发票*/
     $scope.print = function (type, ordId) {
         ordersService.get(ordId, function (order) {
-            if(type == 'ordMsg'){
+            if(type == 'ordInfo'){
                 //订单
+                if(order.orderListUrl){
+                    var tempwindow1 = window.open('_blank');
+                    tempwindow1.location = order.orderListUrl;
+                }else {
+                    swal({
+                        text: '暂时无法打印订单，请稍后重试。',
+                        icon: 'warning',
+                        confirmButtonText: '确认'
+                    });
+                }
+            }
+            if(type == 'ordMsg'){
+                //采购申请表
                 if(order.bpmPreviewUrl){
                     var tempwindow1 = window.open('_blank');
                     tempwindow1.location = order.bpmPreviewUrl;

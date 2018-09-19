@@ -189,6 +189,7 @@
                                 <a class="default" ng-click="toPay(order.id)" ng-show="order.status=='ADOPT' ">去支付</a>
                                 <a class="default" ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' || order.status=='RECEIVE'">确认收货</a>
                                 <a class="gr-colr" ng-click="delOrder(order.id, '取消订单')" ng-show="order.status=='NEW'|| order.status=='RECEIVE' || order.status=='ADOPT' ">取消订单</a>
+                                <a class="blue" ng-click="print('ordInfo', order.id)" ng-show="order.status=='FINISHED' && order.invoiceSubmit=='school' ">打印订单</a>
                                 <a class="blue" ng-click="print('ordMsg', order.id)" ng-show="order.status=='FINISHED' && order.invoiceSubmit=='school' ">打印采购申请表</a>
                                 <a class="blue" ng-click="print('elctrInv', order.id)" ng-show="order.status=='FINISHED' ">打印电子发票</a>
                             </td>
@@ -304,6 +305,7 @@
                                             <!--子订单操作-->
                                             <td class="btns">
                                                 <a class="blue" ng-click="copy(orderCd)">立即购买</a>
+                                                <a class="blue" ng-click="print('ordInfo', orderCd.id)" ng-show="orderCd.status=='FINISHED' && orderCd.invoiceSubmit=='school' ">打印订单</a>
                                                 <a class="blue" ng-click="print('ordMsg', orderCd.id)" ng-show="orderCd.status=='FINISHED' && orderCd.invoiceSubmit=='school' ">打印采购申请表</a>
                                                 <a class="blue" ng-click="print('elctrInv', orderCd.id)" ng-show="orderCd.status=='FINISHED' ">打印电子发票</a>
                                             </td>
