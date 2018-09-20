@@ -321,13 +321,13 @@
                 <div class="bill-type" ng-init="chosePay = 0;">
                     <!--需要报销-->
                     <div class="bill-hd" ng-show="needAcount=='yes'" ng-class="{choosed:$parent.chosePay==$index }" ng-repeat="type in productList.payTypes.school" ng-click="$parent.PaymentType=type.code; $parent.chosePay=$index;">&nbsp;{{type.name}}
-                        <span>(刷公务卡)</span>
+                        <span ng-show="type.code != 'deliveryPaymentNoPic'">(刷公务卡)</span>
                         <span class="arrow-f" ng-show="$parent.chosePay==$index ">
                             <span class="arrow"><i class="iconfont icon-check"></i></span>
                         </span>
-                        <i class="icon icon-wenhao how-pay"></i>
+                        <i class="icon icon-wenhao how-pay" ng-show="type.code != 'deliveryPaymentNoPic'"></i>
                         <!--支付方式提示文字-->
-                        <div class="pay-detail card" style="width: 305px;">
+                        <div class="pay-detail card" style="width: 305px;" ng-show="type.code != 'deliveryPaymentNoPic'">
                             <p class="word" >{{type.remark}}</p>
                             <div class="cart-img">
                                 <img src="../images/bill1.jpg">
