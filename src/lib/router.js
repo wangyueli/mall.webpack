@@ -726,7 +726,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             url: 'person/collect',
             data: {
                 code: 'collect',
-                title: '个人收藏',
+                title: '我的关注',
                 pathCode: 'personCollectCtrl'
             },
             templateProvider: function ($q) {

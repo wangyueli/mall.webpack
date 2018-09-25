@@ -747,7 +747,7 @@
   >.items{
     float: left;
     width: 240px;
-    height: 420px;
+    /*height: 420px;*/
     margin-bottom: 5px;
     &:hover .gl-i-wrap{
       border:$border #eaeaea;
@@ -961,6 +961,7 @@
       margin-right:20px;
       font-size: 15px;
     }
+    i.active{color: $jd-red;}
     &:hover{
       cursor: pointer;
     }
@@ -5994,16 +5995,18 @@
 #collect_msg{
    .collect_sibal{
      @include wh(1030px,auto);
+     min-height: 650px;
      background:#fff;
      margin-left: 20px;
-     padding: 0px 0  20px  20px;
+     padding: 0 0  20px  20px;
      box-sizing:border-box;
      h1{
+       padding-left: 15px;
+       margin-bottom: 20px;
        line-height: 40px;
        color:#e11e2d;
        font-size: 16px;
        border-bottom:2px solid  $gf5;
-       padding-left: 15px;
      }
      .collect_separate{
        width:97%;
@@ -6027,53 +6030,18 @@
          }
        }
      }
-     .collect_sibal_t{
-       width: 100%;
-       overflow: hidden;
-       margin-top: 10px;
-       .collect_l{
-        @include  wh(200px,230px);
-         border: 1px solid #ccc;
-         float: left;
-         margin:15px;
-         box-shadow:3px 3px 5px #ececec;
-         padding:10px;
-         .col_img{
-          @include  wh(120px,120px);
-           margin:0  auto  5px;
-           overflow:hidden;
-           position: relative;
-           img{
-             display: block;
-             cursor:pointer;
-             transition: all  0.6s;
-             @include  wh(100%,100%);
-             &:hover{
-                transform:scale(1.2);
-             }
-           }
-         }
-         .col_price{
-           position: relative;
-           font-size: 18px;
-           font-weight: 700;
-           color: #ec3e3b;
-           line-height: 20px;
-         }
-         .col_name{
-           margin: 4px 0;
-           height: 17px;
-           white-space: nowrap;
-           text-overflow: ellipsis;
-           overflow: hidden;
-           a{color:#000;}
-         }
-         .c-pw{
-            display: inline-block;
-            width: 100%;
-            color:#666;
-         }
-       }
+     .no-collect{
+       @include center(50px, $g6);
+       margin-top: 230px;
+       font-size: 20px;
+     }
+     .remove{
+       @include absolute-lf(6px, 6px);
+       padding: 3px 5px;
+       background-color: rgba(0, 0, 0, .5);
+       color: #fff;
+       cursor: pointer;
+       &:hover{font-weight: 600;}
      }
    }
 }

@@ -117,7 +117,31 @@ var productService = app.service('productService', function ($http) {
             'regionCode': regionCode,
             'num': num
         }, global.mall.api)).then(f);
+    };
+    
+    //加关注
+    this.addWatch = function (mallId, productId, sf, ff) {
+        $http.post(url.url('/favorite/product', null, global.mall.api), {'mallId': mallId, 'productId': productId}).then(sf,ff);
+    };
+
+    //是否被关注
+    this.ifWatch = function (mallId, productId, f) {
+        $http.get(url.url('/favorite/product/favorited', {
+            'mallId': mallId,
+            'productId': productId
+        }, global.mall.api)).then(f);
+    };
+
+    //获取关注列表
+    this.getWatch = function (f) {
+        $http.get(url.url('/favorite/product', null, global.mall.api)).then(f)
+    };
+
+    //删除关注
+    this.delWatch = function (id, sf, ff) {
+        $http.delete(url.url('/favorite/product/' + id, null, global.mall.api)).then(sf, ff);
     }
+
 
 
 

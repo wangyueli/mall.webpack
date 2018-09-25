@@ -25,11 +25,9 @@
 			</div>
 			<div id="mark"></div>
 			<div id="float-box"></div>
-<!--
-			<div class="my-save">
-				<i class="icon icon-xin2"></i>关注
+			<div class="my-save" ng-click="addWatch(detail.mallId, detail.productId)">
+				<i class="icon icon-xin2" ng-class="{'active': watched}"></i>{{watched? '已关注': '关注'}}
 			</div>
--->
 		</div>
 		<!--放大镜 大图-->
 		<div id="big-box">

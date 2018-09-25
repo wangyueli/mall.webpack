@@ -30,6 +30,7 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 
 			var random = Math.floor(Math.random()*categoryLength);
 			$scope.categoryId = $scope.detail.categories[random].id;
+
 			//品牌优惠
 			$scope.paramsReduce = {
 				'mallId': $stateParams.mallId,
@@ -84,6 +85,7 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 
 			$scope.getGifs();
 			$scope.haveProductCount();
+			$scope.ifWatch(data.mallId, data.productId);
 		});
 
 		//推荐商品
@@ -163,6 +165,60 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 				buttons: {confirm:{text:'确定'}}
 			});
 			$scope.num = 1;
+		}
+	};
+
+	/**
+	 * 是否关注*/
+	$scope.ifWatch = function (mallId, productId) {
+		productService.ifWatch(mallId, productId, function (data) {
+			if(data.favorited == true){
+				$scope.watched = true;
+			}
+		})
+	};
+
+	/**
+	 * 加入关注*/
+	$scope.addWatch = function (mallId, productId) {
+		/**
+		 * 获取登录信息*/
+		$scope.ifSign();
+		if($scope.watched == true){
+			swal({
+				text: '您已经关注该商品!',
+				icon: "warning",
+				buttons:{
+					confirm: {text: '查看我的关注'},
+					cancel: {text: '返回', visible: true}
+				}
+			}).then(function (isConfirm) {
+				if(isConfirm == true){
+					window.open('/#/person/collect');
+				}
+			});
+		}else {
+			productService.addWatch(mallId,productId, function () {
+				swal({
+					text: '关注成功!',
+					icon: "success",
+					buttons:{
+						confirm: {text: '查看我的关注'},
+						cancel: {text: '返回', visible: true}
+					}
+				}).then(function (isConfirm) {
+					if(isConfirm == true){
+						window.open('/#/person/collect');
+					}
+				});
+				$scope.watched = true;
+			}, function (err) {
+				swal({
+					text: '关注失败!',
+					icon: "error",
+					buttons:{cancel: {text: '确定', visible: true}}
+				});
+			})
 		}
 	};
 
