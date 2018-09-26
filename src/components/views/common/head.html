@@ -15,12 +15,19 @@
         </div>
         <div class="menu-right clearfix hide" ng-class="{display:o!=null}">
             <a ng-show="noBindWeixin" class="item colorBlue" ng-click="showBind()">绑定微信</a>
-            <div class="item">
-                <span ng-bind="o.name"></span>
+            <div class="item" ng-show="o.name" ng-mouseenter="showQuit1()" ng-mouseleave="hideQuit1()">
+                <a ng-href="#/person/core" class="has-drop has-drop1 icon">{{o.name}}</a>
+                <div class="dorpmenu dorpmenu1 hide" style="text-align: right">
+                    <div class="list-btn">
+                        <img class="float-l" ng-src="{{tlImg}}" width="50" height="50">
+                        <a class="float-l ml10" style="line-height: 50px;" ng-href="{{global.shop.url}}" target="_blank">采购平台</a>
+                    </div>
+                </div>
+                <!--<span ng-bind="o.name"></span>-->
             </div>
             <div class="item" ng-mouseenter="showQuit()" ng-mouseleave="hideQuit()">
-                <a ng-href="#/person/core" class="has-drop icon">{{p.name}}</a>
-                <div class="dorpmenu hide" style="text-align: right">
+                <a ng-href="#/person/core" class="has-drop has-drop2 icon">{{p.name}}</a>
+                <div class="dorpmenu dorpmenu2 hide" style="text-align: right">
                     <div class="list-btn">
                         <a ng-href="{{global.app.url}}/#/" ng-show="orgType=='enterprise'">个人中心</a>
                         <a ng-href="#/person/core" ng-show="orgType=='school'">个人中心</a>

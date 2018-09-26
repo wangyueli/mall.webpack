@@ -522,12 +522,20 @@ var AppController =app.controller("AppController",
         /**
          * 退出登录*/
         $scope.showQuit = function () {
-            jquery('.has-drop').addClass('arrow-v-tran arrow-v');
-            jquery('.dorpmenu').stop().fadeIn(200);
+            jquery('.has-drop2').addClass('arrow-v-tran arrow-v');
+            jquery('.dorpmenu2').stop().fadeIn(200);
         };
         $scope.hideQuit = function () {
-            jquery('.has-drop').removeClass('arrow-v');
-            jquery('.dorpmenu').fadeOut('fast');
+            jquery('.has-drop2').removeClass('arrow-v');
+            jquery('.dorpmenu2').fadeOut('fast');
+        };
+        $scope.showQuit1 = function () {
+            jquery('.has-drop1').addClass('arrow-v-tran arrow-v');
+            jquery('.dorpmenu1').stop().fadeIn(200);
+        };
+        $scope.hideQuit1 = function () {
+            jquery('.has-drop1').removeClass('arrow-v');
+            jquery('.dorpmenu1').fadeOut('fast');
         };
 
         $scope.showLogin = function () {

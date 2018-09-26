@@ -148,7 +148,7 @@
 .company-info .menu a:hover{ text-decoration: underline; color: #ec3e3b;}
 
 /*头部通用下拉菜单*/
-.topbar .list-btn{ padding:10px;}
+.topbar .list-btn{ padding:10px; overflow: hidden;}
 .topbar .list-btn a{ display:block; line-height:22px; text-align: center;}
 .topbar .list-btn a:hover{ color:#c81321; text-decoration:underline;}
 /*头部二维码下拉菜单*/
