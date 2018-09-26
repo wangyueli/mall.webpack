@@ -57,11 +57,11 @@
                                         <div class="color6">
                                             <span ng-repeat="gif in product.gifts" class="gifts">
                                                 <span ng-show="gif.buyType=='annex'">
-                                                    <s class="weight">附件：</s>{{gif.remark}}
+                                                    <s class="weight">附件：</s>{{gif.name}}
                                                     <s class="no-pay" ng-hide="gif.canBuy"><i class="iconfont icon-tubiao06"></i>附件缺货</s>
                                                 </span>
                                                 <span ng-show="gif.buyType=='gifts'">
-                                                    <s class="weight">赠品：</s>{{gif.remark}}
+                                                    <s class="weight">赠品：</s>{{gif.name}}
                                                     <s class="no-pay" ng-hide="gif.canBuy"><i class="iconfont icon-tubiao06"></i>赠品缺货</s>
                                                 </span>
                                             </span>
@@ -412,7 +412,7 @@
     </div>
     <!--提交-->
     <div class="order-sub">
-        <a class="submit sure-sb" ng-click="submit('nogif')" ng-hide="doSub || noPay">确认订单信息</a>
+        <a class="submit sure-sb" ng-click="submit('once')" ng-hide="doSub || noPay">确认订单信息</a>
         <a class="submit sure-sb" ng-show="doSub">确认中···</a>
         <a class="submit" style="cursor: not-allowed; background: #bbb;" ng-show="noPay">确认订单信息</a>
     </div>
@@ -535,17 +535,15 @@
          <div class="cover_content">
              <p>
                 <i class="iconfont icon-information"></i>
-                 <span>该商品的以下赠品暂时缺货，是否不要赠品继续购买？</span>
+                 <span>以下商品的赠品暂时缺货，是否不要赠品继续购买？</span>
              </p>
-                 <div class="cover_c"  ng-repeat="product in gifs">
-                      <img ng-show="product.pic" ng-src="{{product.pic}}">
+                 <div class="cover_c"  ng-repeat="product in gifsGood">
+                      <img ng-show="product.pic" ng-src="{{product.pic.split(',')[0]}}">
                       <p>{{product.name}}</p>
-                      <!--<span  class="ospan"  ng-bind="haveProduct.stock == 'stock_out'? '无货' : '有货'"></span>-->
-                      <span>x{{product.num}}</span>
                  </div>
              <div class="cover_b">
-                 <button ng-click="noGifs=false; submit('nogif');">确定</button>
-                 <button ng-click="noGifs=false;">取消</button>
+                 <a ng-click="noGifs=false; submit('nogif');">确定</a>
+                 <a href="#/cart">返回</a>
              </div>
          </div>
      </div>

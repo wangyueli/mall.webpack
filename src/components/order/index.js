@@ -459,7 +459,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
             'invoiceId': $scope.invoices.invoiceId
         };
         if(num == 'nogif'){
-            $scope.orders.unwantedGifts = $scope.gifIds;
+            $scope.orders.unwantedGifts = $scope.errorMsg.substring(17);
         }
         $scope.doSub = true;
 
@@ -472,18 +472,20 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
             }
         },function(data){
             console.log(data);
+            $scope.errorMsg = data;
             if(data.indexOf('JD_FAIL_NOT_GIFT:') != -1){
                 //赠品缺货
                 $scope.noGifs = true;
-                $scope.gifs = [];
+                $scope.gifsGood = [];
                 $scope.gifIds = data.substring(17).split(',');
                 console.log($scope.gifIds);
                 _.each($scope.gifIds, function (id) {
-                    productService.getDetailCache($scope.thismallId, id, 'categories,content,param,appContent', function (detail) {
-                        $scope.gifs.push(detail);
-                        console.log($scope.gifs);
+                    var good = _.find($scope.productList.cartBos, function (good) {
+                        return good.productId == id;
                     });
-                })
+                    $scope.gifsGood.push(good);
+
+                });
             }else {
                 swal({
                     text: '提交失败,网络链接错误,请稍后再试',
