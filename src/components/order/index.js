@@ -468,14 +468,20 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
             }
         },function(data){
             console.log(data);
+            if(data.JD_FAIL_NOT_GIFT){
+                //赠品缺货
+                var ids = data.JD_FAIL_NOT_GIFT.split(',');
+                console.log(ids);
+            }else {
+                swal({
+                    text: '提交失败,网络链接错误,请稍后再试',
+                    icon: 'error',
+                    buttons: {confirm:{text:'确定'}}
+                }).then(function(){
+                    window.location = '/#/cart';
+                });
+            }
             $scope.doSub = false;
-            swal({
-                text: '提交失败,网络链接错误,请稍后再试',
-                icon: 'error',
-                buttons: {confirm:{text:'确定'}}
-            }).then(function(){
-                window.location = '/#/cart';
-            });
         });
     };
 
