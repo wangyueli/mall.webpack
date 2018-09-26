@@ -2750,7 +2750,7 @@
      left:50%;
      margin:10%  0  0  -307px;
      h1{
-       padding:5px;
+       padding:10px 5px;
        text-indent:1em;
        background-color:$ge;
        color:$g6;
@@ -2758,13 +2758,13 @@
     .cover_content{
        width: 100%;
        background-color:#fff;
-       padding:0 60px 80px;
+       padding:0 60px 20px;
        box-sizing: border-box;
        position: relative;
       p{
         text-align: center;
         i{
-          font-size: 45px;
+          font-size: 30px;
           color:#f7550e;
           font-weight: bold;
           margin-right: 15px;
@@ -2814,6 +2814,7 @@
           border:none;
           &:hover{
             background-color:$ge;
+            font-weight: 600;
           }
           &:first-child{
             margin-right: 15px;

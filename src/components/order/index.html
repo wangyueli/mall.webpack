@@ -412,9 +412,9 @@
     </div>
     <!--提交-->
     <div class="order-sub">
-        <a class="submit sure-sb" href="javascript:;" ng-click="submit()" ng-hide="doSub || noPay">确认订单信息</a>
-        <a class="submit sure-sb" href="javascript:;" ng-show="doSub">确认中···</a>
-        <a class="submit" href="javascript:;" style="cursor: not-allowed; background: #bbb;" ng-show="noPay">确认订单信息</a>
+        <a class="submit sure-sb" ng-click="submit('nogif')" ng-hide="doSub || noPay">确认订单信息</a>
+        <a class="submit sure-sb" ng-show="doSub">确认中···</a>
+        <a class="submit" style="cursor: not-allowed; background: #bbb;" ng-show="noPay">确认订单信息</a>
     </div>
 </div>
 <!--添加地址-->
@@ -529,23 +529,23 @@
     </div>
 </div>
 <!--遮罩层-->
-<div  class="cover_layer">
+<div class="cover_layer" ng-show="noGifs">
      <div class="cover_layer_c">
          <h1>提示</h1>
          <div class="cover_content">
              <p>
                 <i class="iconfont icon-information"></i>
-                 <span>该商品的赠品暂时缺货，是否不要赠品继续购买？</span>
+                 <span>该商品的以下赠品暂时缺货，是否不要赠品继续购买？</span>
              </p>
-                 <div class="cover_c"  ng-repeat="product in productList.cartBos">
-                      <img ng-show="product.pic" ng-src="{{product.pic.slice(0,4)=='http'? product.pic : global.file.url+'/'+product.pic.split(',')[0]}}" alt="">
+                 <div class="cover_c"  ng-repeat="product in gifs">
+                      <img ng-show="product.pic" ng-src="{{product.pic}}">
                       <p>{{product.name}}</p>
-                      <span  class="ospan"  ng-bind="haveProduct.stock == 'stock_out'? '无货' : '有货'"></span>
+                      <!--<span  class="ospan"  ng-bind="haveProduct.stock == 'stock_out'? '无货' : '有货'"></span>-->
                       <span>x{{product.num}}</span>
                  </div>
              <div class="cover_b">
-                 <button>确定</button>
-                 <button>取消</button>
+                 <button ng-click="noGifs=false; submit('nogif');">确定</button>
+                 <button ng-click="noGifs=false;">取消</button>
              </div>
          </div>
      </div>

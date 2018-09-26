@@ -10,9 +10,10 @@ require('serve/auth.js');
 require('serve/personAddress.js');
 require('serve/region.js');
 require('serve/org.js');
+require('serve/product.js');
 
 
-var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $location, $stateParams, $anchorScroll, $modal, $cookies, authService, orderService, regionService, personAddressService, orgService) {
+var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $location, $stateParams, $anchorScroll, $modal, $cookies, authService, orderService, regionService, personAddressService, orgService, productService) {
     $scope.$parent.shopStep = 2;
     $scope.thismallId = $stateParams.cartMallId;
     $scope.page = 0;
@@ -422,7 +423,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
 
     /**
      * 提交订单**/
-    $scope.submit = function(){
+    $scope.submit = function(num){
         $scope.ifSign();
         if($scope.sureAddress == null){
             //是否有收货地址
@@ -457,6 +458,9 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
             'invoiceContentType': $scope.invoices.invoiceContentType,
             'invoiceId': $scope.invoices.invoiceId
         };
+        if(num == 'nogif'){
+            $scope.orders.unwantedGifts = $scope.gifIds;
+        }
         $scope.doSub = true;
 
         orderService.insert($scope.orders, function(data){
@@ -468,10 +472,18 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
             }
         },function(data){
             console.log(data);
-            if(data.JD_FAIL_NOT_GIFT){
+            if(data.indexOf('JD_FAIL_NOT_GIFT:') != -1){
                 //赠品缺货
-                var ids = data.JD_FAIL_NOT_GIFT.split(',');
-                console.log(ids);
+                $scope.noGifs = true;
+                $scope.gifs = [];
+                $scope.gifIds = data.substring(17).split(',');
+                console.log($scope.gifIds);
+                _.each($scope.gifIds, function (id) {
+                    productService.getDetailCache($scope.thismallId, id, 'categories,content,param,appContent', function (detail) {
+                        $scope.gifs.push(detail);
+                        console.log($scope.gifs);
+                    });
+                })
             }else {
                 swal({
                     text: '提交失败,网络链接错误,请稍后再试',
