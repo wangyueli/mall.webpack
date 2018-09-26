@@ -211,8 +211,8 @@
         </div>
         <!--操作按钮-->
         <div class="do-btn">
-            <a class="btn" ng-click="copy(order)" ng-show="order.status=='FINISHED' || order.status=='CANCEL' ">立即购买</a>
-            <a class="btn" ng-click="delOrder(order.id)" ng-show="order.status=='NEW'&& !order.hasOwnProperty('parentId') || order.status=='PAY'&& !order.hasOwnProperty('parentId') || order.status=='CONFIRM'&& !order.hasOwnProperty('parentId') || order.status=='ADOPT'&& !order.hasOwnProperty('parentId') ">取消订单</a>
+            <a class="btn" ng-click="copy(order)">立即购买</a>
+            <a class="btn" ng-click="delOrder(order.id)" ng-show="(order.status=='NEW' || order.status=='PAY' || order.status=='CONFIRM'|| order.status=='ADOPT')&& !order.hasOwnProperty('parentId') ">取消订单</a>
             <a class="btn" ng-click="toPayCard(order.id)" ng-show="order.status=='NEW' && !order.hasOwnProperty('parentId') ">确认经费</a>
             <a class="btn" ng-click="toPay(order.id)" ng-show="order.status=='ADOPT' && !order.hasOwnProperty('parentId') ">去支付</a>
             <a class="btn" ng-click="sureGet(order.id)" ng-show="order.status=='DELIVERY' || order.status=='RECEIVE'">确认收货</a>

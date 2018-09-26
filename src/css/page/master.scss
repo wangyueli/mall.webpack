@@ -1229,9 +1229,10 @@
         }
         .hotp-name{
           @include absolute-lf(150px, 0);
-          width: 150px;
-          height: 36px;
-          line-height: 18px;
+          padding: 3px;
+          width: 144px;
+          height: 34px;
+          line-height: 17px;
           overflow: hidden;
           background: rgba(0,0,0,.7);
           color: #fff;
@@ -1270,12 +1271,13 @@
           }
           .hot-item-name{
             @include absolute-lf(170px, 0);
-            width: 170px;
-            height: 36px;
-            line-height: 18px;
+            width: 164px;
+            height: 34px;
+            line-height: 17px;
             overflow: hidden;
             background: rgba(0,0,0,.7);
             color: #fff;
+            padding: 3px;
           }
         }
         .pri{
@@ -2760,7 +2762,7 @@
         margin-right:-1px;
         a{
           display:block;
-          width:110px;
+          width:98.95px;
           @include center(36px, $g3);
           border: $border-gray;
           &.active{
