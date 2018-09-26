@@ -27,6 +27,7 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
         }
     };
     $scope.IEVersion();
+
     $rootScope.titleTab = $rootScope.titleMall;
     orgService.getSchool(function (data) {
         jquery.cookie('orgId', data.id, {
@@ -50,7 +51,7 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
         $scope.getHot();
 
         //banner 初始化
-        var mySwiper1= new Swiper(".swiper-container",{
+        var mySwiper1= new Swiper(".swiper-banner",{
             autoplay:6000,
             loop:true,
             autoplayDisableOnInteraction:false,
@@ -59,10 +60,24 @@ var home = app.controller('homeCtrl', function ($scope, $rootScope, $location, $
         });
     });
 
-    /* 公告*/
+    /**
+     * 公告*/
     homeService.publics(null, function (data) {
         $scope.publics = data;
     });
+
+    /**
+     * 动态订单初始化*/
+    var mySwiper2 = new Swiper('.order_oracy',{
+        autoplay:1,
+        loop:true,
+        speed:1500,
+        slidesPerView :4,
+        loopedSlides :8,
+        freeMode : true,
+        direction:'vertical'
+    });
+
 
     /*
     * 动态订单*/

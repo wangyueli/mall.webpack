@@ -1,4 +1,3 @@
-
 var global = require('global');
 var app = require('appModule');
 var url = require('util/url.js');
