@@ -140,6 +140,14 @@ var productService = app.service('productService', function ($http) {
     //删除关注
     this.delWatch = function (id, sf, ff) {
         $http.delete(url.url('/favorite/product/' + id, null, global.mall.api)).then(sf, ff);
+    };
+
+    //详情商品，型号颜色选择
+    this.detailModel = function (mallId, id, f) {
+        $http.get(url.url('/mallproduct/similar', {
+            'mallId': mallId,
+            'productId': id
+        }, global.mall.api)).then(f);
     }
 
 

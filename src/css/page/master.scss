@@ -659,7 +659,6 @@
 
 //地址
 .f-addr{
-  float: left;
   padding-top: 6px;
   line-height: 26px;
   margin-right: 5px;
@@ -1080,6 +1079,55 @@
           }
         }
       }
+    .other-choose{
+      margin: 10px 0;
+      padding: 15px 0;
+      overflow: hidden;
+      border: {
+        top: $border $gf5;
+        bottom: $border $gf5;
+      };
+      .item{
+        overflow: hidden;
+        margin-bottom: 10px;
+        &:last-child{margin-bottom: 0;}
+        .left, .right{
+          float: left;
+        }
+        .left{
+          width: 70px;
+          padding-top: 10px;
+        }
+        .right{
+          width: 800px;
+          .value{
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 5px;
+            cursor: no-drop;
+            border: 1px dashed $gc;
+            .active-back{
+              border: 1px solid $gb;
+              @include absolute-lf(-1px, -1px);
+              @include cube-inline(100%, 100%);
+              cursor: pointer;
+            }
+            .active{
+              border: $border $normal-red;
+              @include absolute-lf(-1px, -1px);
+              @include cube-inline(100%, 100%);
+              cursor: pointer;
+              z-index: 1;
+            }
+            .word{
+              display: inline-block;
+              margin: 10px 12px;
+            }
+          }
+        }
+      }
+    }
     .price-f{
       position: relative;
       height: 55px;
@@ -1144,7 +1192,7 @@
 
     .btn-bar{
       clear: both;
-      margin-top: 55px;
+      margin-top: 10px;
       a{
         @extend %red-btn;
         width: 105px;

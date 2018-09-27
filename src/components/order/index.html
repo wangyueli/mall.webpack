@@ -98,12 +98,12 @@
                     <span class="check-tip" ng-show="alertNeedAt"><i class="icon icon-iconfont06"></i>请选择报销方式</span>
                 </h2>
             </div>
-            <div class="acount-f" ng-show="productList.canBuySchool==true" ng-class="{'atChoosed':needAcount=='yes'}" ng-click="needAcount='yes'; choosePayType('school');">
+            <div class="acount-f mr10" ng-show="productList.canBuySchool==true" ng-class="{'atChoosed':needAcount=='yes'}" ng-click="needAcount='yes'; choosePayType('school');">
                 <a class="check" ng-class="{'checkActive':needAcount=='yes'}"></a>
                 <p class="tip-ctn">需要到 "{{schoolName}}" 财务报销</p>
                 <p class="tip">须关联校内经费信息，可能会根据采购管理办法完成必要审批后订单才能生效</p>
             </div>
-            <div class="acount-f ml10" ng-show="productList.canBuyOther==true" ng-class="{'atChoosed':needAcount=='no'}" ng-click="needAcount='no'; choosePayType('other');">
+            <div class="acount-f" ng-show="productList.canBuyOther==true" ng-class="{'atChoosed':needAcount=='no'}" ng-click="needAcount='no'; choosePayType('other');">
                 <a class="check" ng-class="{'checkActive':needAcount=='no'}"> </a>
                 <p class="tip-ctn">无需在 "{{schoolName}}" 报销</p>
                 <p class="tip">自用或家用，不用公款支付</p>

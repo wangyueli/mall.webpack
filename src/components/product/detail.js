@@ -99,6 +99,22 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 				}
 			})
 		});
+
+		//型号颜色
+		productService.detailModel($stateParams.mallId, $scope.id, function (data) {
+			$scope.similars = data;
+			$scope.allActiveIds = [];
+			_.each(data.similarProducts, function (module) {
+				_.each(module.saleAttrList, function (item) {
+					var acitveItem = _.find(item.skuIds, function (id) {
+						return $scope.id == id;
+					});
+					if(acitveItem){
+						$scope.allActiveIds = $scope.allActiveIds.concat(item.skuIds);
+					}
+				})
+			})
+		});
 	};
 
 	/**
@@ -125,7 +141,20 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 		})
 	};
 
-    /**
+	/**
+	 * 选择型号颜色*/
+	$scope.findId = function (sid) {
+        var equalId = _.find($scope.allActiveIds, function (equalId) {
+            return sid == equalId;
+        });
+        return equalId;
+    };
+	$scope.chooseModel = function (id) {
+		$scope.id = id;
+		$scope.getDetail();
+	};
+
+	/**
      * 获取地址数据*/
     $rootScope.getRegion($stateParams.mallId, $scope.getDetail());
 
