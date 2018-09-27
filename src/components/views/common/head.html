@@ -16,14 +16,13 @@
         <div class="menu-right clearfix hide" ng-class="{display:o!=null}">
             <a ng-show="noBindWeixin" class="item colorBlue" ng-click="showBind()">绑定微信</a>
             <div class="item" ng-show="o.name" ng-mouseenter="showQuit1()" ng-mouseleave="hideQuit1()">
-                <a ng-href="#/person/core" class="has-drop has-drop1 icon">{{o.name}}</a>
-                <div class="dorpmenu dorpmenu1 hide" style="text-align: right">
+                <a class="has-drop1 icon" ng-class="{'has-drop': toShop}">{{o.name}}</a>
+                <div class="dorpmenu dorpmenu1 hide align-r" ng-show="toShop">
                     <div class="list-btn">
                         <img class="float-l" ng-src="{{tlImg}}" width="32" height="32">
-                        <a class="float-l ml5" style="line-height: 50px;" ng-href="{{global.shop.url}}" target="_blank">采购平台</a>
+                        <a class="float-l ml5" style="line-height: 50px;" ng-href="{{global.shop.url}}" target="_blank">采购人平台</a>
                     </div>
                 </div>
-                <!--<span ng-bind="o.name"></span>-->
             </div>
             <div class="item" ng-mouseenter="showQuit()" ng-mouseleave="hideQuit()">
                 <a ng-href="#/person/core" class="has-drop has-drop2 icon">{{p.name}}</a>

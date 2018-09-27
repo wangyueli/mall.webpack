@@ -153,6 +153,10 @@ var AppController =app.controller("AppController",
                         }else {
                             $scope.noOpenWeixin = true;
                         }
+                        //是否有权限到采购人平台
+                        if(data.powers.length>0){
+                            $scope.toShop = true;
+                        }
                     });
 
                     $scope.p = a.p;
