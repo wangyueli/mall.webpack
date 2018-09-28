@@ -198,6 +198,7 @@
                                 <a class="blue" ng-click="print('ordInfo', order.id)" ng-show="(order.status=='FINISHED' || order.status=='RECEIVE') && order.invoiceSubmit=='school' ">打印订单</a>
                                 <a class="blue" ng-click="print('ordMsg', order.id)" ng-show="(order.status=='FINISHED' || order.status=='RECEIVE') && order.invoiceSubmit=='school' ">打印采购申请表</a>
                                 <a class="blue" ng-click="print('elctrInv', order.id)" ng-show="order.status=='FINISHED' || order.status=='RECEIVE' ">打印电子发票</a>
+                                <a class="blue" ng-click="print('resultBack', order.id)" ng-show="order.status=='FINISHED' || order.status=='RECEIVE' ">打印结果备案表</a>
                             </td>
                         </tr>
                     </tbody>
@@ -315,6 +316,8 @@
                                                 <a class="blue" ng-click="print('ordInfo', orderCd.id)" ng-show="(orderCd.status=='FINISHED' || orderCd.status=='RECEIVE') && orderCd.invoiceSubmit=='school' ">打印订单</a>
                                                 <a class="blue" ng-click="print('ordMsg', orderCd.id)" ng-show="(orderCd.status=='FINISHED' || orderCd.status=='RECEIVE') && orderCd.invoiceSubmit=='school' ">打印采购申请表</a>
                                                 <a class="blue" ng-click="print('elctrInv', orderCd.id)" ng-show="orderCd.status=='FINISHED' || orderCd.status=='RECEIVE' ">打印电子发票</a>
+                                                <a class="blue" ng-click="print('resultBack', orderCd.id)" ng-show="orderCd.status=='FINISHED' || orderCd.status=='RECEIVE' ">打印结果备案表</a>
+
                                             </td>
                                         </tr>
                                         </tbody>

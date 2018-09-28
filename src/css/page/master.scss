@@ -3021,7 +3021,7 @@
       border: 1px solid;
       border-radius: 3px;
       margin-bottom: 6px;
-      &:hover{font-weight: bold;}
+      &:hover{text-decoration: underline;}
       &.default{
         color: $blue;
         border-color: $blue;

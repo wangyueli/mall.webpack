@@ -135,7 +135,20 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
                     tempwindow2.location = order.invoiceUrl[0];
                 }else {
                     swal({
-                        text: '暂未生电子发票',
+                        text: '收货后2日内自动生成',
+                        icon: 'warning',
+                        confirmButtonText: '确认'
+                    });
+                }
+            }
+            if(type == 'resultBack'){
+                //结果备案表
+                if(order.recordUrl){
+                    var tempwindow3 = window.open('_blank');
+                    tempwindow3.location = order.recordUrl;
+                }else {
+                    swal({
+                        text: '暂未生成结果备案表',
                         icon: 'warning',
                         confirmButtonText: '确认'
                     });

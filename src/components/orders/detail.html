@@ -118,7 +118,7 @@
                             <p class="content">
                                 {{order.invoiceTypeName}}  {{order.invoiceName}}
                                 <a class="bill-yes ml5" ng-show="order.invoiceUrl.length>0" ng-href="{{order.invoiceUrl[0]}}" target="_blank">(打印电子发票)</a>
-                                <s class="bill-no ml5" ng-show="order.invoiceUrl.length==0">【暂未生成电子发票】</s>
+                                <s class="bill-no ml5" ng-show="order.invoiceUrl.length==0">【收货后2日内自动生成】</s>
                             </p>
                         </li>
                         <li ng-show="order.mallId!='JD'">
@@ -135,6 +135,10 @@
                         <li ng-show="order.contractUrl">
                             <span class="weight">采购合同：</span>
                             <p class="content"><a class="bill-yes" ng-href="{{order.contractUrl}}" target="_blank">打印电子合同</a></p>
+                        </li>
+                        <li ng-show="order.recordUrl">
+                            <span class="weight">结果备案表</span>
+                            <p class="content"><a class="bill-yes" ng-href="{{order.recordUrl}}" target="_blank">打印结果备案表</a></p>
                         </li>
                     </ul>
                 </div>
