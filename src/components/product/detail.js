@@ -91,12 +91,12 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 		//推荐商品
 		productService.recommendPrt($stateParams.mallId, $scope.id, function (data) {
 			$scope.recommends = [];
+            console.log(data);
+            data.productIds = data.productIds.slice(0, 6);
 			_.each(data.productIds, function (id, index) {
-				if(index<6){
-					productService.get(data.mallId, id, function (data) {
-						$scope.recommends.push(data);
-					});
-				}
+				productService.getDetailCache(data.mallId, id, 'categories,content,param,appContent', function (data) {
+					$scope.recommends.push(data);
+				})
 			})
 		});
 
@@ -152,6 +152,12 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 	$scope.chooseModel = function (id) {
 		$scope.id = id;
 		$scope.getDetail();
+	};
+	$scope.chooseModelOnly = function (ids) {
+		//if($scope.similars.similarProducts.length==1){
+			$scope.id = ids[0];
+			$scope.getDetail();
+		//}
 	};
 
 	/**

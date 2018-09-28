@@ -1105,8 +1105,8 @@
             display: inline-block;
             margin-right: 10px;
             margin-bottom: 5px;
-            cursor: no-drop;
-            border: 1px dashed $gc;
+            border: 1px dashed $gd;
+            cursor: pointer;
             .active-back{
               border: 1px solid $gb;
               @include absolute-lf(-1px, -1px);
@@ -1124,6 +1124,10 @@
               display: inline-block;
               margin: 10px 12px;
             }
+          }
+          .valueOne{
+            border: 1px solid $gb;
+            cursor: pointer;
           }
         }
       }

@@ -105,8 +105,8 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
             if(type == 'ordInfo'){
                 //订单
                 if(order.orderListUrl){
-                    var tempwindow1 = window.open('_blank');
-                    tempwindow1.location = order.orderListUrl;
+                    var tempwindow = window.open('_blank');
+                    tempwindow.location = order.orderListUrl;
                 }else {
                     swal({
                         text: '暂时无法打印订单，请稍后重试。',
