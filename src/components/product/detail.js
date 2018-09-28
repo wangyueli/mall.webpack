@@ -91,7 +91,6 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 		//推荐商品
 		productService.recommendPrt($stateParams.mallId, $scope.id, function (data) {
 			$scope.recommends = [];
-            console.log(data);
             data.productIds = data.productIds.slice(0, 6);
 			_.each(data.productIds, function (id, index) {
 				productService.getDetailCache(data.mallId, id, 'categories,content,param,appContent', function (data) {

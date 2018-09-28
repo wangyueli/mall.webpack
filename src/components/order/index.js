@@ -8,12 +8,11 @@ var form = require('util/form.js');
 require('serve/order.js');
 require('serve/auth.js');
 require('serve/personAddress.js');
-require('serve/region.js');
 require('serve/org.js');
 require('serve/product.js');
 
 
-var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $location, $stateParams, $anchorScroll, $modal, $cookies, authService, orderService, regionService, personAddressService, orgService, productService) {
+var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $location, $stateParams, $anchorScroll, $modal, $cookies, authService, orderService, personAddressService, orgService, productService) {
     $scope.$parent.shopStep = 2;
     $scope.thismallId = $stateParams.cartMallId;
     $scope.page = 0;

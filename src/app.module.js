@@ -92,10 +92,29 @@ app.factory('sessionInjector', ['$q', '$cookies', '$log', '$document', '$rootSco
                     return config;
                 }
                 // TODO 控制版本
-                if (config.url.indexOf('api') != -1 || config.url.substr(0, global.api.url.length) == global.api.url) {
+                if (config.url.indexOf('api') != -1) {
                     config.headers = config.headers || {};
                     if ($cookies.get('access_token')) {
                         config.headers.Authorization = 'Bearer ' + $cookies.get('access_token');
+                    }
+                    if(config.url.substr(0, global.mall.api.length) == global.mall.api){
+                        //32位随机uuid
+                        function guid() {
+                            return 'xxxxxxxxxxxxxx4xxxxyxxxyxxxxxxxx'.replace(/[xy]/g, function(c) {
+                                var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                                return v.toString(16);
+                            });
+                        }
+                        if($cookies.get('yct-uuid')){
+                            var yctUuid = $cookies.get('yct-uuid');
+                        }else {
+                            var yctUuid = guid();
+                            jquery.cookie('yct-uuid', yctUuid, {
+                                'domain': global.domain,
+                                'path': '/'
+                            });
+                        }
+                        config.headers['yct-uuid'] = yctUuid;
                     }
                 } else if (config.url.substr(0, 1) == "/") {
                     config.url += (config.url.indexOf("?") == -1) ? "?" : "&";
