@@ -7,13 +7,12 @@
              <div class="hot_center_r"></div>
         </div>
         <ul class="hot_ul">
-            <li class="hot_ul_li" ng-repeat="prt in list.data" ng-click="toDetail(prt.mallId, prt.id)">
-                <s class="save-p weight" ng-show="disCount(prt.unitPrice/prt.unitPriceShow)<10" ng-bind="disCount(prt.unitPrice/prt.unitPriceShow) + '折'"></s>
+            <li class="hot_ul_li" ng-repeat="prt in list.data">
+                <s class="save-p weight" ng-click="toDetail(prt.mallId, prt.id)" ng-show="disCount(prt.unitPrice/prt.unitPriceShow)<10" ng-bind="disCount(prt.unitPrice/prt.unitPriceShow) + '折'"></s>
                 <img ng-src="{{prt.pic}}" alt="">
                 <p class="hot_ul_p1">{{prt.name}}</p>
                 <p class="hot_ul_p2">
                     <span>&nbsp;&nbsp;<i>￥</i><strong>{{prt.unitPrice | number:2}}</strong></span>
-                    <!--<a ng-href="/#/product/detail?mallId={{prt.mallId}}&id={{prt.id}}" target="_blank">立即抢购</a>-->
                     <a ng-click="toDetail(prt.mallId, prt.id)">立即抢购</a>
                     <span class="del_price">¥{{prt.unitPriceShow | number:2}}</span>
                 </p>

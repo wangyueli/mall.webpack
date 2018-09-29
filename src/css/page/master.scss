@@ -5323,12 +5323,12 @@
   .hot_center{
     display:flex;
     justify-content:center;
-    padding:50px  0;
+    padding:20px  0;
     color:#5c5c5c;
     overflow: hidden;
     .hot_center_l,.hot_center_r{
       @include wh(100px,3px);
-      padding:0px;
+      padding:0;
       background:#5b5b5b;
       float: left;
       border-radius: 35px;
