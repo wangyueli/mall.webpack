@@ -2,7 +2,6 @@ var app = require('appModule');
 var jquery = require('jquery');
 var _ = require('underscore');
 var global = require('global');
-var cookie = require('util/cookie');
 require('sweetalert');
 require('serve/auth.js');
 require('serve/project.js');

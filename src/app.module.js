@@ -110,6 +110,7 @@ app.factory('sessionInjector', ['$q', '$cookies', '$log', '$document', '$rootSco
                         }else {
                             var yctUuid = guid();
                             jquery.cookie('yct-uuid', yctUuid, {
+                                'expires': 360,
                                 'domain': global.domain,
                                 'path': '/'
                             });
