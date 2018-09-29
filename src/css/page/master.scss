@@ -19,12 +19,12 @@
   overflow: hidden;
   margin-top: 20px;
   .brand{
-    padding:30px;
+    padding:20px;
     margin: 0 12px 20px 0;
     overflow: hidden;
-    width: 326px;
+    width: 251px;
     float: left;
-    background: #f9f9f9;
+    background: #fff;
     cursor: pointer;
     position: relative;
     &:hover  .mask{
@@ -40,7 +40,7 @@
       text-align: center;
       font-size: 24px;
       font-weight: 800;
-      padding-top: 30%;
+      padding-top: 25%;
       box-sizing: border-box;
       color:#fff;
       display:none;

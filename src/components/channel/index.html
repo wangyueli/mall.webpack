@@ -48,7 +48,7 @@
         </div>
     </div>
     <!--热卖-->
-    <div class="hot-content" ng-show="hotProducts || esMallPros || true">
+    <div class="hot-content">
         <!--超值推荐-->
         <div class="module" ng-show="recommendCays.length>0">
             <div class="head_main_column bgFour" style="height: 115px;">
@@ -96,7 +96,7 @@
             <img src="/images/hot.png">
         </div>
         <!----------热卖商品--------->
-        <div class="module">
+        <div class="module" ng-show="hotProducts">
             <div class="md-ctn">
                 <!--每个商品-->
                 <div class="gl-warp clearfix">
@@ -125,7 +125,7 @@
             </div>
         </div>
         <!----------协议供货热卖------>
-        <div class="module">
+        <div class="module" ng-show="esMallPros">
             <!--<h2 class="es-hot-title" ng-show="esMallPros">协议供货热卖</h2>-->
             <div class="md-ctn" style="padding-top: 0;">
                 <!--每个商品-->
@@ -152,6 +152,64 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <!--优惠品牌专区入口-->
+    <div style="width: 1200px; margin: 0 auto;">
+        <h2 class="title-normal colorRed font22" style="background: #e4a46d26; padding: 15px 0">优惠专场</h2>
+        <div class="brand-contents">
+            <div class="brand">
+                <img src="images/square/b08.jpg">
+                <a href="#/sale?id=8&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">戴尔</div></a>
+            </div>
+            <div class="brand">
+                <img src="images/square/b09.jpg">
+                <a href="#/sale?id=9&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">苹果</div></a>
+            </div>
+            <div class="brand">
+                <img src="images/square/b10.jpg">
+                <a href="#/sale?id=10&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">华为</div></a>
+            </div>
+            <div class="brand margin-right">
+                <img src="images/square/b11.jpg">
+                <a href="#/sale?id=11&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">惠普</div></a>
+            </div>
+            <div class="brand">
+                <img src="images/square/b12.jpg">
+                <a href="#/sale?id=12&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">松下</div></a>
+            </div>
+            <div class="brand">
+                <img src="images/square/b07.jpg">
+                <a href="#/sale?id=7&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">安防监控</div></a>
+            </div>
+            <div class="brand">
+                <img src="images/square/b05.jpg">
+                <a href="#/sale?id=5&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">爱普生打印机</div></a>
+            </div>
+            <div class="brand margin-right">
+                <img src="images/square/b06.jpg">
+                <a href="#/sale?id=6&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">精品茶叶</div></a>
+            </div>
+            <div class="brand">
+                <img src="images/square/b01.jpg">
+                <a href="#/sale?id=1&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">开学精选</div></a>
+            </div>
+            <div class="brand">
+                <img src="images/square/b02.jpg">
+                <a href="#/sale?id=2&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">迎接新生</div></a>
+            </div>
+            <div class="brand">
+                <img src="images/square/b03.jpg">
+                <a href="#/sale?id=3&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">中秋福利</div></a>
+            </div>
+            <div class="brand margin-right">
+                <img src="images/square/b04.jpg">
+                <a href="#/sale?id=4&equre=pc&targetUrl=defalut" target="_blank"><div class="mask">中秋坚果</div></a>
+            </div>
+            <!--<div class="brand margin-right">
+                <img src="images/square/b13.jpg">
+                <a href="#/channel?mallId=JD" target="_blank"><div class="mask">更多品牌优惠</div></a>
+            </div>-->
         </div>
     </div>
 </div>
