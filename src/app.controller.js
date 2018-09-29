@@ -474,7 +474,12 @@ var AppController =app.controller("AppController",
         $scope.search = function () {
             if ($rootScope.keyword != null && $rootScope.keyword != '') {
                 $scope.downSearch = false;
-                window.location = '/#/product?keyword=' +  encodeURIComponent($rootScope.keyword);
+                if($location.search().keyword == $rootScope.keyword){
+                    console.log('相等');
+                    $location.url('/product?keyword=');
+                    document.location.reload();
+                }
+                $location.url('/product?keyword=' + encodeURIComponent($rootScope.keyword));
             }
         };
         //enter键
