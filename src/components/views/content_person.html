@@ -76,12 +76,12 @@
             </div>
             <!--搜索框-->
             <div class="top-search">
-                <div class="search-panel-fields" ng-mouseleave="downSearch=false;">
-                    <input ng-model="$root.keyword" type="text" ng-keyup="keySearch($event); downSearch=true;"/>
+                <div class="search-panel-fields">
+                    <input ng-model="$root.keyword" type="text" ng-keyup="keySearch($event);" ng-blur="downSearch=false;" ng-focus="downSearch=true;"/>
                     <button type="button" ng-click="search()">搜索</button>
                     <!--关键字提醒-->
                     <ul class="down-search" ng-show="keys.length>0 && downSearch">
-                        <li ng-repeat="key in keys" ng-click="$root.keyword=key[0]; search()" ng-class="{keyBack: $parent.thisKey==$index}">{{key[0]}}</li>
+                        <li ng-repeat="key in keys" ng-mousedown="$root.keyword=key[0]; search()" ng-class="{keyBack: $parent.thisKey==$index}">{{key[0]}}</li>
                     </ul>
                 </div>
             </div>

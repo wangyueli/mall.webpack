@@ -473,13 +473,8 @@ var AppController =app.controller("AppController",
        //到商品列表
         $scope.search = function () {
             if ($rootScope.keyword != null && $rootScope.keyword != '') {
-                $scope.downSearch = false;
-                if($location.search().keyword == $rootScope.keyword){
-                    console.log('相等');
-                    $location.url('/product?keyword=');
-                    document.location.reload();
-                }
                 $location.url('/product?keyword=' + encodeURIComponent($rootScope.keyword));
+                jquery('#search-input').blur();
             }
         };
         //enter键
