@@ -124,7 +124,6 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 		});
 	};
 
-
 	/**
 	 * 该商品赠品 附件*/
 	$scope.getGifs = function () {
@@ -148,15 +147,8 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
         });
         return equalId;
     };
-	$scope.chooseModel = function (id) {
-		$scope.id = id;
-		$scope.getDetail();
-	};
-	$scope.chooseModelOnly = function (ids) {
-		//if($scope.similars.similarProducts.length==1){
-			$scope.id = ids[0];
-			$scope.getDetail();
-		//}
+	$scope.chooseModel = function (ids) {
+		$location.url('/product/detail?mallId=' + $stateParams.mallId +'&id=' + ids[0]);
 	};
 
 	/**
