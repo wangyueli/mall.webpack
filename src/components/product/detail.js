@@ -132,7 +132,7 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 		productService.getGifs($scope.detailMallId, $scope.id, $rootScope.region, $scope.num, function (data) {
 			_.each(data, function (item) {
 				if(item.buyType == 'gifts'){
-					productService.get($stateParams.mallId, item.productId, function(data) {
+					productService.getDetailCache($stateParams.mallId, item.productId, 'categories,content,param,appContent', function(data) {
 						$scope.gifs.push({prt: data, num: item.num});
 					});
 				}

@@ -33,6 +33,7 @@
     &:hover  img{
       transform: scale(1.1);
     }
+    img{@include wh(251px, 133px)}
     .mask{
       @include  wh(100%,100%);
       @include  absolute-lf(0,0);
