@@ -148,8 +148,11 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
         return equalId;
     };
 	$scope.chooseModel = function (ids) {
-		$location.url('/product/detail?mallId=' + $stateParams.mallId +'&id=' + ids[0]);
+		$location.url('/product/detail?mallId=' + $stateParams.mallId +'&id=' + ids);
 	};
+    $scope.chooseModelOnly = function (ids) {
+        $location.url('/product/detail?mallId=' + $stateParams.mallId +'&id=' + ids[0]);
+    };
 
 	/**
      * 获取地址数据*/

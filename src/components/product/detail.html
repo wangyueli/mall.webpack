@@ -152,7 +152,7 @@
 					<div class="item" ng-repeat="sim in similars.similarProducts">
 						<div class="left">选择{{sim.saleName}}:</div>
 						<div class="right">
-							<span class="value" ng-repeat="item in sim.saleAttrList" ng-click="chooseModel(item.skuIds)" ng-class="{'valueOne': similars.similarProducts.length==1}">
+							<span class="value" ng-repeat="item in sim.saleAttrList" ng-click="chooseModelOnly(item.skuIds)" ng-class="{'valueOne': similars.similarProducts.length==1}">
 								<span ng-repeat="sid in item.skuIds" ng-if="sid==id || sid==findId(sid)" ng-class="{'active-back': sid==findId(sid), 'active':sid==id}" ng-click="chooseModel(sid)"></span>
 								<img class="vmid ml5" ng-if="item.imagePath" ng-src="{{item.imagePath}}" width="30" height="30">
 								<span class="word">{{item.saleValue}}</span>
