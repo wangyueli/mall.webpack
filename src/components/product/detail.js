@@ -147,12 +147,14 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
         });
         return equalId;
     };
-	$scope.chooseModel = function (ids) {
-		$location.url('/product/detail?mallId=' + $stateParams.mallId +'&id=' + ids);
+	$scope.chooseModel = function (ids, type) {
+        if(type == 'dotted'){
+            $location.url('/product/detail?mallId=' + $stateParams.mallId +'&id=' + ids[0]);
+        }else {
+            $location.url('/product/detail?mallId=' + $stateParams.mallId +'&id=' + ids);
+        }
+
 	};
-    $scope.chooseModelOnly = function (ids) {
-        $location.url('/product/detail?mallId=' + $stateParams.mallId +'&id=' + ids[0]);
-    };
 
 	/**
      * 获取地址数据*/

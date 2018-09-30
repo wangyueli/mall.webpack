@@ -1108,18 +1108,18 @@
             margin-bottom: 5px;
             border: 1px dashed $gd;
             cursor: pointer;
-            .active-back{
-              border: 1px solid $gb;
+            .choos{
               @include absolute-lf(-1px, -1px);
               @include cube-inline(100%, 100%);
               cursor: pointer;
             }
+            .active-back{
+              border: 1px solid $gb;
+              z-index: 1;
+            }
             .active{
               border: $border $normal-red;
-              @include absolute-lf(-1px, -1px);
-              @include cube-inline(100%, 100%);
-              cursor: pointer;
-              z-index: 1;
+              z-index: 2;
             }
             .word{
               display: inline-block;
