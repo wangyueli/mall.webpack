@@ -1362,10 +1362,12 @@
   }
 
   >.content{
+    width: 978px;
+    padding: 10px;
+    overflow-x: hidden;
     color: #555;
     border:$border-gray;
     border-top:0;
-    padding: 10px;
   }
 
   .summary{

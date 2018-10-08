@@ -136,7 +136,7 @@
                             <span class="weight">采购合同：</span>
                             <p class="content"><a class="bill-yes" ng-href="{{order.contractUrl}}" target="_blank">打印电子合同</a></p>
                         </li>
-                        <li ng-show="order.recordUrl">
+                        <li ng-show="order.recordUrl && orgId=='10359'">
                             <span class="weight">结果备案表</span>
                             <p class="content"><a class="bill-yes" ng-href="{{order.recordUrl}}" target="_blank">打印结果备案表</a></p>
                         </li>
@@ -215,7 +215,7 @@
         </div>
         <!--操作按钮-->
         <div class="do-btn">
-            <a class="btn" ng-click="copy(order)">立即购买</a>
+            <a class="btn" ng-hide="order.status=='NEW' || order.status=='PAY' || order.status=='CONFIRM' || order.status=='ADOPT'" ng-click="copy(order)">再次购买</a>
             <a class="btn" ng-click="delOrder(order.id)" ng-show="(order.status=='NEW' || order.status=='PAY' || order.status=='CONFIRM'|| order.status=='ADOPT')&& !order.hasOwnProperty('parentId') ">取消订单</a>
             <a class="btn" ng-click="toPayCard(order.id)" ng-show="order.status=='NEW' && !order.hasOwnProperty('parentId') ">确认经费</a>
             <a class="btn" ng-click="toPay(order.id)" ng-show="order.status=='ADOPT' && !order.hasOwnProperty('parentId') ">去支付</a>
