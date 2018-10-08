@@ -69,7 +69,6 @@ var AppController =app.controller("AppController",
         /**
          * 获取当前学校信息**/
         orgService.getSchool(function (data) {
-            console.log(data);
             $scope.schoolName = data.name;
             $scope.orgId = data.id;
             $scope.canTwoCode = data.wxValid;
@@ -568,14 +567,18 @@ var AppController =app.controller("AppController",
          * 购前调研*/
         $scope.toSurvey = function () {
             if($location.path() == '/product/detail'){
-                $scope.surveyWord = $rootScope.ditailName;
-            }
-            if($rootScope.keyword){
+                if($rootScope.dlCategoryName){
+                    $scope.surveyWord = $rootScope.dlCategoryName;
+                }
+            }else if($rootScope.keyword){
                 $scope.surveyWord = $rootScope.keyword;
+            }else if($rootScope.categoryName){
+                $scope.surveyWord = $rootScope.categoryName;
+            }else {
+                $scope.surveyWord = '';
             }
-            window.open($scope.surveyUrl + '/#/proxy?' + $cookies.get("access_token") + '&' + $scope.surveyWord);
+            window.open($scope.surveyUrl + '/#/proxy?access_token=' + $cookies.get("access_token") + '&keyword=' + $scope.surveyWord);
         }
-
     });
 
 module.exports = AppController;

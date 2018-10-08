@@ -22,9 +22,12 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 	$scope.getDetail = function () {
 		productService.get($stateParams.mallId, $scope.id, function(data) {
 			$scope.detail = data;
+			if(data.categories){
+				//购前调研用
+				$rootScope.dlCategoryName = data.categories[data.categories.length-1].name;
+			}
 			$scope.imgSrcs = (data.pic).split(",");
 			$scope.bigImg = $scope.imgSrcs[0];
-			$rootScope.ditailName = data.name;
 			$rootScope.titleTab = data.name + '-' + $rootScope.titleMall;
 			var categoryLength = $scope.detail.categories.length;
 			$scope.categoryIdLast = $scope.detail.categories[categoryLength-1].id;

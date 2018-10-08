@@ -44,8 +44,8 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
      * 获取路由所带分类**/
     if($scope.categoryId){
         productService.getCategory($stateParams.mallId, $scope.categoryId, function (data) {
-            $scope.categoryName = data.name;
-            $rootScope.Tabtitle = $scope.categoryName +'-'+ $rootScope.titleMall;
+            $rootScope.categoryName = data.name;
+            $rootScope.Tabtitle = $rootScope.categoryName +'-'+ $rootScope.titleMall;
         });
     }
 

@@ -965,6 +965,13 @@
       cursor: pointer;
     }
   }
+  .survey{
+    padding: 5px 20px;
+    border: $border-gray;
+    border-radius: 3px;
+    display: inline-block;
+    margin-top: 7px;
+  }
   .big-p{
     width:250px;
     height: 250px;

@@ -28,6 +28,7 @@
 			<div class="my-save" ng-click="addWatch(detail.mallId, detail.productId)">
 				<i class="icon icon-xin2" ng-class="{'active': watched}"></i>{{watched? '已关注': '关注'}}
 			</div>
+			<a class="survey" ng-show="surveyUrl" ng-click="toSurvey()">调研类似商品</a>
 		</div>
 		<!--放大镜 大图-->
 		<div id="big-box">
