@@ -162,7 +162,29 @@
     .top-search .select-wpr .select-wpr-list .item:hover {
         background-color: #f5f5f5;
     }
-
+    .right-toolbar{bottom: 60px; top:auto;}
+    .right-toolbar > .kefu i, .right-toolbar > .back-top i{
+        height: 20px;
+    }
+    .right-toolbar>.kefu .tip .tip-top{
+        height: 39px;
+        width: 88px;
+        color: #fff;
+        background-color: #c81322;
+        font-size: 16px;
+    }
+    .right-toolbar>.kefu .tip .tip-service {
+        line-height: 25px;
+        height: 25px;
+        border-bottom: 1px solid #e1e1e1;
+        display: block;
+        padding-left: 4px;
+        color: #1f1f1f;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    .right-toolbar>.kefu .tip .tip-service:hover{color: #c81322;}
+    .right-toolbar > .kefu .tip{height: auto; top: -83px;}
 </style>
 
 <div class="topbar" style=" min-height: 33px;">
@@ -294,27 +316,23 @@
 </div>
 <!--客服 -->
 <div class="right-toolbar">
-    <div class="item">
-        <div class="kefu">
-            <i></i>
-            在线客服
-            <div class="tip">
-                <div class="tip-top">
-                    <p class="tip-top-title">客服QQ</p>
-                    <p class="tip-top-titeng"></p>
-                </div>
-                <a href="http://wpa.qq.com/msgrd?v=3&uin=3215144760&site=qq&menu=yes" class="tip-service" target="_blank">供应商客服</a>
-                <a href="http://wpa.qq.com/msgrd?v=3&uin=3504003500&site=qq&menu=yes" class="tip-service" target="_blank">招标代理客服</a>
-                <a href="http://wpa.qq.com/msgrd?v=3&uin=3305255178&site=qq&menu=yes" class="tip-service" target="_blank">外贸代理客服</a>
-                <a href="http://wpa.qq.com/msgrd?v=3&uin=2274401696&site=qq&menu=yes" class="tip-service" target="_blank">电子商城客服</a>
+    <div class="item kefu">
+        <i></i>
+        在线客服
+        <div class="tip" style="display:block;">
+            <div class="tip-top">
+                <p class="tip-top-title">客服QQ</p>
+                <p class="tip-top-titeng"></p>
             </div>
+            <a href="http://wpa.qq.com/msgrd?v=3&uin=3215144760&site=qq&menu=yes" class="tip-service" target="_blank">供应商客服</a>
+            <a href="http://wpa.qq.com/msgrd?v=3&uin=3504003500&site=qq&menu=yes" class="tip-service" target="_blank">招标代理客服</a>
+            <a href="http://wpa.qq.com/msgrd?v=3&uin=3305255178&site=qq&menu=yes" class="tip-service" target="_blank">外贸代理客服</a>
+            <a href="http://wpa.qq.com/msgrd?v=3&uin=2274401696&site=qq&menu=yes" class="tip-service" target="_blank">电子商城客服</a>
         </div>
     </div>
-    <div class="item">
-        <a class="back-top" id="backTop" href="javascript:;">
-            <i></i>
-            TOP
-        </a>
+    <div class="item back-top" ng-click="toWindowTop()">
+        <i class="mt10"></i>
+        TOP
     </div>
 </div>
 

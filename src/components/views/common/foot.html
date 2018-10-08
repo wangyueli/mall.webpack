@@ -35,34 +35,33 @@
 </div>
 <!--客服 -->
 <div class="right-toolbar">
-    <div class="item">
-        <div class="kefu">
-            <i></i>
-            客服热线
-            <div class="tip tip-mall">
-                <div class="phone">
-                    <p class="name">云采通</p>
-                    <p class="number"><span class="icon icon-dianhua"></span>400-101-0335（周一至周五：09:00 - 17:30）</p>
-                </div>
-                <div class="phone">
-                    <p class="name">京东频道</p>
-                    <p class="number"><span class="icon icon-dianhua"></span>400-606-6866（09:00 - 21:00）</p>
-                </div>
-                <!--<div class="phone">
-                    <p class="name">办公伙伴</p>
-                    <p class="number"><span class="icon icon-dianhua"></span>028-66612000（周一到周五：9:00-18:00）</p>
-                </div>-->
-                <div class="phone">
-                    <p class="name">商城技术服务</p>
-                    <p class="number"><span class="icon icon-QQ font18"></span><a class="color3" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=804314819&site=qq&menu=yes">在线QQ：804314819</a></p>
-                </div>
+    <!--<div class="item width70"><p class="word">值得买</p></div>-->
+    <!--<div class="item width70"><p class="word">扫码</p></div>-->
+    <div class="item width70" ng-show="surveyUrl" ng-click="toSurvey()"><p class="word">购前调研</p></div>
+    <div class="item kefu width70">
+        <i></i>
+        <p class="word-dif">客服热线</p>
+        <div class="tip tip-mall">
+            <div class="phone">
+                <p class="name">云采通</p>
+                <p class="number"><span class="icon icon-dianhua"></span>400-101-0335（周一至周五：09:00 - 17:30）</p>
+            </div>
+            <div class="phone">
+                <p class="name">京东频道</p>
+                <p class="number"><span class="icon icon-dianhua"></span>400-606-6866（09:00 - 21:00）</p>
+            </div>
+            <!--<div class="phone">
+                <p class="name">办公伙伴</p>
+                <p class="number"><span class="icon icon-dianhua"></span>028-66612000（周一到周五：9:00-18:00）</p>
+            </div>-->
+            <div class="phone">
+                <p class="name">商城技术服务</p>
+                <p class="number"><span class="icon icon-QQ font18"></span><a class="color3" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=804314819&site=qq&menu=yes">在线QQ：804314819</a></p>
             </div>
         </div>
     </div>
-    <div class="item" id="backTop" ng-click="toWindowTop()">
-        <a class="back-top" href="javascript:;">
-            <i></i>
-            TOP
-        </a>
+    <div class="item width70 back-top" id="backTop" ng-click="toWindowTop()">
+        <i></i>
+        <p class="word-dif">TOP</p>
     </div>
 </div>

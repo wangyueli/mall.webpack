@@ -24,6 +24,7 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 			$scope.detail = data;
 			$scope.imgSrcs = (data.pic).split(",");
 			$scope.bigImg = $scope.imgSrcs[0];
+			$rootScope.ditailName = data.name;
 			$rootScope.titleTab = data.name + '-' + $rootScope.titleMall;
 			var categoryLength = $scope.detail.categories.length;
 			$scope.categoryIdLast = $scope.detail.categories[categoryLength-1].id;

@@ -37,6 +37,7 @@
 .mb80{ margin-bottom:80px;}
 
 .mt5{margin-top: 5px;}
+.mt10{margin-top: 10px;}
 .mt20{margin-top: 20px;}
 .mt30{ margin-top:30px;}
 .mt40{ margin-top:40px;}
@@ -107,7 +108,7 @@
 
 
 /*主体宽度控制*/
-.wrap{ width:1200px; margin:0 auto; position:relative;}
+.wrap{ width:1200px !important; margin:0 auto; position:relative;}
 .wrap-ths{width:1000px; margin:0 auto; position:relative;}
 
 /*========整体布局========*/
@@ -292,41 +293,38 @@
 .right-toolbar{
   position:fixed;
   right:0;
-  bottom:60px;
+  top: 35%;
   z-index:10;
 }
 .right-toolbar > .item{
+  display: block;
   width:32px;
   background:#726d6d;
-}
-.right-toolbar > .item + .item{
-  border-top:1px dashed #555;
-}
-.right-toolbar > .item > .kefu,
-.right-toolbar > .item > .back-top{
-  display:block;
-  color:#fff;
-  text-align:center;
-  background:#726d6d;
-  padding:5px 0;
-  position:relative;
+  height: 60px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  border-bottom: 1px solid #fff;
   -webkit-transition:all 0.3s ease-out;
   -moz-transition:all 0.3s ease-out;
   -o-transition:all 0.3s ease-out;
   transition:all 0.3s ease-out;
 }
-.right-toolbar > .item > .kefu{
-  height:50px;
-  line-height:15px;
+.right-toolbar > .width70{
+  width: 70px;
 }
-.right-toolbar > .item > .kefu i{
+.right-toolbar .word{line-height: 60px; }
+.right-toolbar .word-dif{line-height: 10px; }
+.right-toolbar > .kefu i, .right-toolbar > .back-top i{
   width:32px;
-  height:20px;
+  height:32px;
   display:inline-block;
   background:url("/images/back-kefu.png") center no-repeat;
 }
-
-.right-toolbar > .item > .kefu .tip{
+.right-toolbar > .back-top i{
+  background:url("/images/back-top.png") center no-repeat;
+}
+.right-toolbar > .kefu .tip{
   line-height:25px;
   height:210px;
   width:88px;
@@ -341,62 +339,15 @@
   text-align:left;
   display:none;
 }
-/*.right-toolbar > .item > .kefu:hover,
-.right-toolbar > .item > .back-top:hover{
-  background:#c81321;
-}*/
-.right-toolbar > .item > .kefu:hover .tip{
+.right-toolbar > .kefu:hover .tip{
   display:block;
 }
-.right-toolbar > .item > .kefu .tip-mall{
+.right-toolbar > .kefu .tip-mall{
   width: 320px;
+  top: 0;
+  right: 70px;
 }
-.right-toolbar > .item > a.back-top{
-  height:49px;
-  line-height:15px;
-}
-
-.right-toolbar > .item > a.back-top i{
-  margin:14px auto 2px;
-  width:32px;
-  height:6px;
-  display:inline-block;
-  background:url("/images/back-top.png") center no-repeat;
-}
-.right-toolbar > .item > .kefu .tip .tip-top{
-  height:39px;
-  width:88px;
-  color:#FFF;
-  /*background-color:#c81322;*/
-}
-.right-toolbar > .item > .kefu .tip .tip-top .tip-top-title{
-  height:20px;
-  line-height:20px;
-  font-size:16px;
-  color:#FFF;
-  padding:4px 0 4px 4px;
-}
-.right-toolbar > .item > .kefu .tip .tip-top .tip-top-titeng{
-  background:url("/images/tip-tope.png");
-  height:6px;
-  display:block;
-  width:68px;
-  margin-left:4px;
-}
-.right-toolbar > .item > .kefu .tip .tip-service{
-  line-height:25px;
-  height:25px;
-  border-bottom:1px solid #e1e1e1;
-  display:block;
-  padding-left:4px;
-  color:#1f1f1f;
-  font-size:12px;
-}
-
-/*.right-toolbar > .item > .kefu .tip .tip-service:hover{
-  color:#c81321;
-}*/
-.right-toolbar > .item > .kefu .tip .phone .name{
+.right-toolbar > .kefu .tip-mall .phone .name{
   height: 30px;
   line-height: 30px;
   text-align: center;
@@ -405,14 +356,14 @@
   font-weight: bold;
   font-size: 14px;
 }
-.right-toolbar > .item > .kefu .tip .phone .number{
+.right-toolbar > .kefu .tip-mall .phone .number{
   height: 40px;
   line-height: 40px;
   color: #333;
   font-size: 14px;
   padding-left: 10px;
 }
-.right-toolbar > .item > .kefu .tip .phone .number > span{
+.right-toolbar > .kefu .tip-mall .phone .number > span{
   margin-right: 24px;
   /*color: #e4393c;*/
   font-size: 22px;

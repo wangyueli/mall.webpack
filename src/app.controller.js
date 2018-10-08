@@ -69,10 +69,14 @@ var AppController =app.controller("AppController",
         /**
          * 获取当前学校信息**/
         orgService.getSchool(function (data) {
+            console.log(data);
             $scope.schoolName = data.name;
             $scope.orgId = data.id;
             $scope.canTwoCode = data.wxValid;
             $scope.schoolLoginUrl = data.schoolLoginUrl;
+            if(data.surveyUrl){
+                $scope.surveyUrl = data.surveyUrl;
+            }
             if(data.id==58212){
                 $rootScope.titleMall = data.name + '采购商城';
             }else {
@@ -558,6 +562,18 @@ var AppController =app.controller("AppController",
         };
         $scope.bindAlready = function () {
             $scope.noBindWeixin = false;
+        };
+
+        /**
+         * 购前调研*/
+        $scope.toSurvey = function () {
+            if($location.path() == '/product/detail'){
+                $scope.surveyWord = $rootScope.ditailName;
+            }
+            if($rootScope.keyword){
+                $scope.surveyWord = $rootScope.keyword;
+            }
+            window.open($scope.surveyUrl + '/#/proxy?' + $cookies.get("access_token") + '&' + $scope.surveyWord);
         }
 
     });
