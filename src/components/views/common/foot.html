@@ -36,7 +36,12 @@
 <!--客服 -->
 <div class="right-toolbar">
     <!--<div class="item width70"><p class="word">值得买</p></div>-->
-    <!--<div class="item width70"><p class="word">扫码</p></div>-->
+    <div class="item code-f width70">
+        <p class="word">小程序扫码</p>
+        <div class="code">
+            <img ng-src="{{global.mall.api + '/auths/wxQrCode?uuid=&type'}}" width="80" height="80">
+        </div>
+    </div>
     <div class="item width70" ng-show="surveyUrl" ng-click="toSurvey()"><p class="word">购前调研</p></div>
     <div class="item kefu width70">
         <i></i>

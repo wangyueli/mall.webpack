@@ -24,10 +24,6 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
     };
 
     /**
-     * 获取登录信息*/
-    $scope.ifSign();
-
-    /**
      * 设置修改发票弹层高度*/
     var height = document.body.scrollHeight;
     jquery('#bill-pop').css('height', height+200);
@@ -423,7 +419,6 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
     /**
      * 提交订单**/
     $scope.submit = function(num){
-        $scope.ifSign();
         if($scope.sureAddress == null){
             //是否有收货地址
             swal({

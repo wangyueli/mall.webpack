@@ -139,6 +139,13 @@ app.factory('sessionInjector', ['$q', '$cookies', '$log', '$document', '$rootSco
                 if (rejection.config.url == null || rejection.status != 401) {
                     return $q.reject(rejection.data);
                 }
+                if(rejection.status == 401){
+                    if($rootScope.canTwoCode){
+                        $rootScope.loginMask = true;
+                    }else {
+                        window.location = '/#/login';
+                    }
+                }
                 return $q.reject(rejection);
             }
         };

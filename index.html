@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="//static.yuncaitong.cn/js/sweetalert/sweetalert2.min.css">
 </head>
     <body ng-controller="AppController">
+        <malllogin-dialog></malllogin-dialog>
         <!--微信 登录 绑定-->
         <login-bind ng-if="bindMask"  access-token="{{accessToken}}" close-bind="closeBind();" show-bind="showBind()" bind-already="bindAlready()" wei-users="weiUsers()"></login-bind>
         <to-login ng-if="loginMask" school-url="{{schoolLoginUrl}}" close-login="closeLogin();"></to-login>

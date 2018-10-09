@@ -720,46 +720,38 @@ module.directive('loginDialog', ['$sce', '$cookies', 'httpAuthService', '$interv
     };
 }]);
 
-module.directive('loginmallDialog', ['$sce', '$cookies', 'httpAuthService',
-    function ($sce, $cookies, httpAuthService) {
-        return {
-            restrict: 'A',
-            link: function (scope) {
-                scope.$on('event:auth-loginRequired', function (rejection, response) {
-                    if (response.data == null || response.data == '') {
-                        /*window.location = global.mall.url + '/login.html?url=' + encodeURIComponent(window.location);*/
-                    } else {
-                        $.cookie('access_token', response.data, {
-                            'domain': global.domain,
-                            'path': '/'
-                        });
-                        httpAuthService.loginConfirmed();
-                    }
-                });
-                scope.$on('event:auth-loginConfirmed', function () {
-                    scope.visible = false;
-                });
-                scope.$on('event:auth-loginCancelled', function () {
-                    scope.visible = false;
-                });
-
-                scope.getLoginUrl = function () {
-                    var url = global.mall.url + '/login.html?url=' + encodeURIComponent(window.location);
-                    return $sce.trustAsResourceUrl(url);
-                };
-
-                scope.close = function () {
-                    httpAuthService.loginCancelled();
-                };
-
-                scope.$watch(function () {
-                    return $cookies.get('access_token');
-                }, function (newValue, oldValue) {
+module.directive('mallloginDialog', ['$sce', '$cookies', 'httpAuthService', '$interval', function ($sce, $cookies, httpAuthService, $interval) {
+    return {
+        restrict: 'A',
+        template: '',
+        link: function (scope) {
+            scope.$on('event:auth-loginRequired', function (rejection, response) {
+                if (response.data == null || response.data == '') {
+                    scope.intervalCookies = $interval(function () {
+                        $cookies.get('access_token');
+                    }, 1000);
+                } else {
+                    $.cookie('access_token', response.data, {
+                        'domain': global.domain,
+                        'path': '/'
+                    });
                     httpAuthService.loginConfirmed();
-                });
-            }
-        };
-    }]);
+                }
+            });
+            scope.$on('event:auth-loginConfirmed', function () {
+                $interval.cancel(scope.intervalCookies);
+            });
+            scope.$on('event:auth-loginCancelled', function () {
+                $interval.cancel(scope.intervalCookies);
+            });
+            scope.$watch(function () {
+                return $cookies.get('access_token');
+            }, function (newValue, oldValue) {
+                httpAuthService.loginConfirmed();
+            });
+        }
+    };
+}]);
 
 module.directive('repeatFinish', ['$timeout', function ($timeout) {
     return {

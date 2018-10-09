@@ -15,10 +15,6 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
     $scope.page = 1;
     $scope.rows = 10;
 
-    /**
-     * 获取登录信息*/
-    $scope.ifSign();
-
     /**获取订单信息**/
     $scope.getList = function () {
         ordersService.getList($scope.state, $scope.ifPay, $scope.keyword, $scope.page-1, $scope.rows, function (data) {

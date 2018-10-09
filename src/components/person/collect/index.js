@@ -6,11 +6,11 @@ var _ = require('underscore');
 require('serve/product.js');
 
 var evaluate = app.controller('personCollectCtrl', function ($scope, $rootScope, productService) {
+
     /**
      * 关注列表*/
     $scope.getWatch = function () {
         productService.getWatch(function (data) {
-            console.log(data);
             $scope.products = data;
             $scope.mallProIds = '';
             _.each(data, function (good) {
@@ -19,7 +19,7 @@ var evaluate = app.controller('personCollectCtrl', function ($scope, $rootScope,
             //价格
             $rootScope.productPrice($scope.mallProIds);
         });
-    }
+    };
     $scope.getWatch();
 
     /**

@@ -952,9 +952,15 @@
 }
 .preview{
   box-sizing: border-box;
+  .save-survey{
+    margin: 10px 0;
+    overflow: hidden;
+    width: 250px;
+  }
   .my-save{
+    float: left;
     width: 100px;
-    margin-top: 10px;
+    margin-top: 13px;
     i{
       color:#ccc;
       margin-right:20px;
@@ -966,6 +972,7 @@
     }
   }
   .survey{
+    float: right;
     padding: 5px 20px;
     border: $border-gray;
     border-radius: 3px;

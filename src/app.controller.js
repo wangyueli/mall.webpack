@@ -71,7 +71,7 @@ var AppController =app.controller("AppController",
         orgService.getSchool(function (data) {
             $scope.schoolName = data.name;
             $scope.orgId = data.id;
-            $scope.canTwoCode = data.wxValid;
+            $rootScope.canTwoCode = data.wxValid;
             $scope.schoolLoginUrl = data.schoolLoginUrl;
             if(data.surveyUrl){
                 $scope.surveyUrl = data.surveyUrl;
@@ -86,7 +86,11 @@ var AppController =app.controller("AppController",
                 $rootScope.titleTab = $rootScope.titleMall;
             }
             if($location.search().login == 'true'){
-                $scope.ifSign();
+                if($rootScope.canTwoCode){
+                    $scope.loginMask = true;
+                }else {
+                    window.location = $scope.getLoginUrlMall();
+                }
             }
         });
 
@@ -95,7 +99,7 @@ var AppController =app.controller("AppController",
         $scope.ifSign = function () {
             authService.get(function (data) {
                 if(data==null){
-                    if($scope.canTwoCode){
+                    if($rootScope.canTwoCode){
                         $scope.loginMask = true;
                     }else {
                         window.location = $scope.getLoginUrlMall();
@@ -104,12 +108,13 @@ var AppController =app.controller("AppController",
             });
         };
 
-        /**登录**/
-        //老师
+        /**
+         * 老师登录*/
         $scope.getLoginUrlMall = function() {
             return '/#/login';
         };
-        //供应商
+        /**
+         * 供应商登录*/
         $scope.getLoginUrlBack = function() {
             return global.app.url + '/login.html?url=' + encodeURIComponent(window.location);
         };
@@ -127,14 +132,6 @@ var AppController =app.controller("AppController",
             $scope.getCartList();
         };
 
-        $scope.$watch(function() {
-            return $cookies.get('access_token');
-        }, function(newValue, oldValue, scope) {
-            if (newValue != null) {
-                $scope.getUserInfo();
-                $scope.getCartList();
-            }
-        });
         $scope.getUserInfo = function() {
             authService.get(function(a) {
                 if (a != null) {
@@ -180,22 +177,6 @@ var AppController =app.controller("AppController",
             });
         };
 
-        /**
-         * 如果登陆人是供应商，判断是否开过店铺 www*/
-        orgService.getStore(function (store) {
-            if(store.audited == 1){
-                $scope.haveStore = true;
-            }else {
-                $scope.onHave = true;
-            }
-        },function (nosotre) {});
-
-        /**
-         * 待处理订单 www*/
-        authService.getOrderCount(function (count) {
-            $scope.runningCount = count;
-        });
-
         /**刷新购物车列表**/
         $scope.getCartList = function(){
             cartService.get(function(data) {
@@ -203,7 +184,15 @@ var AppController =app.controller("AppController",
                 $scope.addUnitPrice();
             });
         };
-        $scope.getCartList();
+
+        $scope.$watch(function() {
+            return $cookies.get('access_token');
+        }, function(newValue, oldValue, scope) {
+            if (newValue != null) {
+                $scope.getUserInfo();
+                $scope.getCartList();
+            }
+        });
 
         /**
          * 计算总价，数量
@@ -244,56 +233,38 @@ var AppController =app.controller("AppController",
          加入购物车
          */
         $scope.addGoods = function(product,  cartNum){
-            //是否能购买
-            if($scope.o){
-                cartService.insert(product.productId, product.mallId, cartNum, function(data){
-                    swal({
-                        text: '成功加入购物车!',
-                        icon: "success",
-                        buttons:{
-                            cancel: {
-                                text: '继续购物',
-                                visible: true
-                            },
-                            confirm: {text: '去购物车'}
-                        }
-                    }).then(function (isConfirm) {
-                        if(isConfirm == true){
-                            window.open('/#/cart');
-                        }
-                    });
-                    $scope.getCartList(0);
-                },function(data){
-                    swal({
-                        text: '加入购物车失败! 失败原因'+data,
-                        icon: 'error',
-                        buttons:{confirm: {text: '确定'}}
-                    });
-                })
-
-            }else{
-                if($scope.canTwoCode){
-                    $scope.loginMask = true;
-                }else {
-                    window.location = $scope.getLoginUrlMall();
-                }
-            }
+            cartService.insert(product.productId, product.mallId, cartNum, function(data){
+                swal({
+                    text: '成功加入购物车!',
+                    icon: "success",
+                    buttons:{
+                        cancel: {
+                            text: '继续购物',
+                            visible: true
+                        },
+                        confirm: {text: '去购物车'}
+                    }
+                }).then(function (isConfirm) {
+                    if(isConfirm == true){
+                        window.open('/#/cart');
+                    }
+                });
+                $scope.getCartList(0);
+            },function(data){
+                swal({
+                    text: '加入购物车失败! 失败原因'+data,
+                    icon: 'error',
+                    buttons:{confirm: {text: '确定'}}
+                });
+            })
         };
         /*
          * 立即购买*/
         $scope.buyNow = function (pId, mallId) {
-            if($scope.o){
-                cartService.insert(pId, mallId, 1, function(data) {
-                    window.location = '/#/cart';
-                }, function() {
-                });
-            }else {
-                if($scope.canTwoCode){
-                    $scope.loginMask = true;
-                }else {
-                    window.location = $scope.getLoginUrlMall();
-                }
-            }
+            cartService.insert(pId, mallId, 1, function(data) {
+                window.location = '/#/cart';
+            }, function() {
+            });
         };
         /*
          删除商品
@@ -578,7 +549,8 @@ var AppController =app.controller("AppController",
                 $scope.surveyWord = '';
             }
             window.open($scope.surveyUrl + '/#/proxy?access_token=' + $cookies.get("access_token") + '&keyword=' + $scope.surveyWord);
-        }
+        };
+
     });
 
 module.exports = AppController;

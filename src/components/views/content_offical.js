@@ -5,8 +5,10 @@
 var jquery = require('jquery');
 var _ = require('underscore');
 var app = require('appModule');
+require('serve/org.js');
+require('serve/auth.js');
 
-var contentMall = app.controller('contentMall', function ($scope, $stateParams, $http, $cookies, $rootScope) {
+var contentMall = app.controller('contentMall', function ($scope, $stateParams, $http, $cookies, $rootScope, orgService) {
     /**
      * www 顶部搜索*/
     $('.select-wpr').on('mouseenter', function(){
@@ -36,6 +38,24 @@ var contentMall = app.controller('contentMall', function ($scope, $stateParams, 
     $rootScope.Tabtitle = '云采通-采购商城';
 
     /**
+     * 如果登陆人是供应商，判断是否开过店铺 www*/
+    orgService.getStore(function (store) {
+        if(store.audited == 1){
+            $scope.haveStore = true;
+        }else {
+            $scope.onHave = true;
+        }
+    },function (nosotre) {});
+
+    /**
+     * 待处理订单 www*/
+    authService.getOrderCount(function (count) {
+        $scope.runningCount = count;
+    });
+
+
+
+    /**
      * 客服电话动画*/
     jquery('.menu-right > .item').hover(function () {
         jquery('.has-drop',this).addClass('arrow-v-tran arrow-v');
@@ -43,10 +63,6 @@ var contentMall = app.controller('contentMall', function ($scope, $stateParams, 
     }, function () {
         jquery('.has-drop',this).removeClass('arrow-v');
         jquery('.dorpmenu',this).fadeOut('fast');
-    });
-    /*返回顶部*/
-    jquery("#backTop").on('click',function(){
-        jquery('body,html').animate({scrollTop:0},500);
     });
 
 });

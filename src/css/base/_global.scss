@@ -310,8 +310,18 @@
   -o-transition:all 0.3s ease-out;
   transition:all 0.3s ease-out;
 }
+
 .right-toolbar > .width70{
   width: 70px;
+}
+.right-toolbar .code{
+  position: absolute;
+  top: 0;
+  left: -102px;
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #d5d5d5;
+  display: none;
 }
 .right-toolbar .word{line-height: 60px; }
 .right-toolbar .word-dif{line-height: 10px; }
@@ -339,6 +349,7 @@
   text-align:left;
   display:none;
 }
+.right-toolbar > .code-f:hover .code{display: block;}
 .right-toolbar > .kefu:hover .tip{
   display:block;
 }

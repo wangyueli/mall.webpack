@@ -216,9 +216,6 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 	/**
 	 * 加入关注*/
 	$scope.addWatch = function (mallId, productId) {
-		/**
-		 * 获取登录信息*/
-		$scope.ifSign();
 		if($scope.watched == true){
 			swal({
 				text: '您已经关注该商品!',

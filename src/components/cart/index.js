@@ -10,10 +10,6 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 	$scope.$parent.shopStep = 1;
 	$scope.storeList = null;
 
-	/**
-	 * 获取登录信息*/
-	$scope.ifSign();
-
 	/**获取购物车列表**/
 	$scope.refresh = function () {
 		cartService.get(function(data) {

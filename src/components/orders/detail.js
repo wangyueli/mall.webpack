@@ -11,10 +11,6 @@ var orderDetail = app.controller('orderDetailCtrl', function ($scope, $rootScope
     $scope.id = $stateParams.id;
 
     /**
-     * 获取登录信息*/
-    $scope.ifSign();
-
-    /**
      * 获取订单状态追踪*/
     $scope.getFoll = function () {
         ordersService.getFollow($scope.id, function (data) {
