@@ -4092,7 +4092,7 @@
   }
   .head_main_column{
     height:100px;
-    margin:40px auto 10px;
+    margin:40px auto 0;
     position:relative;
     h1{
       font-family: 微软雅黑;
@@ -4705,11 +4705,21 @@
     p{
       margin: 160px 0 0 20px;
     }
+    .continue{
+      width: 80px;
+      padding: 7px 0;
+      text-align: center;
+      margin: 60px auto 0;
+      background: $gf5;
+      border: 1px solid $gc;
+      color: $g3;
+    }
   }
   #closeIe{
     font-size: 20px;
     right: 30px;
     font-weight: bold;
+    cursor: pointer;
   }
 }
 /*------------------www官网首页----------------*/

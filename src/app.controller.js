@@ -233,31 +233,41 @@ var AppController =app.controller("AppController",
          加入购物车
          */
         $scope.addGoods = function(product,  cartNum){
-            cartService.insert(product.productId, product.mallId, cartNum, function(data){
-                swal({
-                    text: '成功加入购物车!',
-                    icon: "success",
-                    buttons:{
-                        cancel: {
-                            text: '继续购物',
-                            visible: true
-                        },
-                        confirm: {text: '去购物车'}
+            authService.get(function (data) {
+                if(data==null){
+                    if($rootScope.canTwoCode){
+                        $rootScope.loginMask = true;
+                    }else {
+                        window.location = $scope.getLoginUrlMall();
                     }
-                }).then(function (isConfirm) {
-                    if(isConfirm == true){
-                        window.open('/#/cart');
-                    }
-                });
-                $scope.getCartList(0);
-            },function(data){
-                console.log(data);
-                swal({
-                    text: '加入购物车失败! 失败原因'+data,
-                    icon: 'error',
-                    buttons:{confirm: {text: '确定'}}
-                });
-            })
+                }else {
+                    cartService.insert(product.productId, product.mallId, cartNum, function(data){
+                        swal({
+                            text: '成功加入购物车!',
+                            icon: "success",
+                            buttons:{
+                                cancel: {
+                                    text: '继续购物',
+                                    visible: true
+                                },
+                                confirm: {text: '去购物车'}
+                            }
+                        }).then(function (isConfirm) {
+                            if(isConfirm == true){
+                                window.open('/#/cart');
+                            }
+                        });
+                        $scope.getCartList(0);
+                    },function(data){
+                        console.log(data);
+                        swal({
+                            text: '加入购物车失败! 失败原因'+data,
+                            icon: 'error',
+                            buttons:{confirm: {text: '确定'}}
+                        });
+                    })
+                }
+            });
         };
         /*
          * 立即购买*/

@@ -140,10 +140,20 @@ app.factory('sessionInjector', ['$q', '$cookies', '$log', '$document', '$rootSco
                     return $q.reject(rejection.data);
                 }
                 if(rejection.status == 401){
-                    if($rootScope.canTwoCode){
-                        $rootScope.loginMask = true;
+                    var thisUrl = window.location.hash;
+                    var index = thisUrl.indexOf('?');
+                    var thisUrlPath = '';
+                    if(index != -1){
+                        thisUrlPath = thisUrl.substring(0, index);
                     }else {
-                        window.location = '/#/login';
+                        thisUrlPath = thisUrl;
+                    }
+                    if(thisUrlPath=='#/cart' || thisUrlPath=='#/order' || thisUrlPath=='#/orders' || thisUrlPath=='#/orders/detail' || thisUrlPath=='#/person/core' || thisUrlPath=='#/person/collect' ){
+                        if($rootScope.canTwoCode){
+                            $rootScope.loginMask = true;
+                        }else {
+                            window.location = '/#/login';
+                        }
                     }
                 }
                 return $q.reject(rejection);
