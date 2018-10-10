@@ -312,27 +312,24 @@
 }
 
 .right-toolbar > .width70{
+  position: relative;
   width: 70px;
 }
 .right-toolbar .code{
   position: absolute;
   top: 0;
-  left: -102px;
+  left: -162px;
   background: #fff;
-  padding: 10px;
+  padding: 5px;
   border: 1px solid #d5d5d5;
   display: none;
 }
-.right-toolbar .word{line-height: 60px; }
-.right-toolbar .word-dif{line-height: 10px; }
-.right-toolbar > .kefu i, .right-toolbar > .back-top i{
-  width:32px;
-  height:32px;
-  display:inline-block;
-  background:url("/images/back-kefu.png") center no-repeat;
-}
-.right-toolbar > .back-top i{
-  background:url("/images/back-top.png") center no-repeat;
+.right-toolbar .word{line-height: 80px; }
+.right-toolbar > .item i{
+  position: absolute;
+  top: -5px;
+  left:  23px;
+  font-size: 25px;
 }
 .right-toolbar > .kefu .tip{
   line-height:25px;
@@ -350,7 +347,7 @@
   display:none;
 }
 .right-toolbar > .code-f:hover .code{display: block;}
-.right-toolbar > .kefu:hover .tip{
+.right-toolbar > .kefu:hover .tip-mall{
   display:block;
 }
 .right-toolbar > .kefu .tip-mall{

@@ -983,7 +983,15 @@ module.directive('toLogin', ['$http', function ($http) {
                         setTimeout(function () {
                             clearInterval(timerInterval);
                         }, 2000);
-                    }else {
+                    }else if(res.type == 'WAIT'){
+                        $scope.msg = res.msg;
+                        $scope.alreadyScan = false;
+                        $scope.codeOut = true;
+                        if(res.code == 'NOT_BANDING'){
+                            $scope.noBind = true;
+                        }
+                    }
+                    else {
                         $scope.msg = res.msg;
                         $scope.alreadyScan = false;
                         $scope.codeOut = true;

@@ -36,10 +36,10 @@ app.run([
     '$rootScope', '$cookies',
     function ($rootScope, $cookies) {
         $rootScope.$on('$stateChangeStart', function () {
-            if (jquery("#progress").hasClass("done")) {
+            /*if (jquery("#progress").hasClass("done")) {
                 jquery("#progress").removeClass("done");
             }
-            $rootScope.ajaxCount = 0;
+            $rootScope.ajaxCount = 0;*/
         });
 
         $rootScope.$on('$stateChangeSuccess', function (event, toState) {
@@ -53,7 +53,7 @@ app.run([
             }else {
                 $rootScope.titleTab = toState.data.title;
             }
-            if (toState.data.pathCode) {
+            /*if (toState.data.pathCode) {
                 $rootScope.accessToken = $cookies.get("access_token");
 
                 $rootScope.currentMenu = _.find(dictionary.MENUS, function (menu) {
@@ -67,15 +67,15 @@ app.run([
                         }
                     });
                 }
-            }
-            setTimeout(function () {
+            }*/
+           /* setTimeout(function () {
                 jquery("#progress").addClass("done");
-            }, 6000);
+            }, 6000);*/
         });
 
-        $rootScope.$on('$stateChangeError', function () {
+        /*$rootScope.$on('$stateChangeError', function () {
             jquery("#progress").removeClass("done");
-        });
+        });*/
 
     }]);
 
@@ -83,11 +83,11 @@ app.factory('sessionInjector', ['$q', '$cookies', '$log', '$document', '$rootSco
     function ($q, $cookies, $log, $document, $rootScope, localStorageService) {
         var sessionInjector = {
             request: function (config) {
-                if (typeof $rootScope.ajaxCount == 'undefined') {
+                /*if (typeof $rootScope.ajaxCount == 'undefined') {
                     $rootScope.ajaxCount = 0;
                 } else {
                     $rootScope.ajaxCount++;
-                }
+                }*/
                 if (config.url == null) {
                     return config;
                 }
@@ -127,12 +127,12 @@ app.factory('sessionInjector', ['$q', '$cookies', '$log', '$document', '$rootSco
                 if (response.status == 204) {
                     response.data = null;
                 }
-                $rootScope.ajaxCount--;
+                /*$rootScope.ajaxCount--;
                 if ($rootScope.ajaxCount == 0) {
                     setTimeout(function () {
                         jquery("#progress").addClass("done");
                     }, 500);
-                }
+                }*/
                 return response.data;
             },
             'responseError': function (rejection) {

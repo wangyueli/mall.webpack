@@ -36,16 +36,20 @@
 <!--客服 -->
 <div class="right-toolbar">
     <!--<div class="item width70"><p class="word">值得买</p></div>-->
-    <div class="item code-f width70">
-        <p class="word">小程序扫码</p>
+    <div class="item code-f width70" ng-show="canTwoCode">
+        <i class="icon icon-weixin"></i>
+        <p class="word">商城小程序</p>
         <div class="code">
-            <img ng-src="{{global.mall.api + '/auths/wxQrCode?uuid=&type'}}" width="80" height="80">
+            <img ng-src="{{global.mall.api + '/auths/wxQrCode?uuid=&type'}}" width="150" height="150">
         </div>
     </div>
-    <div class="item width70" ng-show="surveyUrl" ng-click="toSurvey()"><p class="word">购前调研</p></div>
+    <div class="item width70" ng-show="surveyUrl" ng-click="toSurvey()">
+        <i class="icon icon-icon11"></i>
+        <p class="word">购前调研</p>
+    </div>
     <div class="item kefu width70">
-        <i></i>
-        <p class="word-dif">客服热线</p>
+        <i class="icon icon-kefu1"></i>
+        <p class="word">客服热线</p>
         <div class="tip tip-mall">
             <div class="phone">
                 <p class="name">云采通</p>
@@ -66,7 +70,7 @@
         </div>
     </div>
     <div class="item width70 back-top" id="backTop" ng-click="toWindowTop()">
-        <i></i>
-        <p class="word-dif">TOP</p>
+        <i class="icon icon-fold"></i>
+        <p class="word">TOP</p>
     </div>
 </div>

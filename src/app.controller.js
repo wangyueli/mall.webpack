@@ -71,7 +71,7 @@ var AppController =app.controller("AppController",
         orgService.getSchool(function (data) {
             $scope.schoolName = data.name;
             $scope.orgId = data.id;
-            $rootScope.canTwoCode = data.wxValid;
+            $rootScope.canTwoCode = data.wxValid; //是否开通小程序
             $scope.schoolLoginUrl = data.schoolLoginUrl;
             if(data.surveyUrl){
                 $scope.surveyUrl = data.surveyUrl;
@@ -87,7 +87,7 @@ var AppController =app.controller("AppController",
             }
             if($location.search().login == 'true'){
                 if($rootScope.canTwoCode){
-                    $scope.loginMask = true;
+                    $rootScope.loginMask = true;
                 }else {
                     window.location = $scope.getLoginUrlMall();
                 }
@@ -100,7 +100,7 @@ var AppController =app.controller("AppController",
             authService.get(function (data) {
                 if(data==null){
                     if($rootScope.canTwoCode){
-                        $scope.loginMask = true;
+                        $rootScope.loginMask = true;
                     }else {
                         window.location = $scope.getLoginUrlMall();
                     }
@@ -251,6 +251,7 @@ var AppController =app.controller("AppController",
                 });
                 $scope.getCartList(0);
             },function(data){
+                console.log(data);
                 swal({
                     text: '加入购物车失败! 失败原因'+data,
                     icon: 'error',
@@ -516,11 +517,11 @@ var AppController =app.controller("AppController",
         };
 
         $scope.showLogin = function () {
-            $scope.loginMask = true;
+            $rootScope.loginMask = true;
         };
 
         $scope.closeLogin = function () {
-            $scope.loginMask = false;
+            $rootScope.loginMask = false;
         };
 
         $scope.showBind = function () {

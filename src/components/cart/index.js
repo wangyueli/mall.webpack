@@ -196,8 +196,6 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 		return priceMapMax;
 	};
 
-
-
 	/**输入数量**/
 	$scope.blurCart = function(cart){
 		if(cart.num < 1 || cart.num >9999){
@@ -302,35 +300,27 @@ var cart = app.controller('cartCtrl', function ($scope, $rootScope, $cookies, $l
 		});
 		// 必须有商品
 		if (product) {
-			if($scope.o){
-				//后台校验
-				cartService.Checkout(mallId, function (data) {
-					if(data.success == true){
-						window.location = data.hrefUrl +  '/#/order?cartMallId=' +mallId;
-					}else {
-						if(data.code == 'not_login'){
-							if($scope.canTwoCode){
-								$scope.loginMask = true;
-							}else {
-								window.location = $scope.getLoginUrlMall();
-							}
-
-						}else {
-							swal({
-								text: data.message,
-								icon: 'error',
-								buttons:{confirm: {text: '确定'}}
-							});
-						}
-					}
-				});
-			}else {
-				if($scope.canTwoCode){
-					$scope.loginMask = true;
+			//后台校验
+			cartService.Checkout(mallId, function (data) {
+				if(data.success == true){
+					window.location = data.hrefUrl +  '/#/order?cartMallId=' +mallId;
 				}else {
-					window.location = $scope.getLoginUrlMall();
+					if(data.code == 'not_login'){
+						if($scope.canTwoCode){
+							$scope.loginMask = true;
+						}else {
+							window.location = $scope.getLoginUrlMall();
+						}
+
+					}else {
+						swal({
+							text: data.message,
+							icon: 'error',
+							buttons:{confirm: {text: '确定'}}
+						});
+					}
 				}
-			}
+			});
 		}else {
 			swal({
 				text : '您还未选择商品!',
