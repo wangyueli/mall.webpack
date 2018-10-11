@@ -273,7 +273,7 @@ var productDetail = app.controller('productDetailCtrl', function ($scope, $rootS
 	objMark.onmousemove = function (ev) {
 		var _event = ev || window.event;  //兼容多个浏览器的event参数模式
 		var left = _event.clientX - objDemo.offsetLeft - objFloatBox.offsetWidth / 2;
-		var top = _event.clientY - objDemo.offsetTop - objFloatBox.offsetHeight / 2 - 140;
+		var top = _event.clientY - objDemo.offsetTop - objFloatBox.offsetHeight / 2;
 
 		//设置边界处理，防止移出小图片
 		if (left < 0) {

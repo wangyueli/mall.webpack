@@ -25,11 +25,10 @@
 			</div>
 			<div id="mark"></div>
 			<div id="float-box"></div>
-            <div class="save-survey">
+            <div class="save">
                 <div class="my-save" ng-click="addWatch(detail.mallId, detail.productId)">
                     <i class="icon icon-xin2" ng-class="{'active': watched}"></i>{{watched? '已关注': '关注'}}
                 </div>
-                <a class="survey" ng-show="surveyUrl" ng-click="toSurvey()">调研类似商品</a>
             </div>
 		</div>
 		<!--放大镜 大图-->
@@ -58,34 +57,35 @@
 					<p class="price-bg"></p>
 					<p class="price">
 						<span ng-show="detail.hasOwnProperty('unitPrice')">
-						<span class="tip-label">下单价</span>
+						<span>下单价</span>
 						<span class="tip-money">￥</span><em><span>{{detail.unitPrice==0 ? '内部协议价': (detail.unitPrice | number : 2)}}</span></em>
 						<span class="color9 ml15" ng-show="detail.unitPriceShow">
-							<span class="tip-label" ng-hide="detail.mallId=='JD' || detail.mallId=='BGHB' ">参考价</span>
-							<a class="tip-label tip-label-jd" ng-href="{{'https://item.jd.com/' + detail.id + '.html'}}" ng-show="detail.mallId=='JD'" target="_blank">京东价</a>
-							<a class="tip-label tip-label-jd" ng-href="{{'http://www.officemate.cn/product-' + detail.id + '.html'}}" ng-show="detail.mallId=='BGHB'" target="_blank">办公伙伴价</a>
+							<span ng-hide="detail.mallId=='JD' || detail.mallId=='BGHB' ">参考价</span>
+							<a class="tip-label-jd" ng-href="{{'https://item.jd.com/' + detail.id + '.html'}}" ng-show="detail.mallId=='JD'" target="_blank">京东价</a>
+							<a class="tip-label-jd" ng-href="{{'http://www.officemate.cn/product-' + detail.id + '.html'}}" ng-show="detail.mallId=='BGHB'" target="_blank">办公伙伴价</a>
 							<span>￥</span>
 							<span style="text-decoration: line-through; font-size: 18px;">{{detail.unitPriceShow | number:2}}</span>
-							<span class="ml15" ng-show="detail.unitPriceShow - detail.unitPrice >0 && detailMallId=='JD'">
-								<span class="tip-label">省钱</span>
+							<span class="ml10" ng-show="detail.unitPriceShow - detail.unitPrice >0 && detailMallId=='JD'">
+								<span>省钱</span>
 					    		<span class="colorgreen">￥</span>
 								<em style="font-size: 18px;">
 									<span class="colorgreen">{{ (detail.unitPriceShow - detail.unitPrice) | number:2}}</span>
 								</em>
 							</span>
+							 <a class="survey" ng-show="surveyUrl" ng-click="toSurvey()">调研类似商品</a>
 							<span class="ml25 import-notice" ng-show="detail.mallId=='JD' || detail.mallId=='BGHB' "><i class="icon icon-mianzeshengming"></i>
 								重要声明<span class="import-tip">本商品由{{detail.storeName}}提供专属优惠价格，该价格可能与原商品的促销价格不同。</span>
 							</span>
 						</span>
 						</span>
 						<span ng-show="detail.priceStatus=='notLogin' || detail.priceStatus=='notRight'">
-							<span class="tip-label">价&nbsp;格</span>
+							<span>价&nbsp;格</span>
 							<span class="tip-money" ng-show="detail.priceStatus=='notLogin'">登录显示价格</span>
 							<span class="tip-money" ng-show="detail.priceStatus=='notRight'">价格供可购买老师查看</span>
 						</span>
 						<!--价格区间-->
 						<span ng-show="detail.unitPriceMax">
-							<span class="tip-label">价格区间</span>
+							<span>价格区间</span>
 							<span class="tip-money">￥</span><em><span>{{detail.unitPriceMin | number : 2}} - {{detail.unitPriceMax | number : 2}}</span></em>
 						</span>
 					</p>

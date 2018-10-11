@@ -482,7 +482,7 @@ var order = app.controller('orderCtrl', function ($scope, $rootScope, $log, $loc
                 });
             }else {
                 swal({
-                    text: '提交失败,网络链接错误,请稍后再试',
+                    text: '提交失败,网络连接错误,请稍后再试',
                     icon: 'error',
                     buttons: {confirm:{text:'确定'}}
                 }).then(function(){

@@ -20,10 +20,17 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
     $scope.property = {};
     $scope.imported = null;
     $scope.sort = 'scale desc';
+    $scope.allChooseArr = [];
+
     /*
      * title*/
-    if($scope.keyword){
+    if($rootScope.keyword){
         $rootScope.titleTab = $rootScope.keyword +  '-' + $rootScope.titleMall;
+    }else if($scope.categoryId){
+        productService.getCategory($stateParams.mallId, $scope.categoryId, function (data) {
+            $scope.categoryName = data.name;
+            $rootScope.titleTab = $scope.categoryName +'-'+ $rootScope.titleMall;
+        });
     }else {
         $rootScope.titleTab = '商品列表-' + $rootScope.titleMall;
     }
@@ -35,18 +42,6 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
     }else {
         $scope.showMallType = true;
         $scope.mallId = null;
-    }
-
-    //已经选择
-    $scope.allChooseArr = [];
-
-    /**
-     * 获取路由所带分类**/
-    if($scope.categoryId){
-        productService.getCategory($stateParams.mallId, $scope.categoryId, function (data) {
-            $rootScope.categoryName = data.name;
-            $rootScope.Tabtitle = $rootScope.categoryName +'-'+ $rootScope.titleMall;
-        });
     }
 
     /**
@@ -70,7 +65,9 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
     /**
      * 获取商品数据**/
     $scope.getList = function () {
+        $scope.watiList = true;
         productService.getList($scope.mallId, $scope.categoryId, $rootScope.keyword, $scope.brand, $scope.page-1, $scope.rows, $scope.property, $scope.minp, $scope.maxp, $scope.imported, $scope.sort, function(data){
+            $scope.watiList = false;
             //判断某个频道种类商品库存 获取价格
             $scope.mallProIds = '';
             _.each(data.product.rs, function (good) {
