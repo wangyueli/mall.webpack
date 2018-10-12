@@ -15,6 +15,19 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
     $scope.page = 1;
     $scope.rows = 10;
 
+    if($stateParams.from == 'payReturn'){
+        swal({
+            icon: 'warning',
+            buttons:{
+                cancel: {
+                    text: '支付失败',
+                    visible: true
+                },
+                confirm: {text: '支付成功'}
+            }
+        })
+    }
+
     /**获取订单信息**/
     $scope.getList = function () {
         ordersService.getList($scope.state, $scope.ifPay, $scope.keyword, $scope.page-1, $scope.rows, function (data) {
@@ -97,11 +110,11 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
     /*
     * 打印订单 电子发票*/
     $scope.print = function (type, ordId) {
+        var tempwindow = window.open('_blank');
         ordersService.get(ordId, function (order) {
             if(type == 'ordInfo'){
                 //订单
                 if(order.orderListUrl){
-                    var tempwindow = window.open('_blank');
                     tempwindow.location = order.orderListUrl;
                 }else {
                     swal({
@@ -114,8 +127,7 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
             if(type == 'ordMsg'){
                 //采购申请表
                 if(order.bpmPreviewUrl){
-                    var tempwindow1 = window.open('_blank');
-                    tempwindow1.location = order.bpmPreviewUrl;
+                    tempwindow.location = order.bpmPreviewUrl;
                 }else {
                     swal({
                         text: '暂未生成采购申请表',
@@ -127,8 +139,7 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
             if(type == 'elctrInv'){
                 //电子发票
                 if(order.invoiceUrl.length>0){
-                    var tempwindow2 = window.open('_blank');
-                    tempwindow2.location = order.invoiceUrl[0];
+                    tempwindow.location = order.invoiceUrl[0];
                 }else {
                     swal({
                         text: '收货后2日内自动生成',
@@ -140,8 +151,7 @@ var orders = app.controller('ordersCtrl', function ($scope, $rootScope, $locatio
             if(type == 'resultBack'){
                 //结果备案表
                 if(order.recordUrl){
-                    var tempwindow3 = window.open('_blank');
-                    tempwindow3.location = order.recordUrl;
+                    tempwindow.location = order.recordUrl;
                 }else {
                     swal({
                         text: '暂未生成结果备案表',

@@ -398,7 +398,7 @@ var router = app.config(['$stateProvider', '$locationProvider', '$urlRouterProvi
             }
         })
         .state('contentPerson.orders', {
-            url: 'orders',
+            url: 'orders?from',
             data: {
                 code: 'orders',
                 title: '我的订单',

@@ -563,11 +563,14 @@ var AppController =app.controller("AppController",
                 $scope.surveyWord = '';
             }
             if($cookies.get("access_token")){
-                $scope.cookie = $cookies.get("access_token");
+                window.open($scope.surveyUrl + '/#/proxy?access_token=' + $cookies.get("access_token") + '&keyword=' + $scope.surveyWord);
             }else {
-                $scope.cookie = '';
+                if($rootScope.canTwoCode){
+                    $rootScope.loginMask = true;
+                }else {
+                    window.location = $scope.getLoginUrlMall();
+                }
             }
-            window.open($scope.surveyUrl + '/#/proxy?access_token=' + $scope.cookie + '&keyword=' + $scope.surveyWord);
         };
 
     });
