@@ -28,8 +28,8 @@ var product = app.controller('productCtrl', function ($scope, $log, $location, $
         $rootScope.titleTab = $rootScope.keyword +  '-' + $rootScope.titleMall;
     }else if($scope.categoryId){
         productService.getCategory($stateParams.mallId, $scope.categoryId, function (data) {
-            $scope.categoryName = data.name;
-            $rootScope.titleTab = $scope.categoryName +'-'+ $rootScope.titleMall;
+            $rootScope.categoryName = data.name;
+            $rootScope.titleTab = $rootScope.categoryName +'-'+ $rootScope.titleMall;
         });
     }else {
         $rootScope.titleTab = '商品列表-' + $rootScope.titleMall;

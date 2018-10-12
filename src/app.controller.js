@@ -121,7 +121,6 @@ var AppController =app.controller("AppController",
 
         /**登出**/
         $scope.logout = function() {
-            $cookieStore.remove("access_token");
             jquery.cookie('access_token', null, {
                 'expires': -1,
                 'domain': global.domain,
@@ -172,6 +171,12 @@ var AppController =app.controller("AppController",
                     //消息数量
                     messageService.getListCount(false, function(messageListCount) {
                         $scope.messageListCount = messageListCount;
+                    });
+                }else {
+                    jquery.cookie('access_token', null, {
+                        'expires': -1,
+                        'domain': global.domain,
+                        'path': '/'
                     });
                 }
             });
@@ -321,7 +326,7 @@ var AppController =app.controller("AppController",
             return disNum;
         };
 
-        /*
+        /**
          * 获取当前用户所在地址*/
         $rootScope.getRegion = function (mallId, f) {
             orgService.defaultAdress(mallId, function (data) {
@@ -548,10 +553,8 @@ var AppController =app.controller("AppController",
         /**
          * 购前调研*/
         $scope.toSurvey = function () {
-            if($location.path() == '/product/detail'){
-                if($rootScope.dlCategoryName){
-                    $scope.surveyWord = $rootScope.dlCategoryName;
-                }
+            if($rootScope.dlCategoryName){
+                $scope.surveyWord = $rootScope.dlCategoryName;
             }else if($rootScope.keyword){
                 $scope.surveyWord = $rootScope.keyword;
             }else if($rootScope.categoryName){
@@ -559,7 +562,12 @@ var AppController =app.controller("AppController",
             }else {
                 $scope.surveyWord = '';
             }
-            window.open($scope.surveyUrl + '/#/proxy?access_token=' + $cookies.get("access_token") + '&keyword=' + $scope.surveyWord);
+            if($cookies.get("access_token")){
+                $scope.cookie = $cookies.get("access_token");
+            }else {
+                $scope.cookie = '';
+            }
+            window.open($scope.surveyUrl + '/#/proxy?access_token=' + $scope.cookie + '&keyword=' + $scope.surveyWord);
         };
 
     });

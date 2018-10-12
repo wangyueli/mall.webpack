@@ -59,7 +59,7 @@
 						<span ng-show="detail.hasOwnProperty('unitPrice')">
 						<span>下单价</span>
 						<span class="tip-money">￥</span><em><span>{{detail.unitPrice==0 ? '内部协议价': (detail.unitPrice | number : 2)}}</span></em>
-						<span class="color9 ml15" ng-show="detail.unitPriceShow">
+						<span class="color9 ml20" ng-show="detail.unitPriceShow">
 							<span ng-hide="detail.mallId=='JD' || detail.mallId=='BGHB' ">参考价</span>
 							<a class="tip-label-jd" ng-href="{{'https://item.jd.com/' + detail.id + '.html'}}" ng-show="detail.mallId=='JD'" target="_blank">京东价</a>
 							<a class="tip-label-jd" ng-href="{{'http://www.officemate.cn/product-' + detail.id + '.html'}}" ng-show="detail.mallId=='BGHB'" target="_blank">办公伙伴价</a>
