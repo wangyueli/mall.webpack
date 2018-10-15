@@ -1189,14 +1189,20 @@
         font-size: 13px;
         border: 2px solid $gd;
         color: $g6;
-        padding: 3px;
-        border-radius: 10px;
+        padding: 5px;
+        border-radius: 14px;
         background: #fff;
+        .icon{
+          @include cube-inline(20px, 20px);
+          line-height: 27px;
+          margin-left: 4px;
+          font-size: 18px;
+        }
         &:hover{
           color: #fff;
           font-weight: 600;
           border: none;
-          padding: 5px;
+          padding: 7px;
         }
       }
     }
@@ -2876,9 +2882,10 @@
   margin-left: 20px;
   padding:5px 15px;
   .my-orders{
-    font-size:16px;
+    font-size:15px;
     line-height:34px;
     margin-bottom: 5px;
+    font-weight: 600;
   }
   .filter{
     position: relative;
@@ -6173,8 +6180,7 @@
        padding-left: 15px;
        margin-bottom: 20px;
        line-height: 40px;
-       color:#e11e2d;
-       font-size: 16px;
+       font-size: 15px;
        border-bottom:2px solid  $gf5;
      }
      .collect_separate{
